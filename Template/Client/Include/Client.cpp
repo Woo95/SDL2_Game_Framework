@@ -1,4 +1,4 @@
-#include "Core/SDL/SDL.h"
+#include "Core/GameInfo.h"
 
 #pragma comment(lib, "SDL2.lib")
 #pragma comment(lib, "SDL2main.lib")
