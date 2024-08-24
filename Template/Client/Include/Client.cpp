@@ -1,9 +1,15 @@
-#include "Core/GameInfo.h"
+#include "Core/GameManager.h"
 
 #pragma comment(lib, "SDL2.lib")
 #pragma comment(lib, "SDL2main.lib")
 
 int main(int argc, char* argv[])
 {
-    return 0;
+    if (!CGameManager::GetInst()->Init())
+    {
+        CGameManager::DestroyInst();
+        return 0;
+    }
+
+    return CGameManager::GetInst()->Run();
 }

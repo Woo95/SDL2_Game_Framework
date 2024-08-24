@@ -11,6 +11,9 @@
     <Filter Include="01. Core\01. SDL">
       <UniqueIdentifier>{22cdc5d0-8f3b-4fae-a1e2-ec194de482ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Core\02. GameManager">
+      <UniqueIdentifier>{6deae7ba-987c-45bd-afa3-f2641c317fff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\SDL\begin_code.h">
@@ -247,8 +250,17 @@
     <ClInclude Include="Core\SDL\SDL_vulkan.h">
       <Filter>01. Core\01. SDL</Filter>
     </ClInclude>
+    <ClInclude Include="Core\GameInfo.h">
+      <Filter>01. Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\GameManager.h">
+      <Filter>01. Core\02. GameManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
+    <ClCompile Include="Core\GameManager.cpp">
+      <Filter>01. Core\02. GameManager</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

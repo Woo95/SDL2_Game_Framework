@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\GameInfo.h" />
+    <ClInclude Include="Core\GameManager.h" />
     <ClInclude Include="Core\SDL\begin_code.h" />
     <ClInclude Include="Core\SDL\close_code.h" />
     <ClInclude Include="Core\SDL\SDL.h" />
@@ -100,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
+    <ClCompile Include="Core\GameManager.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
