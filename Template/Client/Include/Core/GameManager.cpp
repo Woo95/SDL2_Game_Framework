@@ -1,4 +1,5 @@
 ﻿#include "GameManager.h"
+#include "Timer.h"
 
 CGameManager* CGameManager::mInst = nullptr;
 
@@ -27,6 +28,8 @@ bool CGameManager::Init()
     mRenderer = SDL_CreateRenderer(mWindow, -1, 0);
     if (!mRenderer)
         return false;
+
+    CTimer::Init();
 
     return true;
 }
@@ -66,6 +69,7 @@ void CGameManager::Logic()
 
 void CGameManager::Update()
 {
+    CTimer::Update();
 }
 
 void CGameManager::Render()

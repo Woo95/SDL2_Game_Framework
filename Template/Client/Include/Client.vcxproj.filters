@@ -17,6 +17,9 @@
     <Filter Include="01. Core\03. SmartPtr">
       <UniqueIdentifier>{0aea47c3-a9b8-453e-834d-4d94a0c42b22}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Core\04. Timer">
+      <UniqueIdentifier>{b988f21a-2a7e-45be-84c2-a6a6a6dec500}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\SDL\begin_code.h">
@@ -265,6 +268,9 @@
     <ClInclude Include="Core\SharedPtr.h">
       <Filter>01. Core\03. SmartPtr</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Timer.h">
+      <Filter>01. Core\04. Timer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
@@ -273,6 +279,9 @@
     </ClCompile>
     <ClCompile Include="Core\Ref.cpp">
       <Filter>01. Core\03. SmartPtr</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Timer.cpp">
+      <Filter>01. Core\04. Timer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -101,11 +101,13 @@
     <ClInclude Include="Core\SDL\SDL_video.h" />
     <ClInclude Include="Core\SDL\SDL_vulkan.h" />
     <ClInclude Include="Core\SharedPtr.h" />
+    <ClInclude Include="Core\Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Core\GameManager.cpp" />
     <ClCompile Include="Core\Ref.cpp" />
+    <ClCompile Include="Core\Timer.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
