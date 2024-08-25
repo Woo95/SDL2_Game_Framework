@@ -14,6 +14,9 @@
     <Filter Include="01. Core\02. GameManager">
       <UniqueIdentifier>{6deae7ba-987c-45bd-afa3-f2641c317fff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Core\03. SmartPtr">
+      <UniqueIdentifier>{0aea47c3-a9b8-453e-834d-4d94a0c42b22}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\SDL\begin_code.h">
@@ -256,11 +259,20 @@
     <ClInclude Include="Core\GameManager.h">
       <Filter>01. Core\02. GameManager</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Ref.h">
+      <Filter>01. Core\03. SmartPtr</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\SharedPtr.h">
+      <Filter>01. Core\03. SmartPtr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Core\GameManager.cpp">
       <Filter>01. Core\02. GameManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Ref.cpp">
+      <Filter>01. Core\03. SmartPtr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

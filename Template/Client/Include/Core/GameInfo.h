@@ -10,6 +10,7 @@
 #include <functional>   // 함수 포인터를 쉽게 쓰기 위한 기능들
 #include <unordered_map>
 #include <math.h>
+#include "SharedPtr.h"
 
 #define	SAFE_DELETE(p) if(p) { delete p; p = nullptr; }
 #define	SAFE_RELEASE(p)	if(p)	{ p->Release(); p = nullptr; }
