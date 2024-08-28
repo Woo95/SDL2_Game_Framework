@@ -9,8 +9,6 @@ private:
 	SDL_Renderer* mRenderer = nullptr;
 	bool mLoop = true;
 
-	static CGameManager* mInst;
-
 private:
 	CGameManager();
 	~CGameManager();
@@ -23,6 +21,9 @@ private:
 	void Logic();
 	void Update();
 	void Render();
+
+private:
+	static CGameManager* mInst;
 
 public:
 	static CGameManager* GetInst()

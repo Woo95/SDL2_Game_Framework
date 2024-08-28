@@ -11,5 +11,8 @@ int main(int argc, char* argv[])
         return 0;
     }
 
-    return CGameManager::GetInst()->Run();
+    int returnVal = CGameManager::GetInst()->Run();
+    CGameManager::DestroyInst();
+
+    return returnVal;
 }

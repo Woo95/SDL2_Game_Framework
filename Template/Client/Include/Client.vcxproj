@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Core\GameInfo.h" />
     <ClInclude Include="Core\GameManager.h" />
+    <ClInclude Include="Core\Input.h" />
     <ClInclude Include="Core\Ref.h" />
     <ClInclude Include="Core\SDL\begin_code.h" />
     <ClInclude Include="Core\SDL\close_code.h" />
@@ -106,6 +107,7 @@
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Core\GameManager.cpp" />
+    <ClCompile Include="Core\Input.cpp" />
     <ClCompile Include="Core\Ref.cpp" />
     <ClCompile Include="Core\Timer.cpp" />
   </ItemGroup>

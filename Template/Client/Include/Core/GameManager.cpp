@@ -1,5 +1,6 @@
 ﻿#include "GameManager.h"
 #include "Timer.h"
+#include "Input.h"
 
 CGameManager* CGameManager::mInst = nullptr;
 
@@ -9,6 +10,8 @@ CGameManager::CGameManager()
 
 CGameManager::~CGameManager()
 {
+    CInput::DestroyInst();
+
     SDL_DestroyRenderer(mRenderer);
 
     SDL_DestroyWindow(mWindow);
@@ -30,6 +33,9 @@ bool CGameManager::Init()
         return false;
 
     CTimer::Init();
+
+    if (!CInput::GetInst()->Init())
+        return false;
 
     return true;
 }
@@ -55,7 +61,6 @@ int CGameManager::Run()
         }
         Logic();
     }
-    DestroyInst();
 
     return 0;
 }
@@ -70,6 +75,8 @@ void CGameManager::Logic()
 void CGameManager::Update()
 {
     CTimer::Update();
+
+    CInput::GetInst()->Update();
 }
 
 void CGameManager::Render()

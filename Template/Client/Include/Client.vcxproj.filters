@@ -20,6 +20,9 @@
     <Filter Include="01. Core\04. Timer">
       <UniqueIdentifier>{b988f21a-2a7e-45be-84c2-a6a6a6dec500}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Core\05. Input">
+      <UniqueIdentifier>{3e84e11b-3d68-4517-98e3-38767547663b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\SDL\begin_code.h">
@@ -271,6 +274,9 @@
     <ClInclude Include="Core\Timer.h">
       <Filter>01. Core\04. Timer</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Input.h">
+      <Filter>01. Core\05. Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
@@ -282,6 +288,9 @@
     </ClCompile>
     <ClCompile Include="Core\Timer.cpp">
       <Filter>01. Core\04. Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Input.cpp">
+      <Filter>01. Core\05. Input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
