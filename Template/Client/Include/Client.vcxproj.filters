@@ -1,296 +1,298 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="01. Core">
       <UniqueIdentifier>{45893dea-8266-40b1-b6ce-64534ea7e696}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Core\01. SDL">
-      <UniqueIdentifier>{22cdc5d0-8f3b-4fae-a1e2-ec194de482ec}</UniqueIdentifier>
+    <Filter Include="02. Manager">
+      <UniqueIdentifier>{2ca341f6-ad67-423f-b335-7b88c3472463}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Core\02. GameManager">
-      <UniqueIdentifier>{6deae7ba-987c-45bd-afa3-f2641c317fff}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01. Core\03. SmartPtr">
+    <Filter Include="01. Core\02. SmartPtr">
       <UniqueIdentifier>{0aea47c3-a9b8-453e-834d-4d94a0c42b22}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Core\04. Timer">
+    <Filter Include="01. Core\03. Timer">
       <UniqueIdentifier>{b988f21a-2a7e-45be-84c2-a6a6a6dec500}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Core\05. Input">
+    <Filter Include="01. Core\04. Input">
       <UniqueIdentifier>{3e84e11b-3d68-4517-98e3-38767547663b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Core\01. GameInfo">
+      <UniqueIdentifier>{07aa822c-a6bd-4517-8029-44de9e5d5528}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Core\External">
+      <UniqueIdentifier>{66d3e6b7-4451-4bb1-a87e-577d7a935af5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Core\External\SDL">
+      <UniqueIdentifier>{22cdc5d0-8f3b-4fae-a1e2-ec194de482ec}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Core\SDL\begin_code.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\close_code.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_assert.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_atomic.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_audio.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_bits.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_blendmode.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_clipboard.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_config.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_cpuinfo.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_egl.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_endian.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_error.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_events.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_filesystem.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_gamecontroller.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_gesture.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_guid.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_haptic.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_hidapi.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_hints.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_joystick.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_keyboard.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_keycode.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_loadso.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_locale.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_log.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_main.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_messagebox.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_metal.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_misc.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_mouse.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_mutex.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_name.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_opengl.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_opengl_glext.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_opengles.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_opengles2.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_opengles2_gl2.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_opengles2_gl2ext.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_opengles2_gl2platform.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_opengles2_khrplatform.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_pixels.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_platform.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_power.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_quit.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_rect.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_render.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_revision.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_rwops.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_scancode.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_sensor.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_shape.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_stdinc.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_surface.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_system.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_syswm.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_test.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_test_assert.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_test_common.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_test_compare.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_test_crc32.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_test_font.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_test_fuzzer.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_test_harness.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_test_images.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_test_log.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_test_md5.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_test_memory.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_test_random.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_thread.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_timer.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_touch.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_types.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_version.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_video.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SDL\SDL_vulkan.h">
-      <Filter>01. Core\01. SDL</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\GameInfo.h">
-      <Filter>01. Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\GameManager.h">
-      <Filter>01. Core\02. GameManager</Filter>
-    </ClInclude>
     <ClInclude Include="Core\Ref.h">
-      <Filter>01. Core\03. SmartPtr</Filter>
+      <Filter>01. Core\02. SmartPtr</Filter>
     </ClInclude>
     <ClInclude Include="Core\SharedPtr.h">
-      <Filter>01. Core\03. SmartPtr</Filter>
+      <Filter>01. Core\02. SmartPtr</Filter>
     </ClInclude>
     <ClInclude Include="Core\Timer.h">
-      <Filter>01. Core\04. Timer</Filter>
+      <Filter>01. Core\03. Timer</Filter>
     </ClInclude>
     <ClInclude Include="Core\Input.h">
-      <Filter>01. Core\05. Input</Filter>
+      <Filter>01. Core\04. Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\GameManager.h">
+      <Filter>02. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\GameInfo.h">
+      <Filter>01. Core\01. GameInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\close_code.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_assert.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_atomic.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_audio.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_bits.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_blendmode.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_clipboard.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_config.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_cpuinfo.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_egl.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_endian.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_error.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_events.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_filesystem.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_gamecontroller.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_gesture.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_guid.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_haptic.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_hidapi.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_hints.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_joystick.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_keyboard.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_keycode.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_loadso.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_locale.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_log.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_main.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_messagebox.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_metal.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_misc.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_mouse.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_mutex.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_name.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_opengl.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_opengl_glext.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_opengles.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_opengles2.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_opengles2_gl2.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_opengles2_gl2ext.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_opengles2_gl2platform.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_opengles2_khrplatform.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_pixels.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_platform.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_power.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_quit.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_rect.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_render.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_revision.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_rwops.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_scancode.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_sensor.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_shape.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_stdinc.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_surface.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_system.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_syswm.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_test.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_test_assert.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_test_common.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_test_compare.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_test_crc32.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_test_font.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_test_fuzzer.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_test_harness.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_test_images.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_test_log.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_test_md5.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_test_memory.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_test_random.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_thread.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_timer.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_touch.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_types.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_version.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_video.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_vulkan.h">
+      <Filter>01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\External\SDL\begin_code.h">
+      <Filter>01. Core\External\SDL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
-    <ClCompile Include="Core\GameManager.cpp">
-      <Filter>01. Core\02. GameManager</Filter>
-    </ClCompile>
     <ClCompile Include="Core\Ref.cpp">
-      <Filter>01. Core\03. SmartPtr</Filter>
+      <Filter>01. Core\02. SmartPtr</Filter>
     </ClCompile>
     <ClCompile Include="Core\Timer.cpp">
-      <Filter>01. Core\04. Timer</Filter>
+      <Filter>01. Core\03. Timer</Filter>
     </ClCompile>
     <ClCompile Include="Core\Input.cpp">
-      <Filter>01. Core\05. Input</Filter>
+      <Filter>01. Core\04. Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager\GameManager.cpp">
+      <Filter>02. Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

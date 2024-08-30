@@ -1,6 +1,6 @@
 ﻿#include "GameManager.h"
-#include "Timer.h"
-#include "Input.h"
+#include "../Core/Timer.h"
+#include "../Core/Input.h"
 
 CGameManager* CGameManager::mInst = nullptr;
 
