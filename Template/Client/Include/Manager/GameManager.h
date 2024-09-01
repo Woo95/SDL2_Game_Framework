@@ -5,13 +5,16 @@
 class CGameManager
 {
 private:
+	CGameManager();
+	~CGameManager();
+
+private:
 	SDL_Window* mWindow = nullptr;
 	SDL_Renderer* mRenderer = nullptr;
 	bool mLoop = true;
 
 private:
-	CGameManager();
-	~CGameManager();
+	static CGameManager* mInst;
 
 public:
 	bool Init();
@@ -21,9 +24,6 @@ private:
 	void Logic();
 	void Update();
 	void Render();
-
-private:
-	static CGameManager* mInst;
 
 public:
 	static CGameManager* GetInst()

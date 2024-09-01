@@ -100,9 +100,14 @@
     <ClInclude Include="Core\GameInfo.h" />
     <ClInclude Include="Core\Input.h" />
     <ClInclude Include="Core\Ref.h" />
+    <ClInclude Include="Core\SceneState.h" />
     <ClInclude Include="Core\SharedPtr.h" />
     <ClInclude Include="Core\Timer.h" />
     <ClInclude Include="Manager\GameManager.h" />
+    <ClInclude Include="Manager\SceneManager.h" />
+    <ClInclude Include="Scene\MenuScene.h" />
+    <ClInclude Include="Scene\PlayScene.h" />
+    <ClInclude Include="Scene\Scene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
@@ -110,6 +115,10 @@
     <ClCompile Include="Core\Ref.cpp" />
     <ClCompile Include="Core\Timer.cpp" />
     <ClCompile Include="Manager\GameManager.cpp" />
+    <ClCompile Include="Manager\SceneManager.cpp" />
+    <ClCompile Include="Scene\MenuScene.cpp" />
+    <ClCompile Include="Scene\PlayScene.cpp" />
+    <ClCompile Include="Scene\Scene.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

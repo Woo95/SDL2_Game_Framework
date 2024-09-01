@@ -16,14 +16,20 @@
     <Filter Include="01. Core\04. Input">
       <UniqueIdentifier>{3e84e11b-3d68-4517-98e3-38767547663b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Core\01. GameInfo">
-      <UniqueIdentifier>{07aa822c-a6bd-4517-8029-44de9e5d5528}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01. Core\External">
       <UniqueIdentifier>{66d3e6b7-4451-4bb1-a87e-577d7a935af5}</UniqueIdentifier>
     </Filter>
     <Filter Include="01. Core\External\SDL">
       <UniqueIdentifier>{22cdc5d0-8f3b-4fae-a1e2-ec194de482ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene">
+      <UniqueIdentifier>{605f8d33-accc-441c-920e-f3b614dfdfd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Scene\01. Scenes">
+      <UniqueIdentifier>{9c429037-dc37-4f0e-baef-df8450cfb66a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Core\01. Lib">
+      <UniqueIdentifier>{07aa822c-a6bd-4517-8029-44de9e5d5528}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -43,7 +49,7 @@
       <Filter>02. Manager</Filter>
     </ClInclude>
     <ClInclude Include="Core\GameInfo.h">
-      <Filter>01. Core\01. GameInfo</Filter>
+      <Filter>01. Core\01. Lib</Filter>
     </ClInclude>
     <ClInclude Include="Core\External\SDL\close_code.h">
       <Filter>01. Core\External\SDL</Filter>
@@ -279,6 +285,21 @@
     <ClInclude Include="Core\External\SDL\begin_code.h">
       <Filter>01. Core\External\SDL</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\Scene.h">
+      <Filter>03. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\SceneManager.h">
+      <Filter>02. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\PlayScene.h">
+      <Filter>03. Scene\01. Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\SceneState.h">
+      <Filter>01. Core\01. Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\MenuScene.h">
+      <Filter>03. Scene\01. Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
@@ -293,6 +314,18 @@
     </ClCompile>
     <ClCompile Include="Manager\GameManager.cpp">
       <Filter>02. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Scene.cpp">
+      <Filter>03. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager\SceneManager.cpp">
+      <Filter>02. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\PlayScene.cpp">
+      <Filter>03. Scene\01. Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\MenuScene.cpp">
+      <Filter>03. Scene\01. Scenes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

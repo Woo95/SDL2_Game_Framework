@@ -93,6 +93,9 @@ private:
 	bool	mAlt	= false;
 	bool	mShift	= false;
 
+private:
+	static CInput* mInst;
+
 public:
 	bool Init();
 	void Update();
@@ -171,9 +174,6 @@ public:
 			++iter;
 		}
 	}
-
-private:
-	static CInput* mInst;
 
 public:
 	static CInput* GetInst()

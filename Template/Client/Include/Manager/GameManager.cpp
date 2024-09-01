@@ -1,6 +1,7 @@
 ﻿#include "GameManager.h"
 #include "../Core/Timer.h"
 #include "../Core/Input.h"
+#include "SceneManager.h"
 
 CGameManager* CGameManager::mInst = nullptr;
 
@@ -11,6 +12,8 @@ CGameManager::CGameManager()
 CGameManager::~CGameManager()
 {
     CInput::DestroyInst();
+
+    CSceneManager::DestroyInst();
 
     SDL_DestroyRenderer(mRenderer);
 
@@ -35,6 +38,9 @@ bool CGameManager::Init()
     CTimer::Init();
 
     if (!CInput::GetInst()->Init())
+        return false;
+
+    if (!CSceneManager::GetInst()->Init())
         return false;
 
     return true;
@@ -77,22 +83,11 @@ void CGameManager::Update()
     CTimer::Update();
 
     CInput::GetInst()->Update();
+
+    CSceneManager::GetInst()->Update(CTimer::GetDeltaTime());
 }
 
 void CGameManager::Render()
 {
-    // 현재 렌더 색상 검정으로 설정
-    SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, 255);
-    // 현재 색상으로 화면 지우기
-    SDL_RenderClear(mRenderer);
-
-    // 사각형 정보 생성
-    SDL_FRect    rc = {100.f, 100.f, 200.f, 200.f};
-    // 현재 렌더 색상 흰색으로 설정
-    SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
-    // 사각형 그리기
-    SDL_RenderDrawRectF(mRenderer, &rc);
-
-    // 렌더링한 내용을 화면에 표시
-    SDL_RenderPresent(mRenderer);
+    CSceneManager::GetInst()->Render(mRenderer);
 }
