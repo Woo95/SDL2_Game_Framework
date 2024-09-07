@@ -3,7 +3,6 @@
 #include "External/SDL/SDL.h"
 #include <iostream>
 #include <string>
-#include <list>
 #include <stack>
 #include <vector>
 #include <typeinfo>
