@@ -100,6 +100,7 @@
     <ClInclude Include="Core\GameInfo.h" />
     <ClInclude Include="Core\Input.h" />
     <ClInclude Include="Core\SceneState.h" />
+    <ClInclude Include="Core\StaticMemoryPool.h" />
     <ClInclude Include="Core\Timer.h" />
     <ClInclude Include="Manager\GameManager.h" />
     <ClInclude Include="Manager\SceneManager.h" />
