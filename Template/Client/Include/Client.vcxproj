@@ -103,6 +103,7 @@
     <ClInclude Include="Core\StaticMemoryPool.h" />
     <ClInclude Include="Core\Timer.h" />
     <ClInclude Include="Manager\GameManager.h" />
+    <ClInclude Include="Manager\MemoryPoolManager.h" />
     <ClInclude Include="Manager\SceneManager.h" />
     <ClInclude Include="Object\Object.h" />
     <ClInclude Include="Core\ObjectType.h" />

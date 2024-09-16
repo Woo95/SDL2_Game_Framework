@@ -309,6 +309,9 @@
     <ClInclude Include="Core\StaticMemoryPool.h">
       <Filter>01. Core\Lib</Filter>
     </ClInclude>
+    <ClInclude Include="Manager\MemoryPoolManager.h">
+      <Filter>02. Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />

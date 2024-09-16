@@ -1,6 +1,7 @@
 #include "SceneManager.h"
 #include "../Scene/MenuScene.h"
 #include "../Scene/PlayScene.h"
+#include "MemoryPoolManager.h"
 
 CSceneManager* CSceneManager::mInst = nullptr;
 
