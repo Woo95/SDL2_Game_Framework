@@ -1,5 +1,5 @@
 ﻿#include "Player.h"
-#include "../Manager/MemoryPoolManager.h"
+#include "../../Manager/MemoryPoolManager.h"
 
 CPlayer::CPlayer()
 {

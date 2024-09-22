@@ -19,12 +19,6 @@
     <Filter Include="03. Scene\01. Scenes">
       <UniqueIdentifier>{9c429037-dc37-4f0e-baef-df8450cfb66a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04. Object">
-      <UniqueIdentifier>{2bd23e26-200b-4f59-9112-ca3337cf5a98}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04. Object\01. Objects">
-      <UniqueIdentifier>{464a61f2-ec3b-492f-88e8-ca55e14fdd3e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01. Core\Lib">
       <UniqueIdentifier>{07aa822c-a6bd-4517-8029-44de9e5d5528}</UniqueIdentifier>
     </Filter>
@@ -33,6 +27,18 @@
     </Filter>
     <Filter Include="01. Core\Lib\Timer">
       <UniqueIdentifier>{b988f21a-2a7e-45be-84c2-a6a6a6dec500}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Entity">
+      <UniqueIdentifier>{d5738d80-d9e6-41f0-8741-9bbca96ceb12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Entity\01. Object">
+      <UniqueIdentifier>{2bd23e26-200b-4f59-9112-ca3337cf5a98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Entity\01. Object\01. Objects">
+      <UniqueIdentifier>{464a61f2-ec3b-492f-88e8-ca55e14fdd3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Entity\02. Component">
+      <UniqueIdentifier>{3a4f77f1-cc7d-447f-8739-ed7a255c9874}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -297,20 +303,20 @@
     <ClInclude Include="Scene\MenuScene.h">
       <Filter>03. Scene\01. Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Object\Object.h">
-      <Filter>04. Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Object\Player.h">
-      <Filter>04. Object\01. Objects</Filter>
-    </ClInclude>
     <ClInclude Include="Core\StaticMemoryPool.h">
       <Filter>01. Core\Lib</Filter>
     </ClInclude>
     <ClInclude Include="Manager\MemoryPoolManager.h">
       <Filter>02. Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Object\Monster.h">
-      <Filter>04. Object\01. Objects</Filter>
+    <ClInclude Include="Entity\Object\Object.h">
+      <Filter>04. Entity\01. Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity\Object\Player.h">
+      <Filter>04. Entity\01. Object\01. Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity\Object\Monster.h">
+      <Filter>04. Entity\01. Object\01. Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -336,17 +342,17 @@
     <ClCompile Include="Scene\MenuScene.cpp">
       <Filter>03. Scene\01. Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Object\Object.cpp">
-      <Filter>04. Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Object\Player.cpp">
-      <Filter>04. Object\01. Objects</Filter>
-    </ClCompile>
     <ClCompile Include="Manager\MemoryPoolManager.cpp">
       <Filter>02. Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Object\Monster.cpp">
-      <Filter>04. Object\01. Objects</Filter>
+    <ClCompile Include="Entity\Object\Object.cpp">
+      <Filter>04. Entity\01. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity\Object\Player.cpp">
+      <Filter>04. Entity\01. Object\01. Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity\Object\Monster.cpp">
+      <Filter>04. Entity\01. Object\01. Objects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

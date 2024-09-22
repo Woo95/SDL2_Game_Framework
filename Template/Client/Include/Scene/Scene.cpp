@@ -1,5 +1,5 @@
 ﻿#include "Scene.h"
-#include "../Object/Object.h"
+#include "../Entity/Object/Object.h"
 
 CScene::CScene()
 {

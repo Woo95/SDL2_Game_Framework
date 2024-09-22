@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "../Core/GameInfo.h"
+#include "../../Core/GameInfo.h"
 
 class CObject abstract
 {

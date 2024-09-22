@@ -1,7 +1,7 @@
 ﻿#include "PlayScene.h"
 #include "../Manager/SceneManager.h"
-#include "../Object/Player.h"
-#include "../Object/Monster.h"
+#include "../Entity/Object/Player.h"
+#include "../Entity/Object/Monster.h"
 #include "../Manager/MemoryPoolManager.h"
 
 CPlayScene::CPlayScene()
