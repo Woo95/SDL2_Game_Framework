@@ -1,8 +1,9 @@
 ﻿#pragma once
 
+#include "../../Core/DataContainer.h"
 #include "../../Core/GameInfo.h"
 
-class CObject abstract
+class CObject abstract	: public DataContainer
 {
 	friend class CScene;
 
@@ -12,20 +13,7 @@ public:
 	virtual ~CObject();
 
 protected:
-	std::string mName;
-	bool mActive = true;	// handle object to be deleted
-	bool mEnable = true;	// handle object to be rendered
-
 	class CScene* mScene = nullptr;
-
-public:
-	const std::string& GetName() const { return mName; }
-	bool GetActive() const { return mActive; }
-	bool GetEnable() const { return mEnable; }
-	
-	void SetName(const std::string& name) { mName = name; }
-	void SetEnable(bool enable) { mEnable = enable; }
-	void SetActive(bool active) { mActive = active; }
 
 protected:
 	virtual bool Init();

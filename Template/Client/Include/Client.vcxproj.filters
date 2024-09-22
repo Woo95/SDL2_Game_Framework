@@ -318,6 +318,12 @@
     <ClInclude Include="Entity\Object\Monster.h">
       <Filter>04. Entity\01. Object\01. Objects</Filter>
     </ClInclude>
+    <ClInclude Include="Entity\Component\Component.h">
+      <Filter>04. Entity\02. Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\DataContainer.h">
+      <Filter>01. Core\Lib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
@@ -353,6 +359,9 @@
     </ClCompile>
     <ClCompile Include="Entity\Object\Monster.cpp">
       <Filter>04. Entity\01. Object\01. Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity\Component\Component.cpp">
+      <Filter>04. Entity\02. Component</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -12,7 +12,6 @@ private:
 private:
 	std::stack<class CScene*> mScene;
 
-private:
 	static CSceneManager* mInst;
 
 public:

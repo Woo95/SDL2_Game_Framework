@@ -13,12 +13,11 @@ private:
 	SDL_Renderer* mRenderer = nullptr;
 	bool mLoop = true;
 
-private:
 	static CGameManager* mInst;
 
 public:
 	bool Init();
-	int Run();
+	int  Run();
 
 private:
 	void Logic();

@@ -102,6 +102,8 @@
     <ClInclude Include="Core\SceneState.h" />
     <ClInclude Include="Core\StaticMemoryPool.h" />
     <ClInclude Include="Core\Timer.h" />
+    <ClInclude Include="Core\DataContainer.h" />
+    <ClInclude Include="Entity\Component\Component.h" />
     <ClInclude Include="Entity\Object\Monster.h" />
     <ClInclude Include="Entity\Object\Object.h" />
     <ClInclude Include="Entity\Object\Player.h" />
@@ -116,6 +118,7 @@
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Core\Input.cpp" />
     <ClCompile Include="Core\Timer.cpp" />
+    <ClCompile Include="Entity\Component\Component.cpp" />
     <ClCompile Include="Entity\Object\Monster.cpp" />
     <ClCompile Include="Entity\Object\Object.cpp" />
     <ClCompile Include="Entity\Object\Player.cpp" />
