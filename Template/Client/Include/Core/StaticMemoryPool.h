@@ -28,8 +28,8 @@ private:
 	}
 	virtual ~CStaticMemoryPool()
 	{
-		int poolAmount = mMemoryPool.size();
-		for (int i = 0; i < poolAmount; i++)
+		size_t poolAmount = mMemoryPool.size();
+		for (size_t i = 0; i < poolAmount; i++)
 		{
 			SAFE_FREE(mMemoryPool[i]);
 		}
@@ -37,7 +37,7 @@ private:
 
 private:
 	std::vector<T*> mMemoryPool;
-	std::stack<int> mFreeIdx;	// 메모리 풀을 앞쪽부터 사용하게 만들기 위한 스택
+	std::stack<size_t> mFreeIdx;	// 메모리 풀을 앞쪽부터 사용하게 만들기 위한 스택
 	int mBlockSize;
 
 private:
@@ -49,22 +49,28 @@ private:
 			ExpandPool();
 		}
 
-		int idx = mFreeIdx.top();
+		size_t idx = mFreeIdx.top();
 		mFreeIdx.pop();
 
 		T* currPool = mMemoryPool[idx / mBlockSize];
-		return &currPool[idx % mBlockSize];
+		// placement new는 "이미 할당된" 메모리 블록 내에서 객체를 생성하고 초기화한다. (즉 메모리 할당을 제외한 모든 것이 new와 동일하다)
+		T* obj = new (&currPool[idx % mBlockSize]) T;	// 객체 생성 시 vtable이 자동 설정되어 가상 함수 호출이 정상 동작한다.
+		
+		return obj;
 	}
 	void Deallocate(T* deallocPtr)
 	{
-		int poolAmount = mMemoryPool.size();
-		for (int i = 0; i < poolAmount; i++)
+		// placement new로 생성된 객체는 소멸자를 명시적으로 호출하여, 객체의 메모리는 그대로 두고 객체만 정리한다.
+		deallocPtr->~T();
+
+		size_t poolAmount = mMemoryPool.size();
+		for (size_t i = 0; i < poolAmount; i++)
 		{
 			// 어떤 MemoryPool block에 deallocPtr이 있는지 체크
 			if (IsWithinRange(deallocPtr, &mMemoryPool[i][0], &mMemoryPool[i][mBlockSize - 1]))
 			{
-				int currPoolIdx = deallocPtr - &mMemoryPool[i][0];
-				int totalPoolIdx = (mBlockSize * i) + currPoolIdx;
+				size_t currPoolIdx = deallocPtr - &mMemoryPool[i][0];
+				size_t totalPoolIdx = (mBlockSize * i) + currPoolIdx;
 				mFreeIdx.push(totalPoolIdx);
 
 				deallocPtr = nullptr;
@@ -81,7 +87,7 @@ private:
 		mMemoryPool.push_back(newPool);
 
 		// update mFreeIdx
-		int freeIdx = (mBlockSize * mMemoryPool.size()) - 1;
+		size_t freeIdx = (mBlockSize * mMemoryPool.size()) - 1;
 		for (int i = 0; i < mBlockSize; i++)
 		{
 			mFreeIdx.push(freeIdx - i);

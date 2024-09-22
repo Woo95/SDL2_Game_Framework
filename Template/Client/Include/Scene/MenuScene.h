@@ -2,8 +2,7 @@
 
 #include "Scene.h"
 
-class CMenuScene :
-    public CScene
+class CMenuScene : public CScene
 {
     friend class CSceneManager;
 
@@ -15,4 +14,3 @@ public:
     virtual bool Enter() override;
     virtual bool Exit()  override;
 };
-

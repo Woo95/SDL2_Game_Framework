@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "../Core/GameInfo.h"
-#include "../Core/ObjectType.h"
+#include "../Manager/MemoryPoolManager.h"
 
 // 추상 클래스 선언 - 인스턴스화 불가 (abstract 키워드로 명시 안하더라도, 순수 가상 함수가 있으면 자동으로 추상 클래스)
 class CScene abstract	
@@ -14,8 +14,7 @@ protected:
 	virtual ~CScene();
 
 private:
-	// unique_ptr로 CObject의 메모리 자동 해제
-	std::vector<std::unique_ptr<class CObject>> mObjVec[(int)ObjectType::END];
+    std::unordered_map<std::type_index, std::vector<class CObject*>> mObjMap;
 
 protected:
 	// Enter()와 Exit()은 순수 가상 함수
@@ -27,21 +26,76 @@ protected:
 
 public:
     template <typename T>
-    T* CreateObject(const std::string& name, ObjectType type)
+    T* CreateObject(const std::string& name)
     {
-        std::unique_ptr<T> gameObject = std::make_unique<T>();
+        if (CMemoryPoolManager::GetInst()->HasPool<T>())
+            return nullptr;
+
+        T* gameObject = new T;
 
         gameObject->SetName(name);
         gameObject->mScene = this;
 
         if (!gameObject->Init())
         {
-            // 초기화 실패 시, gameObject는 container에 저장 안되니 함수 종료 시 자동 해제됨.
+            // 초기화 실패 시, gameObject는 container에 저장 안되니 delete 
+            SAFE_DELETE(gameObject);
             return nullptr;
-        } 
-        // move로 unique_ptr을 mObjVec[]에 이동
-        mObjVec[(int)type].push_back(std::move(gameObject));
+        }
 
-        return (T*)mObjVec[(int)type].back().get();
+        std::type_index key = typeid(T);
+        mObjMap[key].push_back(gameObject);
+        return gameObject;
+    }
+    template <typename T>
+    T* AllocateObject(const std::string& name)
+    {
+        if (!CMemoryPoolManager::GetInst()->HasPool<T>())
+            return nullptr;
+
+        T* gameObject = CMemoryPoolManager::GetInst()->Allocate<T>();
+
+        gameObject->SetName(name);
+        gameObject->mScene = this;
+
+        if (!gameObject->Init())
+        {
+            // 초기화 실패 시, gameObject는 container에 저장 안되니 deallocate
+            CMemoryPoolManager::GetInst()->Deallocate<T>(gameObject);
+            return nullptr;
+        }
+
+        std::type_index key = typeid(T);
+        mObjMap[key].push_back(gameObject);
+        return gameObject;
+    }
+    template <typename T>
+    void CreatePoolAndSync(int initialCapacity)
+    {
+        std::type_index key = typeid(T);
+        mObjMap.emplace(key, std::vector<CObject*>());  // mObjMap[key]가 존재하지 않을 경우 빈 벡터를 추가
+
+        CMemoryPoolManager::GetInst()->CreatePool<T>(initialCapacity);
+    }
+    template <typename T>
+    void DeletePoolAndSync()
+    {
+        std::type_index key = typeid(T);
+
+        std::unordered_map<std::type_index, std::vector<CObject*>>::iterator iter    = mObjMap.find(key);
+        std::unordered_map<std::type_index, std::vector<CObject*>>::iterator iterEnd = mObjMap.end();
+
+        if (iter != iterEnd)    // if pool found
+        {
+            std::vector<CObject*>& typeObjVec = iter->second;
+
+            for (size_t j = typeObjVec.size(); j > 0; j--)
+            {
+                T* obj = static_cast<T*>(typeObjVec[j - 1]);   // starts from last idx
+                CMemoryPoolManager::GetInst()->Deallocate<T>(obj);
+            }
+            mObjMap.erase(iter);
+        }
+        CMemoryPoolManager::GetInst()->DeletePool<T>();
     }
 };

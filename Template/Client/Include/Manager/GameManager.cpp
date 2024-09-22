@@ -2,6 +2,7 @@
 #include "../Core/Timer.h"
 #include "../Core/Input.h"
 #include "SceneManager.h"
+#include "MemoryPoolManager.h"
 
 CGameManager* CGameManager::mInst = nullptr;
 
@@ -14,6 +15,8 @@ CGameManager::~CGameManager()
     CInput::DestroyInst();
 
     CSceneManager::DestroyInst();
+
+    CMemoryPoolManager::DestroyInst();
 
     SDL_DestroyRenderer(mRenderer);
 
@@ -89,5 +92,13 @@ void CGameManager::Update()
 
 void CGameManager::Render()
 {
+    // 현재 렌더 색상 검정으로 설정
+    SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, 255);
+    // 현재 색상으로 화면 지우기
+    SDL_RenderClear(mRenderer);
+
     CSceneManager::GetInst()->Render(mRenderer);
+
+    // 렌더링한 내용을 화면에 표시
+    SDL_RenderPresent(mRenderer);
 }

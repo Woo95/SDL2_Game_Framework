@@ -1,12 +1,11 @@
 #pragma once
-
 #include "Object.h"
 
-class CPlayer : public CObject
+class CMonster : public CObject
 {
 public:
-	CPlayer();
-	virtual ~CPlayer();
+	CMonster();
+	virtual ~CMonster();
 
 public:
 	virtual bool Init();

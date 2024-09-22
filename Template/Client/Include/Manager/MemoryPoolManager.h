@@ -8,7 +8,7 @@
 
 class CMemoryPoolManager
 {
-public:
+private:
 	CMemoryPoolManager() = default;
 	~CMemoryPoolManager()
 	{
@@ -27,6 +27,12 @@ private:
 	static CMemoryPoolManager* mInst;
 
 public:
+	template <typename T>
+	bool HasPool() const
+	{
+		std::type_index key = typeid(T);
+		return mPools.count(key) > 0;
+	}
 	template <typename T>
 	bool CreatePool(int initCapacity)
 	{
@@ -72,12 +78,6 @@ public:
 
 private:
 	template <typename T>
-	bool HasPool() const
-	{
-		std::type_index key = typeid(T);
-		return mPools.count(key) > 0;
-	}
-	template <typename T>
 	CStaticMemoryPool<T>* GetPool()
 	{
 		std::type_index key = typeid(T);
@@ -96,5 +96,3 @@ public:
 		SAFE_DELETE(mInst);
 	}
 };
-
-CMemoryPoolManager* CMemoryPoolManager::mInst = nullptr;
