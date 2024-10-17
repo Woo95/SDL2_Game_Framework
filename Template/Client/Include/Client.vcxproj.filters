@@ -22,9 +22,6 @@
     <Filter Include="01. Core\Lib">
       <UniqueIdentifier>{07aa822c-a6bd-4517-8029-44de9e5d5528}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Core\Lib\Input">
-      <UniqueIdentifier>{3e84e11b-3d68-4517-98e3-38767547663b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01. Core\Lib\Timer">
       <UniqueIdentifier>{b988f21a-2a7e-45be-84c2-a6a6a6dec500}</UniqueIdentifier>
     </Filter>
@@ -39,6 +36,15 @@
     </Filter>
     <Filter Include="04. Entity\02. Component">
       <UniqueIdentifier>{3a4f77f1-cc7d-447f-8739-ed7a255c9874}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Core\Lib\Input">
+      <UniqueIdentifier>{3e84e11b-3d68-4517-98e3-38767547663b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Entity\02. Component\00. Transform">
+      <UniqueIdentifier>{4e2e1bc0-ebc8-4017-93bd-261d56a11148}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Core\Lib\Math">
+      <UniqueIdentifier>{b34f2160-b592-483e-bfc2-5322bb366b9d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -324,6 +330,12 @@
     <ClInclude Include="Core\DataContainer.h">
       <Filter>01. Core\Lib</Filter>
     </ClInclude>
+    <ClInclude Include="Entity\Component\Transform.h">
+      <Filter>04. Entity\02. Component\00. Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Vector2D.h">
+      <Filter>01. Core\Lib\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
@@ -362,6 +374,9 @@
     </ClCompile>
     <ClCompile Include="Entity\Component\Component.cpp">
       <Filter>04. Entity\02. Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity\Component\Transform.cpp">
+      <Filter>04. Entity\02. Component\00. Transform</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -113,6 +113,8 @@
     <ClInclude Include="Scene\MenuScene.h" />
     <ClInclude Include="Scene\PlayScene.h" />
     <ClInclude Include="Scene\Scene.h" />
+    <ClInclude Include="Entity\Component\Transform.h" />
+    <ClInclude Include="Core\Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
@@ -128,6 +130,7 @@
     <ClCompile Include="Scene\MenuScene.cpp" />
     <ClCompile Include="Scene\PlayScene.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
+    <ClCompile Include="Entity\Component\Transform.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
