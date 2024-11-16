@@ -110,6 +110,7 @@
     <ClInclude Include="Manager\GameManager.h" />
     <ClInclude Include="Manager\MemoryPoolManager.h" />
     <ClInclude Include="Manager\SceneManager.h" />
+    <ClInclude Include="Entity\Component\Rectangle.h" />
     <ClInclude Include="Scene\MenuScene.h" />
     <ClInclude Include="Scene\PlayScene.h" />
     <ClInclude Include="Scene\Scene.h" />
@@ -127,10 +128,14 @@
     <ClCompile Include="Manager\GameManager.cpp" />
     <ClCompile Include="Manager\MemoryPoolManager.cpp" />
     <ClCompile Include="Manager\SceneManager.cpp" />
+    <ClCompile Include="Entity\Component\Rectangle.cpp" />
     <ClCompile Include="Scene\MenuScene.cpp" />
     <ClCompile Include="Scene\PlayScene.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
     <ClCompile Include="Entity\Component\Transform.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".editorconfig" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -230,6 +235,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

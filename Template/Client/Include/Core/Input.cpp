@@ -52,6 +52,11 @@ CInput::~CInput()
 // 각 클래스에서는 AddBindFunction()를 통해 키를 눌렀을 때 작동할 함수들만 추가 및 수정한다.
 bool CInput::Init()
 {
+	CreateBindKey("MoveUp",    SDL_SCANCODE_W);
+	CreateBindKey("MoveLeft",  SDL_SCANCODE_A);
+	CreateBindKey("MoveDown",  SDL_SCANCODE_S);
+	CreateBindKey("MoveRight", SDL_SCANCODE_D);
+
 	return true;
 }
 

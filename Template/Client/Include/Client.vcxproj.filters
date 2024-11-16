@@ -46,6 +46,9 @@
     <Filter Include="01. Core\Lib\Math">
       <UniqueIdentifier>{b34f2160-b592-483e-bfc2-5322bb366b9d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. Entity\02. Component\01. Components">
+      <UniqueIdentifier>{d73926d9-e7b5-45e3-908e-ffd769448284}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Timer.h">
@@ -336,6 +339,9 @@
     <ClInclude Include="Core\Vector2D.h">
       <Filter>01. Core\Lib\Math</Filter>
     </ClInclude>
+    <ClInclude Include="Entity\Component\Rectangle.h">
+      <Filter>04. Entity\02. Component\01. Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
@@ -378,5 +384,11 @@
     <ClCompile Include="Entity\Component\Transform.cpp">
       <Filter>04. Entity\02. Component\00. Transform</Filter>
     </ClCompile>
+    <ClCompile Include="Entity\Component\Rectangle.cpp">
+      <Filter>04. Entity\02. Component\01. Components</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".editorconfig" />
   </ItemGroup>
 </Project>
