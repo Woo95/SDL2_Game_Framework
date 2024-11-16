@@ -7,6 +7,14 @@
 struct FVector2D
 {
 public:
+	// 아래 정적 벡터 변수들은 자주 사용되는 벡터들을 매번 생성하지 않고 재사용하기 위해 전역적으로 정의한다.
+	static FVector2D ZERO;
+	static FVector2D UP;
+	static FVector2D DOWN;
+	static FVector2D LEFT;
+	static FVector2D RIGHT;
+
+public:
 	FVector2D() = default;
 	FVector2D(float x, float y) :
 		mX(x), mY(y)
