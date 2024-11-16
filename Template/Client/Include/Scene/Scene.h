@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "../Core/GameInfo.h"
 #include "../Manager/MemoryPoolManager.h"
@@ -9,7 +9,7 @@ class CScene abstract
 	friend class CSceneManager;
 
 protected:
-	CScene();
+	CScene() = default;
 	// 가상 소멸자: 다형성 지원, 파생 클래스를 들고 있는 CScene 변수가 소멸 시, 파생 클래스 소멸자도 올바르게 호출됨.
 	virtual ~CScene();
 
