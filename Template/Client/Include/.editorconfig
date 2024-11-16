@@ -1,0 +1,5 @@
+# Visual Studio generated .editorconfig file with UTF-8 settings.
+root = true
+
+[*]
+charset = utf-8
