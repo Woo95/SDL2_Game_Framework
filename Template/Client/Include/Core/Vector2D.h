@@ -1,6 +1,8 @@
-﻿#pragma once
+#pragma once
 
-#include <math.h>
+#include <cmath>
+
+#define M_PI_F 3.141593f
 
 struct FVector2D
 {
@@ -19,7 +21,7 @@ public:
 	}
 	~FVector2D() = default;
 
-private:
+public:
 	float mX;
 	float mY;
 
@@ -140,7 +142,7 @@ public:
 	}
 
 	// 현재 벡터의 방향을 유지하며, 길이를 1로 변환한 단위 벡터(unit vector)를 "바꿔주는" 함수
-	void Normalize()
+	void SetNormalize()
 	{
 		mX /= Length();
 		mY /= Length();
@@ -171,6 +173,22 @@ public:
 	FVector2D Clamp(float left, float right, float bottom, float top)	const
 	{
 		return FVector2D(Clamp(mX, left, right), Clamp(mY, top, bottom));	// Clamp(mY, top, bottom)은 SDL2 좌표계에 맞춤
+	}
+
+	// 주어진 각도만큼 벡터를 회전시켜서 현재 벡터를 갱신하는 함수
+	void SetRotate(float angle)
+	{
+		float radian = angle * M_PI_F / 180.0f;
+		
+		mX = mX * cosf(radian) - mY * sinf(radian);
+		mY = mX * sinf(radian) + mY * cosf(radian);
+	}
+	// 주어진 각도만큼 벡터를 회전시킨 새로운 벡터를 반환하는 함수
+	FVector2D GetRotate(float angle)	const
+	{
+		float radian = angle * M_PI_F / 180.0f;
+
+		return FVector2D(mX * cosf(radian) - mY * sinf(radian), mX * sinf(radian) + mY * cosf(radian));
 	}
 
 private:
