@@ -103,6 +103,7 @@ public:
 private:
 	void UpdateKeyInfo();
 	void UpdateBindFunction();
+	void ExecuteBindFunctions(FBindKey* BindKey, EKeyType::Type Type);
 
 private:
 	FKeyInfo* FindKeyInfo(SDL_Scancode Key);

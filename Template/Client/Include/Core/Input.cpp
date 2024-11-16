@@ -52,7 +52,6 @@ CInput::~CInput()
 // 각 클래스에서는 AddBindFunction()를 통해 키를 눌렀을 때 작동할 함수들만 추가 및 수정한다.
 bool CInput::Init()
 {
-
 	return true;
 }
 
@@ -120,39 +119,29 @@ void CInput::UpdateBindFunction()
 
 	for (; iter != iterEnd; ++iter)
 	{
+		FBindKey* bindKey = iter->second;
+
 		// KeyInfo에 등록된 키 && KeyInfo에 조합 키와 CInput 멤버 변수에 있는 키가 서로 대칭이 되는지 확인
-		if (iter->second->Key->Press && iter->second->Ctrl == mCtrl &&
-			iter->second->Alt == mAlt && iter->second->Shift == mShift)
-		{
-			size_t	size = iter->second->vecFunction[EKeyType::Press].size();
+		if (bindKey->Ctrl != mCtrl || bindKey->Alt != mAlt || bindKey->Shift != mShift)
+			continue;
 
-			for (size_t i = 0; i < size; ++i)
-			{
-				iter->second->vecFunction[EKeyType::Press][i]->func();
-			}
-		}
-		
-		if (iter->second->Key->Hold && iter->second->Ctrl == mCtrl &&
-			iter->second->Alt == mAlt && iter->second->Shift == mShift)
-		{
-			size_t	size = iter->second->vecFunction[EKeyType::Hold].size();
+		if (bindKey->Key->Press)
+			ExecuteBindFunctions(bindKey, EKeyType::Press);
+		if (bindKey->Key->Hold)
+			ExecuteBindFunctions(bindKey, EKeyType::Hold);
+		if (bindKey->Key->Release)
+			ExecuteBindFunctions(bindKey, EKeyType::Release);
+	}
+}
 
-			for (size_t i = 0; i < size; ++i)
-			{
-				iter->second->vecFunction[EKeyType::Hold][i]->func();
-			}
-		}
+void CInput::ExecuteBindFunctions(FBindKey* BindKey, EKeyType::Type Type)
+{
+	std::vector<FBindFunction*>& functions = BindKey->vecFunction[Type];
 
-		if (iter->second->Key->Release && iter->second->Ctrl == mCtrl &&
-			iter->second->Alt == mAlt && iter->second->Shift == mShift)
-		{
-			size_t	size = iter->second->vecFunction[EKeyType::Release].size();
-
-			for (size_t i = 0; i < size; ++i)
-			{
-				iter->second->vecFunction[EKeyType::Release][i]->func();
-			}
-		}
+	size_t size = functions.size();
+	for (size_t i = 0; i < size; ++i)
+	{
+		functions[i]->func();
 	}
 }
 
@@ -178,7 +167,7 @@ FBindKey* CInput::FindBindKey(const std::string& Key)
 
 
 bool CInput::CreateBindKey(const std::string& Key, SDL_Scancode Value)
-{
+{ 
 	FBindKey* BindKey = FindBindKey(Key);
 
 	if (BindKey)
