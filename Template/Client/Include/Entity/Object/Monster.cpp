@@ -1,4 +1,4 @@
-﻿#include "Monster.h"
+#include "Monster.h"
 #include "../../Manager/MemoryPoolManager.h"
 
 CMonster::CMonster()
@@ -11,10 +11,7 @@ CMonster::~CMonster()
 
 bool CMonster::Init()
 {
-    if (!CObject::Init())
-        return false;
-
-    return true;
+    return CObject::Init();
 }
 
 void CMonster::Update(float DeltaTime)

@@ -9,7 +9,7 @@ class CTransform
 
 private:
 	CTransform() = default;
-	~CTransform() = default;
+	~CTransform();
 
 private:
 	class CComponent* mComponent = nullptr;
@@ -30,7 +30,6 @@ private:
 
 private:
 	void AddChild(CTransform* child);
-	void DeleteChild(CTransform* child);
 
 public:
 	const FVector2D& GetWorldPos()      const { return mWorldPos; }

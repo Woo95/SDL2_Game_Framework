@@ -122,11 +122,9 @@ public:
 
 			for (size_t j = typePoolCompVec.size(); j > 0; j--)
 			{
-				T* comp = static_cast<T*>(typePoolCompVec[j - 1]);	// starts from last idx
+				T* comp = dynamic_cast<T*>(typePoolCompVec[j - 1]);	// starts from last idx
 				
 				mRootComponent->DeleteChild(comp);
-
-				CMemoryPoolManager::GetInst()->Deallocate<T>(comp);
 			}
 			mPoolCompMap.erase(iter);
 		}

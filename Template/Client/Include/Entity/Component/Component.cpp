@@ -10,18 +10,21 @@ CComponent::CComponent()
 
 CComponent::~CComponent()
 {
+	if (mParent)
+	{
+		CComponent* self = this;
+		std::swap(self, mParent->mChilds.back());
+		mParent->mChilds.pop_back();
+	}
+
 	for (CComponent* child : mChilds)
 	{
-		std::swap(child, mChilds.back());
-		mChilds.pop_back();
-
-		mTransform->DeleteChild(child->mTransform);
 		if (!child->Release())
 		{
 			SAFE_DELETE(child);
 		}
 	}
-	SAFE_DELETE(mTransform)
+	SAFE_DELETE(mTransform);
 }
 
 bool CComponent::Init()
@@ -91,8 +94,7 @@ bool CComponent::DeleteChild(CComponent* child)
 
 	if (!childToDelete)
 		return false;
-	
-	mTransform->DeleteChild(childToDelete->mTransform);
+
 	if (!childToDelete->Release())
 	{
 		SAFE_DELETE(childToDelete);

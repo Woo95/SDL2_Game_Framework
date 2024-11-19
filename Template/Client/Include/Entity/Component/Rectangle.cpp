@@ -6,8 +6,7 @@ CRectangle::~CRectangle()
 
 bool CRectangle::Init()
 {
-    CComponent::Init();
-	return true;
+    return CComponent::Init();
 }
 
 void CRectangle::Update(float DeltaTime)

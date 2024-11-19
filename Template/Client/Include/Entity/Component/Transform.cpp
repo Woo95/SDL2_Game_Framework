@@ -1,13 +1,22 @@
 #include "Transform.h"
 
-void CTransform::AddChild(CTransform* child)
+CTransform::~CTransform()
 {
-	child->mParent = this;
-	mChilds.push_back(child);
+    if (mParent)
+    {
+        CTransform* self = this;
+        std::swap(self, mParent->mChilds.back());
+        mParent->mChilds.pop_back();
+    }
+
+    for (CTransform* child : mChilds)
+    {
+        SAFE_DELETE(child);
+    }
 }
 
-void CTransform::DeleteChild(CTransform* child)
+void CTransform::AddChild(CTransform* child)
 {
-	std::swap(child, mChilds.back());
-	mChilds.pop_back();
+    child->mParent = this;
+    mChilds.push_back(child);
 }

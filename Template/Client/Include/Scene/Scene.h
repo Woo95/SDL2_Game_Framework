@@ -91,7 +91,7 @@ public:
 
             for (size_t j = typeObjVec.size(); j > 0; j--)
             {
-                T* obj = static_cast<T*>(typeObjVec[j - 1]);   // starts from last idx
+                T* obj = dynamic_cast<T*>(typeObjVec[j - 1]);   // starts from last idx
                 CMemoryPoolManager::GetInst()->Deallocate<T>(obj);
             }
             mObjMap.erase(iter);

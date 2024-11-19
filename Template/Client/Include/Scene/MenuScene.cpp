@@ -11,10 +11,7 @@ CMenuScene::~CMenuScene()
 
 bool CMenuScene::Enter()
 {
-	if (!Exit())
-		return false;
-
-	return true;
+	return Exit();
 }
 
 bool CMenuScene::Exit()
