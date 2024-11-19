@@ -6,11 +6,11 @@
 class CPlayer : public CObject
 {
 public:
-	CPlayer() = default;
-	virtual ~CPlayer() = default;
+	CPlayer();
+	virtual ~CPlayer();
 
-private:
-	float mSpeed = 200.f;
+public:
+	class CMovementComponent* mMovementComponent;
 
 public:
 	virtual bool Init();
@@ -23,27 +23,8 @@ private:
 private:
 	void SetupInput();
 
-	void MOVE(const FVector2D& direction)
-	{
-		CTransform* transform = GetTransform();
-
-		FVector2D movement = direction * mSpeed * CTimer::GetDeltaTime();
-		transform->SetWorldPos(transform->GetWorldPos() + movement);
-	}
-	void MOVE_UP() 
-	{ 
-		MOVE(FVector2D(0, -1)); 
-	}
-	void MOVE_DOWN() 
-	{ 
-		MOVE(FVector2D(0, 1)); 
-	}
-	void MOVE_LEFT() 
-	{ 
-		MOVE(FVector2D(-1, 0)); 
-	}
-	void MOVE_RIGHT() 
-	{ 
-		MOVE(FVector2D(1, 0)); 
-	}
+	void MOVE_UP();
+	void MOVE_DOWN();
+	void MOVE_LEFT();
+	void MOVE_RIGHT();
 };

@@ -342,6 +342,9 @@
     <ClInclude Include="Entity\Component\Rectangle.h">
       <Filter>04. Entity\02. Component\01. Components</Filter>
     </ClInclude>
+    <ClInclude Include="Entity\Component\MovementComponent.h">
+      <Filter>04. Entity\02. Component\01. Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
@@ -385,6 +388,12 @@
       <Filter>04. Entity\02. Component\00. Transform</Filter>
     </ClCompile>
     <ClCompile Include="Entity\Component\Rectangle.cpp">
+      <Filter>04. Entity\02. Component\01. Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Vector2D.cpp">
+      <Filter>01. Core\Lib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity\Component\MovementComponent.cpp">
       <Filter>04. Entity\02. Component\01. Components</Filter>
     </ClCompile>
   </ItemGroup>

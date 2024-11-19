@@ -111,6 +111,7 @@
     <ClInclude Include="Manager\MemoryPoolManager.h" />
     <ClInclude Include="Manager\SceneManager.h" />
     <ClInclude Include="Entity\Component\Rectangle.h" />
+    <ClInclude Include="Entity\Component\MovementComponent.h" />
     <ClInclude Include="Scene\MenuScene.h" />
     <ClInclude Include="Scene\PlayScene.h" />
     <ClInclude Include="Scene\Scene.h" />
@@ -121,6 +122,7 @@
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Core\Input.cpp" />
     <ClCompile Include="Core\Timer.cpp" />
+    <ClCompile Include="Core\Vector2D.cpp" />
     <ClCompile Include="Entity\Component\Component.cpp" />
     <ClCompile Include="Entity\Object\Monster.cpp" />
     <ClCompile Include="Entity\Object\Object.cpp" />
@@ -129,6 +131,7 @@
     <ClCompile Include="Manager\MemoryPoolManager.cpp" />
     <ClCompile Include="Manager\SceneManager.cpp" />
     <ClCompile Include="Entity\Component\Rectangle.cpp" />
+    <ClCompile Include="Entity\Component\MovementComponent.cpp" />
     <ClCompile Include="Scene\MenuScene.cpp" />
     <ClCompile Include="Scene\PlayScene.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
