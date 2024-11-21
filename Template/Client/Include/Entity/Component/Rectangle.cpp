@@ -29,7 +29,7 @@ void CRectangle::Render(SDL_Renderer* Renderer)
     SDL_FRect rectangle = { topLeft.mX, topLeft.mY, scale.mX, scale.mY };
 
     // 렌더 색상 설정 (흰색)
-    SDL_SetRenderDrawColor(Renderer, 255, 255, 255, 255);
+    SDL_SetRenderDrawColor(Renderer, mRGB.R, mRGB.G, mRGB.B, 255);
 
     // 사각형 그리기
     SDL_RenderDrawRectF(Renderer, &rectangle);
