@@ -73,6 +73,11 @@ public:
 		{
 			CStaticMemoryPool<T>* pool = GetPool<T>();
 			pool->Deallocate(deallocPtr);
+
+			if (pool->IsPoolUnused())
+			{
+				DeletePool<T>();
+			}
 		}
 	}
 

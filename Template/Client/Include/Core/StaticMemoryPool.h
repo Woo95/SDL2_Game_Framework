@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <stack>
 
@@ -96,5 +96,9 @@ private:
 	bool IsWithinRange(T* ptr, T* start, T* end) const
 	{
 		return ptr >= start && ptr <= end;
+	}
+	bool IsPoolUnused() const
+	{
+		return mFreeIdx.size() == mBlockSize * mMemoryPool.size();
 	}
 };
