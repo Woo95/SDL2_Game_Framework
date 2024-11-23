@@ -8,11 +8,6 @@ CTransform::~CTransform()
         std::swap(self, mParent->mChilds.back());
         mParent->mChilds.pop_back();
     }
-
-    for (CTransform* child : mChilds)
-    {
-        SAFE_DELETE(child);
-    }
 }
 
 void CTransform::AddChild(CTransform* child)

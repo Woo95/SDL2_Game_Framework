@@ -10,15 +10,13 @@ CComponent::CComponent()
 
 CComponent::~CComponent()
 {
-	if (mParent)
+	for (size_t i = mChilds.size(); i > 0; i--)
 	{
-		CComponent* self = this;
-		std::swap(self, mParent->mChilds.back());
-		mParent->mChilds.pop_back();
-	}
+		CComponent* child = mChilds[i - 1];
 
-	for (CComponent* child : mChilds)
-	{
+		std::swap(mChilds[i - 1], mChilds.back());
+		mChilds.pop_back();
+
 		if (!child->Release())
 		{
 			SAFE_DELETE(child);
@@ -39,12 +37,14 @@ bool CComponent::Init()
 
 void CComponent::Update(float DeltaTime)
 {
-	for (CComponent* child : mChilds)
+	for (size_t i = mChilds.size(); i > 0; i--)
 	{
+		CComponent* child = mChilds[i - 1];
+
 		if (!child->GetActive())
 		{
 			// Active아닌 component는 마지막 요소랑 바꿔준 후 제거
-			std::swap(child, mChilds.back());
+			std::swap(mChilds[i - 1], mChilds.back());
 			mChilds.pop_back();
 
 			DeleteChild(child);
@@ -60,12 +60,14 @@ void CComponent::Update(float DeltaTime)
 
 void CComponent::Render(SDL_Renderer* Renderer)
 {
-	for (CComponent* child : mChilds)
+	for (size_t i = mChilds.size(); i > 0; i--)
 	{
+		CComponent* child = mChilds[i - 1];
+
 		if (!child->GetActive())
 		{
 			// Active아닌 component는 마지막 요소랑 바꿔준 후 제거
-			std::swap(child, mChilds.back());
+			std::swap(mChilds[i - 1], mChilds.back());
 			mChilds.pop_back();
 
 			DeleteChild(child);
