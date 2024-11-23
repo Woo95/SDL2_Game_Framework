@@ -1,5 +1,6 @@
 #include "Monster.h"
 #include "../../Manager/MemoryPoolManager.h"
+#include "../Component/Rectangle.h"
 
 CMonster::CMonster()
 {
@@ -11,7 +12,14 @@ CMonster::~CMonster()
 
 bool CMonster::Init()
 {
-    return CObject::Init();
+    if (!CObject::Init())
+        return false;
+
+    CComponent* monster = AllocateComponent<CRectangle>("Monster", mRootComponent);
+    dynamic_cast<CRectangle*>(monster)->SetColor(255, 0, 0);
+    monster->GetTransform()->SetWorldPos(800, 200.f);
+    monster->GetTransform()->SetWorldScale(100.f, 100.f);
+    monster->GetTransform()->SetPivot(0.5f, 0.5f);
 }
 
 void CMonster::Update(float DeltaTime)
@@ -22,13 +30,6 @@ void CMonster::Update(float DeltaTime)
 void CMonster::Render(SDL_Renderer* Renderer)
 {
     CObject::Render(Renderer);
-
-    // 사각형 정보 생성
-    SDL_FRect    rc = { 800.f, 200.f, 100.f, 100.f };
-    // 현재 렌더 색상 흰색으로 설정
-    SDL_SetRenderDrawColor(Renderer, 255, 0, 0, 255);
-    // 사각형 그리기
-    SDL_RenderDrawRectF(Renderer, &rc);
 }
 
 bool CMonster::Release()

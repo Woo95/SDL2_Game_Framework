@@ -12,6 +12,6 @@ public:
 	virtual void Update(float DeltaTime);
 	virtual void Render(SDL_Renderer* Renderer);
 
-private:
+public:
 	virtual bool Release() final;
 };
