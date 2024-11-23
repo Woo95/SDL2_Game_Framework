@@ -38,7 +38,7 @@ void CScene::Update(float DeltaTime)
             if (!obj->GetActive())
             {
                 // Active아닌 object는 마지막 요소랑 바꿔준 후 제거
-                std::swap(obj, typeObjVec.back());
+                std::swap(typeObjVec[j - 1], typeObjVec.back());
                 typeObjVec.pop_back();
 
                 // 사용된 메모리 삭제 또는 반환
@@ -73,7 +73,7 @@ void CScene::Render(SDL_Renderer* Renderer)
             if (!obj->GetActive())
             {
                 // Active아닌 object는 마지막 요소랑 바꿔준 후 제거
-                std::swap(obj, typeObjVec.back());
+                std::swap(typeObjVec[j - 1], typeObjVec.back());
                 typeObjVec.pop_back();
 
                 // 사용된 메모리 삭제 또는 반환

@@ -1,8 +1,7 @@
-﻿#include "PlayScene.h"
+#include "PlayScene.h"
 #include "../Manager/SceneManager.h"
 #include "../Entity/Object/Player.h"
 #include "../Entity/Object/Monster.h"
-#include "../Manager/MemoryPoolManager.h"
 
 CPlayScene::CPlayScene()
 {
@@ -15,8 +14,7 @@ CPlayScene::~CPlayScene()
 
 bool CPlayScene::Enter()
 {
-	CreatePoolAndSync<CMonster>(50);
-	AllocateObject<CMonster>("Monster");
+	AllocateObject<CMonster, 10>("Monster");
 
 	CreateObject<CPlayer>("Player");
 
@@ -25,8 +23,6 @@ bool CPlayScene::Enter()
 
 bool CPlayScene::Exit()
 {
-	DeletePoolAndSync<CMonster>();
-
 	// CSceneManager::GetInst()->Change(EScene::State::RESULT);
 
 	return true;
