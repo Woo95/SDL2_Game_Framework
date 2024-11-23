@@ -2,15 +2,17 @@
 #include "../../Core/Input.h"
 #include "../Component/MovementComponent.h"
 #include "../Component/Rectangle.h"
+#include "Bullet.h"
+#include "../../Scene/Scene.h"
 
 CPlayer::CPlayer() :
-    mMovementComponent(nullptr)
+    mMovementComponent(nullptr),
+    mPlayer(nullptr)
 {
 }
  
 CPlayer::~CPlayer()
 {
-    DeletePoolAndSync<CRectangle>();
 }
 
 bool CPlayer::Init()
@@ -19,26 +21,26 @@ bool CPlayer::Init()
         return false;
 
     // 이동 컴포넌트 만들기
-    mMovementComponent = CreateComponent<CMovementComponent>("Movement");
+    mMovementComponent = CreateComponent<CMovementComponent>("Movement", mRootComponent);
 
     // 도형 컴포넌트 만들기
-    CreatePoolAndSync<CRectangle>(3);
+    mPlayer = AllocateComponent<CRectangle>("Player", mMovementComponent);
+    CTransform* playerTransform = mPlayer->GetTransform();
+    playerTransform->SetWorldPos(100.f, 100.f);
+    playerTransform->SetWorldScale(200.f, 200.f);
+    playerTransform->SetPivot(0.5f, 0.5f);
 
-    CComponent* parent = AllocateComponent<CRectangle>("Parent", mMovementComponent);
-    parent->GetTransform()->SetWorldPos(100.f, 100.f);
-    parent->GetTransform()->SetWorldScale(200.f, 200.f);
-    parent->GetTransform()->SetPivot(0.5f, 0.5f);
-
-    CComponent* child = AllocateComponent<CRectangle>("Child", parent);
-    child->GetTransform()->SetRelativePos(0.f, 0.f);
-    child->GetTransform()->SetWorldScale(100.f, 100.f);
-    child->GetTransform()->SetPivot(0.5f, 0.5f);
-
+    CComponent* child = AllocateComponent<CRectangle>("Child", mPlayer);
+    CTransform* childTransform = child->GetTransform();
+    childTransform->SetRelativePos(0.f, 0.f);
+    childTransform->SetWorldScale(100.f, 100.f);
+    childTransform->SetPivot(0.5f, 0.5f);
 
     CComponent* childChild = AllocateComponent<CRectangle>("ChildChild", child);
-    childChild->GetTransform()->SetRelativePos(0.f, 0.f);
-    childChild->GetTransform()->SetWorldScale(50.f, 50.f);
-    childChild->GetTransform()->SetPivot(0.5f, 0.5f);
+    CTransform* childChildTransform = childChild->GetTransform();
+    childChildTransform->SetRelativePos(0.f, 0.f);
+    childChildTransform->SetWorldScale(50.f, 50.f);
+    childChildTransform->SetPivot(0.5f, 0.5f);
 
     // 인풋 설정
     SetupInput();
@@ -74,6 +76,8 @@ void CPlayer::SetupInput()
     CInput::GetInst()->AddBindFunction<CPlayer>("MoveDown",  EKeyType::Hold, this, &CPlayer::MOVE_DOWN,  mScene);
     CInput::GetInst()->AddBindFunction<CPlayer>("MoveLeft",  EKeyType::Hold, this, &CPlayer::MOVE_LEFT,  mScene);
     CInput::GetInst()->AddBindFunction<CPlayer>("MoveRight", EKeyType::Hold, this, &CPlayer::MOVE_RIGHT, mScene);
+
+    CInput::GetInst()->AddBindFunction<CPlayer>("Shoot", EKeyType::Press, this, &CPlayer::SHOOT, mScene);
 }
 
 void CPlayer::MOVE_UP()
@@ -91,4 +95,10 @@ void CPlayer::MOVE_LEFT()
 void CPlayer::MOVE_RIGHT()
 {
     mMovementComponent->MoveDir(FVector2D::RIGHT);
+}
+
+void CPlayer::SHOOT()
+{
+    CBullet* bullet = mScene->CreateObject<CBullet>("bullet");
+    bullet->GetTransform()->SetWorldPos(mPlayer->GetTransform()->GetWorldPos());
 }

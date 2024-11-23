@@ -345,6 +345,9 @@
     <ClInclude Include="Entity\Component\MovementComponent.h">
       <Filter>04. Entity\02. Component\01. Components</Filter>
     </ClInclude>
+    <ClInclude Include="Entity\Object\Bullet.h">
+      <Filter>04. Entity\01. Object\01. Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
@@ -395,6 +398,9 @@
     </ClCompile>
     <ClCompile Include="Entity\Component\MovementComponent.cpp">
       <Filter>04. Entity\02. Component\01. Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity\Object\Bullet.cpp">
+      <Filter>04. Entity\01. Object\01. Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

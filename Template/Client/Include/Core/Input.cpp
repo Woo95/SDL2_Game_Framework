@@ -57,6 +57,8 @@ bool CInput::Init()
 	CreateBindKey("MoveDown",  SDL_SCANCODE_S);
 	CreateBindKey("MoveRight", SDL_SCANCODE_D);
 
+	CreateBindKey("Shoot", SDL_SCANCODE_SPACE);
+
 	return true;
 }
 

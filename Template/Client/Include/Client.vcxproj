@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Entity\Object\Bullet.h" />
     <ClInclude Include="Core\External\SDL\begin_code.h" />
     <ClInclude Include="Core\External\SDL\close_code.h" />
     <ClInclude Include="Core\External\SDL\SDL.h" />
@@ -119,6 +120,7 @@
     <ClInclude Include="Core\Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Entity\Object\Bullet.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Core\Input.cpp" />
     <ClCompile Include="Core\Timer.cpp" />
