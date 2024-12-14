@@ -1,8 +1,9 @@
-﻿#include "GameManager.h"
+#include "GameManager.h"
 #include "../Core/Timer.h"
 #include "../Core/Input.h"
 #include "SceneManager.h"
 #include "MemoryPoolManager.h"
+#include "CollisionManager.h"
 
 CGameManager* CGameManager::mInst = nullptr;
 
@@ -13,6 +14,8 @@ CGameManager::CGameManager()
 CGameManager::~CGameManager()
 {
     CInput::DestroyInst();
+
+    CCollisionManager::DestroyInst();
 
     CSceneManager::DestroyInst();
 
