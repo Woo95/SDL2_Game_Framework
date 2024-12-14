@@ -15,7 +15,7 @@ protected:
 	virtual ~CObject();
 		
 protected:
-	class CScene* mScene = nullptr;
+	class CScene* mScene;
 
 	CComponent* mRootComponent;
 
@@ -28,6 +28,7 @@ private:
 	virtual bool Release() = 0;	// Scene.h에서 object memoryPool usage 위하여
 
 public:
+	CScene*     GetScene() const { return mScene; }
 	CTransform* GetTransform() const { return mRootComponent->GetTransform(); }
 	CComponent* GetComponent(const std::string& name = "")
 	{ 

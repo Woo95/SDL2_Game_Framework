@@ -11,7 +11,7 @@ public:
 
 public:
 	class CMovementComponent* mMovementComponent;
-	class CRectangle* mPlayer;
+	class CCollider* mCollider;
 
 public:
 	virtual bool Init();

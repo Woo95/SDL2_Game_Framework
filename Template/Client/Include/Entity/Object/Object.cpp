@@ -2,7 +2,9 @@
 #include "../Component/Component.h"
 
 // mRootComponent는 컴포넌트 간 독립적인 동작과 계층 구조 관리를 위한 기본 구조를 제공하기 위해 사용한다. (기능적 수행 X)
-CObject::CObject()
+CObject::CObject() :
+	mScene(nullptr),
+	mRootComponent(nullptr)
 {
 	mRootComponent = new CComponent;
 

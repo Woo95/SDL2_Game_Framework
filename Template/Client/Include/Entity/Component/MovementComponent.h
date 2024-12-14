@@ -16,7 +16,7 @@ public:
 	virtual void Update(float DeltaTime);
 
 private:
-	virtual bool Release() final;	// Object.h에서 component memoryPool usage 위하여
+	virtual bool Release() final;
 
 public:
 	float GetSpeed() const

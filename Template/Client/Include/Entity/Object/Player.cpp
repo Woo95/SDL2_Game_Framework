@@ -1,13 +1,13 @@
 #include "Player.h"
 #include "../../Core/Input.h"
 #include "../Component/MovementComponent.h"
-#include "../Component/Rectangle.h"
+#include "../Component/BoxCollider.h"
 #include "Bullet.h"
 #include "../../Scene/Scene.h"
 
 CPlayer::CPlayer() :
     mMovementComponent(nullptr),
-    mPlayer(nullptr)
+    mCollider(nullptr)
 {
 }
  
@@ -24,23 +24,11 @@ bool CPlayer::Init()
     mMovementComponent = CreateComponent<CMovementComponent>("Movement", mRootComponent);
 
     // 도형 컴포넌트 만들기
-    mPlayer = AllocateComponent<CRectangle>("Player", mMovementComponent);
-    CTransform* playerTransform = mPlayer->GetTransform();
+    mCollider = AllocateComponent<CBoxCollider>("playerCollider", mMovementComponent);
+    CTransform* playerTransform = mCollider->GetTransform();
     playerTransform->SetWorldPos(100.f, 100.f);
-    playerTransform->SetWorldScale(200.f, 200.f);
+    playerTransform->SetWorldScale(75.f, 75.f);
     playerTransform->SetPivot(0.5f, 0.5f);
-
-    CComponent* child = AllocateComponent<CRectangle>("Child", mPlayer);
-    CTransform* childTransform = child->GetTransform();
-    childTransform->SetRelativePos(0.f, 0.f);
-    childTransform->SetWorldScale(100.f, 100.f);
-    childTransform->SetPivot(0.5f, 0.5f);
-
-    CComponent* childChild = AllocateComponent<CRectangle>("ChildChild", child);
-    CTransform* childChildTransform = childChild->GetTransform();
-    childChildTransform->SetRelativePos(0.f, 0.f);
-    childChildTransform->SetWorldScale(50.f, 50.f);
-    childChildTransform->SetPivot(0.5f, 0.5f);
 
     // 인풋 설정
     SetupInput();
@@ -77,7 +65,7 @@ void CPlayer::SetupInput()
     CInput::GetInst()->AddBindFunction<CPlayer>("MoveLeft",  EKeyType::Hold, this, &CPlayer::MOVE_LEFT,  mScene);
     CInput::GetInst()->AddBindFunction<CPlayer>("MoveRight", EKeyType::Hold, this, &CPlayer::MOVE_RIGHT, mScene);
 
-    CInput::GetInst()->AddBindFunction<CPlayer>("Shoot", EKeyType::Press, this, &CPlayer::SHOOT, mScene);
+    CInput::GetInst()->AddBindFunction<CPlayer>("Shoot", EKeyType::Hold, this, &CPlayer::SHOOT, mScene);
 }
 
 void CPlayer::MOVE_UP()
@@ -100,5 +88,5 @@ void CPlayer::MOVE_RIGHT()
 void CPlayer::SHOOT()
 {
     CBullet* bullet = mScene->CreateObject<CBullet>("bullet");
-    bullet->GetTransform()->SetWorldPos(mPlayer->GetTransform()->GetWorldPos());
+    bullet->GetTransform()->SetWorldPos(mCollider->GetTransform()->GetWorldPos());
 }

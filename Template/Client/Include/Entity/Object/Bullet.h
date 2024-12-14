@@ -9,6 +9,9 @@ public:
 
 public:
 	class CMovementComponent* mMovementComponent;
+	class CCollider* mCollider;
+
+	float mDestroyTime;
 
 public:
 	virtual bool Init();

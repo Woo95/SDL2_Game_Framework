@@ -8,6 +8,8 @@ CMovementComponent::CMovementComponent() :
 
 void CMovementComponent::Update(float DeltaTime)
 {
+	CComponent::Update(DeltaTime);
+
 	Move(DeltaTime);
 }
 
