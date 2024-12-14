@@ -1,0 +1,113 @@
+#include "CircleCollider.h"
+#include "../../Manager/CollisionManager.h"
+
+CCircleCollider::CCircleCollider() :
+	mCircle{}
+{
+	mColliderType = ECollider::Type::CIRCLE;
+}
+
+bool CCircleCollider::Init()
+{
+	return CCollider::Init();
+}
+
+void CCircleCollider::Update(float DeltaTime)
+{
+	CCollider::Update(DeltaTime);
+
+	// 월드 좌표와 스케일 및 피벗 값 가져오기
+	FVector2D worldPos = mTransform->GetWorldPos();
+	FVector2D pivot    = mTransform->GetPivot();
+	FVector2D scale    = mTransform->GetWorldScale();
+
+	// 원 정보 생성
+	mCircle.mCenter = worldPos - pivot * scale + scale * 0.5f;
+	mCircle.mRadius = scale.mX * 0.5f;
+}
+
+void CCircleCollider::Render(SDL_Renderer* Renderer)
+{
+	CCollider::Render(Renderer);
+
+#ifdef _DEBUG	
+	// 렌더 색상 설정
+	if (!mIsCollided)
+		SDL_SetRenderDrawColor(Renderer, 0, 255, 0, 255);
+	else
+		SDL_SetRenderDrawColor(Renderer, 255, 0, 0, 255);
+
+	// 원 그리기
+	RenderDrawCircle(Renderer, mCircle);
+#endif
+}
+
+bool CCircleCollider::Release()
+{
+	if (CMemoryPoolManager::GetInst()->HasPool<CCircleCollider>())
+	{
+		CMemoryPoolManager::GetInst()->Deallocate<CCircleCollider>(this);
+		return true;
+	}
+	return false;
+}
+
+bool CCircleCollider::Collision(CCollider* other)
+{
+	switch (other->GetColliderType())
+	{
+	case ECollider::Type::CIRCLE:
+		return CCollisionManager::GetInst()->CircleCircleCollision(this, (CCircleCollider*)other);
+	case ECollider::Type::BOX:
+		return CCollisionManager::GetInst()->AABBCircleCollision((CBoxCollider*)other, this);
+	}
+	return true;
+}
+
+void CCircleCollider::OnCollisionBegin(CCollider* other)
+{
+}
+
+void CCircleCollider::OnCollisionEnd(CCollider* other)
+{
+}
+
+// Bresenham's circle drawing algorithm
+void CCircleCollider::RenderDrawCircle(SDL_Renderer* renderer, const FCircle& circle)
+{
+    int x  = static_cast<int>(circle.mRadius);
+    int y  = 0;                               
+    int dx = 1;                              
+    int dy = 1;                              
+    int errorTerm = dx - (2 * static_cast<int>(circle.mRadius)); // 오차값
+
+    // 원을 8방향 대칭으로 그리기
+    while (x >= y)
+    {
+        // 8방향에 대칭되는 점들을 그린다
+        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.mCenter.mX) + x, static_cast<int>(circle.mCenter.mY) + y);
+        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.mCenter.mX) + y, static_cast<int>(circle.mCenter.mY) + x);
+        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.mCenter.mX) - y, static_cast<int>(circle.mCenter.mY) + x);
+        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.mCenter.mX) - x, static_cast<int>(circle.mCenter.mY) + y);
+        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.mCenter.mX) - x, static_cast<int>(circle.mCenter.mY) - y);
+        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.mCenter.mX) - y, static_cast<int>(circle.mCenter.mY) - x);
+        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.mCenter.mX) + y, static_cast<int>(circle.mCenter.mY) - x);
+        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.mCenter.mX) + x, static_cast<int>(circle.mCenter.mY) - y);
+
+        // x값 증가, 오차값 업데이트
+        if (errorTerm <= 0)
+        {
+            y++;
+            errorTerm += dy;
+            dy += 2;
+        }
+
+        // y값 감소, 오차값 업데이트
+        if (errorTerm > 0)
+        {
+            x--;
+            dx += 2;
+            errorTerm += dx - (2 * static_cast<int>(circle.mRadius));
+        }
+    }
+}
