@@ -65,7 +65,7 @@ void CPlayer::SetupInput()
     CInput::GetInst()->AddBindFunction<CPlayer>("MoveLeft",  EKeyType::Hold, this, &CPlayer::MOVE_LEFT,  mScene);
     CInput::GetInst()->AddBindFunction<CPlayer>("MoveRight", EKeyType::Hold, this, &CPlayer::MOVE_RIGHT, mScene);
 
-    CInput::GetInst()->AddBindFunction<CPlayer>("Shoot", EKeyType::Hold, this, &CPlayer::SHOOT, mScene);
+    CInput::GetInst()->AddBindFunction<CPlayer>("Shoot", EKeyType::Press, this, &CPlayer::SHOOT, mScene);
 }
 
 void CPlayer::MOVE_UP()

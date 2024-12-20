@@ -4,6 +4,7 @@
 #include "../../Manager/MemoryPoolManager.h"
 #include "../Component/Component.h"
 #include "../Component/Transform.h"
+#include "../../Scene/Scene.h"
 
 class CObject abstract	: public DataContainer
 {
@@ -15,7 +16,7 @@ protected:
 	virtual ~CObject();
 		
 protected:
-	class CScene* mScene;
+	CScene* mScene;
 
 	CComponent* mRootComponent;
 

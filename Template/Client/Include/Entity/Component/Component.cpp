@@ -10,6 +10,7 @@ CComponent::CComponent()
 
 CComponent::~CComponent()
 {
+	SetActive(false);
 	for (size_t i = mChilds.size(); i > 0; i--)
 	{
 		CComponent* child = mChilds[i - 1];

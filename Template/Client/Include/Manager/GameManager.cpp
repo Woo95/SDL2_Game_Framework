@@ -46,6 +46,9 @@ bool CGameManager::Init()
     if (!CInput::GetInst()->Init())
         return false;
 
+    if (!CCollisionManager::GetInst()->Init())
+        return false;
+
     if (!CSceneManager::GetInst()->Init())
         return false;
 

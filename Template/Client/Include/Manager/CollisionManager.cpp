@@ -17,6 +17,8 @@ CCollisionManager::~CCollisionManager()
 
 bool CCollisionManager::Init()
 {
+	CreateProfile("TestProfile", ECollisionChannel::DEFAULT, ECollisionInteraction::ENABLE_COLLISION);
+
 	return true;
 }
 
