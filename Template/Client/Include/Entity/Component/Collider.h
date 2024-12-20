@@ -8,6 +8,7 @@ namespace ECollider
 {
 	enum Type : unsigned char
 	{
+		NONE,
 		BOX,
 		CIRCLE
 	};
@@ -37,10 +38,14 @@ public:
 	virtual bool Release() = 0;
 
 	virtual bool Collision(CCollider* other)        = 0;
-	virtual void OnCollisionBegin(CCollider* other) = 0;
-	virtual void OnCollisionEnd(CCollider* other)   = 0;
+	virtual void OnCollisionEnter(CCollider* other) = 0;
+	virtual void OnCollisionStay(CCollider* other)  = 0;
+	virtual void OnCollisionExit(CCollider* other)  = 0;
 
 public:
 	FCollisionProfile* GetProfile()   const { return mProfile; }
 	ECollider::Type GetColliderType() const { return mColliderType; }
+	bool IsCollided()                 const { return mIsCollided; }
+
+	void SetProfile(const std::string& name);
 };

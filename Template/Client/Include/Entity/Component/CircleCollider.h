@@ -26,8 +26,9 @@ public:
 	virtual bool Release() final;
 
 	virtual bool Collision(CCollider* other)        final;
-	virtual void OnCollisionBegin(CCollider* other) final;
-	virtual void OnCollisionEnd(CCollider* other)   final;
+	virtual void OnCollisionEnter(CCollider* other) final;
+	virtual void OnCollisionStay(CCollider* other)  final;
+	virtual void OnCollisionExit(CCollider* other)  final;
 
 public:
 	const FCircle& GetCircle() const { return mCircle; }

@@ -9,7 +9,11 @@ CCircleCollider::CCircleCollider() :
 
 bool CCircleCollider::Init()
 {
-	return CCollider::Init();
+	CCollider::Init();
+
+	SetProfile("TestProfile");
+
+	return true;
 }
 
 void CCircleCollider::Update(float DeltaTime)
@@ -64,12 +68,19 @@ bool CCircleCollider::Collision(CCollider* other)
 	return true;
 }
 
-void CCircleCollider::OnCollisionBegin(CCollider* other)
+void CCircleCollider::OnCollisionEnter(CCollider* other)
 {
+	mIsCollided = true;
 }
 
-void CCircleCollider::OnCollisionEnd(CCollider* other)
+void CCircleCollider::OnCollisionStay(CCollider* other)
 {
+	mIsCollided = true;
+}
+
+void CCircleCollider::OnCollisionExit(CCollider* other)
+{
+	mIsCollided = false;
 }
 
 // Bresenham's circle drawing algorithm

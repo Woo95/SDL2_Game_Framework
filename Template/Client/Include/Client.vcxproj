@@ -19,6 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Entity\Component\CircleCollider.h" />
+    <ClInclude Include="Entity\Component\BoxCollider.h" />
+    <ClInclude Include="Entity\Object\Monster.h" />
+    <ClInclude Include="Manager\CollisionManager.h" />
+    <ClInclude Include="Entity\Component\Collider.h" />
+    <ClInclude Include="Core\CollisionProfile.h" />
     <ClInclude Include="Entity\Object\Bullet.h" />
     <ClInclude Include="Core\External\SDL\begin_code.h" />
     <ClInclude Include="Core\External\SDL\close_code.h" />
@@ -105,14 +111,15 @@
     <ClInclude Include="Core\Timer.h" />
     <ClInclude Include="Core\DataContainer.h" />
     <ClInclude Include="Entity\Component\Component.h" />
-    <ClInclude Include="Entity\Object\Monster.h" />
     <ClInclude Include="Entity\Object\Object.h" />
     <ClInclude Include="Entity\Object\Player.h" />
     <ClInclude Include="Manager\GameManager.h" />
     <ClInclude Include="Manager\MemoryPoolManager.h" />
     <ClInclude Include="Manager\SceneManager.h" />
-    <ClInclude Include="Entity\Component\Rectangle.h" />
     <ClInclude Include="Entity\Component\MovementComponent.h" />
+    <ClInclude Include="Scene\Collision\QTNode.h" />
+    <ClInclude Include="Scene\Collision\QuadTree.h" />
+    <ClInclude Include="Scene\Collision\SceneCollision.h" />
     <ClInclude Include="Scene\MenuScene.h" />
     <ClInclude Include="Scene\PlayScene.h" />
     <ClInclude Include="Scene\Scene.h" />
@@ -120,20 +127,26 @@
     <ClInclude Include="Core\Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Entity\Component\CircleCollider.cpp" />
+    <ClCompile Include="Entity\Component\BoxCollider.cpp" />
+    <ClCompile Include="Entity\Object\Monster.cpp" />
+    <ClCompile Include="Manager\CollisionManager.cpp" />
+    <ClCompile Include="Entity\Component\Collider.cpp" />
     <ClCompile Include="Entity\Object\Bullet.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Core\Input.cpp" />
     <ClCompile Include="Core\Timer.cpp" />
     <ClCompile Include="Core\Vector2D.cpp" />
     <ClCompile Include="Entity\Component\Component.cpp" />
-    <ClCompile Include="Entity\Object\Monster.cpp" />
     <ClCompile Include="Entity\Object\Object.cpp" />
     <ClCompile Include="Entity\Object\Player.cpp" />
     <ClCompile Include="Manager\GameManager.cpp" />
     <ClCompile Include="Manager\MemoryPoolManager.cpp" />
     <ClCompile Include="Manager\SceneManager.cpp" />
-    <ClCompile Include="Entity\Component\Rectangle.cpp" />
     <ClCompile Include="Entity\Component\MovementComponent.cpp" />
+    <ClCompile Include="Scene\Collision\QTNode.cpp" />
+    <ClCompile Include="Scene\Collision\QuadTree.cpp" />
+    <ClCompile Include="Scene\Collision\SceneCollision.cpp" />
     <ClCompile Include="Scene\MenuScene.cpp" />
     <ClCompile Include="Scene\PlayScene.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />

@@ -9,7 +9,11 @@ CBoxCollider::CBoxCollider() :
 
 bool CBoxCollider::Init()
 {
-	return CCollider::Init();
+	CCollider::Init();
+
+	SetProfile("TestProfile");
+
+	return true;
 }
 
 void CBoxCollider::Update(float DeltaTime)
@@ -62,10 +66,17 @@ bool CBoxCollider::Collision(CCollider* other)
 	return true;
 }
 
-void CBoxCollider::OnCollisionBegin(CCollider* other)
+void CBoxCollider::OnCollisionEnter(CCollider* other)
 {
+	mIsCollided = true;
 }
 
-void CBoxCollider::OnCollisionEnd(CCollider* other)
+void CBoxCollider::OnCollisionStay(CCollider* other)
 {
+	mIsCollided = true;
+}
+
+void CBoxCollider::OnCollisionExit(CCollider* other)
+{
+	mIsCollided = false;
 }
