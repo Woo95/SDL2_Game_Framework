@@ -13,7 +13,9 @@ protected:
 	// 가상 소멸자: 다형성 지원, 파생 클래스를 들고 있는 CScene 변수가 소멸 시, 파생 클래스 소멸자도 올바르게 호출됨.
 	virtual ~CScene();
 
-private:
+protected:
+    class CSceneCollision* mSceneCollision = nullptr;
+
     std::unordered_map<std::type_index, std::vector<class CObject*>> mObjMap;
 
 protected:
@@ -25,6 +27,8 @@ protected:
 	virtual void Render(SDL_Renderer* Renderer);
 
 public:
+    CSceneCollision* GetCollision() const { return mSceneCollision; }
+
     template <typename T>
     T* CreateObject(const std::string& name)
     {

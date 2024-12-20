@@ -2,6 +2,7 @@
 #include "../Object/Object.h"
 #include "../../Scene/Scene.h"
 #include "../../Manager/CollisionManager.h"
+#include "../../Scene/Collision/SceneCollision.h"
 
 CCollider::CCollider() :
     mProfile(nullptr),
@@ -16,6 +17,8 @@ CCollider::~CCollider()
 
 bool CCollider::Init()
 {
+    mObject->GetScene()->GetCollision()->AddCollider(this);
+
     return true;
 }
 

@@ -12,5 +12,7 @@ private:
 
 public:
     virtual bool Enter() override;
+    virtual void Update(float DeltaTime) override;
+    virtual void Render(SDL_Renderer* Renderer) override;
     virtual bool Exit()  override;
 };

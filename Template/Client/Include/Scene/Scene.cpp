@@ -1,5 +1,7 @@
 #include "Scene.h"
 #include "../Entity/Object/Object.h"
+#include "../Core/Timer.h"
+#include "../Scene/Collision/SceneCollision.h"
 
 CScene::~CScene()
 {
@@ -55,6 +57,8 @@ void CScene::Update(float DeltaTime)
             obj->Update(DeltaTime);
         }
     }
+    if (mSceneCollision)
+        mSceneCollision->Update(DeltaTime);
 }
 
 void CScene::Render(SDL_Renderer* Renderer)
@@ -90,4 +94,6 @@ void CScene::Render(SDL_Renderer* Renderer)
             obj->Render(Renderer);
         }
     }
+    if (mSceneCollision)
+        mSceneCollision->Render(Renderer);
 }
