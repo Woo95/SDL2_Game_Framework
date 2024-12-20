@@ -19,7 +19,7 @@ protected:
 	CComponent();
 	virtual ~CComponent();
 
-private:
+protected:
 	class CObject* mObject = nullptr;
 	CTransform* mTransform;
 
@@ -37,6 +37,7 @@ private:
 
 public:
 	CTransform* GetTransform() const { return mTransform; }
+	CObject* GetObject() const { return mObject; }
 
 	void AddChild(CComponent* child);
 	bool DeleteChild(CComponent* child);
