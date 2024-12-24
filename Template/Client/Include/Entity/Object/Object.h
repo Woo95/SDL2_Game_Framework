@@ -46,28 +46,6 @@ public:
 	}
 
 public:
-	template <typename T>
-	T* CreateComponent(const std::string& name, CComponent* parentComponent = nullptr)
-	{
-		if (CMemoryPoolManager::GetInst()->HasPool<T>())
-			return nullptr;
-
-		T* component = new T;
-
-		component->SetName(name);
-		component->mObject = this;
-
-		if (!component->Init())
-		{
-			SAFE_DELETE(component);
-			return nullptr;
-		}
-
-		if (parentComponent)
-			parentComponent->AddChild(component);
-
-		return component;
-	}
 	template <typename T, int initialCapacity = 10>
 	T* AllocateComponent(const std::string& name, CComponent* parentComponent = nullptr)
 	{

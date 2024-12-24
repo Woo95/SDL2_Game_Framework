@@ -15,7 +15,7 @@ bool CBullet::Init()
 		return false;
 
     // 이동 컴포넌트 만들기
-    mMovementComponent = CreateComponent<CMovementComponent>("Movement", mRootComponent);
+    mMovementComponent = AllocateComponent<CMovementComponent>("Movement", mRootComponent);
 
     // 도형 컴포넌트 만들기
     mCollider = AllocateComponent<CBoxCollider>("BulletCollider", mMovementComponent);
@@ -31,7 +31,7 @@ void CBullet::Update(float DeltaTime)
 	CObject::Update(DeltaTime);
 
     //mMovementComponent->MoveDir(FVector2D::RIGHT);
-    //mDestroyTime += DeltaTime;
+    mDestroyTime += DeltaTime;
 
     if (mDestroyTime >= 1.0f)
         SetActive(false);

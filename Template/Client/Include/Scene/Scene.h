@@ -29,28 +29,6 @@ protected:
 public:
     CSceneCollision* GetCollision() const { return mSceneCollision; }
 
-    template <typename T>
-    T* CreateObject(const std::string& name)
-    {
-        if (CMemoryPoolManager::GetInst()->HasPool<T>())
-            return nullptr;
-
-        T* gameObject = new T;
-
-        gameObject->SetName(name);
-        gameObject->mScene = this;
-
-        if (!gameObject->Init())
-        {
-            // 초기화 실패 시, gameObject는 container에 저장 안되니 delete 
-            SAFE_DELETE(gameObject);
-            return nullptr;
-        }
-
-        std::type_index key = typeid(T);
-        mObjMap[key].push_back(gameObject);
-        return gameObject;
-    }
     template <typename T, int initialCapacity = 50>
     T* AllocateObject(const std::string& name)
     {

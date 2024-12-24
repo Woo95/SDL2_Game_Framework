@@ -21,7 +21,7 @@ bool CPlayer::Init()
         return false;
 
     // 이동 컴포넌트 만들기
-    mMovementComponent = CreateComponent<CMovementComponent>("Movement", mRootComponent);
+    mMovementComponent = AllocateComponent<CMovementComponent>("Movement", mRootComponent);
 
     // 도형 컴포넌트 만들기
     mCollider = AllocateComponent<CBoxCollider>("playerCollider", mMovementComponent);
@@ -87,6 +87,6 @@ void CPlayer::MOVE_RIGHT()
 
 void CPlayer::SHOOT()
 {
-    CBullet* bullet = mScene->CreateObject<CBullet>("bullet");
+    CBullet* bullet = mScene->AllocateObject<CBullet>("bullet");
     bullet->GetTransform()->SetWorldPos(mCollider->GetTransform()->GetWorldPos());
 }

@@ -20,7 +20,7 @@ bool CPlayScene::Enter()
 {
 	//AllocateObject<CMonster, 10>("Monster");
 
-	CreateObject<CPlayer>("Player");
+	AllocateObject<CPlayer, 1>("Player");
 
 	return true;
 }
