@@ -4,8 +4,8 @@
 
 struct FCircle
 {
-	FVector2D mCenter;
-	float	  mRadius;
+	FVector2D center;
+	float	  radius;
 };
 
 class CCircleCollider : public CCollider

@@ -16,129 +16,128 @@ public:
 
 public:
 	FVector2D() = default;
-	FVector2D(float x, float y) :
-		mX(x), mY(y)
+	FVector2D(float x, float y)
 	{
+		this->x = x;
+		this->y = y;
 	}
 	// copy constructor
-	FVector2D(const FVector2D& refVec2D) :
-		mX(refVec2D.mX),
-		mY(refVec2D.mY)
+	FVector2D(const FVector2D& refVec2D)
 	{
-		//*this = refVec2D;   // alternative way.
+		*this = refVec2D;
 	}
 	~FVector2D() = default;
 
 public:
-	float mX;
-	float mY;
+	float x;
+	float y;
 
 public:
 #pragma region MODIFICATION OPERATORS
 	void operator = (const FVector2D& refVec2D)
 	{
-		mX = refVec2D.mX;
-		mY = refVec2D.mY;
+		x = refVec2D.x;
+		y = refVec2D.y;
 	}
 
 	void operator += (const FVector2D& refVec2D)
 	{
-		mX += refVec2D.mX;
-		mY += refVec2D.mY;
+		x += refVec2D.x;
+		y += refVec2D.y;
 	}
 	void operator += (float value)
 	{
-		mX += value;
-		mY += value;
+		x += value;
+		y += value;
 	}
 
 	void operator -= (const FVector2D& refVec2D)
 	{
-		mX -= refVec2D.mX;
-		mY -= refVec2D.mY;
+		x -= refVec2D.x;
+		y -= refVec2D.y;
 	}
 	void operator -= (float value)
 	{
-		mX -= value;
-		mY -= value;
+		x -= value;
+		y -= value;
 	}
 
 	void operator *= (const FVector2D& refVec2D)
 	{
-		mX *= refVec2D.mX;
-		mY *= refVec2D.mY;
+		x *= refVec2D.x;
+		y *= refVec2D.y;
 	}
 	void operator *= (float value)
 	{
-		mX *= value;
-		mY *= value;
+		x *= value;
+		y *= value;
 	}
 
 	void operator /= (const FVector2D& refVec2D)
 	{
-		mX /= refVec2D.mX;
-		mY /= refVec2D.mY;
+		x /= refVec2D.x;
+		y /= refVec2D.y;
 	}
 	void operator /= (float value)
 	{
-		mX /= value;
-		mY /= value;
+		x /= value;
+		y /= value;
 	}
 #pragma endregion
 
 #pragma region COMPARISON OPERATORS
 	bool operator == (const FVector2D& refVec2D)	const
 	{
-		return mX == refVec2D.mX && mY == refVec2D.mY;
+		return x == refVec2D.x && y == refVec2D.y;
 	}
 	bool operator != (const FVector2D& refVec2D)	const
 	{
-		return mX != refVec2D.mX || mY != refVec2D.mY;
+		return x != refVec2D.x || y != refVec2D.y;
 	}
 #pragma endregion
 
 #pragma region ARITHMETIC OPERATORS
 	FVector2D operator + (const FVector2D& refVec2D)	const
 	{
-		return FVector2D(mX + refVec2D.mX, mY + refVec2D.mY);
+		return FVector2D(x + refVec2D.x, y + refVec2D.y);
 	}
 	FVector2D operator + (float value)	const
 	{
-		return FVector2D(mX + value, mY + value);
+		return FVector2D(x + value, y + value);
 	}
 
 	FVector2D operator - (const FVector2D& refVec2D)	const
 	{
-		return FVector2D(mX - refVec2D.mX, mY - refVec2D.mY);
+		return FVector2D(x - refVec2D.x, y - refVec2D.y);
 	}
 	FVector2D operator - (float value)	const
 	{
-		return FVector2D(mX - value, mY - value);
+		return FVector2D(x - value, y - value);
 	}
 
 	FVector2D operator * (const FVector2D& refVec2D)	const
 	{
-		return FVector2D(mX * refVec2D.mX, mY * refVec2D.mY);
+		return FVector2D(x * refVec2D.x, y * refVec2D.y);
 	}
 	FVector2D operator * (float value)	const
 	{
-		return FVector2D(mX * value, mY * value);
+		return FVector2D(x * value, y * value);
 	}
 
 	FVector2D operator / (const FVector2D& refVec2D)	const
 	{
-		return FVector2D(mX / refVec2D.mX, mY / refVec2D.mY);
+		return FVector2D(x / refVec2D.x, y / refVec2D.y);
 	}
 	FVector2D operator / (float value)	const
 	{
-		return FVector2D(mX / value, mY / value);
+		return FVector2D(x / value, y / value);
 	}
 #pragma endregion
 
 public:
 	float Length()	const
 	{
-		return sqrtf((mX * mX) + (mY * mY));
+		return sqrtf((x * x) + (y * y));
 	}
 
 	// 현재 벡터와 주어진 벡터(refVec2D) 간의 거리를 반환하는 함수
@@ -152,8 +151,8 @@ public:
 	// 현재 벡터의 방향을 유지하며, 길이를 1로 변환한 단위 벡터(unit vector)를 "바꿔주는" 함수
 	void SetNormalize()
 	{
-		mX /= Length();
-		mY /= Length();
+		x /= Length();
+		y /= Length();
 	}
 	// 현재 벡터의 방향을 유지하며, 길이를 1로 변환한 단위 벡터(unit vector)를 "반환하는" 함수
 	FVector2D GetNormalize()	const
@@ -175,12 +174,12 @@ public:
 	#pragma endregion
 	float Dot(const FVector2D& refVec2D)	const
 	{
-		return (mX * refVec2D.mX) + (mY * refVec2D.mY);
+		return (x * refVec2D.x) + (y * refVec2D.y);
 	}
 
 	FVector2D Clamp(float left, float right, float bottom, float top)	const
 	{
-		return FVector2D(Clamp(mX, left, right), Clamp(mY, top, bottom));	// Clamp(mY, top, bottom)은 SDL2 좌표계에 맞춤
+		return FVector2D(Clamp(x, left, right), Clamp(y, top, bottom));	// Clamp(y, top, bottom)은 SDL2 좌표계에 맞춤
 	}
 
 	// 주어진 각도만큼 벡터를 회전시켜서 현재 벡터를 갱신하는 함수
@@ -188,15 +187,15 @@ public:
 	{
 		float radian = angle * M_PI_F / 180.0f;
 		
-		mX = mX * cosf(radian) - mY * sinf(radian);
-		mY = mX * sinf(radian) + mY * cosf(radian);
+		x = x * cosf(radian) - y * sinf(radian);
+		y = x * sinf(radian) + y * cosf(radian);
 	}
 	// 주어진 각도만큼 벡터를 회전시킨 새로운 벡터를 반환하는 함수
 	FVector2D GetRotate(float angle)	const
 	{
 		float radian = angle * M_PI_F / 180.0f;
 
-		return FVector2D(mX * cosf(radian) - mY * sinf(radian), mX * sinf(radian) + mY * cosf(radian));
+		return FVector2D(x * cosf(radian) - y * sinf(radian), x * sinf(radian) + y * cosf(radian));
 	}
 
 private:

@@ -30,8 +30,8 @@ void CCircleCollider::Update(float DeltaTime)
 	FVector2D scale    = mTransform->GetWorldScale();
 
 	// 원 정보 생성
-	mCircle.mCenter = worldPos - pivot * scale + scale * 0.5f;
-	mCircle.mRadius = scale.mX * 0.5f;
+	mCircle.center = worldPos - pivot * scale + scale * 0.5f;
+	mCircle.radius = scale.x * 0.5f;
 }
 
 void CCircleCollider::Render(SDL_Renderer* Renderer)
@@ -90,24 +90,24 @@ void CCircleCollider::OnCollisionExit(CCollider* other)
 // Bresenham's circle drawing algorithm
 void CCircleCollider::RenderDrawCircle(SDL_Renderer* renderer, const FCircle& circle)
 {
-    int x  = static_cast<int>(circle.mRadius);
+    int x  = static_cast<int>(circle.radius);
     int y  = 0;                               
     int dx = 1;                              
     int dy = 1;                              
-    int errorTerm = dx - (2 * static_cast<int>(circle.mRadius)); // 오차값
+    int errorTerm = dx - (2 * static_cast<int>(circle.radius)); // 오차값
 
     // 원을 8방향 대칭으로 그리기
     while (x >= y)
     {
         // 8방향에 대칭되는 점들을 그린다
-        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.mCenter.mX) + x, static_cast<int>(circle.mCenter.mY) + y);
-        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.mCenter.mX) + y, static_cast<int>(circle.mCenter.mY) + x);
-        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.mCenter.mX) - y, static_cast<int>(circle.mCenter.mY) + x);
-        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.mCenter.mX) - x, static_cast<int>(circle.mCenter.mY) + y);
-        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.mCenter.mX) - x, static_cast<int>(circle.mCenter.mY) - y);
-        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.mCenter.mX) - y, static_cast<int>(circle.mCenter.mY) - x);
-        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.mCenter.mX) + y, static_cast<int>(circle.mCenter.mY) - x);
-        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.mCenter.mX) + x, static_cast<int>(circle.mCenter.mY) - y);
+        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.center.x) + x, static_cast<int>(circle.center.y) + y);
+        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.center.x) + y, static_cast<int>(circle.center.y) + x);
+        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.center.x) - y, static_cast<int>(circle.center.y) + x);
+        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.center.x) - x, static_cast<int>(circle.center.y) + y);
+        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.center.x) - x, static_cast<int>(circle.center.y) - y);
+        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.center.x) - y, static_cast<int>(circle.center.y) - x);
+        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.center.x) + y, static_cast<int>(circle.center.y) - x);
+        SDL_RenderDrawPoint(renderer, static_cast<int>(circle.center.x) + x, static_cast<int>(circle.center.y) - y);
 
         // x값 증가, 오차값 업데이트
         if (errorTerm <= 0)
@@ -122,7 +122,7 @@ void CCircleCollider::RenderDrawCircle(SDL_Renderer* renderer, const FCircle& ci
         {
             x--;
             dx += 2;
-            errorTerm += dx - (2 * static_cast<int>(circle.mRadius));
+            errorTerm += dx - (2 * static_cast<int>(circle.radius));
         }
     }
 }

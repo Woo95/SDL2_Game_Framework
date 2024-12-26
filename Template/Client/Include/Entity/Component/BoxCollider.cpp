@@ -29,7 +29,7 @@ void CBoxCollider::Update(float DeltaTime)
 	const FVector2D& topLeft = mTransform->GetWorldPos() - mTransform->GetPivot() * scale;
 
 	// 사각형 정보 생성
-	mRect = { topLeft.mX, topLeft.mY, scale.mX, scale.mY };
+	mRect = { topLeft.x, topLeft.y, scale.x, scale.y };
 }
 
 void CBoxCollider::Render(SDL_Renderer* Renderer)

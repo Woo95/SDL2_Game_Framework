@@ -115,11 +115,11 @@ bool CQTNode::IsWithinNode(CCollider* collider)
 		const SDL_FRect& box  = mBoundary;
 		const FCircle& circle = ((CCircleCollider*)collider)->GetCircle();
 
-		FVector2D closestPointOnBox = circle.mCenter.Clamp(box.x, box.x + box.w, box.y + box.h, box.y);
+		FVector2D closestPointOnBox = circle.center.Clamp(box.x, box.x + box.w, box.y + box.h, box.y);
 
-		float distance = circle.mCenter.Distance(closestPointOnBox);
+		float distance = circle.center.Distance(closestPointOnBox);
 
-		if (circle.mRadius < distance)
+		if (circle.radius < distance)
 		{
 			return false;
 		}
