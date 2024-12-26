@@ -9,8 +9,8 @@ class CQTNode
 	friend class CQuadTree;
 
 public:
-	CQTNode() = default;
-	~CQTNode() = default;
+	CQTNode();
+	~CQTNode();
 
 private:
 	CQTNode* mParent = nullptr;

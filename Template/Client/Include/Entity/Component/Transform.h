@@ -8,7 +8,7 @@ class CTransform
 	friend class CComponent;
 
 private:
-	CTransform() = default;
+	CTransform();
 	~CTransform();
 
 private:

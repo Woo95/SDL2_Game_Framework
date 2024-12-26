@@ -7,6 +7,10 @@ CBoxCollider::CBoxCollider() :
 	mColliderType = ECollider::Type::BOX;
 }
 
+CBoxCollider::~CBoxCollider()
+{
+}
+
 bool CBoxCollider::Init()
 {
 	CCollider::Init();

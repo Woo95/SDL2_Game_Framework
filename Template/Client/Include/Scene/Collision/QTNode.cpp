@@ -5,6 +5,14 @@
 #include "../../Entity/Object/Object.h"
 #include "../../Scene/Collision/SceneCollision.h"
 
+CQTNode::CQTNode()
+{
+}
+
+CQTNode::~CQTNode()
+{
+}
+
 void CQTNode::Update(float DeltaTime)
 {
 	if (HasChild())

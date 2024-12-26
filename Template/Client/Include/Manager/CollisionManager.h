@@ -14,7 +14,7 @@ CollisionManager: 충돌 계산 및 프로필 저장.
 class CCollisionManager // Profile and Collision Handler
 {
 private:
-	CCollisionManager() = default;
+	CCollisionManager();
 	~CCollisionManager();
 
 private:

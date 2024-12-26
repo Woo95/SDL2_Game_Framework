@@ -12,7 +12,7 @@ class CCircleCollider : public CCollider
 {
 public:
 	CCircleCollider();
-	virtual ~CCircleCollider() = default;
+	virtual ~CCircleCollider();
 
 private:
 	FCircle mCircle;

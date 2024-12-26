@@ -4,6 +4,10 @@
 
 CCollisionManager* CCollisionManager::mInst = nullptr;
 
+CCollisionManager::CCollisionManager()
+{
+}
+
 CCollisionManager::~CCollisionManager()
 {
 	std::unordered_map<std::string, FCollisionProfile*>::iterator iter    = mProfileMap.begin();

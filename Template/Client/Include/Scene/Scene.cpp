@@ -3,6 +3,10 @@
 #include "../Core/Timer.h"
 #include "../Scene/Collision/SceneCollision.h"
 
+CScene::CScene()
+{
+}
+
 CScene::~CScene()
 {
     std::unordered_map<std::type_index, std::vector<CObject*>>::iterator iter    = mObjMap.begin();

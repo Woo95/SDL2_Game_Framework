@@ -5,7 +5,7 @@ class CBullet : public CObject
 {
 public:
 	CBullet();
-	virtual ~CBullet() = default;
+	virtual ~CBullet();
 
 public:
 	class CMovementComponent* mMovementComponent;

@@ -6,7 +6,7 @@ class CBoxCollider : public CCollider
 {
 public:
 	CBoxCollider();
-	virtual ~CBoxCollider() = default;
+	virtual ~CBoxCollider();
 
 private:
 	SDL_FRect mRect;

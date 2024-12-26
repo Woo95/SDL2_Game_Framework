@@ -9,6 +9,10 @@ CBullet::CBullet() :
 {
 }
 
+CBullet::~CBullet()
+{
+}
+
 bool CBullet::Init()
 {
 	if (!CObject::Init())

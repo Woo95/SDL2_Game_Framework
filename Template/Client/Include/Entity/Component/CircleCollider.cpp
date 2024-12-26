@@ -7,6 +7,10 @@ CCircleCollider::CCircleCollider() :
 	mColliderType = ECollider::Type::CIRCLE;
 }
 
+CCircleCollider::~CCircleCollider()
+{
+}
+
 bool CCircleCollider::Init()
 {
 	CCollider::Init();

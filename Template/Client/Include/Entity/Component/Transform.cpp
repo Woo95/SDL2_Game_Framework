@@ -1,5 +1,9 @@
 #include "Transform.h"
 
+CTransform::CTransform()
+{
+}
+
 CTransform::~CTransform()
 {
     if (mParent)

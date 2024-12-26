@@ -6,7 +6,7 @@ class CMovementComponent : public CComponent
 {
 public:
 	CMovementComponent();
-	virtual ~CMovementComponent() = default;
+	virtual ~CMovementComponent();
 
 private:
 	float mSpeed;
