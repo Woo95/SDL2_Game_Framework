@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "External/SDL/SDL.h"
 #include <iostream>
@@ -10,5 +10,6 @@
 #include <functional>   // 함수 포인터를 쉽게 쓰기 위한 기능들
 #include <unordered_map>
 #include <memory>       // for smartPtr
+#include <typeindex>
 
 #define	SAFE_DELETE(p) if(p) { delete p; p = nullptr; }

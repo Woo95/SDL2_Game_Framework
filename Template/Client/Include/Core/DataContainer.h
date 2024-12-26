@@ -6,13 +6,16 @@ class DataContainer abstract
 {
 protected:
 	DataContainer() = default;
-	~DataContainer() = default;
+	virtual ~DataContainer() = default;
 
 protected:
 	std::string mName;
 	size_t mID   = -1;
 	bool mActive = true;	// handle object/component to be deleted
 	bool mEnable = true;	// handle object/component to be rendered
+
+public:
+	virtual bool Release() = 0;
 
 public:
 	const std::string& GetName() const { return mName; }

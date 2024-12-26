@@ -15,6 +15,7 @@ CObject::CObject() :
 CObject::CObject(const CObject& objRef)
 {
 	mRootComponent = new CComponent(*objRef.mRootComponent);
+	mScene = objRef.mScene;
 }
 
 CObject::~CObject()
@@ -35,4 +36,11 @@ void CObject::Update(float DeltaTime)
 void CObject::Render(SDL_Renderer* Renderer)
 {
 	mRootComponent->Render(Renderer);
+}
+
+void CObject::Destroy()
+{
+	SetActive(false);
+
+	mRootComponent->Destroy();
 }

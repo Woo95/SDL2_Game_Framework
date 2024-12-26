@@ -14,6 +14,7 @@
 class CComponent : public DataContainer
 {
 	friend class CObject;
+	friend class CMemoryReleaseManager;
 
 protected:
 	CComponent();
@@ -42,4 +43,6 @@ public:
 	void AddChild(CComponent* child);
 	bool DeleteChild(CComponent* child);
 	CComponent* FindComponent(size_t id);
+
+	void Destroy();
 };

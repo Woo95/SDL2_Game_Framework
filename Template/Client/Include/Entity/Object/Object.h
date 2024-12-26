@@ -9,6 +9,7 @@
 class CObject abstract	: public DataContainer
 {
 	friend class CScene;
+	friend class CMemoryReleaseManager;
 
 protected:
 	CObject();
@@ -72,4 +73,5 @@ public:
 
 		return component;
 	}
+	void Destroy();
 };

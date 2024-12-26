@@ -34,7 +34,7 @@ void CBullet::Update(float DeltaTime)
     mDestroyTime += DeltaTime;
 
     if (mDestroyTime >= 1.0f)
-        SetActive(false);
+        Destroy();
 }
 
 void CBullet::Render(SDL_Renderer* Renderer)

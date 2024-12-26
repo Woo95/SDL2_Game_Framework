@@ -4,6 +4,7 @@
 #include "SceneManager.h"
 #include "MemoryPoolManager.h"
 #include "CollisionManager.h"
+#include "MemoryReleaseManager.h"
 
 CGameManager* CGameManager::mInst = nullptr;
 
@@ -18,6 +19,8 @@ CGameManager::~CGameManager()
     CCollisionManager::DestroyInst();
 
     CSceneManager::DestroyInst();
+
+    CMemoryReleaseManager::DestroyInst();
 
     CMemoryPoolManager::DestroyInst();
 
@@ -94,6 +97,8 @@ void CGameManager::Update()
     CInput::GetInst()->Update();
 
     CSceneManager::GetInst()->Update(CTimer::GetDeltaTime());
+
+    CMemoryReleaseManager::GetInst()->Update(CTimer::GetDeltaTime());
 }
 
 void CGameManager::Render()

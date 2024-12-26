@@ -1,5 +1,6 @@
 #include "Component.h"
 #include "Transform.h"
+#include "../../Manager/MemoryReleaseManager.h"
 
 CComponent::CComponent()
 {
@@ -10,7 +11,6 @@ CComponent::CComponent()
 
 CComponent::~CComponent()
 {
-	SetActive(false);
 	for (size_t i = mChilds.size(); i > 0; i--)
 	{
 		CComponent* child = mChilds[i - 1];
@@ -18,10 +18,7 @@ CComponent::~CComponent()
 		std::swap(mChilds[i - 1], mChilds.back());
 		mChilds.pop_back();
 
-		if (!child->Release())
-		{
-			SAFE_DELETE(child);
-		}
+		child->Release();
 	}
 	SAFE_DELETE(mTransform);
 }
@@ -98,10 +95,7 @@ bool CComponent::DeleteChild(CComponent* child)
 	if (!childToDelete)
 		return false;
 
-	if (!childToDelete->Release())
-	{
-		SAFE_DELETE(childToDelete);
-	}
+	CMemoryReleaseManager::GetInst()->AddGarbage(childToDelete);
 
 	return true;
 }
@@ -119,4 +113,13 @@ CComponent* CComponent::FindComponent(size_t id)
 			return foundComp;
 	}
 	return nullptr;
+}
+
+void CComponent::Destroy()
+{
+	for (CComponent* child : mChilds)
+	{
+		child->Destroy();
+	}
+	SetActive(false);
 }
