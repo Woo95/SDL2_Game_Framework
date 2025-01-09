@@ -6,10 +6,9 @@
 #include "../Component/Transform.h"
 #include "../../Scene/Scene.h"
 
-class CObject abstract	: public DataContainer
+class CObject abstract	: public CDataContainer
 {
 	friend class CScene;
-	friend class CMemoryReleaseManager;
 
 protected:
 	CObject();

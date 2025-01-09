@@ -2,7 +2,6 @@
 
 #include "../Core/GameInfo.h"
 #include "../Manager/MemoryPoolManager.h"
-#include "../Manager/MemoryReleaseManager.h"
 
 // 추상 클래스 선언 - 인스턴스화 불가 (abstract 키워드로 명시 안하더라도, 순수 가상 함수가 있으면 자동으로 추상 클래스)
 class CScene abstract	
@@ -74,8 +73,8 @@ public:
 
                 obj->Destroy();
 
-                // 제거해야할 메모리를 가비지 컬렉터에 추가
-                CMemoryReleaseManager::GetInst()->AddGarbage(obj);
+                // 사용된 메모리 반환
+                obj->Release();
             }
             mObjMap.erase(iter);
         }

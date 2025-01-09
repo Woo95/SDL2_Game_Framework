@@ -11,10 +11,9 @@
 	독자적으로 많은 것을 하기보다는 실질적 기능을 수행하는 컴포넌트(Components)의 컨테이너 역할이다.
 */
 
-class CComponent : public DataContainer
+class CComponent : public CDataContainer
 {
 	friend class CObject;
-	friend class CMemoryReleaseManager;
 
 protected:
 	CComponent();

@@ -2,20 +2,17 @@
 
 #include <string>
 
-class DataContainer abstract
+class CDataContainer abstract
 {
 protected:
-	DataContainer() = default;
-	virtual ~DataContainer() = default;
+	CDataContainer() = default;
+	virtual ~CDataContainer() = default;
 
 protected:
 	std::string mName;
 	size_t mID   = -1;
 	bool mActive = true;	// handle object/component to be deleted
 	bool mEnable = true;	// handle object/component to be rendered
-
-public:
-	virtual bool Release() = 0;
 
 public:
 	const std::string& GetName() const { return mName; }

@@ -1,6 +1,5 @@
 #include "Component.h"
 #include "Transform.h"
-#include "../../Manager/MemoryReleaseManager.h"
 
 CComponent::CComponent()
 {
@@ -95,7 +94,7 @@ bool CComponent::DeleteChild(CComponent* child)
 	if (!childToDelete)
 		return false;
 
-	CMemoryReleaseManager::GetInst()->AddGarbage(childToDelete);
+	childToDelete->Release();
 
 	return true;
 }

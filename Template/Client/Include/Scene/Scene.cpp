@@ -20,8 +20,8 @@ CScene::~CScene()
         {
             CObject* obj = typeObjVec[j - 1];   // starts from last idx
 
-            // 제거해야할 메모리를 가비지 컬렉터에 추가
-            CMemoryReleaseManager::GetInst()->AddGarbage(obj);
+            // 사용된 메모리 반환
+            obj->Release();
         }
     }
 }
@@ -45,8 +45,8 @@ void CScene::Update(float DeltaTime)
                 std::swap(typeObjVec[j - 1], typeObjVec.back());
                 typeObjVec.pop_back();
 
-                // 제거해야할 메모리를 가비지 컬렉터에 추가
-                CMemoryReleaseManager::GetInst()->AddGarbage(obj);
+                // 사용된 메모리 반환
+                obj->Release();
 
                 continue;
             }
@@ -80,8 +80,8 @@ void CScene::Render(SDL_Renderer* Renderer)
                 std::swap(typeObjVec[j - 1], typeObjVec.back());
                 typeObjVec.pop_back();
 
-                // 제거해야할 메모리를 가비지 컬렉터에 추가
-                CMemoryReleaseManager::GetInst()->AddGarbage(obj);
+                // 사용된 메모리 반환
+                obj->Release();
 
                 continue;
             }
