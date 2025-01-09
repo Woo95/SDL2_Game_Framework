@@ -46,12 +46,7 @@ void CBullet::Render(SDL_Renderer* Renderer)
 	CObject::Render(Renderer);
 }
 
-bool CBullet::Release()
+void CBullet::Release()
 {
-    if (CMemoryPoolManager::GetInst()->HasPool<CBullet>())
-    {
-        CMemoryPoolManager::GetInst()->Deallocate<CBullet>(this);
-        return true;
-    }
-    return false;
+    CMemoryPoolManager::GetInst()->Deallocate<CBullet>(this);
 }

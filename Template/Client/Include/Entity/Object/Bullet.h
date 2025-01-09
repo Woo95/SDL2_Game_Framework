@@ -19,5 +19,5 @@ public:
 	virtual void Render(SDL_Renderer* Renderer);
 
 public:
-	virtual bool Release() final;
+	virtual void Release() final;
 };

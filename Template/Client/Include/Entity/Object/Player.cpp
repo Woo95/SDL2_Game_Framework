@@ -46,14 +46,9 @@ void CPlayer::Render(SDL_Renderer* Renderer)
     CObject::Render(Renderer);
 }
 
-bool CPlayer::Release()
+void CPlayer::Release()
 {
-    if (CMemoryPoolManager::GetInst()->HasPool<CPlayer>())
-    {
-        CMemoryPoolManager::GetInst()->Deallocate<CPlayer>(this);
-        return true;
-    }
-    return false;
+    CMemoryPoolManager::GetInst()->Deallocate<CPlayer>(this);
 }
 
 void CPlayer::SetupInput()

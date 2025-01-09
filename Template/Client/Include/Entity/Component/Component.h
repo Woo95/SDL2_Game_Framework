@@ -33,7 +33,7 @@ protected:
 
 private:
 	// mRootComponent는 메모리 풀을 사용하지 않고 new로 할당되므로 Release할 필요가 없음.
-	virtual bool Release() { return false; }	// Object.h에서 component memoryPool usage 위하여
+	virtual void Release() { return; }	// Object.h에서 component memoryPool usage 위하여
 
 public:
 	CTransform* GetTransform() const { return mTransform; }

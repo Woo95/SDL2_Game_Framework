@@ -16,7 +16,7 @@ public:
 	virtual void Update(float DeltaTime);
 
 private:
-	virtual bool Release() final;
+	virtual void Release() final;
 
 public:
 	float GetSpeed() const

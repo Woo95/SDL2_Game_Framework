@@ -35,7 +35,7 @@ public:
 	virtual void Render(SDL_Renderer* Renderer);
 
 public:
-	virtual bool Release() = 0;
+	virtual void Release() = 0;
 
 	virtual bool Collision(CCollider* other)        = 0;
 	virtual void OnCollisionEnter(CCollider* other) = 0;

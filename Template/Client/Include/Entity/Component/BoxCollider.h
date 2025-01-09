@@ -17,7 +17,7 @@ public:
 	virtual void Render(SDL_Renderer* Renderer);
 
 public:
-	virtual bool Release() final;
+	virtual void Release() final;
 
 	virtual bool Collision(CCollider* other)        final;
 	virtual void OnCollisionEnter(CCollider* other) final;

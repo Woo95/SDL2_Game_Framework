@@ -33,12 +33,7 @@ void CMonster::Render(SDL_Renderer* Renderer)
     CObject::Render(Renderer);
 }
 
-bool CMonster::Release()
+void CMonster::Release()
 {
-    if (CMemoryPoolManager::GetInst()->HasPool<CMonster>())
-    {
-        CMemoryPoolManager::GetInst()->Deallocate<CMonster>(this);
-        return true;
-    }
-    return false;
+    CMemoryPoolManager::GetInst()->Deallocate<CMonster>(this);
 }

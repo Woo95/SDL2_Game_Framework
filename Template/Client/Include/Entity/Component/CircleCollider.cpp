@@ -50,14 +50,9 @@ void CCircleCollider::Render(SDL_Renderer* Renderer)
 #endif
 }
 
-bool CCircleCollider::Release()
+void CCircleCollider::Release()
 {
-	if (CMemoryPoolManager::GetInst()->HasPool<CCircleCollider>())
-	{
-		CMemoryPoolManager::GetInst()->Deallocate<CCircleCollider>(this);
-		return true;
-	}
-	return false;
+	CMemoryPoolManager::GetInst()->Deallocate<CCircleCollider>(this);
 }
 
 bool CCircleCollider::Collision(CCollider* other)

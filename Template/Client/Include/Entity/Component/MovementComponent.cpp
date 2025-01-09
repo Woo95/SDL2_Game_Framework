@@ -17,14 +17,9 @@ void CMovementComponent::Update(float DeltaTime)
 	Move(DeltaTime);
 }
 
-bool CMovementComponent::Release()
+void CMovementComponent::Release()
 {
-	if (CMemoryPoolManager::GetInst()->HasPool<CMovementComponent>())
-	{
-		CMemoryPoolManager::GetInst()->Deallocate<CMovementComponent>(this);
-		return true;
-	}
-	return false;
+	CMemoryPoolManager::GetInst()->Deallocate<CMovementComponent>(this);
 }
 
 void CMovementComponent::Move(float DeltaTime)

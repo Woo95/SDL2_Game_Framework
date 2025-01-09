@@ -48,14 +48,9 @@ void CBoxCollider::Render(SDL_Renderer* Renderer)
 #endif
 }
 
-bool CBoxCollider::Release()
+void CBoxCollider::Release()
 {
-	if (CMemoryPoolManager::GetInst()->HasPool<CBoxCollider>())
-	{
-		CMemoryPoolManager::GetInst()->Deallocate<CBoxCollider>(this);
-		return true;
-	}
-	return false;
+	CMemoryPoolManager::GetInst()->Deallocate<CBoxCollider>(this);
 }
 
 bool CBoxCollider::Collision(CCollider* other)
