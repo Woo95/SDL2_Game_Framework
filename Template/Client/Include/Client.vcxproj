@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\RefCounter.h" />
+    <ClInclude Include="Core\SharedPtr.h" />
     <ClInclude Include="Entity\Component\CircleCollider.h" />
     <ClInclude Include="Entity\Component\BoxCollider.h" />
     <ClInclude Include="Entity\Object\Monster.h" />
@@ -114,7 +116,6 @@
     <ClInclude Include="Entity\Object\Object.h" />
     <ClInclude Include="Entity\Object\Player.h" />
     <ClInclude Include="Manager\GameManager.h" />
-    <ClInclude Include="Manager\MemoryReleaseManager.h" />
     <ClInclude Include="Manager\MemoryPoolManager.h" />
     <ClInclude Include="Manager\SceneManager.h" />
     <ClInclude Include="Entity\Component\MovementComponent.h" />
@@ -142,7 +143,6 @@
     <ClCompile Include="Entity\Object\Object.cpp" />
     <ClCompile Include="Entity\Object\Player.cpp" />
     <ClCompile Include="Manager\GameManager.cpp" />
-    <ClCompile Include="Manager\MemoryReleaseManager.cpp" />
     <ClCompile Include="Manager\MemoryPoolManager.cpp" />
     <ClCompile Include="Manager\SceneManager.cpp" />
     <ClCompile Include="Entity\Component\MovementComponent.cpp" />

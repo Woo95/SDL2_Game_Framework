@@ -55,6 +55,9 @@
     <Filter Include="04. Entity\02. Component\01. Components\Collider">
       <UniqueIdentifier>{783763d1-3903-4704-a6a1-963de9c0ceb2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Core\Lib\SmartPtr">
+      <UniqueIdentifier>{78525eff-63d9-470a-9434-564f2a326435}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Timer.h">
@@ -375,11 +378,11 @@
     <ClInclude Include="Manager\GameManager.h">
       <Filter>02. Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Manager\MemoryReleaseManager.h">
-      <Filter>02. Manager</Filter>
+    <ClInclude Include="Core\RefCounter.h">
+      <Filter>01. Core\Lib\SmartPtr</Filter>
     </ClInclude>
-    <ClInclude Include="Manager\GarbageCollector.h">
-      <Filter>02. Manager</Filter>
+    <ClInclude Include="Core\SharedPtr.h">
+      <Filter>01. Core\Lib\SmartPtr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -451,12 +454,6 @@
       <Filter>04. Entity\02. Component\01. Components\Collider</Filter>
     </ClCompile>
     <ClCompile Include="Manager\GameManager.cpp">
-      <Filter>02. Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="Manager\MemoryReleaseManager.cpp">
-      <Filter>02. Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="Manager\GarbageCollector.cpp">
       <Filter>02. Manager</Filter>
     </ClCompile>
   </ItemGroup>
