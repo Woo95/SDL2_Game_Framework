@@ -53,7 +53,7 @@ void CBoxCollider::Release()
 	CMemoryPoolManager::GetInst()->Deallocate<CBoxCollider>(this);
 }
 
-bool CBoxCollider::Collision(CCollider* other)
+bool CBoxCollider::Intersect(CCollider* other)
 {
 	switch (other->GetColliderType())
 	{
@@ -63,19 +63,4 @@ bool CBoxCollider::Collision(CCollider* other)
 		return CCollisionManager::GetInst()->AABBCircleCollision(this, (CCircleCollider*)other);
 	}
 	return true;
-}
-
-void CBoxCollider::OnCollisionEnter(CCollider* other)
-{
-	mIsCollided = true;
-}
-
-void CBoxCollider::OnCollisionStay(CCollider* other)
-{
-	mIsCollided = true;
-}
-
-void CBoxCollider::OnCollisionExit(CCollider* other)
-{
-	mIsCollided = false;
 }

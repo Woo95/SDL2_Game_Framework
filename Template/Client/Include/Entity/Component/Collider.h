@@ -29,6 +29,8 @@ protected:
 	bool				mIsCollided;
 	FVector2D			mHitPoint;
 
+	//std::function<void(CCollider*, CCollider*)> mCollisionFunc; // todo
+
 public:
 	virtual bool Init();
 	virtual void Update(float DeltaTime);
@@ -37,10 +39,8 @@ public:
 public:
 	virtual void Release() = 0;
 
-	virtual bool Collision(CCollider* other)        = 0;
-	virtual void OnCollisionEnter(CCollider* other) = 0;
-	virtual void OnCollisionStay(CCollider* other)  = 0;
-	virtual void OnCollisionExit(CCollider* other)  = 0;
+	virtual bool Intersect(CCollider* other) = 0;
+	virtual void OnCollision(CCollider* other);
 
 public:
 	FCollisionProfile* GetProfile()   const { return mProfile; }

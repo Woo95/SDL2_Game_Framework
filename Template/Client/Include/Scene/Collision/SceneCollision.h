@@ -16,8 +16,6 @@ public:
 private:
 	class CQuadTree* mQuadTree;
 
-	std::unordered_map<uintptr_t, bool> mColliderPair;
-
 	int mWidth;
 	int mHeight;
 
@@ -27,5 +25,4 @@ public:
 
 public:
 	void AddCollider(CCollider* collider);
-	void HandleCollision(CCollider* collider1, CCollider* collider2);
 };

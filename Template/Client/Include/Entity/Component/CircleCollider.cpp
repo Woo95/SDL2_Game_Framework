@@ -55,7 +55,7 @@ void CCircleCollider::Release()
 	CMemoryPoolManager::GetInst()->Deallocate<CCircleCollider>(this);
 }
 
-bool CCircleCollider::Collision(CCollider* other)
+bool CCircleCollider::Intersect(CCollider* other)
 {
 	switch (other->GetColliderType())
 	{
@@ -65,21 +65,6 @@ bool CCircleCollider::Collision(CCollider* other)
 		return CCollisionManager::GetInst()->AABBCircleCollision((CBoxCollider*)other, this);
 	}
 	return true;
-}
-
-void CCircleCollider::OnCollisionEnter(CCollider* other)
-{
-	mIsCollided = true;
-}
-
-void CCircleCollider::OnCollisionStay(CCollider* other)
-{
-	mIsCollided = true;
-}
-
-void CCircleCollider::OnCollisionExit(CCollider* other)
-{
-	mIsCollided = false;
 }
 
 // Bresenham's circle drawing algorithm

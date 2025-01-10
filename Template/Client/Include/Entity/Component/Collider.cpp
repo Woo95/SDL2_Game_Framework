@@ -32,6 +32,12 @@ void CCollider::Render(SDL_Renderer* Renderer)
     CComponent::Render(Renderer);
 }
 
+void CCollider::OnCollision(CCollider* other)
+{
+    mIsCollided = true;
+    // todo
+}
+
 void CCollider::SetProfile(const std::string& name)
 {
     mProfile = CCollisionManager::GetInst()->FindProfile(name);
