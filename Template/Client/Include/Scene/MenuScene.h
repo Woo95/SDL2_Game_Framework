@@ -11,6 +11,10 @@ private:
     ~CMenuScene();
 
 public:
-    virtual bool Enter() override;
-    virtual bool Exit()  override;
+    virtual bool Enter() final;
+    virtual bool Exit()  final;
+
+    virtual void Update(float DeltaTime)        final;
+    virtual void LateUpdate(float DeltaTime)    final;
+    virtual void Render(SDL_Renderer* Renderer) final;
 };

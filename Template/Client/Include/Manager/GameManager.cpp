@@ -84,6 +84,8 @@ void CGameManager::Logic()
 {
     Update();
 
+    LateUpdate();
+
     Render();
 }
 
@@ -94,6 +96,11 @@ void CGameManager::Update()
     CInput::GetInst()->Update();
 
     CSceneManager::GetInst()->Update(CTimer::GetDeltaTime());
+}
+
+void CGameManager::LateUpdate()
+{
+    CSceneManager::GetInst()->LateUpdate(CTimer::GetDeltaTime());
 }
 
 void CGameManager::Render()

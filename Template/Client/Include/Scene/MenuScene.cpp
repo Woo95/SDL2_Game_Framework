@@ -20,3 +20,18 @@ bool CMenuScene::Exit()
 
 	return true;
 }
+
+void CMenuScene::Update(float DeltaTime)
+{
+	CScene::Update(DeltaTime);
+}
+
+void CMenuScene::LateUpdate(float DeltaTime)
+{
+	CScene::LateUpdate(DeltaTime);
+}
+
+void CMenuScene::Render(SDL_Renderer* Renderer)
+{
+	CScene::Render(Renderer);
+}

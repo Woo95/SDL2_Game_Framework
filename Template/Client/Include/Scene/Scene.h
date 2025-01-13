@@ -19,12 +19,12 @@ protected:
     std::unordered_map<std::type_index, std::vector<class CObject*>> mObjMap;
 
 protected:
-	// Enter()와 Exit()은 순수 가상 함수
 	virtual bool Enter() = 0;
 	virtual bool Exit()  = 0;
 
-	virtual void Update(float DeltaTime);
-	virtual void Render(SDL_Renderer* Renderer);
+    virtual void Update(float DeltaTime);
+    virtual void LateUpdate(float DeltaTime);
+    virtual void Render(SDL_Renderer* Renderer);
 
 public:
     CSceneCollision* GetCollision() const { return mSceneCollision; }

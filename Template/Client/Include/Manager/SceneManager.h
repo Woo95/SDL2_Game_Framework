@@ -17,6 +17,7 @@ private:
 public:
 	bool Init();
 	void Update(float DeltaTime);
+	void LateUpdate(float DeltaTime);
 	void Render(SDL_Renderer* Renderer);
 	void Change(EScene::State ESceneState);
 

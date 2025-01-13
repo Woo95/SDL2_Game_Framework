@@ -21,6 +21,11 @@ void CSceneCollision::Update(float DeltaTime)
 	mQuadTree->Update(DeltaTime);
 }
 
+void CSceneCollision::LateUpdate(float DeltaTime)
+{
+	mQuadTree->LateUpdate(DeltaTime);
+}
+
 void CSceneCollision::Render(SDL_Renderer* Renderer)
 {
 	mQuadTree->Render(Renderer);

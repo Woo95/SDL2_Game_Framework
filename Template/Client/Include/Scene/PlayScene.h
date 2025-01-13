@@ -11,8 +11,10 @@ private:
     ~CPlayScene();
 
 public:
-    virtual bool Enter() override;
-    virtual void Update(float DeltaTime) override;
-    virtual void Render(SDL_Renderer* Renderer) override;
-    virtual bool Exit()  override;
+    virtual bool Enter() final;
+    virtual bool Exit()  final;
+
+    virtual void Update(float DeltaTime)        final;
+    virtual void LateUpdate(float DeltaTime)    final;
+    virtual void Render(SDL_Renderer* Renderer) final;
 };

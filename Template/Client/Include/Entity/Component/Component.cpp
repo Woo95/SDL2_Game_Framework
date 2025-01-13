@@ -55,6 +55,29 @@ void CComponent::Update(float DeltaTime)
 	}
 }
 
+void CComponent::LateUpdate(float DeltaTime)
+{
+	for (size_t i = mChilds.size(); i > 0; i--)
+	{
+		CComponent* child = mChilds[i - 1];
+
+		if (!child->GetActive())
+		{
+			// Active아닌 component는 마지막 요소랑 바꿔준 후 제거
+			std::swap(mChilds[i - 1], mChilds.back());
+			mChilds.pop_back();
+
+			DeleteChild(child);
+			continue;
+		}
+		else if (!child->GetEnable())
+		{
+			continue;
+		}
+		child->LateUpdate(DeltaTime);
+	}
+}
+
 void CComponent::Render(SDL_Renderer* Renderer)
 {
 	for (size_t i = mChilds.size(); i > 0; i--)

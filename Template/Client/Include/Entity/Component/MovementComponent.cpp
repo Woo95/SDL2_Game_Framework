@@ -17,6 +17,11 @@ void CMovementComponent::Update(float DeltaTime)
 	Move(DeltaTime);
 }
 
+void CMovementComponent::LateUpdate(float DeltaTime)
+{
+	CComponent::LateUpdate(DeltaTime);
+}
+
 void CMovementComponent::Release()
 {
 	CMemoryPoolManager::GetInst()->Deallocate<CMovementComponent>(this);

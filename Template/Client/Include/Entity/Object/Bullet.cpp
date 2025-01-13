@@ -41,6 +41,11 @@ void CBullet::Update(float DeltaTime)
         Destroy();
 }
 
+void CBullet::LateUpdate(float DeltaTime)
+{
+    CObject::LateUpdate(DeltaTime);
+}
+
 void CBullet::Render(SDL_Renderer* Renderer)
 {
 	CObject::Render(Renderer);

@@ -50,6 +50,10 @@ void CQTNode::Update(float DeltaTime)
 	}
 }
 
+void CQTNode::LateUpdate(float DeltaTime)
+{
+}
+
 void CQTNode::Render(SDL_Renderer* Renderer)
 {
 #ifdef _DEBUG	

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "../Core/GameInfo.h"
 
@@ -22,6 +22,7 @@ public:
 private:
 	void Logic();
 	void Update();
+	void LateUpdate();
 	void Render();
 
 public:

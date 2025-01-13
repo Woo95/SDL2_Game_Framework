@@ -32,6 +32,11 @@ void CBoxCollider::Update(float DeltaTime)
 	mRect = { topLeft.x, topLeft.y, scale.x, scale.y };
 }
 
+void CBoxCollider::LateUpdate(float DeltaTime)
+{
+	CCollider::LateUpdate(DeltaTime);
+}
+
 void CBoxCollider::Render(SDL_Renderer* Renderer)
 {
 	CCollider::Render(Renderer);

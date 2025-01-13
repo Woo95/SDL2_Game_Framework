@@ -32,6 +32,11 @@ void CSceneManager::Update(float DeltaTime)
 	mScene.top()->Update(DeltaTime);
 }
 
+void CSceneManager::LateUpdate(float DeltaTime)
+{
+	mScene.top()->LateUpdate(DeltaTime);
+}
+
 void CSceneManager::Render(SDL_Renderer* Renderer)
 {
 	mScene.top()->Render(Renderer);

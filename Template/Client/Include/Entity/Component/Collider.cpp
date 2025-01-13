@@ -27,6 +27,11 @@ void CCollider::Update(float DeltaTime)
     CComponent::Update(DeltaTime);
 }
 
+void CCollider::LateUpdate(float DeltaTime)
+{
+    CComponent::LateUpdate(DeltaTime);
+}
+
 void CCollider::Render(SDL_Renderer* Renderer)
 {
     CComponent::Render(Renderer);

@@ -34,6 +34,11 @@ void CCircleCollider::Update(float DeltaTime)
 	mCircle.radius = scale.x * 0.5f;
 }
 
+void CCircleCollider::LateUpdate(float DeltaTime)
+{
+    CCollider::LateUpdate(DeltaTime);
+}
+
 void CCircleCollider::Render(SDL_Renderer* Renderer)
 {
 	CCollider::Render(Renderer);

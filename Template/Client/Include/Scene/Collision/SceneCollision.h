@@ -21,6 +21,7 @@ private:
 
 public:
 	void Update(float DeltaTime);
+	void LateUpdate(float DeltaTime);
 	void Render(SDL_Renderer* Renderer);
 
 public:

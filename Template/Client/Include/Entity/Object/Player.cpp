@@ -41,6 +41,11 @@ void CPlayer::Update(float DeltaTime)
 	CObject::Update(DeltaTime);
 }
 
+void CPlayer::LateUpdate(float DeltaTime)
+{
+    CObject::LateUpdate(DeltaTime);
+}
+
 void CPlayer::Render(SDL_Renderer* Renderer)
 {
     CObject::Render(Renderer);

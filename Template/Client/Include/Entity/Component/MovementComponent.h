@@ -14,6 +14,7 @@ private:
 
 public:
 	virtual void Update(float DeltaTime);
+	virtual void LateUpdate(float DeltaTime);
 
 private:
 	virtual void Release() final;

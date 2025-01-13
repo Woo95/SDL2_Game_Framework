@@ -25,19 +25,24 @@ bool CPlayScene::Enter()
 	return true;
 }
 
-void CPlayScene::Update(float DeltaTime)
-{
-	CScene::Update(DeltaTime);
-}
-
-void CPlayScene::Render(SDL_Renderer* Renderer)
-{
-	CScene::Render(Renderer);
-}
-
 bool CPlayScene::Exit()
 {
 	// CSceneManager::GetInst()->Change(EScene::State::RESULT);
 
 	return true;
+}
+
+void CPlayScene::Update(float DeltaTime)
+{
+	CScene::Update(DeltaTime);
+}
+
+void CPlayScene::LateUpdate(float DeltaTime)
+{
+	CScene::LateUpdate(DeltaTime);
+}
+
+void CPlayScene::Render(SDL_Renderer* Renderer)
+{
+	CScene::Render(Renderer);
 }

@@ -28,6 +28,11 @@ void CMonster::Update(float DeltaTime)
     CObject::Update(DeltaTime);
 }
 
+void CMonster::LateUpdate(float DeltaTime)
+{
+    CObject::LateUpdate(DeltaTime);
+}
+
 void CMonster::Render(SDL_Renderer* Renderer)
 {
     CObject::Render(Renderer);

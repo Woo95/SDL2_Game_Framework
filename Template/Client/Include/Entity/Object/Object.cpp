@@ -33,6 +33,11 @@ void CObject::Update(float DeltaTime)
 	mRootComponent->Update(DeltaTime);
 }
 
+void CObject::LateUpdate(float DeltaTime)
+{
+	mRootComponent->LateUpdate(DeltaTime);
+}
+
 void CObject::Render(SDL_Renderer* Renderer)
 {
 	mRootComponent->Render(Renderer);

@@ -48,6 +48,11 @@ void CQuadTree::Update(float DeltaTime)
 	mRoot->Update(DeltaTime);
 }
 
+void CQuadTree::LateUpdate(float DeltaTime)
+{
+	mRoot->LateUpdate(DeltaTime);
+}
+
 void CQuadTree::Render(SDL_Renderer* Renderer)
 {
 	mRoot->Render(Renderer);
