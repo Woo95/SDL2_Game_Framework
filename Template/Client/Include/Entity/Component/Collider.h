@@ -41,7 +41,9 @@ public:
 	virtual void Release() = 0;
 
 	virtual bool Intersect(CCollider* other) = 0;
-	virtual void OnCollision(CCollider* other);
+	virtual void OnCollisionEnter(CCollider* other);
+	virtual void OnCollisionStay(CCollider* other);
+	virtual void OnCollisionExit(CCollider* other);
 
 public:
 	FCollisionProfile* GetProfile()   const { return mProfile; }

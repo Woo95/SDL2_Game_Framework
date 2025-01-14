@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../Core/GameInfo.h"
+#include "../../Core/ColliderPair.h"
 
 class CCollider;
 
@@ -16,6 +17,8 @@ public:
 private:
 	class CQuadTree* mQuadTree;
 
+	std::unordered_map<FColliderPair, bool> mPairs;
+
 	int mWidth;
 	int mHeight;
 
@@ -26,4 +29,5 @@ public:
 
 public:
 	void AddCollider(CCollider* collider);
+	void HandleCollision(CCollider* collider1, CCollider* collider2);
 };

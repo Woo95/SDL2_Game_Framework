@@ -384,6 +384,9 @@
     <ClInclude Include="Core\SharedPtr.h">
       <Filter>01. Core\Lib\SmartPtr</Filter>
     </ClInclude>
+    <ClInclude Include="Core\ColliderPair.h">
+      <Filter>01. Core\Lib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />

@@ -27,6 +27,7 @@ void CQTNode::Update(float DeltaTime)
 		size_t size = mColliders.size();
 		if (size >= 2)
 		{
+			CSceneCollision* sceneCollision = mColliders[0]->GetObject()->GetScene()->GetCollision();
 			for (size_t i = 0; i < size; i++)
 			{
 				for (size_t j = i + 1; j < size; j++)
@@ -39,19 +40,11 @@ void CQTNode::Update(float DeltaTime)
 					{
 						continue;
 					}
-					if (mColliders[i]->Intersect(mColliders[j]))
-					{
-						mColliders[i]->OnCollision(mColliders[j]);
-						mColliders[j]->OnCollision(mColliders[i]);
-					}
+					sceneCollision->HandleCollision(mColliders[i], mColliders[j]);
 				}
 			}
 		}
 	}
-}
-
-void CQTNode::LateUpdate(float DeltaTime)
-{
 }
 
 void CQTNode::Render(SDL_Renderer* Renderer)

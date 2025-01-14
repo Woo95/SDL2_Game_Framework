@@ -37,10 +37,19 @@ void CCollider::Render(SDL_Renderer* Renderer)
     CComponent::Render(Renderer);
 }
 
-void CCollider::OnCollision(CCollider* other)
+void CCollider::OnCollisionEnter(CCollider* other)
 {
     mIsCollided = true;
-    // todo
+}
+
+void CCollider::OnCollisionStay(CCollider* other)
+{
+    mIsCollided = true;
+}
+
+void CCollider::OnCollisionExit(CCollider* other)
+{
+    mIsCollided = false;
 }
 
 void CCollider::SetProfile(const std::string& name)

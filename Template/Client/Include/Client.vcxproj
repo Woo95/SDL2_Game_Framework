@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\ColliderPair.h" />
     <ClInclude Include="Core\RefCounter.h" />
     <ClInclude Include="Core\SharedPtr.h" />
     <ClInclude Include="Entity\Component\CircleCollider.h" />
