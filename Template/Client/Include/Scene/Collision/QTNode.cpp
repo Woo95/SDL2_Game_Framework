@@ -165,7 +165,7 @@ void CQTNode::MoveCollidersToChildren()
 		{
 			if (mChilds[j]->IsWithinNode(collider))
 			{
-				mChilds[j]->mColliders.push_back(collider);
+				mChilds[j]->AddCollider(collider);
 			}
 		}
 		mColliders.pop_back();
