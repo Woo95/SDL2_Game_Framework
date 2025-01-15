@@ -29,5 +29,6 @@ public:
 
 public:
 	void AddCollider(CCollider* collider);
+	void CleanPairs();
 	void HandleCollision(CCollider* collider1, CCollider* collider2);
 };

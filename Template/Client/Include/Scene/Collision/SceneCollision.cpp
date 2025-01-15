@@ -19,11 +19,26 @@ CSceneCollision::~CSceneCollision()
 void CSceneCollision::Update(float DeltaTime)
 {
 	mQuadTree->Update(DeltaTime);
+
+	CleanPairs();
 }
 
 void CSceneCollision::LateUpdate(float DeltaTime)
 {
-	/*
+}
+
+void CSceneCollision::Render(SDL_Renderer* Renderer)
+{
+	mQuadTree->Render(Renderer);
+}
+
+void CSceneCollision::AddCollider(CCollider* collider)
+{
+	mQuadTree->AddCollider(collider);
+}
+
+void CSceneCollision::CleanPairs()
+{
 	std::unordered_map<FColliderPair, bool>::iterator iter    = mPairs.begin();
 	std::unordered_map<FColliderPair, bool>::iterator iterEnd = mPairs.end();
 
@@ -43,17 +58,6 @@ void CSceneCollision::LateUpdate(float DeltaTime)
 		}
 		iter++;
 	}
-	*/
-}
-
-void CSceneCollision::Render(SDL_Renderer* Renderer)
-{
-	mQuadTree->Render(Renderer);
-}
-
-void CSceneCollision::AddCollider(CCollider* collider)
-{
-	mQuadTree->AddCollider(collider);
 }
 
 void CSceneCollision::HandleCollision(CCollider* collider1, CCollider* collider2)

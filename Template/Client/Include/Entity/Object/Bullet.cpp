@@ -35,10 +35,11 @@ void CBullet::Update(float DeltaTime)
 	CObject::Update(DeltaTime);
 
     //mMovementComponent->MoveDir(FVector2D::RIGHT);
-    mDestroyTime += DeltaTime;
 
-    if (mDestroyTime >= 1.0f)
-        Destroy();
+    //mDestroyTime += DeltaTime;
+
+    //if (mDestroyTime >= 1.0f)
+    //    Destroy();
 }
 
 void CBullet::LateUpdate(float DeltaTime)

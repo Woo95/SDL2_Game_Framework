@@ -16,11 +16,8 @@ CScene::~CScene()
     {
         std::vector<CObject*>& typeObjVec = iter->second;
 
-        for (size_t j = typeObjVec.size(); j > 0; j--)
+        for (CObject* obj : typeObjVec)
         {
-            CObject* obj = typeObjVec[j - 1];   // starts from last idx
-
-            // 사용된 메모리 반환
             obj->Release();
         }
     }
@@ -35,18 +32,11 @@ void CScene::Update(float DeltaTime)
     {
         std::vector<CObject*>& typeObjVec = iter->second;
 
-        for (size_t j = typeObjVec.size(); j > 0; j--)
+        for (CObject* obj : typeObjVec)
         {
-            CObject* obj = typeObjVec[j - 1];   // starts from last idx
-
             if (!obj->GetActive())
             {
-                // Active아닌 object는 마지막 요소랑 바꿔준 후 제거
-                std::swap(typeObjVec[j - 1], typeObjVec.back());
-                typeObjVec.pop_back();
-
-                // 사용된 메모리 반환
-                obj->Release();
+                obj->Destroy();
 
                 continue;
             }
@@ -105,22 +95,9 @@ void CScene::Render(SDL_Renderer* Renderer)
     {
         std::vector<CObject*>& typeObjVec = iter->second;
 
-        for (size_t j = typeObjVec.size(); j > 0; j--)
+        for (CObject* obj : typeObjVec)
         {
-            CObject* obj = typeObjVec[j - 1];   // starts from last idx
-
-            if (!obj->GetActive())
-            {
-                // Active아닌 object는 마지막 요소랑 바꿔준 후 제거
-                std::swap(typeObjVec[j - 1], typeObjVec.back());
-                typeObjVec.pop_back();
-
-                // 사용된 메모리 반환
-                obj->Release();
-
-                continue;
-            }
-            else if (!obj->GetEnable())
+            if (!obj->GetActive() || !obj->GetEnable())
             {
                 continue;
             }

@@ -73,5 +73,6 @@ public:
 
 		return component;
 	}
+
 	void Destroy();
 };

@@ -35,7 +35,10 @@ public:
         // 해당 타입의 메모리 풀이 없으면 새로 생성
         if (!CMemoryPoolManager::GetInst()->HasPool<T>())
         {
-            CreatePoolAndSync<T>(initialCapacity);
+            std::type_index key = typeid(T);
+            mObjMap.emplace(key, std::vector<CObject*>());  // mObjMap[key]가 존재하지 않을 경우 빈 벡터를 추가
+
+            CMemoryPoolManager::GetInst()->CreatePool<T>(initialCapacity);
         }
 
         T* gameObject = CMemoryPoolManager::GetInst()->Allocate<T>();
@@ -78,15 +81,5 @@ public:
             }
             mObjMap.erase(iter);
         }
-    }
-
-private:
-    template <typename T>
-    void CreatePoolAndSync(int initialCapacity)
-    {
-        std::type_index key = typeid(T);
-        mObjMap.emplace(key, std::vector<CObject*>());  // mObjMap[key]가 존재하지 않을 경우 빈 벡터를 추가
-
-        CMemoryPoolManager::GetInst()->CreatePool<T>(initialCapacity);
     }
 };

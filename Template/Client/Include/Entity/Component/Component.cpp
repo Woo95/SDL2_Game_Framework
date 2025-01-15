@@ -34,17 +34,12 @@ bool CComponent::Init()
 
 void CComponent::Update(float DeltaTime)
 {
-	for (size_t i = mChilds.size(); i > 0; i--)
+	for (CComponent* child : mChilds)
 	{
-		CComponent* child = mChilds[i - 1];
-
 		if (!child->GetActive())
 		{
-			// Active아닌 component는 마지막 요소랑 바꿔준 후 제거
-			std::swap(mChilds[i - 1], mChilds.back());
-			mChilds.pop_back();
+			child->Destroy();
 
-			DeleteChild(child);
 			continue;
 		}
 		else if (!child->GetEnable())
@@ -67,7 +62,8 @@ void CComponent::LateUpdate(float DeltaTime)
 			std::swap(mChilds[i - 1], mChilds.back());
 			mChilds.pop_back();
 
-			DeleteChild(child);
+			child->Release();
+
 			continue;
 		}
 		else if (!child->GetEnable())
@@ -80,23 +76,11 @@ void CComponent::LateUpdate(float DeltaTime)
 
 void CComponent::Render(SDL_Renderer* Renderer)
 {
-	for (size_t i = mChilds.size(); i > 0; i--)
+	for (CComponent* child : mChilds)
 	{
-		CComponent* child = mChilds[i - 1];
-
-		if (!child->GetActive())
-		{
-			// Active아닌 component는 마지막 요소랑 바꿔준 후 제거
-			std::swap(mChilds[i - 1], mChilds.back());
-			mChilds.pop_back();
-
-			DeleteChild(child);
+		if (!child->GetActive() || !child->GetEnable())
 			continue;
-		}
-		else if (!child->GetEnable())
-		{
-			continue;
-		}
+
 		child->Render(Renderer);
 	}
 }
