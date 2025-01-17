@@ -121,6 +121,24 @@ CComponent* CComponent::FindComponent(size_t id)
 	return nullptr;
 }
 
+void CComponent::Enable()
+{
+	for (CComponent* child : mChilds)
+	{
+		child->Enable();
+	}
+	SetEnable(true);
+}
+
+void CComponent::Disable()
+{
+	for (CComponent* child : mChilds)
+	{
+		child->Disable();
+	}
+	SetEnable(false);
+}
+
 void CComponent::Destroy()
 {
 	for (CComponent* child : mChilds)

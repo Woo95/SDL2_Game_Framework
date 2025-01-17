@@ -1,12 +1,12 @@
 #pragma once
 
-#include "../../Core/DataContainer.h"
+#include "../EntityBase.h"
 #include "../../Manager/MemoryPoolManager.h"
 #include "../Component/Component.h"
 #include "../Component/Transform.h"
 #include "../../Scene/Scene.h"
 
-class CObject abstract	: public CDataContainer
+class CObject abstract	: public CEntityBase
 {
 	friend class CScene;
 
@@ -74,5 +74,8 @@ public:
 		return component;
 	}
 
+public:
+	void Enable();
+	void Disable();
 	void Destroy();
 };

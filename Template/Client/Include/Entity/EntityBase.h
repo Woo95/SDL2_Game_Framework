@@ -2,11 +2,14 @@
 
 #include <string>
 
-class CDataContainer abstract
+class CEntityBase abstract
 {
+	friend class CObject;
+	friend class CComponent;
+
 protected:
-	CDataContainer() = default;
-	virtual ~CDataContainer() = default;
+	CEntityBase() = default;
+	virtual ~CEntityBase() = default;
 
 protected:
 	std::string mName;
@@ -26,6 +29,8 @@ public:
 		mName = name;
 		mID = std::hash<std::string>()(name);
 	}
+
+private:
 	void SetEnable(bool enable) 
 	{ 
 		mEnable = enable; 

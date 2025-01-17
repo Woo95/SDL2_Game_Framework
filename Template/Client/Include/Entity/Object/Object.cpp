@@ -43,9 +43,20 @@ void CObject::Render(SDL_Renderer* Renderer)
 	mRootComponent->Render(Renderer);
 }
 
+void CObject::Enable()
+{
+	SetEnable(true);
+	mRootComponent->Enable();
+}
+
+void CObject::Disable()
+{
+	SetEnable(false);
+	mRootComponent->Disable();
+}
+
 void CObject::Destroy()
 {
 	SetActive(false);
-
 	mRootComponent->Destroy();
 }

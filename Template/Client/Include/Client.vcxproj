@@ -112,7 +112,7 @@
     <ClInclude Include="Core\SceneState.h" />
     <ClInclude Include="Core\StaticMemoryPool.h" />
     <ClInclude Include="Core\Timer.h" />
-    <ClInclude Include="Core\DataContainer.h" />
+    <ClInclude Include="Entity\EntityBase.h" />
     <ClInclude Include="Entity\Component\Component.h" />
     <ClInclude Include="Entity\Object\Object.h" />
     <ClInclude Include="Entity\Object\Player.h" />

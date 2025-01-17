@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../Core/DataContainer.h"
+#include "../EntityBase.h"
 #include "../../Core/GameInfo.h"
 #include "../../Manager/MemoryPoolManager.h"
 #include "../../Core/Vector2D.h"
@@ -11,7 +11,7 @@
 	독자적으로 많은 것을 하기보다는 실질적 기능을 수행하는 컴포넌트(Components)의 컨테이너 역할이다.
 */
 
-class CComponent : public CDataContainer
+class CComponent : public CEntityBase
 {
 	friend class CObject;
 
@@ -44,5 +44,8 @@ public:
 	bool DeleteChild(CComponent* child);
 	CComponent* FindComponent(size_t id);
 
+public:
+	void Enable();
+	void Disable();
 	void Destroy();
 };

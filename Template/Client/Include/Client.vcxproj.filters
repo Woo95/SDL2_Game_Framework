@@ -333,9 +333,6 @@
     <ClInclude Include="Entity\Component\Component.h">
       <Filter>04. Entity\02. Component</Filter>
     </ClInclude>
-    <ClInclude Include="Core\DataContainer.h">
-      <Filter>01. Core\Lib</Filter>
-    </ClInclude>
     <ClInclude Include="Entity\Component\Transform.h">
       <Filter>04. Entity\02. Component\00. Transform</Filter>
     </ClInclude>
@@ -386,6 +383,9 @@
     </ClInclude>
     <ClInclude Include="Core\ColliderPair.h">
       <Filter>01. Core\Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity\EntityBase.h">
+      <Filter>04. Entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
