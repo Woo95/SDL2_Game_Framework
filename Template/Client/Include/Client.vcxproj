@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Manager\AssetManager.h" />
     <ClInclude Include="Core\ColliderPair.h" />
     <ClInclude Include="Core\RefCounter.h" />
     <ClInclude Include="Core\SharedPtr.h" />
@@ -130,6 +131,7 @@
     <ClInclude Include="Core\Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Manager\AssetManager.cpp" />
     <ClCompile Include="Entity\Component\CircleCollider.cpp" />
     <ClCompile Include="Entity\Component\BoxCollider.cpp" />
     <ClCompile Include="Entity\Object\Monster.cpp" />

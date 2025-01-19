@@ -4,6 +4,7 @@
 #include "SceneManager.h"
 #include "MemoryPoolManager.h"
 #include "CollisionManager.h"
+#include "AssetManager.h"
 
 CGameManager* CGameManager::mInst = nullptr;
 
@@ -13,11 +14,13 @@ CGameManager::CGameManager()
 
 CGameManager::~CGameManager()
 {
-    CInput::DestroyInst();
-
+    CSceneManager::DestroyInst();
+    
     CCollisionManager::DestroyInst();
 
-    CSceneManager::DestroyInst();
+    CInput::DestroyInst();
+
+    CAssetManager::DestroyInst();
 
     CMemoryPoolManager::DestroyInst();
 
@@ -42,6 +45,9 @@ bool CGameManager::Init()
         return false;
 
     CTimer::Init();
+
+    if (!CAssetManager::GetInst()->Init())
+        return false;
 
     if (!CInput::GetInst()->Init())
         return false;
