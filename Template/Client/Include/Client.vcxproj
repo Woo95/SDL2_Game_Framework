@@ -121,6 +121,7 @@
     <ClInclude Include="Manager\MemoryPoolManager.h" />
     <ClInclude Include="Manager\SceneManager.h" />
     <ClInclude Include="Entity\Component\MovementComponent.h" />
+    <ClInclude Include="Manager\PathManager.h" />
     <ClInclude Include="Scene\Collision\QTNode.h" />
     <ClInclude Include="Scene\Collision\QuadTree.h" />
     <ClInclude Include="Scene\Collision\SceneCollision.h" />
@@ -149,6 +150,7 @@
     <ClCompile Include="Manager\MemoryPoolManager.cpp" />
     <ClCompile Include="Manager\SceneManager.cpp" />
     <ClCompile Include="Entity\Component\MovementComponent.cpp" />
+    <ClCompile Include="Manager\PathManager.cpp" />
     <ClCompile Include="Scene\Collision\QTNode.cpp" />
     <ClCompile Include="Scene\Collision\QuadTree.cpp" />
     <ClCompile Include="Scene\Collision\SceneCollision.cpp" />

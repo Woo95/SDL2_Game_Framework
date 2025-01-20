@@ -5,6 +5,7 @@
 #include "MemoryPoolManager.h"
 #include "CollisionManager.h"
 #include "AssetManager.h"
+#include "PathManager.h"
 
 CGameManager* CGameManager::mInst = nullptr;
 
@@ -21,6 +22,8 @@ CGameManager::~CGameManager()
     CInput::DestroyInst();
 
     CAssetManager::DestroyInst();
+
+    CPathManager::DestroyInst();
 
     CMemoryPoolManager::DestroyInst();
 
@@ -45,6 +48,9 @@ bool CGameManager::Init()
         return false;
 
     CTimer::Init();
+
+    if (!CPathManager::GetInst()->Init())
+        return false;
 
     if (!CAssetManager::GetInst()->Init())
         return false;

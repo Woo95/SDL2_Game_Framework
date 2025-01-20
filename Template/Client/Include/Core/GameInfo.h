@@ -13,3 +13,7 @@
 #include <typeindex>
 
 #define	SAFE_DELETE(p) if(p) { delete p; p = nullptr; }
+
+#define BASE_PATH       "BasePath"
+#define TEXTURE_PATH    "TexturePath"
+#define SOUND_PATH      "SoundPath"
