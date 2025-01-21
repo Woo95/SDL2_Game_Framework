@@ -4,8 +4,8 @@
 #include "SceneManager.h"
 #include "MemoryPoolManager.h"
 #include "CollisionManager.h"
-#include "AssetManager.h"
-#include "PathManager.h"
+#include "Resource/AssetManager.h"
+#include "Resource/PathManager.h"
 
 CGameManager* CGameManager::mInst = nullptr;
 

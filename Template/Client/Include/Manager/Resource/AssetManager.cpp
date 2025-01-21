@@ -1,4 +1,5 @@
 #include "AssetManager.h"
+#include "TextureManager.h"
 
 CAssetManager* CAssetManager::mInst = nullptr;
 
