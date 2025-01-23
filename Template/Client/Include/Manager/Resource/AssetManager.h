@@ -9,6 +9,8 @@ private:
 	~CAssetManager();
 
 private:
+	class CTextureManager* mTextureManager;
+
 	static CAssetManager* mInst;
 
 public:

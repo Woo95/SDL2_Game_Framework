@@ -16,7 +16,7 @@ private:
 public:
 	bool Init();
 	bool AddPath(const std::string& newPathKey, const char* newPathSegment, const std::string& basePathKey = BASE_PATH);
-	const char* FindPath(const std::string& name);
+	const char* FindPath(const std::string& key);
 
 public:
 	static CPathManager* GetInst()

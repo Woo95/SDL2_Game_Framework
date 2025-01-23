@@ -19,6 +19,9 @@ public:
 	bool Init();
 	int  Run();
 
+public:
+	SDL_Renderer* GetRenderer() const { return mRenderer; }
+
 private:
 	void Logic();
 	void Update();

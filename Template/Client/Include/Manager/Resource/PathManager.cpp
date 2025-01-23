@@ -43,9 +43,9 @@ bool CPathManager::AddPath(const std::string& newPathKey, const char* newPathSeg
 	return true;
 }
 
-const char* CPathManager::FindPath(const std::string& pathKey)
+const char* CPathManager::FindPath(const std::string& key)
 {
-	std::unordered_map<std::string, std::string>::iterator iter = mPaths.find(pathKey);
+	std::unordered_map<std::string, std::string>::iterator iter = mPaths.find(key);
 
 	if (iter == mPaths.end())
 		return nullptr;

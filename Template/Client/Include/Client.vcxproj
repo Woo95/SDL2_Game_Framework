@@ -19,7 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Manager\AssetManager.h" />
+    <ClInclude Include="Core\External\SDL\SDL_image.h" />
+    <ClInclude Include="Manager\Resource\AssetManager.h" />
     <ClInclude Include="Core\ColliderPair.h" />
     <ClInclude Include="Core\RefCounter.h" />
     <ClInclude Include="Core\SharedPtr.h" />
@@ -121,7 +122,7 @@
     <ClInclude Include="Manager\MemoryPoolManager.h" />
     <ClInclude Include="Manager\SceneManager.h" />
     <ClInclude Include="Entity\Component\MovementComponent.h" />
-    <ClInclude Include="Manager\PathManager.h" />
+    <ClInclude Include="Manager\Resource\PathManager.h" />
     <ClInclude Include="Scene\Collision\QTNode.h" />
     <ClInclude Include="Scene\Collision\QuadTree.h" />
     <ClInclude Include="Scene\Collision\SceneCollision.h" />
@@ -130,9 +131,11 @@
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Entity\Component\Transform.h" />
     <ClInclude Include="Core\Vector2D.h" />
+    <ClInclude Include="Manager\Resource\TextureManager.h" />
+    <ClInclude Include="Resource\Texture.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Manager\AssetManager.cpp" />
+    <ClCompile Include="Manager\Resource\AssetManager.cpp" />
     <ClCompile Include="Entity\Component\CircleCollider.cpp" />
     <ClCompile Include="Entity\Component\BoxCollider.cpp" />
     <ClCompile Include="Entity\Object\Monster.cpp" />
@@ -150,7 +153,7 @@
     <ClCompile Include="Manager\MemoryPoolManager.cpp" />
     <ClCompile Include="Manager\SceneManager.cpp" />
     <ClCompile Include="Entity\Component\MovementComponent.cpp" />
-    <ClCompile Include="Manager\PathManager.cpp" />
+    <ClCompile Include="Manager\Resource\PathManager.cpp" />
     <ClCompile Include="Scene\Collision\QTNode.cpp" />
     <ClCompile Include="Scene\Collision\QuadTree.cpp" />
     <ClCompile Include="Scene\Collision\SceneCollision.cpp" />
@@ -158,6 +161,8 @@
     <ClCompile Include="Scene\PlayScene.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
     <ClCompile Include="Entity\Component\Transform.cpp" />
+    <ClCompile Include="Manager\Resource\TextureManager.cpp" />
+    <ClCompile Include="Resource\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
@@ -261,6 +266,7 @@
       <ConformanceMode>true</ConformanceMode>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DisableSpecificWarnings>4819</DisableSpecificWarnings>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
