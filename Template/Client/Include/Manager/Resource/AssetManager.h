@@ -16,6 +16,8 @@ private:
 public:
 	bool Init();
 
+	CTextureManager* GetTextureManager() const { return mTextureManager; }
+
 public:
 	static CAssetManager* GetInst()
 	{

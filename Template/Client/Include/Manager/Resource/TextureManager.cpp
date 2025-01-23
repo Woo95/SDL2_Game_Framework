@@ -3,6 +3,8 @@
 
 CTextureManager::CTextureManager()
 {
+	// PNG, JPG 포맷 지원을 위한 SDL2_image 초기화
+	IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
 }
 
 CTextureManager::~CTextureManager()
@@ -14,12 +16,7 @@ CTextureManager::~CTextureManager()
 
 bool CTextureManager::Init()
 {
-	// PNG, JPG 포맷 지원을 위한 SDL2_image 초기화
-	if (IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) != (IMG_INIT_PNG | IMG_INIT_JPG))
-    {
-        printf("SDL2_image 초기화 실패: %s\n", IMG_GetError());
-        return false;
-    }
+	LoadTexture("Antonio", "Antonio.png", TEXTURE_PATH);
 
 	return true;
 }

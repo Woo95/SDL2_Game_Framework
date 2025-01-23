@@ -23,10 +23,10 @@ public:
 	virtual void LateUpdate(float DeltaTime);
 	virtual void Render(SDL_Renderer* Renderer);
 
-public:
-	virtual void Release() final;
-
 	virtual bool Intersect(CCollider* other) final;
+
+private:
+	virtual void Release() final;
 
 public:
 	const FCircle& GetCircle() const { return mCircle; }
