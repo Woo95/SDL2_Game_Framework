@@ -1,6 +1,6 @@
 #include "Bullet.h"
 #include "../Component/MovementComponent.h"
-#include "../Component/BoxCollider.h"
+#include "../Component/Collider/BoxCollider.h"
 
 CBullet::CBullet() :
     mMovementComponent(nullptr),

@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "../../Core/Input.h"
 #include "../Component/MovementComponent.h"
-#include "../Component/BoxCollider.h"
+#include "../Component/Collider/BoxCollider.h"
 #include "Bullet.h"
 #include "../../Scene/Scene.h"
 

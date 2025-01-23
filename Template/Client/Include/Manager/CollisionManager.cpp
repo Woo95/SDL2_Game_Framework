@@ -1,6 +1,6 @@
 #include "CollisionManager.h"
-#include "../Entity/Component/BoxCollider.h"
-#include "../Entity/Component/CircleCollider.h"
+#include "../Entity/Component/Collider/BoxCollider.h"
+#include "../Entity/Component/Collider/CircleCollider.h"
 
 CCollisionManager* CCollisionManager::mInst = nullptr;
 

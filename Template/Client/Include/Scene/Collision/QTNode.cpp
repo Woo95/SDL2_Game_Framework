@@ -1,7 +1,7 @@
 #include "QTNode.h"
 #include "QuadTree.h"
-#include "../../Entity/Component/BoxCollider.h"
-#include "../../Entity/Component/CircleCollider.h"
+#include "../../Entity/Component/Collider/BoxCollider.h"
+#include "../../Entity/Component/Collider/CircleCollider.h"
 #include "../../Entity/Object/Object.h"
 #include "../../Scene/Collision/SceneCollision.h"
 

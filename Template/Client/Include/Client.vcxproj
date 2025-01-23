@@ -24,11 +24,11 @@
     <ClInclude Include="Core\ColliderPair.h" />
     <ClInclude Include="Core\RefCounter.h" />
     <ClInclude Include="Core\SharedPtr.h" />
-    <ClInclude Include="Entity\Component\CircleCollider.h" />
-    <ClInclude Include="Entity\Component\BoxCollider.h" />
+    <ClInclude Include="Entity\Component\Collider\CircleCollider.h" />
+    <ClInclude Include="Entity\Component\Collider\BoxCollider.h" />
     <ClInclude Include="Entity\Object\Monster.h" />
     <ClInclude Include="Manager\CollisionManager.h" />
-    <ClInclude Include="Entity\Component\Collider.h" />
+    <ClInclude Include="Entity\Component\Collider\Collider.h" />
     <ClInclude Include="Core\CollisionProfile.h" />
     <ClInclude Include="Entity\Object\Bullet.h" />
     <ClInclude Include="Core\External\SDL\begin_code.h" />
@@ -136,11 +136,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Manager\Resource\AssetManager.cpp" />
-    <ClCompile Include="Entity\Component\CircleCollider.cpp" />
-    <ClCompile Include="Entity\Component\BoxCollider.cpp" />
+    <ClCompile Include="Entity\Component\Collider\CircleCollider.cpp" />
+    <ClCompile Include="Entity\Component\Collider\BoxCollider.cpp" />
     <ClCompile Include="Entity\Object\Monster.cpp" />
     <ClCompile Include="Manager\CollisionManager.cpp" />
-    <ClCompile Include="Entity\Component\Collider.cpp" />
+    <ClCompile Include="Entity\Component\Collider\Collider.cpp" />
     <ClCompile Include="Entity\Object\Bullet.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Core\Input.cpp" />

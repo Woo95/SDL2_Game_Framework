@@ -1,6 +1,6 @@
 #include "SceneCollision.h"
 #include "QuadTree.h"
-#include "../../Entity/Component/Collider.h"
+#include "../../Entity/Component/Collider/Collider.h"
 
 CSceneCollision::CSceneCollision(int width, int height)	:
 	mWidth(width),

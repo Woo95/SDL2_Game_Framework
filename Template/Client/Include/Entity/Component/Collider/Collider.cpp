@@ -1,8 +1,8 @@
 #include "Collider.h"
-#include "../Object/Object.h"
-#include "../../Scene/Scene.h"
-#include "../../Manager/CollisionManager.h"
-#include "../../Scene/Collision/SceneCollision.h"
+#include "../../Object/Object.h"
+#include "../../../Scene/Scene.h"
+#include "../../../Manager/CollisionManager.h"
+#include "../../../Scene/Collision/SceneCollision.h"
 
 CCollider::CCollider() :
     mProfile(nullptr),

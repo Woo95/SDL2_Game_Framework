@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Component.h"
-#include "../../Core/CollisionProfile.h"
-#include "../../Core/Vector2D.h"
+#include "../Component.h"
+#include "../../../Core/CollisionProfile.h"
+#include "../../../Core/Vector2D.h"
 
 namespace ECollider
 {

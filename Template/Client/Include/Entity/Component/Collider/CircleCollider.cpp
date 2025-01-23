@@ -1,5 +1,5 @@
 #include "CircleCollider.h"
-#include "../../Manager/CollisionManager.h"
+#include "../../../Manager/CollisionManager.h"
 
 CCircleCollider::CCircleCollider() :
 	mCircle{}

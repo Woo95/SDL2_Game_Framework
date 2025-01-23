@@ -1,5 +1,5 @@
 #include "BoxCollider.h"
-#include "../../Manager/CollisionManager.h"
+#include "../../../Manager/CollisionManager.h"
 
 CBoxCollider::CBoxCollider() :
 	mRect{}

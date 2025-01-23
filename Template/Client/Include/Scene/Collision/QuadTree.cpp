@@ -1,6 +1,6 @@
 #include "QuadTree.h"
 #include "../../Core/Vector2D.h"
-#include "../../Entity/Component/Collider.h"
+#include "../../Entity/Component/Collider/Collider.h"
 #include "../../Manager/MemoryPoolManager.h"
 
 CQuadTree::CQuadTree() :
