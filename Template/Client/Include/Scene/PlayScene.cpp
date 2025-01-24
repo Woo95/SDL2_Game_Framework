@@ -3,6 +3,8 @@
 #include "../Entity/Object/Player.h"
 #include "../Entity/Object/Monster.h"
 #include "Collision/SceneCollision.h"
+#include "../Manager/Resource/AssetManager.h"
+#include "../Manager/Resource/TextureManager.h"
 
 CPlayScene::CPlayScene()
 {
@@ -18,15 +20,18 @@ CPlayScene::~CPlayScene()
 
 bool CPlayScene::Enter()
 {
-	//AllocateObject<CMonster, 10>("Monster");
+	mTextManager->LoadTexture("Antonio", "Antonio.png");
 
 	AllocateObject<CPlayer, 1>("Player");
+	//AllocateObject<CMonster, 10>("Monster");
 
 	return true;
 }
 
 bool CPlayScene::Exit()
 {
+	mTextManager->UnLoadTexture("Antonio");
+
 	// CSceneManager::GetInst()->Change(EScene::State::RESULT);
 
 	return true;

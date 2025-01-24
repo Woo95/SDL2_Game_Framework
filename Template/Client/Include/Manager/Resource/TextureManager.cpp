@@ -3,8 +3,6 @@
 
 CTextureManager::CTextureManager()
 {
-	// PNG, JPG 포맷 지원을 위한 SDL2_image 초기화
-	IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
 }
 
 CTextureManager::~CTextureManager()
@@ -16,7 +14,9 @@ CTextureManager::~CTextureManager()
 
 bool CTextureManager::Init()
 {
-	LoadTexture("Antonio", "Antonio.png", TEXTURE_PATH);
+	// PNG, JPG 포맷 지원을 위한 SDL2_image 초기화
+	if (IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) != (IMG_INIT_PNG | IMG_INIT_JPG))
+		return false;
 
 	return true;
 }
@@ -36,6 +36,14 @@ bool CTextureManager::LoadTexture(const std::string& key, const char* fileName, 
 			return true;
 		}
 	}
+	return false;
+}
+
+bool CTextureManager::UnLoadTexture(const std::string& key)
+{
+	if (mTextures.erase(key) > 0)
+		return true;
+
 	return false;
 }
 

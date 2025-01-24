@@ -2,9 +2,12 @@
 #include "../Entity/Object/Object.h"
 #include "../Core/Timer.h"
 #include "../Scene/Collision/SceneCollision.h"
+#include "../Manager/Resource/AssetManager.h"
+#include "../Manager/Resource/TextureManager.h"
 
 CScene::CScene()
 {
+    mTextManager = CAssetManager::GetInst()->GetTextureManager();
 }
 
 CScene::~CScene()
