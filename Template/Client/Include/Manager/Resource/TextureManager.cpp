@@ -39,14 +39,6 @@ bool CTextureManager::LoadTexture(const std::string& key, const char* fileName, 
 	return false;
 }
 
-bool CTextureManager::UnLoadTexture(const std::string& key)
-{
-	if (mTextures.erase(key) > 0)
-		return true;
-
-	return false;
-}
-
 std::shared_ptr<CTexture> CTextureManager::FindTexture(const std::string& key)
 {
 	std::unordered_map<std::string, std::shared_ptr<CTexture>>::iterator iter = mTextures.find(key);
