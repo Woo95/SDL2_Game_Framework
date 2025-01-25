@@ -9,14 +9,18 @@ private:
 	~CAssetManager();
 
 private:
-	class CTextureManager* mTextureManager;
+	class CTextureManager*   mTextureManager;
+	class CAnimationManager* mAnimationManager;
 
 	static CAssetManager* mInst;
 
 public:
 	bool Init();
+	void LoadTextures();
+	void CreateAnimations();
 
-	CTextureManager* GetTextureManager() const { return mTextureManager; }
+	CTextureManager*   GetTextureManager()   const { return mTextureManager; }
+	CAnimationManager* GetAnimationManager() const { return mAnimationManager; }
 
 public:
 	static CAssetManager* GetInst()
