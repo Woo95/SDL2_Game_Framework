@@ -7,7 +7,6 @@
 
 CScene::CScene()
 {
-    mTextManager = CAssetManager::GetInst()->GetTextureManager();
 }
 
 CScene::~CScene()

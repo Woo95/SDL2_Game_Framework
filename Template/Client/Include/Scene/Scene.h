@@ -14,7 +14,6 @@ protected:
 	virtual ~CScene();
 
 protected:
-    class CTextureManager* mTextManager;
     class CSceneCollision* mSceneCollision = nullptr;
 
     std::unordered_map<std::type_index, std::vector<class CObject*>> mObjMap;

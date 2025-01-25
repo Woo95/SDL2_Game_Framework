@@ -20,9 +20,8 @@ CPlayScene::~CPlayScene()
 
 bool CPlayScene::Enter()
 {
-	mTextManager->LoadTexture("Antonio", "Antonio.png");
-
 	AllocateObject<CPlayer, 1>("Player");
+
 	//AllocateObject<CMonster, 10>("Monster");
 
 	return true;
@@ -30,8 +29,6 @@ bool CPlayScene::Enter()
 
 bool CPlayScene::Exit()
 {
-	mTextManager->UnLoadTexture("Antonio");
-
 	// CSceneManager::GetInst()->Change(EScene::State::RESULT);
 
 	return true;
