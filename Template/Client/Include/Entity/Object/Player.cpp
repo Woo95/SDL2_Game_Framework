@@ -4,8 +4,12 @@
 #include "../Component/Collider/BoxCollider.h"
 #include "Bullet.h"
 #include "../../Scene/Scene.h"
+#include "../../Manager/Resource/TextureManager.h"
+#include "../../Entity/Component/Sprite/SpriteComponent.h"
+#include "../../Resource/Animation.h"
 
 CPlayer::CPlayer() :
+    mSpriteComponent(nullptr),
     mMovementComponent(nullptr),
     mCollider(nullptr)
 {
@@ -23,12 +27,26 @@ bool CPlayer::Init()
     // 이동 컴포넌트 만들기
     mMovementComponent = AllocateComponent<CMovementComponent>("Movement", mRootComponent);
 
-    // 도형 컴포넌트 만들기
+    // 충돌체 컴포넌트 만들기
     mCollider = AllocateComponent<CBoxCollider>("playerCollider", mMovementComponent);
-    CTransform* playerTransform = mCollider->GetTransform();
-    playerTransform->SetWorldPos(100.f, 100.f);
-    playerTransform->SetWorldScale(75.f, 75.f);
-    playerTransform->SetPivot(0.5f, 0.5f);
+
+    // 위치 설정 (충돌체  컴포넌트)
+    CTransform* colliderTrans = mCollider->GetTransform();
+    colliderTrans->SetWorldPos(100.f, 100.f);
+    colliderTrans->SetWorldScale(50.f, 75.f);
+    colliderTrans->SetPivot(0.5f, 0.5f);
+
+    // 스프라이트 컴포넌트 만들기
+    mSpriteComponent = AllocateComponent<CSpriteComponent>("playerSprite", mCollider);
+    mSpriteComponent->SetTexture("Pasqualina");
+    mSpriteComponent->SetAnimation("Pasqualina_Animation");
+    mSpriteComponent->GetAnimation()->SetCurrentState(EAnimationState::WALK);
+    
+    // 위치 설정 (스프라이트 컴포넌트)
+    CTransform* spriteTrans = mSpriteComponent->GetTransform();
+    spriteTrans->SetWorldPos(100.f, 100.f);
+    spriteTrans->SetWorldScale(75.f, 75.f);
+    spriteTrans->SetPivot(0.5f, 0.5f);
 
     // 인풋 설정
     SetupInput();
@@ -79,10 +97,16 @@ void CPlayer::MOVE_DOWN()
 void CPlayer::MOVE_LEFT()
 {
     mMovementComponent->MoveDir(FVector2D::LEFT);
+
+    if (mSpriteComponent)
+        mSpriteComponent->SetFlip(SDL_FLIP_HORIZONTAL);
 }
 void CPlayer::MOVE_RIGHT()
 {
-    mMovementComponent->MoveDir(FVector2D::RIGHT);
+    mMovementComponent->MoveDir(FVector2D::RIGHT);   
+
+    if (mSpriteComponent)
+        mSpriteComponent->SetFlip(SDL_FLIP_NONE);
 }
 
 void CPlayer::SHOOT()

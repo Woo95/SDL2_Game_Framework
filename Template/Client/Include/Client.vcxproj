@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\AniUtils.h" />
+    <ClInclude Include="Manager\Resource\AnimationManager.h" />
+    <ClInclude Include="Resource\Animation.h" />
     <ClInclude Include="Core\External\SDL\SDL_image.h" />
     <ClInclude Include="Manager\Resource\AssetManager.h" />
     <ClInclude Include="Core\ColliderPair.h" />
@@ -133,8 +136,11 @@
     <ClInclude Include="Core\Vector2D.h" />
     <ClInclude Include="Manager\Resource\TextureManager.h" />
     <ClInclude Include="Resource\Texture.h" />
+    <ClInclude Include="Entity\Component\Sprite\SpriteComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Manager\Resource\AnimationManager.cpp" />
+    <ClCompile Include="Resource\Animation.cpp" />
     <ClCompile Include="Manager\Resource\AssetManager.cpp" />
     <ClCompile Include="Entity\Component\Collider\CircleCollider.cpp" />
     <ClCompile Include="Entity\Component\Collider\BoxCollider.cpp" />
@@ -163,6 +169,7 @@
     <ClCompile Include="Entity\Component\Transform.cpp" />
     <ClCompile Include="Manager\Resource\TextureManager.cpp" />
     <ClCompile Include="Resource\Texture.cpp" />
+    <ClCompile Include="Entity\Component\Sprite\SpriteComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />

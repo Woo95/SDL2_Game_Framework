@@ -10,6 +10,7 @@ public:
 	virtual ~CPlayer();
 
 public:
+	class CSpriteComponent*   mSpriteComponent;
 	class CMovementComponent* mMovementComponent;
 	class CCollider* mCollider;
 
@@ -19,7 +20,7 @@ public:
 	virtual void LateUpdate(float DeltaTime);
 	virtual void Render(SDL_Renderer* Renderer);
 
-public:
+private:
 	virtual void Release() final;
 
 private:
