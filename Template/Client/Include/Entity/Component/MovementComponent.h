@@ -1,6 +1,6 @@
 #pragma once
+
 #include "Component.h"
-#include "../../Core/Vector2D.h"
 
 class CMovementComponent : public CComponent
 {

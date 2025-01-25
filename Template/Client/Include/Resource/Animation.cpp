@@ -1,5 +1,5 @@
 #include "Animation.h"
-#include "../Entity/Component/Texture/SpriteComponent.h"
+#include "../Entity/Component/Sprite/SpriteComponent.h"
 
 CAnimation::CAnimation()
 {
