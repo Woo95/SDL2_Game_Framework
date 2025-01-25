@@ -20,7 +20,7 @@ void CAnimation::Update(float DeltaTime)
 
 		case EAnimationType::MOVE:
 		{
-			FVector2D currentPos = mOwner->GetTransform()->GetWorldPos();
+			const FVector2D& currentPos = mOwner->GetTransform()->GetWorldPos();
 
 			static FVector2D prevPos = currentPos;
 			FVector2D posDelta = currentPos - prevPos;
