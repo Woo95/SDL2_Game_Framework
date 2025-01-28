@@ -2,6 +2,8 @@
 
 #include "../Core/GameInfo.h"
 #include "../Manager/MemoryPoolManager.h"
+#include "../Core/LayerUtils.h"
+#include "Layer.h"
 
 // 추상 클래스 선언 - 인스턴스화 불가 (abstract 키워드로 명시 안하더라도, 순수 가상 함수가 있으면 자동으로 추상 클래스)
 class CScene abstract	
@@ -14,9 +16,9 @@ protected:
 	virtual ~CScene();
 
 protected:
-    class CSceneCollision* mSceneCollision = nullptr;
+    std::vector<class CLayer*> mLayers;
 
-    std::unordered_map<std::type_index, std::vector<class CObject*>> mObjMap;
+    class CSceneCollision* mSceneCollision = nullptr;
 
 protected:
 	virtual bool Enter() = 0;
@@ -28,16 +30,14 @@ protected:
 
 public:
     CSceneCollision* GetCollision() const { return mSceneCollision; }
+    void SetLayerSortType(ELayer::Type type, ESort::Type sort) { mLayers[type]->SetSortType(sort); }
 
     template <typename T, int initialCapacity = 50>
-    T* AllocateObject(const std::string& name)
+    T* AllocateObject(const std::string& name, ELayer::Type type = ELayer::Type::OBJECT)
     {
         // 해당 타입의 메모리 풀이 없으면 새로 생성
         if (!CMemoryPoolManager::GetInst()->HasPool<T>())
         {
-            std::type_index key = typeid(T);
-            mObjMap.emplace(key, std::vector<CObject*>());  // mObjMap[key]가 존재하지 않을 경우 빈 벡터를 추가
-
             CMemoryPoolManager::GetInst()->CreatePool<T>(initialCapacity);
         }
 
@@ -45,6 +45,7 @@ public:
 
         gameObject->SetName(name);
         gameObject->mScene = this;
+        gameObject->mLayer = mLayers[type];
 
         if (!gameObject->Init())
         {
@@ -53,33 +54,25 @@ public:
             return nullptr;
         }
 
-        std::type_index key = typeid(T);
-        mObjMap[key].push_back(gameObject);
+        mLayers[type]->AddObject(gameObject);
+
         return gameObject;
     }
 
     template <typename T>
-    void DeleteObjectByType()
+    void CallEventByType(void(T::*func)())
     {
-        std::type_index key = typeid(T);
-
-        std::unordered_map<std::type_index, std::vector<CObject*>>::iterator iter    = mObjMap.find(key);
-        std::unordered_map<std::type_index, std::vector<CObject*>>::iterator iterEnd = mObjMap.end();
-
-        if (iter != iterEnd)    // if pool found
+        for (CLayer* layer : mLayers)
         {
-            std::vector<CObject*>& typeObjVec = iter->second;
+            std::vector<CObject*> objVec = layer->GetObjectVec();
 
-            for (size_t j = typeObjVec.size(); j > 0; j--)
+            for (CObject* obj : objVec)
             {
-                T* obj = dynamic_cast<T*>(typeObjVec[j - 1]);   // starts from last idx
-
-                obj->Destroy();
-
-                // 사용된 메모리 반환
-                obj->Release();
+                if (T* castedObj = dynamic_cast<T*>(obj))
+                {
+                    (castedObj->*func)();
+                }
             }
-            mObjMap.erase(iter);
         }
     }
 };
