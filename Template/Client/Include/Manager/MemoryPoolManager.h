@@ -80,6 +80,15 @@ public:
 			}
 		}
 	}
+	template <typename T>
+	void DeallocateKeepPool(T* deallocPtr)
+	{
+		if (HasPool<T>())
+		{
+			CStaticMemoryPool<T>* pool = GetPool<T>();
+			pool->Deallocate(deallocPtr);
+		}
+	}
 
 private:
 	template <typename T>
