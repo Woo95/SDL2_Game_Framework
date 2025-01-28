@@ -9,9 +9,8 @@
 #include "../../Resource/Animation.h"
 
 CPlayer::CPlayer() :
-    mSpriteComponent(nullptr),
     mMovementComponent(nullptr),
-    mCollider(nullptr)
+    mColliderComponent(nullptr)
 {
 }
  
@@ -28,16 +27,16 @@ bool CPlayer::Init()
     mMovementComponent = AllocateComponent<CMovementComponent>("Movement", mRootComponent);
 
     // 충돌체 컴포넌트 만들기
-    mCollider = AllocateComponent<CBoxCollider>("playerCollider", mMovementComponent);
+    mColliderComponent = AllocateComponent<CBoxCollider>("collider", mMovementComponent);
 
     // 위치 설정 (충돌체  컴포넌트)
-    CTransform* colliderTrans = mCollider->GetTransform();
+    CTransform* colliderTrans = mColliderComponent->GetTransform();
     colliderTrans->SetWorldPos(100.f, 100.f);
     colliderTrans->SetWorldScale(50.f, 75.f);
     colliderTrans->SetPivot(0.5f, 0.5f);
 
     // 스프라이트 컴포넌트 만들기
-    mSpriteComponent = AllocateComponent<CSpriteComponent>("playerSprite", mCollider);
+    mSpriteComponent = AllocateComponent<CSpriteComponent>("sprite", mColliderComponent);
     mSpriteComponent->SetTexture("Pasqualina");
     mSpriteComponent->SetAnimation("Pasqualina_Animation");
     mSpriteComponent->GetAnimation()->SetCurrentState(EAnimationState::WALK);
@@ -111,6 +110,6 @@ void CPlayer::MOVE_RIGHT()
 
 void CPlayer::SHOOT()
 {
-    CBullet* bullet = mScene->AllocateObject<CBullet>("bullet");
-    bullet->GetTransform()->SetWorldPos(mCollider->GetTransform()->GetWorldPos());
+    CBullet* bullet = mScene->AllocateObject<CBullet>("bullet", ELayer::Type::PROJECTILE);
+    bullet->GetTransform()->SetWorldPos(mColliderComponent->GetTransform()->GetWorldPos());
 }

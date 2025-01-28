@@ -10,9 +10,8 @@ public:
 	virtual ~CPlayer();
 
 public:
-	class CSpriteComponent*   mSpriteComponent;
 	class CMovementComponent* mMovementComponent;
-	class CCollider* mCollider;
+	class CCollider* mColliderComponent;
 
 public:
 	virtual bool Init();

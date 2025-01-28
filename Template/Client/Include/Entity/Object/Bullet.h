@@ -9,7 +9,6 @@ public:
 
 public:
 	class CMovementComponent* mMovementComponent;
-	class CCollider* mCollider;
 
 	float mDestroyTime;
 

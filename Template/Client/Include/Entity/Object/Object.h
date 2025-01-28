@@ -9,16 +9,18 @@
 class CObject abstract	: public CEntityBase
 {
 	friend class CScene;
+	friend class CLayer;
 
 protected:
 	CObject();
-	CObject(const CObject& objRef);	// 복사 생성자 (함수 내 구현에 따라서 "깊은 또는 얕은 복사 생성자"가 된다)
 	virtual ~CObject();
 		
 protected:
-	CScene* mScene;
+	class CScene* mScene;
+	class CLayer* mLayer;
 
-	CComponent* mRootComponent;
+	CComponent*             mRootComponent;
+	class CSpriteComponent* mSpriteComponent;
 
 protected:
 	virtual bool Init();
@@ -45,6 +47,7 @@ public:
 			return mRootComponent->FindComponent(hashID);
 		}
 	}
+	CSpriteComponent* GetSpriteComponent() const { return mSpriteComponent; }
 
 public:
 	template <typename T, int initialCapacity = 10>

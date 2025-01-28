@@ -1,10 +1,10 @@
 #include "Bullet.h"
 #include "../Component/MovementComponent.h"
-#include "../Component/Collider/BoxCollider.h"
+#include "../Component/Collider/CircleCollider.h"
+#include "../../Entity/Component/Sprite/SpriteComponent.h"
 
 CBullet::CBullet() :
     mMovementComponent(nullptr),
-    mCollider(nullptr),
     mDestroyTime(0)
 {
 }
@@ -21,11 +21,24 @@ bool CBullet::Init()
     // 이동 컴포넌트 만들기
     mMovementComponent = AllocateComponent<CMovementComponent>("Movement", mRootComponent);
 
-    // 도형 컴포넌트 만들기
-    mCollider = AllocateComponent<CBoxCollider>("BulletCollider", mMovementComponent);
-    CTransform* bulletTransform = mCollider->GetTransform();
-    bulletTransform->SetWorldScale(25.f, 25.f);
-    bulletTransform->SetPivot(0.5f, 0.5f);
+    // 충돌체 컴포넌트 만들기
+    CCircleCollider* collider = AllocateComponent<CCircleCollider>("collider", mMovementComponent);
+
+    // 위치 설정 (충돌체 컴포넌트)
+    CTransform* colliderTrans = collider->GetTransform();
+    colliderTrans->SetWorldScale(25.f, 25.f);
+    colliderTrans->SetPivot(0.5f, 0.5f);
+
+    // 스프라이트 컴포넌트 만들기
+    mSpriteComponent = AllocateComponent<CSpriteComponent>("sprite", collider);
+    mSpriteComponent->SetTexture("Bullet");
+
+    // 위치 설정 (스프라이트 컴포넌트)
+    CTransform* spriteTrans = mSpriteComponent->GetTransform();
+    spriteTrans->SetWorldPos(colliderTrans->GetWorldPos());
+    spriteTrans->SetWorldScale(25.f, 25.f);
+    spriteTrans->SetPivot(0.5f, 0.5f);
+
 
     return true;
 }
