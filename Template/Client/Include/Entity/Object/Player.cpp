@@ -1,10 +1,8 @@
 #include "Player.h"
+#include "Bullet.h"
 #include "../../Core/Input.h"
 #include "../Component/MovementComponent.h"
 #include "../Component/Collider/BoxCollider.h"
-#include "Bullet.h"
-#include "../../Scene/Scene.h"
-#include "../../Manager/Resource/TextureManager.h"
 #include "../../Entity/Component/Sprite/SpriteComponent.h"
 #include "../../Resource/Animation.h"
 

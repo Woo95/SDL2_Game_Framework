@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Entity\Object\Background.h" />
     <ClInclude Include="Core\AniUtils.h" />
     <ClInclude Include="Core\LayerUtils.h" />
     <ClInclude Include="Scene\Layer.h" />
@@ -141,6 +142,7 @@
     <ClInclude Include="Entity\Component\Sprite\SpriteComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Entity\Object\Background.cpp" />
     <ClCompile Include="Scene\Layer.cpp" />
     <ClCompile Include="Manager\Resource\AnimationManager.cpp" />
     <ClCompile Include="Resource\Animation.cpp" />

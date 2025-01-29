@@ -2,6 +2,7 @@
 #include "../Manager/SceneManager.h"
 #include "../Entity/Object/Player.h"
 #include "../Entity/Object/Monster.h"
+#include "../Entity/Object/Background.h"
 #include "Collision/SceneCollision.h"
 #include "../Manager/Resource/AssetManager.h"
 #include "../Manager/Resource/TextureManager.h"
@@ -20,6 +21,8 @@ CPlayScene::~CPlayScene()
 
 bool CPlayScene::Enter()
 {
+	AllocateObject<CBackground, 1>("Background", ELayer::Type::BACKGROUND);
+
 	AllocateObject<CPlayer, 1>("Player", ELayer::Type::OBJECT);
 
 	AllocateObject<CMonster, 10>("Monster", ELayer::Type::OBJECT);

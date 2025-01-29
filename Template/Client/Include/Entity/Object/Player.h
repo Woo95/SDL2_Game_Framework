@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Object.h"
-#include "../../Core/Timer.h"
 
 class CPlayer : public CObject
 {

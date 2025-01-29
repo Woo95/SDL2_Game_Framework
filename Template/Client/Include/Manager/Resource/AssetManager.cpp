@@ -36,6 +36,8 @@ void CAssetManager::LoadTextures()
 	mTextureManager->LoadTexture("Imelda", "Imelda.png");
 	mTextureManager->LoadTexture("Pasqualina", "Pasqualina.png");
 	mTextureManager->LoadTexture("Bullet", "Bullet.png");
+	mTextureManager->LoadTexture("Stage1", "Mad_Forest_stage_1.png");
+	mTextureManager->LoadTexture("Stage2", "Inlaid_Library_stage_2.png");
 
 	CreateAnimations();
 }
