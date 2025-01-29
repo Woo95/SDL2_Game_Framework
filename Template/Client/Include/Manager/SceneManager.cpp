@@ -7,6 +7,8 @@ CSceneManager* CSceneManager::mInst = nullptr;
 
 CSceneManager::CSceneManager()
 {
+	CMemoryPoolManager::GetInst()->CreatePool<CLayer>(ELayer::Type::MAX);
+
 	mScene.push(new CMenuScene);
 }
 
@@ -17,6 +19,8 @@ CSceneManager::~CSceneManager()
 		SAFE_DELETE(mScene.top());
 		mScene.pop();
 	}
+
+	CMemoryPoolManager::GetInst()->DeletePool<CLayer>();
 }
 
 bool CSceneManager::Init()
@@ -53,7 +57,7 @@ void CSceneManager::Change(EScene::State ESceneState)
 	switch (ESceneState)
 	{
 	case EScene::MENU:
-		// mScene.push(new CMainMenuScene);
+		mScene.push(new CMenuScene);
 		break;
 	case EScene::PLAY:
 		mScene.push(new CPlayScene);

@@ -20,9 +20,9 @@ CPlayScene::~CPlayScene()
 
 bool CPlayScene::Enter()
 {
-	AllocateObject<CPlayer, 1>("Player");
+	AllocateObject<CPlayer, 1>("Player", ELayer::Type::OBJECT);
 
-	//AllocateObject<CMonster, 10>("Monster");
+	AllocateObject<CMonster, 10>("Monster", ELayer::Type::OBJECT);
 
 	return true;
 }
