@@ -35,6 +35,7 @@ void CAssetManager::LoadTextures()
 	mTextureManager->LoadTexture("Antonio", "Antonio.png");
 	mTextureManager->LoadTexture("Imelda", "Imelda.png");
 	mTextureManager->LoadTexture("Pasqualina", "Pasqualina.png");
+	mTextureManager->LoadTexture("Bullet", "Bullet.png");
 
 	CreateAnimations();
 }
