@@ -60,7 +60,7 @@ SDL_Rect CSpriteComponent::GetDest() const
 	return { (int)topLeft.x, (int)topLeft.y, (int)scale.x, (int)scale.y };
 }
 
-const SDL_Rect& CSpriteComponent::GetFrame() const
+const SDL_Rect CSpriteComponent::GetFrame() const
 {
 	return mAnimation ? mAnimation->GetCurrentFrame() : mTexture->GetTextureFrame();
 }

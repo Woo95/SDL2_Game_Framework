@@ -52,6 +52,15 @@
     <Filter Include="Framework\01. Core\External\SDL">
       <UniqueIdentifier>{22cdc5d0-8f3b-4fae-a1e2-ec194de482ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{38b047cb-938c-4f2d-8b89-fc10f226dc3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\01. Scenes">
+      <UniqueIdentifier>{9c429037-dc37-4f0e-baef-df8450cfb66a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\02. Objects">
+      <UniqueIdentifier>{89710ff4-5580-46d8-b999-3a8f30005453}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Framework\01. Core\Lib">
       <UniqueIdentifier>{07aa822c-a6bd-4517-8029-44de9e5d5528}</UniqueIdentifier>
     </Filter>
@@ -66,15 +75,6 @@
     </Filter>
     <Filter Include="Framework\01. Core\Lib\SmartPtr">
       <UniqueIdentifier>{78525eff-63d9-470a-9434-564f2a326435}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game">
-      <UniqueIdentifier>{38b047cb-938c-4f2d-8b89-fc10f226dc3a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\01. Scenes">
-      <UniqueIdentifier>{9c429037-dc37-4f0e-baef-df8450cfb66a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\02. Objects">
-      <UniqueIdentifier>{89710ff4-5580-46d8-b999-3a8f30005453}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -432,6 +432,12 @@
     <ClInclude Include="Entity\Object\Player.h">
       <Filter>Game\02. Objects</Filter>
     </ClInclude>
+    <ClInclude Include="Core\LayerUtils.h">
+      <Filter>Framework\01. Core\Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Layer.h">
+      <Filter>Framework\03. Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Timer.cpp">
@@ -526,6 +532,9 @@
     </ClCompile>
     <ClCompile Include="Entity\Object\Player.cpp">
       <Filter>Game\02. Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Layer.cpp">
+      <Filter>Framework\03. Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

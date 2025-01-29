@@ -11,6 +11,7 @@
 #include <unordered_map>
 #include <memory>       // for smartPtr
 #include <typeindex>
+#include <algorithm>	// for sort
 
 #define	SAFE_DELETE(p) if(p) { delete p; p = nullptr; }
 

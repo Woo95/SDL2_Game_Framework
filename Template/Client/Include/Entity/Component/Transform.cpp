@@ -1,6 +1,13 @@
 #include "Transform.h"
 
-CTransform::CTransform()
+CTransform::CTransform() :
+    mWorldPos(FVector2D::ZERO),
+    mWorldRotation(0.0f),
+    mWorldScale(FVector2D::ZERO),
+    mPivot(FVector2D::ZERO),
+    mRelativePos(FVector2D::ZERO),
+    mRelativeRotation(0.0f),
+    mRelativeScale(FVector2D::ZERO)
 {
 }
 

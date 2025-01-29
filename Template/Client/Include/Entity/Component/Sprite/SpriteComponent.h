@@ -26,7 +26,7 @@ private:
 	virtual void Release() final;
 
 public:
-	const SDL_Rect& GetFrame() const;
+	const SDL_Rect GetFrame() const;
 	SDL_Rect GetDest() const;
 
 	std::shared_ptr<CTexture>   GetTexture()   const { return mTexture; }
