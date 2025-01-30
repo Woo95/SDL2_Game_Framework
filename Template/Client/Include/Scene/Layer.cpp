@@ -80,5 +80,5 @@ void CLayer::Render(SDL_Renderer* Renderer)
 
 bool CLayer::SortY(CObject* objA, CObject* objB)
 {
-    return objA->GetSpriteComponent()->GetTransform()->GetWorldPos().y < objB->GetSpriteComponent()->GetTransform()->GetWorldPos().y;
+    return objA->GetTransform()->GetWorldPos().y < objB->GetTransform()->GetWorldPos().y;
 }

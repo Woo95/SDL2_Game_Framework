@@ -1,4 +1,5 @@
 #include "MovementComponent.h"
+#include "../../Entity/Object/Object.h"
 
 CMovementComponent::CMovementComponent() :
 	mSpeed(500.f), 
@@ -31,7 +32,7 @@ void CMovementComponent::Move(float DeltaTime)
 {
 	if (mDirection != FVector2D::ZERO)
 	{
-		CTransform* transform = GetTransform();
+		CTransform* transform = mObject->GetTransform();
 
 		FVector2D movement = mDirection.GetNormalize() * mSpeed * DeltaTime;
 

@@ -19,8 +19,7 @@ protected:
 	class CScene* mScene;
 	class CLayer* mLayer;
 
-	CComponent*             mRootComponent;
-	class CSpriteComponent* mSpriteComponent;
+	CComponent* mRootComponent;
 
 protected:
 	virtual bool Init();
@@ -47,7 +46,6 @@ public:
 			return mRootComponent->FindComponent(hashID);
 		}
 	}
-	CSpriteComponent* GetSpriteComponent() const { return mSpriteComponent; }
 
 public:
 	template <typename T, int initialCapacity = 10>

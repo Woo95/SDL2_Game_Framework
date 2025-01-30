@@ -30,11 +30,11 @@ bool CBullet::Init()
     colliderTrans->SetPivot(0.5f, 0.5f);
 
     // 스프라이트 컴포넌트 만들기
-    mSpriteComponent = AllocateComponent<CSpriteComponent>("sprite", collider);
-    mSpriteComponent->SetTexture("Bullet");
+    CSpriteComponent* sprite = AllocateComponent<CSpriteComponent>("sprite", collider);
+    sprite->SetTexture("Bullet");
 
     // 위치 설정 (스프라이트 컴포넌트)
-    CTransform* spriteTrans = mSpriteComponent->GetTransform();
+    CTransform* spriteTrans = sprite->GetTransform();
     spriteTrans->SetWorldPos(colliderTrans->GetWorldPos());
     spriteTrans->SetWorldScale(25.f, 25.f);
     spriteTrans->SetPivot(0.5f, 0.5f);

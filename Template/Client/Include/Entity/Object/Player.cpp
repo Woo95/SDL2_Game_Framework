@@ -29,7 +29,6 @@ bool CPlayer::Init()
 
     // 위치 설정 (충돌체  컴포넌트)
     CTransform* colliderTrans = mColliderComponent->GetTransform();
-    colliderTrans->SetWorldPos(100.f, 100.f);
     colliderTrans->SetWorldScale(50.f, 75.f);
     colliderTrans->SetPivot(0.5f, 0.5f);
 
@@ -41,9 +40,11 @@ bool CPlayer::Init()
     
     // 위치 설정 (스프라이트 컴포넌트)
     CTransform* spriteTrans = mSpriteComponent->GetTransform();
-    spriteTrans->SetWorldPos(100.f, 100.f);
     spriteTrans->SetWorldScale(75.f, 75.f);
     spriteTrans->SetPivot(0.5f, 0.5f);
+
+    // 오브젝트 위치 설정
+    GetTransform()->SetWorldPos(100.f, 100.f);
 
     // 인풋 설정
     SetupInput();

@@ -15,11 +15,11 @@ bool CBackground::Init()
         return false;
 
     // 스프라이트 컴포넌트 만들기
-    mSpriteComponent = AllocateComponent<CSpriteComponent>("sprite", mRootComponent);
-    mSpriteComponent->SetTexture("Stage1");
+    CSpriteComponent* sprite = AllocateComponent<CSpriteComponent>("sprite", mRootComponent);
+    sprite->SetTexture("Stage1");
 
     // 위치 설정 (스프라이트 컴포넌트)
-    CTransform* spriteTrans = mSpriteComponent->GetTransform();
+    CTransform* spriteTrans = sprite->GetTransform();
     spriteTrans->SetWorldPos(-100.f, 500.f);
     spriteTrans->SetWorldScale(4096.f, 4096.f);
     spriteTrans->SetPivot(0.5f, 0.5f);

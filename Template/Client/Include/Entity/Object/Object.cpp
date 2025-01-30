@@ -5,8 +5,7 @@
 CObject::CObject() :
 	mScene(nullptr),
 	mLayer(nullptr),
-	mRootComponent(nullptr),
-	mSpriteComponent(nullptr)
+	mRootComponent(nullptr)
 {
 	mRootComponent = new CComponent;
 

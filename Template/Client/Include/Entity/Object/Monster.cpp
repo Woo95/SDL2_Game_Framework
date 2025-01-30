@@ -17,18 +17,18 @@ bool CMonster::Init()
         return false;
 
     CComponent* collider = AllocateComponent<CBoxCollider>("collider", mRootComponent);
-    collider->GetTransform()->SetWorldPos(800, 200.f);
     collider->GetTransform()->SetWorldScale(50.f, 75.f);
     collider->GetTransform()->SetPivot(0.5f, 0.5f);
 
-    mSpriteComponent = AllocateComponent<CSpriteComponent>("sprite", collider);
-    mSpriteComponent->SetTexture("Antonio");
-    mSpriteComponent->SetAnimation("Antonio_Animation");
-    mSpriteComponent->GetAnimation()->SetCurrentState(EAnimationState::NONE);
+    CSpriteComponent* sprite = AllocateComponent<CSpriteComponent>("sprite", collider);
+    sprite->SetTexture("Antonio");
+    sprite->SetAnimation("Antonio_Animation");
+    sprite->GetAnimation()->SetCurrentState(EAnimationState::NONE);
+    
+    sprite->GetTransform()->SetWorldScale(75.f, 75.f);
+    sprite->GetTransform()->SetPivot(0.5f, 0.5f);
 
-    mSpriteComponent->GetTransform()->SetWorldPos(collider->GetTransform()->GetWorldPos());
-    mSpriteComponent->GetTransform()->SetWorldScale(75.f, 75.f);
-    mSpriteComponent->GetTransform()->SetPivot(0.5f, 0.5f);
+    GetTransform()->SetWorldPos(800.f, 200.f);
 
     return true;
 }
