@@ -1,7 +1,10 @@
 #include "Scene.h"
 #include "../Scene/Collision/SceneCollision.h"
+#include "Camera.h"
 
-CScene::CScene()
+CScene::CScene() :
+    mSceneCollision(nullptr),
+    mCamera(nullptr)
 {
     mLayers.resize(ELayer::Type::MAX);
 
@@ -9,6 +12,7 @@ CScene::CScene()
     {
         mLayers[i] = CMemoryPoolManager::GetInst()->Allocate<CLayer>();
     }
+    mCamera = new CCamera;
 }
 
 CScene::~CScene()
@@ -17,6 +21,7 @@ CScene::~CScene()
     {
         CMemoryPoolManager::GetInst()->DeallocateKeepPool<CLayer>(layer);
     }
+    SAFE_DELETE(mCamera);
 }
 
 void CScene::Update(float DeltaTime)
@@ -26,15 +31,15 @@ void CScene::Update(float DeltaTime)
 
     if (mSceneCollision)
         mSceneCollision->Update(DeltaTime);
+
+    if (mCamera)
+        mCamera->Update(DeltaTime);
 }
 
 void CScene::LateUpdate(float DeltaTime)
 {
     for (CLayer* layer : mLayers)
         layer->LateUpdate(DeltaTime);
-
-    if (mSceneCollision)
-        mSceneCollision->LateUpdate(DeltaTime);
 }
 
 void CScene::Render(SDL_Renderer* Renderer)

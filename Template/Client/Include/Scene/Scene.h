@@ -5,6 +5,9 @@
 #include "../Core/LayerUtils.h"
 #include "Layer.h"
 
+class CSceneCollision;
+class CCamera;
+
 // 추상 클래스 선언 - 인스턴스화 불가 (abstract 키워드로 명시 안하더라도, 순수 가상 함수가 있으면 자동으로 추상 클래스)
 class CScene abstract	
 {
@@ -16,9 +19,10 @@ protected:
 	virtual ~CScene();
 
 protected:
-    std::vector<class CLayer*> mLayers;
+    std::vector<CLayer*> mLayers;
 
-    class CSceneCollision* mSceneCollision = nullptr;
+    CSceneCollision* mSceneCollision;
+    CCamera* mCamera;
 
 protected:
 	virtual bool Enter() = 0;
@@ -30,6 +34,8 @@ protected:
 
 public:
     CSceneCollision* GetCollision() const { return mSceneCollision; }
+    CCamera* GetCamera() const { return mCamera; }
+
     void SetLayerSortType(ELayer::Type type, ESort::Type sort) { mLayers[type]->SetSortType(sort); }
 
     template <typename T, int initialCapacity = 50>
