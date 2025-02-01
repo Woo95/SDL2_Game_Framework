@@ -61,12 +61,12 @@ void CAnimation::Update(float DeltaTime)
 	}
 }
 
-void CAnimation::AddFrame(EAnimationState state, SDL_Rect& frame)
+void CAnimation::AddFrame(EAnimationState state, SDL_Rect frame)
 {
 	mAnimationStates[state].frames.push_back(frame);
 }
 
-void CAnimation::AddFrames(EAnimationState state, std::vector<SDL_Rect>& frames)
+void CAnimation::AddFrames(EAnimationState state, std::vector<SDL_Rect> frames)
 {
 	FAnimationStateInfo& aniInfo = mAnimationStates[state];
 	aniInfo.frames.insert(aniInfo.frames.end(), frames.begin(), frames.end());

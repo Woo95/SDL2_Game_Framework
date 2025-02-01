@@ -3,7 +3,8 @@
 #include "../Manager/GameManager.h"
 
 CTexture::CTexture() : 
-	mTexture(nullptr)
+	mTexture(nullptr),
+	mSize({0,0,0,0})
 {
 }
 
@@ -30,6 +31,7 @@ bool CTexture::LoadTexture(const char* fileName, const std::string& texturePathK
 		if (texture)
 		{
 			mTexture = texture;
+			SDL_QueryTexture(texture, nullptr, nullptr, &mSize.w, &mSize.h);
 
 			return true;
 		}

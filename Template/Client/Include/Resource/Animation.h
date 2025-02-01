@@ -26,8 +26,8 @@ public:
 	void Update(float DeltaTime);
 
 public:
-	void AddFrame(EAnimationState state, SDL_Rect& frame);
-	void AddFrames(EAnimationState state, std::vector<SDL_Rect>& frames);
+	void AddFrame(EAnimationState state, SDL_Rect frame);
+	void AddFrames(EAnimationState state, std::vector<SDL_Rect> frames);
 
 	const SDL_Rect& GetCurrentFrame() { return mAnimationStates[mCurrentState].GetFrame(); }
 
