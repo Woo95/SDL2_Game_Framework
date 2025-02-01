@@ -6,10 +6,13 @@
 #include "Collision/SceneCollision.h"
 #include "../Manager/Resource/AssetManager.h"
 #include "../Manager/Resource/TextureManager.h"
+#include "../Scene/Camera.h"
 
 CPlayScene::CPlayScene()
 {
 	mSceneCollision = new CSceneCollision(1280, 720); // temporary collision area size
+
+	mCamera->SetResolution(FVector2D(1280, 720)); // temporary camera resolution size
 }
 
 CPlayScene::~CPlayScene()
@@ -23,9 +26,11 @@ bool CPlayScene::Enter()
 {
 	AllocateObject<CBackground, 1>("Background", ELayer::Type::BACKGROUND);
 
-	AllocateObject<CPlayer, 1>("Player", ELayer::Type::OBJECT);
+	CObject* player = AllocateObject<CPlayer, 1>("Player", ELayer::Type::OBJECT);
 
 	AllocateObject<CMonster, 10>("Monster", ELayer::Type::OBJECT);
+
+	mCamera->SetTarget(player);
 
 	return true;
 }

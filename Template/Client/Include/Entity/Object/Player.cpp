@@ -8,7 +8,8 @@
 
 CPlayer::CPlayer() :
     mMovementComponent(nullptr),
-    mColliderComponent(nullptr)
+    mColliderComponent(nullptr),
+    mSpriteComponent(nullptr)
 {
 }
  
@@ -44,7 +45,7 @@ bool CPlayer::Init()
     spriteTrans->SetPivot(0.5f, 0.5f);
 
     // 오브젝트 위치 설정
-    GetTransform()->SetWorldPos(100.f, 100.f);
+    GetTransform()->SetWorldPos(400.f, 200.f);
 
     // 인풋 설정
     SetupInput();
