@@ -1,5 +1,8 @@
 #include "BoxCollider.h"
 #include "../../../Manager/CollisionManager.h"
+#include "../../Object/Object.h"
+#include "../../../Scene/Scene.h"
+#include "../../../Scene/Camera.h"
 
 CBoxCollider::CBoxCollider() :
 	mRect{}
@@ -48,14 +51,18 @@ void CBoxCollider::Render(SDL_Renderer* Renderer)
 	else
 		SDL_SetRenderDrawColor(Renderer, 255, 0, 0, 255);
 
+	// 카메라가 있을 경우, 카메라 좌표계를 반영한 렌더링 좌표로 변환
+	CCamera* camera = GetObject()->GetScene()->GetCamera();
+	if (camera)
+	{
+		const FVector2D renderPos = camera->GetRenderPos(FVector2D(mRect.x, mRect.y));
+
+		mRect = { renderPos.x, renderPos.y, mRect.w, mRect.h };
+	}
+
 	// 사각형 그리기
 	SDL_RenderDrawRectF(Renderer, &mRect);
 #endif
-}
-
-void CBoxCollider::Release()
-{
-	CMemoryPoolManager::GetInst()->Deallocate<CBoxCollider>(this);
 }
 
 bool CBoxCollider::Intersect(CCollider* other)
@@ -68,4 +75,9 @@ bool CBoxCollider::Intersect(CCollider* other)
 		return CCollisionManager::GetInst()->AABBCircleCollision(this, (CCircleCollider*)other);
 	}
 	return true;
+}
+
+void CBoxCollider::Release()
+{
+	CMemoryPoolManager::GetInst()->Deallocate<CBoxCollider>(this);
 }

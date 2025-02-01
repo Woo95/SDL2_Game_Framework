@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scene\Camera.h" />
     <ClInclude Include="Entity\Object\Background.h" />
     <ClInclude Include="Core\AniUtils.h" />
     <ClInclude Include="Core\LayerUtils.h" />
@@ -142,6 +143,7 @@
     <ClInclude Include="Entity\Component\Sprite\SpriteComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Scene\Camera.cpp" />
     <ClCompile Include="Entity\Object\Background.cpp" />
     <ClCompile Include="Scene\Layer.cpp" />
     <ClCompile Include="Manager\Resource\AnimationManager.cpp" />
@@ -277,7 +279,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4819;26819</DisableSpecificWarnings>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -295,6 +297,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DisableSpecificWarnings>4819;26819</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

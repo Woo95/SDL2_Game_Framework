@@ -34,9 +34,6 @@
     <Filter Include="Framework\03. Scene">
       <UniqueIdentifier>{605f8d33-accc-441c-920e-f3b614dfdfd0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\03. Scene\02. Collision">
-      <UniqueIdentifier>{5f949429-47db-4625-860f-1c3d6575c0cb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\02. Manager">
       <UniqueIdentifier>{2ca341f6-ad67-423f-b335-7b88c3472463}</UniqueIdentifier>
     </Filter>
@@ -75,6 +72,12 @@
     </Filter>
     <Filter Include="Framework\01. Core\Lib\SmartPtr">
       <UniqueIdentifier>{78525eff-63d9-470a-9434-564f2a326435}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\03. Scene\01. Collision">
+      <UniqueIdentifier>{5f949429-47db-4625-860f-1c3d6575c0cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\03. Scene\02. Camera">
+      <UniqueIdentifier>{825e3b1d-8348-4dbc-90c3-9d9b09cc2e77}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -361,13 +364,13 @@
       <Filter>Framework\02. Manager</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Collision\QuadTree.h">
-      <Filter>Framework\03. Scene\02. Collision</Filter>
+      <Filter>Framework\03. Scene\01. Collision</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Collision\SceneCollision.h">
-      <Filter>Framework\03. Scene\02. Collision</Filter>
+      <Filter>Framework\03. Scene\01. Collision</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Collision\QTNode.h">
-      <Filter>Framework\03. Scene\02. Collision</Filter>
+      <Filter>Framework\03. Scene\01. Collision</Filter>
     </ClInclude>
     <ClInclude Include="Manager\GameManager.h">
       <Filter>Framework\02. Manager</Filter>
@@ -441,6 +444,9 @@
     <ClInclude Include="Entity\Object\Background.h">
       <Filter>Game\02. Objects</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\Camera.h">
+      <Filter>Framework\03. Scene\02. Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Timer.cpp">
@@ -480,13 +486,13 @@
       <Filter>Framework\02. Manager</Filter>
     </ClCompile>
     <ClCompile Include="Scene\Collision\QuadTree.cpp">
-      <Filter>Framework\03. Scene\02. Collision</Filter>
+      <Filter>Framework\03. Scene\01. Collision</Filter>
     </ClCompile>
     <ClCompile Include="Scene\Collision\SceneCollision.cpp">
-      <Filter>Framework\03. Scene\02. Collision</Filter>
+      <Filter>Framework\03. Scene\01. Collision</Filter>
     </ClCompile>
     <ClCompile Include="Scene\Collision\QTNode.cpp">
-      <Filter>Framework\03. Scene\02. Collision</Filter>
+      <Filter>Framework\03. Scene\01. Collision</Filter>
     </ClCompile>
     <ClCompile Include="Manager\GameManager.cpp">
       <Filter>Framework\02. Manager</Filter>
@@ -541,6 +547,9 @@
     </ClCompile>
     <ClCompile Include="Entity\Object\Background.cpp">
       <Filter>Game\02. Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Camera.cpp">
+      <Filter>Framework\03. Scene\02. Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -26,13 +26,14 @@ private:
 	virtual void Release() final;
 
 public:
-	const SDL_Rect GetFrame() const;
-	SDL_Rect GetDest() const;
-
 	std::shared_ptr<CTexture>   GetTexture()   const { return mTexture; }
 	std::shared_ptr<CAnimation> GetAnimation() const { return mAnimation; }
 
 	void SetTexture(const std::string& key);
 	void SetAnimation(const std::string& key);
 	void SetFlip(SDL_RendererFlip flip) { mFlip = flip; }
+
+private:
+	const SDL_Rect& GetFrame() const;
+	const SDL_Rect GetDest()  const;
 };

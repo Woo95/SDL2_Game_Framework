@@ -1,5 +1,8 @@
 #include "CircleCollider.h"
 #include "../../../Manager/CollisionManager.h"
+#include "../../Object/Object.h"
+#include "../../../Scene/Scene.h"
+#include "../../../Scene/Camera.h"
 
 CCircleCollider::CCircleCollider() :
 	mCircle{}
@@ -50,14 +53,18 @@ void CCircleCollider::Render(SDL_Renderer* Renderer)
 	else
 		SDL_SetRenderDrawColor(Renderer, 255, 0, 0, 255);
 
+	// 카메라가 있을 경우, 카메라 좌표계를 반영한 렌더링 좌표로 변환
+	CCamera* camera = GetObject()->GetScene()->GetCamera();
+	if (camera)
+	{
+		const FVector2D renderPos = camera->GetRenderPos(mCircle.center);
+
+		mCircle.center = renderPos;
+	}
+
 	// 원 그리기
 	RenderDrawCircle(Renderer, mCircle);
 #endif
-}
-
-void CCircleCollider::Release()
-{
-	CMemoryPoolManager::GetInst()->Deallocate<CCircleCollider>(this);
 }
 
 bool CCircleCollider::Intersect(CCollider* other)
@@ -71,6 +78,12 @@ bool CCircleCollider::Intersect(CCollider* other)
 	}
 	return true;
 }
+
+void CCircleCollider::Release()
+{
+	CMemoryPoolManager::GetInst()->Deallocate<CCircleCollider>(this);
+}
+
 
 // Bresenham's circle drawing algorithm
 void CCircleCollider::RenderDrawCircle(SDL_Renderer* renderer, const FCircle& circle)
