@@ -23,10 +23,6 @@ void CSceneCollision::Update(float DeltaTime)
 	CleanPairs();
 }
 
-void CSceneCollision::LateUpdate(float DeltaTime)
-{
-}
-
 void CSceneCollision::Render(SDL_Renderer* Renderer)
 {
 	mQuadTree->Render(Renderer);
