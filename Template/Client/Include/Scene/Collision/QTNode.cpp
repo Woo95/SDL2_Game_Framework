@@ -1,9 +1,10 @@
 #include "QTNode.h"
-#include "QuadTree.h"
 #include "../../Entity/Component/Collider/BoxCollider.h"
 #include "../../Entity/Component/Collider/CircleCollider.h"
 #include "../../Entity/Object/Object.h"
+#include "../Scene.h"
 #include "../../Scene/Collision/SceneCollision.h"
+#include "../Camera.h"
 
 CQTNode::CQTNode()
 {
@@ -52,6 +53,16 @@ void CQTNode::Render(SDL_Renderer* Renderer)
 #ifdef _DEBUG	
 	// 렌더 색상 설정
 	SDL_SetRenderDrawColor(Renderer, 255, 255, 255, 255);
+
+	// 카메라가 있을 경우, 카메라 좌표계를 반영한 렌더링 좌표로 변환
+ 	
+	if (mCamera)
+	{
+		const FVector2D renderPos = mCamera->GetRenderPos(FVector2D(mBoundary.x, mBoundary.y));
+
+		mBoundary = { renderPos.x, renderPos.y, mBoundary.w, mBoundary.h };
+	}
+
 	// 사각형 그리기
 	SDL_RenderDrawRectF(Renderer, &mBoundary);
 
@@ -72,7 +83,7 @@ bool CQTNode::HasChild()
 
 bool CQTNode::ShouldSplit()
 {
-	return mColliders.size() > MAX_COLLIDERS_PER_NODE && mDepthLevel < mMaxDepth;
+	return mColliders.size() > MAX_COLLIDERS_PER_NODE && mSplitLevel < MAX_SPLIT;
 }
 
 void CQTNode::Split()
@@ -89,8 +100,8 @@ void CQTNode::Split()
 
 		mChilds[i]->mParent	    = this;
 		mChilds[i]->mBoundary   = { x[i % 2], y[i / 2], halfW, halfH };
-		mChilds[i]->mDepthLevel = mDepthLevel + 1;
-		mChilds[i]->mMaxDepth   = mMaxDepth;
+		mChilds[i]->mSplitLevel = mSplitLevel + 1;
+		mChilds[i]->mCamera     = mCamera;
 	}
 }
 

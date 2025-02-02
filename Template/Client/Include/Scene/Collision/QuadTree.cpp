@@ -2,11 +2,17 @@
 #include "../../Core/Vector2D.h"
 #include "../../Entity/Component/Collider/Collider.h"
 #include "../../Manager/MemoryPoolManager.h"
+#include "../Camera.h"
 
-CQuadTree::CQuadTree() :
-	mRoot(nullptr),
-	MAX_DEPTH(0)
+CQuadTree::CQuadTree(CCamera* camera)
 {
+	int totalNodes = (int)((pow(4, MAX_SPLIT + 1) - 1) / 3);
+	CMemoryPoolManager::GetInst()->CreatePool<CQTNode>(totalNodes);
+
+	if (!mRoot)
+		mRoot = CMemoryPoolManager::GetInst()->Allocate<CQTNode>();
+
+	mRoot->mCamera = camera;
 }
 
 CQuadTree::~CQuadTree()
@@ -15,19 +21,10 @@ CQuadTree::~CQuadTree()
 	CMemoryPoolManager::GetInst()->DeletePool<CQTNode>();
 }
 
-void CQuadTree::Init(float width, float height)
-{
-	CreateNodePool(width, height);
-
-	if (!mRoot)
-		mRoot = CMemoryPoolManager::GetInst()->Allocate<CQTNode>();
-
-	mRoot->mBoundary = { 0, 0, width, height };
-	mRoot->mMaxDepth = MAX_DEPTH;
-}
-
 void CQuadTree::Update(float DeltaTime)
 {
+	UpdateBoundary();
+
 	for (size_t i = mColliders.size(); i > 0; i--)
 	{
 		CCollider* collider = mColliders[i - 1];
@@ -60,22 +57,16 @@ void CQuadTree::AddCollider(CCollider* collider)
 	mColliders.push_back(collider);
 }
 
-void CQuadTree::CreateNodePool(float width, float height)
+void CQuadTree::UpdateBoundary()
 {
-	int area = (int)(width * height);
+	const FVector2D& target = mRoot->mCamera->GetLookAt();
+	const FVector2D& screen = mRoot->mCamera->GetResolution();
 
-	MAX_DEPTH = 3; // temporary depth
-
-	/*
-	// approximately optimal depth for each area
-	if (area < 1000000)
-		MAX_DEPTH = 1;
-	else if (area < 2500000)
-		MAX_DEPTH = 2;
-	else if (area < 5000000)
-		MAX_DEPTH = 3;
-	*/
-
-	int totalNodes = (int)((pow(4, MAX_DEPTH + 1) - 1) / 3);
-	CMemoryPoolManager::GetInst()->CreatePool<CQTNode>(totalNodes);
+	mRoot->mBoundary = 
+	{ 
+		target.x - screen.x * 0.5f,
+		target.y - screen.y * 0.5f,
+		screen.x,
+		screen.y
+	};
 }

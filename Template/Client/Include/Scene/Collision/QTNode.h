@@ -3,6 +3,10 @@
 #include "../../Core/GameInfo.h"
 
 #define MAX_COLLIDERS_PER_NODE 10
+#define MAX_SPLIT 3
+
+class CCollider;
+class CCamera;
 
 class CQTNode
 {
@@ -13,14 +17,15 @@ public:
 	~CQTNode();
 
 private:
+	CCamera* mCamera = nullptr;
+
 	CQTNode* mParent = nullptr;
 	CQTNode* mChilds[4] = {};
-	std::vector<class CCollider*> mColliders;
+	std::vector<CCollider*> mColliders;
 
 	SDL_FRect mBoundary = {};
 
-	int mDepthLevel = 0;
-	int mMaxDepth   = 0;
+	int mSplitLevel = 0;
 
 public:
 	void Update(float DeltaTime);

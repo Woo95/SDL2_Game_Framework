@@ -10,9 +10,9 @@
 
 CPlayScene::CPlayScene()
 {
-	mSceneCollision = new CSceneCollision(1280, 720); // temporary collision area size
-
 	mCamera->SetResolution(FVector2D(1280, 720)); // temporary camera resolution size
+
+	mSceneCollision = new CSceneCollision(mCamera);
 }
 
 CPlayScene::~CPlayScene()

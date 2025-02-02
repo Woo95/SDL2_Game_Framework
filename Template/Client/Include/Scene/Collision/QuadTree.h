@@ -2,22 +2,23 @@
 
 #include "QTNode.h"
 
+class CCollider;
+class CCamera;
+
 class CQuadTree
 {
 	friend class CSceneCollision;
 
 private:
-	CQuadTree();
+	CQuadTree() = delete;	// 기본 생성자 사용 못하게 방지.
+	CQuadTree(CCamera* camera);
 	~CQuadTree();
 
 private:
 	CQTNode* mRoot = nullptr;
-	std::vector<class CCollider*> mColliders;
-
-	int MAX_DEPTH;
+	std::vector<CCollider*> mColliders;
 
 public:
-	void Init(float width, float height);
 	void Update(float DeltaTime);
 	void Render(SDL_Renderer* Renderer);
 
@@ -25,5 +26,5 @@ public:
 	void AddCollider(CCollider* collider);
 
 private:
-	void CreateNodePool(float width, float height);
+	void UpdateBoundary();
 };

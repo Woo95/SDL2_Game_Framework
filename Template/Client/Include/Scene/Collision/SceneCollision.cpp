@@ -1,14 +1,11 @@
 #include "SceneCollision.h"
 #include "QuadTree.h"
 #include "../../Entity/Component/Collider/Collider.h"
+#include "../Camera.h"
 
-CSceneCollision::CSceneCollision(int width, int height)	:
-	mWidth(width),
-	mHeight(height)
+CSceneCollision::CSceneCollision(CCamera* camera)
 {
-	mQuadTree = new CQuadTree;
-
-	mQuadTree->Init((float)mWidth, (float)mHeight);
+	mQuadTree = new CQuadTree(camera);
 }
 
 CSceneCollision::~CSceneCollision()

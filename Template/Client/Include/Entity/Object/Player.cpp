@@ -5,6 +5,7 @@
 #include "../Component/Collider/BoxCollider.h"
 #include "../../Entity/Component/Sprite/SpriteComponent.h"
 #include "../../Resource/Animation.h"
+#include "../../Scene/Scene.h"
 
 CPlayer::CPlayer() :
     mMovementComponent(nullptr),

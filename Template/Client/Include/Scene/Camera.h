@@ -23,6 +23,9 @@ protected:
 
 public:
 	const FVector2D GetRenderPos(const FVector2D& objPos) const { return objPos - mLookAt + (mResolution * 0.5f); }
+	
+	const FVector2D& GetLookAt() const { return mLookAt; };
+	const FVector2D& GetResolution() const { return mResolution; }
 
 	void SetLookAt(const FVector2D& lookAt) { mLookAt = lookAt; }
 	void SetTarget(CObject* target) { mTarget = target; }

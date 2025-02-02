@@ -4,6 +4,8 @@
 #include "../../Core/ColliderPair.h"
 
 class CCollider;
+class CCamera;
+class CQuadTree;
 
 class CSceneCollision
 {
@@ -11,11 +13,11 @@ class CSceneCollision
 
 public:
 	CSceneCollision() = delete;	// 기본 생성자 사용 못하게 방지.
-	CSceneCollision(int width, int height);
+	CSceneCollision(CCamera* camera);
 	~CSceneCollision();
 
 private:
-	class CQuadTree* mQuadTree;
+	CQuadTree* mQuadTree;
 
 	std::unordered_map<FColliderPair, bool> mPairs;
 
