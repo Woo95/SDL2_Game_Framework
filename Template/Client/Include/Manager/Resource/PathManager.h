@@ -15,7 +15,7 @@ private:
 
 public:
 	bool Init();
-	bool AddPath(const std::string& newPathKey, const char* newPathSegment, const std::string& basePathKey = BASE_PATH);
+	bool AddPath(const std::string& newPathKey, const char* newPathSegment);
 	const char* FindPath(const std::string& key);
 
 public:

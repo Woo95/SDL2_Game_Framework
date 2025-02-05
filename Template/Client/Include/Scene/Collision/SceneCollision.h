@@ -21,9 +21,6 @@ private:
 
 	std::unordered_map<FColliderPair, bool> mPairs;
 
-	int mWidth;
-	int mHeight;
-
 public:
 	void Update(float DeltaTime);
 	void Render(SDL_Renderer* Renderer);

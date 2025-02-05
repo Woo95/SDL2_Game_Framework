@@ -21,7 +21,7 @@ bool CTextureManager::Init()
 	return true;
 }
 
-bool CTextureManager::LoadTexture(const std::string& key, const char* fileName, const std::string& basePathKey)
+bool CTextureManager::LoadTexture(const std::string& key, const char* fileName)
 {
 	std::shared_ptr<CTexture> texture = FindTexture(key);
 
@@ -29,7 +29,7 @@ bool CTextureManager::LoadTexture(const std::string& key, const char* fileName, 
 	{
 		std::shared_ptr<CTexture> newTexture = std::make_shared<CTexture>();
 
-		if (newTexture->LoadTexture(fileName, basePathKey))
+		if (newTexture->LoadTexture(fileName))
 		{
 			mTextures[key] = newTexture;
 

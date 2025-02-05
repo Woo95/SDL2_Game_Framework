@@ -13,9 +13,9 @@ CTexture::~CTexture()
 	SDL_DestroyTexture(mTexture);
 }
 
-bool CTexture::LoadTexture(const char* fileName, const std::string& texturePathKey)
+bool CTexture::LoadTexture(const char* fileName)
 {
-	std::string imgPath = CPathManager::GetInst()->FindPath(texturePathKey);
+	std::string imgPath = CPathManager::GetInst()->FindPath(TEXTURE_PATH);
 	imgPath += "\\" + (std::string)fileName;
 
 	// 이미지를 CPU 메모리로 읽어들여 SDL_Surface로 저장

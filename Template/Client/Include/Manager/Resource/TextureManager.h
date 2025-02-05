@@ -18,6 +18,6 @@ private:
 public:
 	bool Init();
 
-	bool LoadTexture(const std::string& key, const char* fileName, const std::string& basePathKey = TEXTURE_PATH);
+	bool LoadTexture(const std::string& key, const char* fileName);
 	std::shared_ptr<CTexture> FindTexture(const std::string& key);
 };

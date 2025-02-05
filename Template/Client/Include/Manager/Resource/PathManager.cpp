@@ -22,18 +22,19 @@ bool CPathManager::Init()
 	SDL_free(basePath);
 
 	// BASE_PATH를 기준으로 새로운 경로 추가
-	AddPath(TEXTURE_PATH, "Texture\\", BASE_PATH);
-	AddPath(SOUND_PATH, "Sound\\", BASE_PATH);
+	AddPath(TEXTURE_PATH, "Texture\\");
+	AddPath(DATA_PATH,    "Data\\");
+	AddPath(SOUND_PATH,   "Sound\\");
 
 	return true;
 }
 
-bool CPathManager::AddPath(const std::string& newPathKey, const char* newPathSegment, const std::string& basePathKey)
+bool CPathManager::AddPath(const std::string& newPathKey, const char* newPathSegment)
 {
 	if (FindPath(newPathKey))
 		return false;
 
-	std::string newPath = FindPath(basePathKey);
+	std::string newPath = FindPath(BASE_PATH);
 
 	if (!newPath.empty())
 		newPath += newPathSegment;
