@@ -4,20 +4,25 @@
 
 class CAssetManager
 {
+	friend class CGameManager;
+
 private:
 	CAssetManager();
 	~CAssetManager();
 
 private:
+	class CDataManager*      mDataManager;
+
 	class CTextureManager*   mTextureManager;
 	class CAnimationManager* mAnimationManager;
 
 	static CAssetManager* mInst;
 
-public:
+private:
 	bool Init();
+
+public:
 	void LoadTextures();
-	void CreateAnimations();
 
 	CTextureManager*   GetTextureManager()   const { return mTextureManager; }
 	CAnimationManager* GetAnimationManager() const { return mAnimationManager; }

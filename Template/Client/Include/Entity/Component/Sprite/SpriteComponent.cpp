@@ -17,8 +17,10 @@ CSpriteComponent::CSpriteComponent() :
 
 CSpriteComponent::~CSpriteComponent()
 {
-	mTexture   = nullptr;
-	mAnimation = nullptr;
+	mTexture = nullptr;
+	
+	if (mAnimation)
+		mAnimation->Release();
 }
 
 bool CSpriteComponent::Init()
@@ -62,7 +64,9 @@ void CSpriteComponent::SetTexture(const std::string& key)
 
 void CSpriteComponent::SetAnimation(const std::string& key)
 {
-	mAnimation = CAssetManager::GetInst()->GetAnimationManager()->FindAnimation(key);
+	CAnimation* base = CAssetManager::GetInst()->GetAnimationManager()->FindAnimation(key);
+
+	mAnimation = base->Clone();
 	mAnimation->mOwner = this;
 }
 

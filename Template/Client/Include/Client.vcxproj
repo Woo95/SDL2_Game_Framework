@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Manager\Resource\DataManager.h" />
     <ClInclude Include="Scene\Camera.h" />
     <ClInclude Include="Entity\Object\Background.h" />
     <ClInclude Include="Core\AniUtils.h" />
@@ -143,6 +144,7 @@
     <ClInclude Include="Entity\Component\Sprite\SpriteComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Manager\Resource\DataManager.cpp" />
     <ClCompile Include="Scene\Camera.cpp" />
     <ClCompile Include="Entity\Object\Background.cpp" />
     <ClCompile Include="Scene\Layer.cpp" />

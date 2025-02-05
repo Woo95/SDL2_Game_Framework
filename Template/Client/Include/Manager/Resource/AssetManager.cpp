@@ -1,4 +1,5 @@
 #include "AssetManager.h"
+#include "DataManager.h"
 #include "TextureManager.h"
 #include "AnimationManager.h"
 #include "../../Resource/Animation.h"
@@ -6,6 +7,7 @@
 CAssetManager* CAssetManager::mInst = nullptr;
 
 CAssetManager::CAssetManager() :
+	mDataManager(nullptr),
 	mTextureManager(nullptr),
 	mAnimationManager(nullptr)
 {
@@ -13,17 +15,22 @@ CAssetManager::CAssetManager() :
 
 CAssetManager::~CAssetManager()
 {
+	SAFE_DELETE(mDataManager);
 	SAFE_DELETE(mAnimationManager);
 	SAFE_DELETE(mTextureManager);
 }
 
 bool CAssetManager::Init()
 {
+	mDataManager      = new CDataManager;
+
 	mTextureManager   = new CTextureManager;
 	mAnimationManager = new CAnimationManager;
 
 	if (!mTextureManager->Init())
 		return false;
+
+	mDataManager->LoadAllAnimationData();
 
 	LoadTextures();
 
@@ -38,27 +45,4 @@ void CAssetManager::LoadTextures()
 	mTextureManager->LoadTexture("Bullet", "Bullet.png");
 	mTextureManager->LoadTexture("Stage1", "Mad_Forest_stage_1.png");
 	mTextureManager->LoadTexture("Stage2", "Inlaid_Library_stage_2.png");
-
-	CreateAnimations();
-}
-
-void CAssetManager::CreateAnimations()
-{
-	std::shared_ptr<CAnimation> animation;
-	std::vector<SDL_Rect> frames = { { 0,  0, 31, 32 }, { 31, 0, 31, 32 }, { 62, 0, 31, 32 }, { 94, 0, 31, 32 } };
-
-	mAnimationManager->CreateAnimation("Antonio_Animation", EAnimationType::NONE);
-	animation = mAnimationManager->FindAnimation("Antonio_Animation");
-	animation->SetAnimationStateInfo(EAnimationState::NONE, true, 0.0f);
-	animation->AddFrame(EAnimationState::NONE, frames[0]);
-
-	mAnimationManager->CreateAnimation("Imelda_Animation", EAnimationType::TIME);
-	animation = mAnimationManager->FindAnimation("Imelda_Animation");
-	animation->SetAnimationStateInfo(EAnimationState::WALK, true, 0.1f);
-	animation->AddFrames(EAnimationState::WALK, frames);
-
-	mAnimationManager->CreateAnimation("Pasqualina_Animation", EAnimationType::MOVE);
-	animation = mAnimationManager->FindAnimation("Pasqualina_Animation");
-	animation->SetAnimationStateInfo(EAnimationState::WALK, true, 150.0f);
-	animation->AddFrames(EAnimationState::WALK, frames);
 }

@@ -1,19 +1,32 @@
 #include "Animation.h"
 #include "../Entity/Component/Sprite/SpriteComponent.h"
+#include "../Manager/MemoryPoolManager.h"
 
-CAnimation::CAnimation()
+CAnimation::CAnimation() :
+	mOwner(nullptr),
+	mCurrentState(EAnimationState::NONE),
+	mPrevPos(FVector2D::ZERO),
+	mFrameInterval(0.0f),
+	mCurrIdx(0)
 {
 }
 
 CAnimation::~CAnimation()
 {
+	std::unordered_map<EAnimationState, std::shared_ptr<FAnimationData>>::iterator iter    = mAnimationStates.begin();
+	std::unordered_map<EAnimationState, std::shared_ptr<FAnimationData>>::iterator iterEnd = mAnimationStates.end();
+
+	for (; iter != iterEnd; iter++)
+	{
+		iter->second = nullptr;
+	}
 }
 
 void CAnimation::Update(float DeltaTime)
 {
-	FAnimationStateInfo& animation = mAnimationStates[mCurrentState];
+	FAnimationData* aniData = mAnimationStates[mCurrentState].get();
 
-	switch (mCurrentType)
+	switch (aniData->type)
 	{
 		case EAnimationType::NONE:
 			break;
@@ -22,20 +35,19 @@ void CAnimation::Update(float DeltaTime)
 		{
 			const FVector2D& currentPos = mOwner->GetTransform()->GetWorldPos();
 
-			static FVector2D prevPos = currentPos;
-			FVector2D posDelta = currentPos - prevPos;
+			FVector2D posDelta = currentPos - mPrevPos;
 
 			mFrameInterval += posDelta.Length();
 
-			float frameTransitionDistance = animation.IntervalPerFrame / animation.frames.size();
+			float frameTransitionDistance = aniData->intervalPerFrame / aniData->frames.size();
 
 			if (mFrameInterval >= frameTransitionDistance)
 			{
-				animation.currentIdx = (animation.currentIdx + 1) % animation.frames.size();
+				mCurrIdx = (mCurrIdx + 1) % aniData->frames.size();
 
 				mFrameInterval -= frameTransitionDistance;
 			}
-			prevPos = currentPos;
+			mPrevPos = currentPos;
 		}
 		break;
 
@@ -43,15 +55,15 @@ void CAnimation::Update(float DeltaTime)
 		{
 			mFrameInterval += DeltaTime;
 
-			if (mFrameInterval >= animation.IntervalPerFrame)
+			if (mFrameInterval >= aniData->intervalPerFrame)
 			{
-				if (animation.isLoop)
-					animation.currentIdx = (animation.currentIdx + 1) % animation.frames.size();
+				if (aniData->isLoop)
+					mCurrIdx = (mCurrIdx + 1) % aniData->frames.size();
 				else
 				{
-					if (animation.currentIdx < animation.frames.size() - 1)
+					if (mCurrIdx < aniData->frames.size() - 1)
 					{
-						animation.currentIdx++;
+						mCurrIdx++;
 					}
 				}
 				mFrameInterval = 0.0f;
@@ -61,13 +73,16 @@ void CAnimation::Update(float DeltaTime)
 	}
 }
 
-void CAnimation::AddFrame(EAnimationState state, SDL_Rect frame)
+CAnimation* CAnimation::Clone() const
 {
-	mAnimationStates[state].frames.push_back(frame);
+	CAnimation* clone = CMemoryPoolManager::GetInst()->Allocate<CAnimation>();
+
+	*clone = *this; // 얕은 복사
+
+	return clone;
 }
 
-void CAnimation::AddFrames(EAnimationState state, std::vector<SDL_Rect> frames)
+void CAnimation::Release()
 {
-	FAnimationStateInfo& aniInfo = mAnimationStates[state];
-	aniInfo.frames.insert(aniInfo.frames.end(), frames.begin(), frames.end());
+	CMemoryPoolManager::GetInst()->Deallocate<CAnimation>(this);
 }

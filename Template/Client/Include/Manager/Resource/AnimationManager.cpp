@@ -1,32 +1,39 @@
 #include "AnimationManager.h"
 #include "../../Resource/Animation.h"
+#include "../MemoryPoolManager.h"
 
 CAnimationManager::CAnimationManager()
 {
+    CMemoryPoolManager::GetInst()->CreatePool<CAnimation>(100);
 }
 
 CAnimationManager::~CAnimationManager()
 {
-    mAnimations.clear();
+    std::unordered_map<std::string, CAnimation*>::iterator iter    = mAnimations.begin();
+    std::unordered_map<std::string, CAnimation*>::iterator iterEnd = mAnimations.end();
+
+    for (; iter != iterEnd; iter++)
+    {
+        (iter->second)->Release();
+    }
+    CMemoryPoolManager::GetInst()->DeletePool<CAnimation>();
 }
 
-void CAnimationManager::CreateAnimation(const std::string& key, EAnimationType type)
+void CAnimationManager::CreateAnimation(const std::string& key)
 {
-    std::shared_ptr<CAnimation> animation = FindAnimation(key);
+    CAnimation* animation = FindAnimation(key);
 
     if (!animation)
     {
-        std::shared_ptr<CAnimation> newAnimation = std::make_shared<CAnimation>();
-
-        newAnimation->SetCurrentType(type);
+        CAnimation* newAnimation = CMemoryPoolManager::GetInst()->Allocate<CAnimation>();
 
         mAnimations[key] = newAnimation;
     }
 }
 
-std::shared_ptr<CAnimation> CAnimationManager::FindAnimation(const std::string& key)
+CAnimation* CAnimationManager::FindAnimation(const std::string& key)
 {
-    std::unordered_map<std::string, std::shared_ptr<CAnimation>>::iterator iter = mAnimations.find(key);
+    std::unordered_map<std::string, CAnimation*>::iterator iter = mAnimations.find(key);
 
     if (iter == mAnimations.end())
         return nullptr;

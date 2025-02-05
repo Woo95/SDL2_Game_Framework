@@ -13,7 +13,7 @@ public:
 
 private:
 	std::shared_ptr<CTexture>   mTexture;
-	std::shared_ptr<CAnimation> mAnimation;
+	CAnimation* mAnimation;
 
 	SDL_RendererFlip mFlip;
 
@@ -26,8 +26,8 @@ private:
 	virtual void Release() final;
 
 public:
-	std::shared_ptr<CTexture>   GetTexture()   const { return mTexture; }
-	std::shared_ptr<CAnimation> GetAnimation() const { return mAnimation; }
+	std::shared_ptr<CTexture> GetTexture() const { return mTexture; }
+	CAnimation* GetAnimation() const { return mAnimation; }
 
 	void SetTexture(const std::string& key);
 	void SetAnimation(const std::string& key);

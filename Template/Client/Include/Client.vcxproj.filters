@@ -447,6 +447,9 @@
     <ClInclude Include="Scene\Camera.h">
       <Filter>Framework\03. Scene\02. Camera</Filter>
     </ClInclude>
+    <ClInclude Include="Manager\Resource\DataManager.h">
+      <Filter>Framework\02. Manager\01. Resource</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Timer.cpp">
@@ -550,6 +553,9 @@
     </ClCompile>
     <ClCompile Include="Scene\Camera.cpp">
       <Filter>Framework\03. Scene\02. Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager\Resource\DataManager.cpp">
+      <Filter>Framework\02. Manager\01. Resource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

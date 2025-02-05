@@ -1,12 +1,14 @@
 #pragma once
 
 #include "../Core/AniUtils.h"
+#include "../Core/Vector2D.h"
 
 class CSpriteComponent;
 class CTexture;
 
 class CAnimation
 {
+	friend class CAnimationManager;
 	friend class CSpriteComponent;
 
 public:
@@ -14,40 +16,43 @@ public:
 	~CAnimation();
 
 protected:
-	CSpriteComponent* mOwner = nullptr;
+	CSpriteComponent* mOwner;
 
-	std::unordered_map<EAnimationState, FAnimationStateInfo> mAnimationStates;
+	std::unordered_map<EAnimationState, std::shared_ptr<FAnimationData>> mAnimationStates;
 
-	EAnimationType  mCurrentType  = EAnimationType::NONE;
-	EAnimationState mCurrentState = EAnimationState::NONE;
-	float mFrameInterval = 0.0f;
+	EAnimationState mCurrentState;
+
+	FVector2D mPrevPos;
+
+	float mFrameInterval;
+	int   mCurrIdx;
 
 public:
 	void Update(float DeltaTime);
 
 public:
-	void AddFrame(EAnimationState state, SDL_Rect frame);
-	void AddFrames(EAnimationState state, std::vector<SDL_Rect> frames);
-
-	const SDL_Rect& GetCurrentFrame() { return mAnimationStates[mCurrentState].GetFrame(); }
-
-	void SetCurrentType(EAnimationType type) 
+	const SDL_Rect& GetCurrentFrame()
 	{ 
-		mCurrentType = type;
+		return mAnimationStates[mCurrentState].get()->frames[mCurrIdx];
 	}
+
 	void SetCurrentState(EAnimationState state)
 	{
 		if (mCurrentState != state)
 		{
 			mCurrentState = state;
-			mAnimationStates[state].currentIdx = 0;
 			mFrameInterval = 0.0f;
+			mCurrIdx = 0;
 		}
 	};
 
-	void SetAnimationStateInfo(EAnimationState state, bool loop, float time)
+	void AddAnimationState(EAnimationState state, std::shared_ptr<FAnimationData> data)
 	{
-		mAnimationStates[state].isLoop = loop;
-		mAnimationStates[state].IntervalPerFrame = time;
+		mAnimationStates[state] = data;
 	}
+
+	CAnimation* Clone() const;
+
+private:
+	void Release();
 };

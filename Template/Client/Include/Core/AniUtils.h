@@ -17,16 +17,12 @@ enum class EAnimationState : unsigned char
 	JUMP
 };
 
-struct FAnimationStateInfo
+struct FAnimationData
 {
-    bool  isLoop = true;
-    float IntervalPerFrame = 0.1f;
+	EAnimationType type = EAnimationType::NONE;
 
-    std::vector<SDL_Rect> frames;
-    int currentIdx = 0;
+	bool  isLoop = 0;
+	float intervalPerFrame = 0;
 
-    const SDL_Rect& GetFrame() const
-    {
-        return frames[currentIdx];
-    }
+	std::vector<SDL_Rect> frames;
 };
