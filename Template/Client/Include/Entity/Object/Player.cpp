@@ -29,7 +29,7 @@ bool CPlayer::Init()
     // 충돌체 컴포넌트 만들기
     mColliderComponent = AllocateComponent<CBoxCollider>("collider", mMovementComponent);
 
-    // 위치 설정 (충돌체  컴포넌트)
+    // 위치 설정 (충돌체 컴포넌트)
     CTransform* colliderTrans = mColliderComponent->GetTransform();
     colliderTrans->SetWorldScale(50.f, 75.f);
     colliderTrans->SetPivot(0.5f, 0.5f);
@@ -37,7 +37,7 @@ bool CPlayer::Init()
     // 스프라이트 컴포넌트 만들기
     mSpriteComponent = AllocateComponent<CSpriteComponent>("sprite", mColliderComponent);
     mSpriteComponent->SetTexture("Pasqualina");
-    mSpriteComponent->SetAnimation("Pasqualina_Animation");
+    mSpriteComponent->SetAnimation("Pasqualina");
     mSpriteComponent->GetAnimation()->SetCurrentState(EAnimationState::WALK);
     
     // 위치 설정 (스프라이트 컴포넌트)

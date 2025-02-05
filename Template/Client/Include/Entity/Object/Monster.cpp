@@ -21,10 +21,10 @@ bool CMonster::Init()
     collider->GetTransform()->SetPivot(0.5f, 0.5f);
 
     CSpriteComponent* sprite = AllocateComponent<CSpriteComponent>("sprite", collider);
-    sprite->SetTexture("Antonio");
-    sprite->SetAnimation("Antonio_Animation");
-    sprite->GetAnimation()->SetCurrentState(EAnimationState::NONE);
-    
+    sprite->SetTexture("Imelda");
+    sprite->SetAnimation("Imelda");
+    sprite->GetAnimation()->SetCurrentState(EAnimationState::WALK);
+
     sprite->GetTransform()->SetWorldScale(75.f, 75.f);
     sprite->GetTransform()->SetPivot(0.5f, 0.5f);
 
