@@ -8,8 +8,6 @@ CSceneManager* CSceneManager::mInst = nullptr;
 CSceneManager::CSceneManager()
 {
 	CMemoryPoolManager::GetInst()->CreatePool<CLayer>(ELayer::Type::MAX);
-
-	mScene.push(new CMenuScene);
 }
 
 CSceneManager::~CSceneManager()
@@ -25,8 +23,7 @@ CSceneManager::~CSceneManager()
 
 bool CSceneManager::Init()
 {
-	if (mScene.empty() || !mScene.top()->Enter())
-		return false;
+	Change(EScene::State::MENU);
 
 	return true;
 }
@@ -46,21 +43,46 @@ void CSceneManager::Render(SDL_Renderer* Renderer)
 	mScene.top()->Render(Renderer);
 }
 
-void CSceneManager::Change(EScene::State ESceneState)
+void CSceneManager::Change(EScene::State state)
 {
+	// 새로운 씬 생성 및 텍스쳐 로드
+	CScene* newScene = GetSceneFromState(state);
+	newScene->LoadTextures();
+
+	// 이전 씬 정리 및 텍스쳐 언로드
 	if (!mScene.empty())
 	{
-		SAFE_DELETE(mScene.top());
-		mScene.pop();
+		CScene* oldScene = mScene.top();
+
+		// 새로운 씬에서 로드된 텍스쳐 키를 이전 씬에서 삭제
+		for (const std::string& key : newScene->mTextureKeys)
+			oldScene->mTextureKeys.erase(key);
+
+		oldScene->UnloadTextures();
+
+		if (oldScene->Exit())
+		{
+			SAFE_DELETE(oldScene);
+			mScene.pop();
+		}
 	}
 
-	switch (ESceneState)
+	// 새로운 씬 추가
+	mScene.push(newScene);
+	mScene.top()->Enter();
+}
+
+CScene* CSceneManager::GetSceneFromState(EScene::State state)
+{
+	CScene* newScene = nullptr;
+
+	switch (state)
 	{
 	case EScene::MENU:
-		mScene.push(new CMenuScene);
+		newScene = new CMenuScene;
 		break;
 	case EScene::PLAY:
-		mScene.push(new CPlayScene);
+		newScene = new CPlayScene;
 		break;
 	case EScene::RESULT:
 		// mScene.push(new CResultScene);
@@ -69,5 +91,5 @@ void CSceneManager::Change(EScene::State ESceneState)
 		break;
 	}
 
-	Init();
+	return newScene;
 }

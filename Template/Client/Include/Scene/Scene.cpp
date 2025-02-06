@@ -1,6 +1,8 @@
 #include "Scene.h"
 #include "../Scene/Collision/SceneCollision.h"
 #include "Camera.h"
+#include "../Manager/Resource/AssetManager.h"
+#include "../Manager/Resource/TextureManager.h"
 
 CScene::CScene() :
     mSceneCollision(nullptr),
@@ -49,4 +51,14 @@ void CScene::Render(SDL_Renderer* Renderer)
 
     if (mSceneCollision)
         mSceneCollision->Render(Renderer);
+}
+
+void CScene::UnloadTextures()
+{
+    CTextureManager* TM = CAssetManager::GetInst()->GetTextureManager();
+
+    for (const std::string& key : mTextureKeys)
+    {
+        TM->UnloadTexture(key);
+    }
 }

@@ -23,7 +23,6 @@ CAssetManager::~CAssetManager()
 bool CAssetManager::Init()
 {
 	mDataManager      = new CDataManager;
-
 	mTextureManager   = new CTextureManager;
 	mAnimationManager = new CAnimationManager;
 
@@ -32,17 +31,5 @@ bool CAssetManager::Init()
 
 	mDataManager->LoadAllAnimationData();
 
-	LoadTextures();
-
 	return true;
-}
-
-void CAssetManager::LoadTextures()
-{
-	mTextureManager->LoadTexture("Antonio", "Antonio.png");
-	mTextureManager->LoadTexture("Imelda", "Imelda.png");
-	mTextureManager->LoadTexture("Pasqualina", "Pasqualina.png");
-	mTextureManager->LoadTexture("Bullet", "Bullet.png");
-	mTextureManager->LoadTexture("Stage1", "Mad_Forest_stage_1.png");
-	mTextureManager->LoadTexture("Stage2", "Inlaid_Library_stage_2.png");
 }

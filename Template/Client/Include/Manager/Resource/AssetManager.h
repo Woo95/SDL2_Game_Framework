@@ -22,8 +22,6 @@ private:
 	bool Init();
 
 public:
-	void LoadTextures();
-
 	CTextureManager*   GetTextureManager()   const { return mTextureManager; }
 	CAnimationManager* GetAnimationManager() const { return mAnimationManager; }
 

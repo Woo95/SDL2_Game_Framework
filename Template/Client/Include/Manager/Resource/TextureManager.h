@@ -3,6 +3,7 @@
 #include "../../Core/GameInfo.h"
 
 class CTexture;
+class CScene;
 
 class CTextureManager
 {
@@ -18,6 +19,7 @@ private:
 public:
 	bool Init();
 
-	bool LoadTexture(const std::string& key, const char* fileName);
+	bool LoadTexture  (const std::string& key, const char* fileName, CScene* scene = nullptr);
+	bool UnloadTexture(const std::string& key);
 	std::shared_ptr<CTexture> FindTexture(const std::string& key);
 };

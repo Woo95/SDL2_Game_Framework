@@ -5,6 +5,8 @@
 
 class CSceneManager
 {
+	friend class CGameManager;
+
 private:
 	CSceneManager();
 	~CSceneManager();
@@ -15,13 +17,16 @@ private:
 	static CSceneManager* mInst;
 
 public:
+	void Change(EScene::State state);
+
+private:
 	bool Init();
 	void Update(float DeltaTime);
 	void LateUpdate(float DeltaTime);
 	void Render(SDL_Renderer* Renderer);
 
-	void Change(EScene::State ESceneState);
-
+	CScene* GetSceneFromState(EScene::State state);
+	
 public:
 	static CSceneManager* GetInst()
 	{
@@ -29,6 +34,7 @@ public:
 			mInst = new CSceneManager;
 		return mInst;
 	}
+private:
 	static void DestroyInst()
 	{
 		SAFE_DELETE(mInst);

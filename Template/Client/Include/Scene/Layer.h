@@ -23,7 +23,6 @@ protected:
 
 public:
 	const std::vector<CObject*>& GetObjectVec() { return mObjects; }
-	void SetSortType(ESort::Type type) { mSort = type; }
 
 	void AddObject(CObject* obj)
 	{

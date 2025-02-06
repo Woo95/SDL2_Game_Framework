@@ -56,3 +56,14 @@ void CPlayScene::Render(SDL_Renderer* Renderer)
 {
 	CScene::Render(Renderer);
 }
+
+void CPlayScene::LoadTextures()
+{
+	CTextureManager* TM = CAssetManager::GetInst()->GetTextureManager();
+
+	TM->LoadTexture("Antonio",    "Antonio.png",            this);
+	TM->LoadTexture("Imelda",     "Imelda.png",             this);
+	TM->LoadTexture("Pasqualina", "Pasqualina.png",         this);
+	TM->LoadTexture("Bullet",     "Bullet.png",             this);
+	TM->LoadTexture("Stage1",     "Mad_Forest_stage_1.png", this);
+}

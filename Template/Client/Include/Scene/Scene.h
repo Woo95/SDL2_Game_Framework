@@ -7,6 +7,7 @@
 
 class CSceneCollision;
 class CCamera;
+class CTexture;
 
 // 추상 클래스 선언 - 인스턴스화 불가 (abstract 키워드로 명시 안하더라도, 순수 가상 함수가 있으면 자동으로 추상 클래스)
 class CScene abstract	
@@ -24,6 +25,8 @@ protected:
     CSceneCollision* mSceneCollision;
     CCamera* mCamera;
 
+    std::unordered_set<std::string> mTextureKeys;
+
 protected:
 	virtual bool Enter() = 0;
 	virtual bool Exit()  = 0;
@@ -32,11 +35,14 @@ protected:
     virtual void LateUpdate(float DeltaTime);
     virtual void Render(SDL_Renderer* Renderer);
 
+    virtual void LoadTextures() = 0;
+    void UnloadTextures();
+
 public:
     CSceneCollision* GetCollision() const { return mSceneCollision; }
     CCamera* GetCamera() const { return mCamera; }
 
-    void SetLayerSortType(ELayer::Type type, ESort::Type sort) { mLayers[type]->SetSortType(sort); }
+    void AddTextureKey(const std::string& key) { mTextureKeys.insert(key); }
 
     template <typename T, int initialCapacity = 50>
     T* AllocateObject(const std::string& name, ELayer::Type type = ELayer::Type::OBJECT)

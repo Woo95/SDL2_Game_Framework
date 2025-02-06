@@ -1,5 +1,6 @@
 #include "TextureManager.h"
 #include "../../Resource/Texture.h"
+#include "../../Scene/Scene.h"
 
 CTextureManager::CTextureManager()
 {
@@ -21,11 +22,12 @@ bool CTextureManager::Init()
 	return true;
 }
 
-bool CTextureManager::LoadTexture(const std::string& key, const char* fileName)
+bool CTextureManager::LoadTexture(const std::string& key, const char* fileName, CScene* scene)
 {
-	std::shared_ptr<CTexture> texture = FindTexture(key);
+	if (scene)
+		scene->AddTextureKey(key);
 
-	if (!texture)
+	if (!FindTexture(key))
 	{
 		std::shared_ptr<CTexture> newTexture = std::make_shared<CTexture>();
 
@@ -35,6 +37,17 @@ bool CTextureManager::LoadTexture(const std::string& key, const char* fileName)
 
 			return true;
 		}
+	}
+	return false;
+}
+
+bool CTextureManager::UnloadTexture(const std::string& key)
+{
+	if (FindTexture(key))
+	{
+		mTextures.erase(key);
+
+		return true;
 	}
 	return false;
 }
