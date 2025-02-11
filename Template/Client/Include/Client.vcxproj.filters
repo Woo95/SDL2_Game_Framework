@@ -450,6 +450,9 @@
     <ClInclude Include="Manager\Resource\DataManager.h">
       <Filter>Framework\02. Manager\01. Resource</Filter>
     </ClInclude>
+    <ClInclude Include="Core\InputUtils.h">
+      <Filter>Framework\01. Core\Lib\Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Timer.cpp">

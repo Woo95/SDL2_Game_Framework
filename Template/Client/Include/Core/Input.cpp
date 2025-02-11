@@ -10,7 +10,7 @@ CInput::~CInput()
 {
 	// 이 코드블럭 안의 지역변수는 여기에서만 메모리가 유지된다.
 	{
-		std::unordered_map<SDL_Scancode, FKeyInfo*>::iterator	iter = mMapKeyInfo.begin();
+		std::unordered_map<SDL_Scancode, FKeyInfo*>::iterator	iter    = mMapKeyInfo.begin();
 		std::unordered_map<SDL_Scancode, FKeyInfo*>::iterator	iterEnd = mMapKeyInfo.end();
 
 #pragma region iter->
@@ -29,16 +29,16 @@ CInput::~CInput()
 
 	// 이 코드블럭 안의 지역변수는 여기에서만 메모리가 유지된다.
 	{
-		std::unordered_map<std::string, FBindKey*>::iterator	iter = mMapBindKey.begin();
+		std::unordered_map<std::string, FBindKey*>::iterator	iter    = mMapBindKey.begin();
 		std::unordered_map<std::string, FBindKey*>::iterator	iterEnd = mMapBindKey.end();
 
 		for (; iter != iterEnd; ++iter)
 		{
-			for (int i = 0; i < EKeyType::Max; ++i)
+			for (int i = 0; i < EKey::Type::MAX; i++)
 			{
 				size_t	size = iter->second->vecFunction[i].size();
 
-				for (size_t j = 0; j < size; ++j)
+				for (size_t j = 0; j < size; j++)
 				{
 					SAFE_DELETE(iter->second->vecFunction[i][j]);
 				}
@@ -74,25 +74,25 @@ void CInput::UpdateKeyInfo()
 {
 	// SDL 키보드 상태를 나타내는 배열을 가져와 KeyState 포인터가 이를 가리킨다.
 	// 배열의 각 요소는 키의 상태를 나타내며, 0은 안 눌림, 1은 눌림을 의미한다.
-	const Uint8* KeyState = SDL_GetKeyboardState(nullptr);
+	const Uint8* keyState = SDL_GetKeyboardState(nullptr);
 
-	mCtrl	= KeyState[SDL_SCANCODE_LCTRL];
-	mAlt	= KeyState[SDL_SCANCODE_LALT];
-	mShift	= KeyState[SDL_SCANCODE_LSHIFT];
+	mCtrl	= keyState[SDL_SCANCODE_LCTRL];
+	mAlt	= keyState[SDL_SCANCODE_LALT];
+	mShift	= keyState[SDL_SCANCODE_LSHIFT];
 
-	std::unordered_map<SDL_Scancode, FKeyInfo*>::iterator	iter = mMapKeyInfo.begin();
-	std::unordered_map<SDL_Scancode, FKeyInfo*>::iterator	iterEnd = mMapKeyInfo.end();
+	std::unordered_map<SDL_Scancode, FKeyInfo*>::iterator iter    = mMapKeyInfo.begin();
+	std::unordered_map<SDL_Scancode, FKeyInfo*>::iterator iterEnd = mMapKeyInfo.end();
 
 	for (; iter != iterEnd; ++iter)
 	{
-		bool	KeyPush = false;
+		bool keyPush = false;
 
-		if (KeyState[iter->second->Key])
+		if (keyState[iter->second->Key])
 		{
-			KeyPush = true;
+			keyPush = true;
 		}
 
-		if (KeyPush)
+		if (keyPush)
 		{
 			// 처음 누르기 시작한 단계.
 			if (!iter->second->Press && !iter->second->Hold)
@@ -121,8 +121,8 @@ void CInput::UpdateKeyInfo()
 // 등록된 키 정보를 비교하여, 해당 키 상태에 따라 등록된 함수들을 호출
 void CInput::UpdateBindFunction()
 {
-	std::unordered_map<std::string, FBindKey*>::iterator	iter = mMapBindKey.begin();
-	std::unordered_map<std::string, FBindKey*>::iterator	iterEnd = mMapBindKey.end();
+	std::unordered_map<std::string, FBindKey*>::iterator iter    = mMapBindKey.begin();
+	std::unordered_map<std::string, FBindKey*>::iterator iterEnd = mMapBindKey.end();
 
 	for (; iter != iterEnd; ++iter)
 	{
@@ -133,17 +133,17 @@ void CInput::UpdateBindFunction()
 			continue;
 
 		if (bindKey->Key->Press)
-			ExecuteBindFunctions(bindKey, EKeyType::Press);
+			ExecuteBindFunctions(bindKey, EKey::Type::Press);
 		if (bindKey->Key->Hold)
-			ExecuteBindFunctions(bindKey, EKeyType::Hold);
+			ExecuteBindFunctions(bindKey, EKey::Type::Hold);
 		if (bindKey->Key->Release)
-			ExecuteBindFunctions(bindKey, EKeyType::Release);
+			ExecuteBindFunctions(bindKey, EKey::Type::Release);
 	}
 }
 
-void CInput::ExecuteBindFunctions(FBindKey* BindKey, EKeyType::Type Type)
+void CInput::ExecuteBindFunctions(FBindKey* bindKey, EKey::Type type)
 {
-	std::vector<FBindFunction*>& functions = BindKey->vecFunction[Type];
+	std::vector<FBindFunction*>& functions = bindKey->vecFunction[type];
 
 	size_t size = functions.size();
 	for (size_t i = 0; i < size; ++i)
@@ -152,9 +152,9 @@ void CInput::ExecuteBindFunctions(FBindKey* BindKey, EKeyType::Type Type)
 	}
 }
 
-FKeyInfo* CInput::FindKeyInfo(SDL_Scancode Key)
+FKeyInfo* CInput::FindKeyInfo(SDL_Scancode key)
 {
-	std::unordered_map<SDL_Scancode, FKeyInfo*>::iterator	iter = mMapKeyInfo.find(Key);
+	std::unordered_map<SDL_Scancode, FKeyInfo*>::iterator iter = mMapKeyInfo.find(key);
 
 	if (iter == mMapKeyInfo.end())
 		return nullptr;
@@ -162,9 +162,9 @@ FKeyInfo* CInput::FindKeyInfo(SDL_Scancode Key)
 	return iter->second;
 }
 
-FBindKey* CInput::FindBindKey(const std::string& Key)
+FBindKey* CInput::FindBindKey(const std::string& key)
 {
-	std::unordered_map<std::string, FBindKey*>::iterator	iter = mMapBindKey.find(Key);
+	std::unordered_map<std::string, FBindKey*>::iterator iter = mMapBindKey.find(key);
 
 	if (iter == mMapBindKey.end())
 		return nullptr;
@@ -172,31 +172,30 @@ FBindKey* CInput::FindBindKey(const std::string& Key)
 	return iter->second;
 }
 
-
-bool CInput::CreateBindKey(const std::string& Key, SDL_Scancode Value)
+bool CInput::CreateBindKey(const std::string& key, SDL_Scancode value)
 { 
-	FBindKey* BindKey = FindBindKey(Key);
+	FBindKey* bindKey = FindBindKey(key);
 
-	if (BindKey)
+	if (bindKey)
 		return false;
 
-	BindKey = new FBindKey;
+	bindKey = new FBindKey;
 
 	// 등록 안된 키일 경우 새로 만들어준다.
-	FKeyInfo* KeyInfo = FindKeyInfo(Value);
-	if (!KeyInfo)
+	FKeyInfo* keyInfo = FindKeyInfo(value);
+	if (!keyInfo)
 	{
-		KeyInfo = new FKeyInfo;
+		keyInfo = new FKeyInfo;
 
-		KeyInfo->Key = Value;
+		keyInfo->Key = value;
 
-		mMapKeyInfo.insert(std::make_pair(Value, KeyInfo));
+		mMapKeyInfo.insert(std::make_pair(value, keyInfo));
 	}
 
-	BindKey->Key = KeyInfo;
-	BindKey->Name = Key;
+	bindKey->Key = keyInfo;
+	bindKey->Name = key;
 
-	mMapBindKey.insert(std::make_pair(Key, BindKey));
+	mMapBindKey.insert(std::make_pair(key, bindKey));
 
 	return true;
 }

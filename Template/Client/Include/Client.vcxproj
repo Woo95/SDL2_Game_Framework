@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\InputUtils.h" />
     <ClInclude Include="Manager\Resource\DataManager.h" />
     <ClInclude Include="Scene\Camera.h" />
     <ClInclude Include="Entity\Object\Background.h" />
