@@ -4,6 +4,10 @@
 
 class CScene;
 
+typedef bool Ctrl;
+typedef bool Alt;
+typedef bool Shift;
+
 //////////////////////////////////////////////////////////////////////////////////////////
 
                                     ///// STATES /////
@@ -22,9 +26,9 @@ namespace EKey
 	// 키 상태를 나타내는 열거형
 	enum State : unsigned char
 	{
-		Press,
-		Hold,
-		Release,
+		PRESS,
+		HOLD,
+		RELEASE,
 		MAX
 	};
 }
@@ -41,12 +45,11 @@ struct FBindFunction
 	std::function<void()> func; // 호출할 함수를 저장하는 변수
 };
 
-
 //////////////////////////////////////////////////////////////////////////////////////////
 
                                     ///// MOUSE /////
-									
-// 마우스 상태 정보 + 마우스 바인딩 정보를 담는 구조체
+
+// "특정" 마우스 버튼 상태 정보 + 마우스 바인딩 정보를 담는 구조체
 struct FMouse
 {
 	// current mouse state
@@ -55,15 +58,14 @@ struct FMouse
 	bool Release = false;
 
 	// std::tuple<Ctrl, Alt, Shift> - mouse binds
-	std::map<std::tuple<bool, bool, bool>, std::vector<FBindFunction*>> Actions[EKey::State::MAX];
+	std::map<std::tuple<Ctrl, Alt, Shift>, std::vector<FBindFunction*>> Actions[EKey::State::MAX];
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
-									
                                     ///// KEYBOARDS /////
-									 
-// 키 상태 정보 + 키 바인딩 정보를 담는 구조체
+
+// "특정" 키 상태 정보 + 키 바인딩 정보를 담는 구조체
 struct FKey
 {
 	// current key state
@@ -71,8 +73,8 @@ struct FKey
 	bool Hold    = false;
 	bool Release = false;
 
-	// std::tuple<Ctrl, Alt, Shift> - key binds
-	std::map<std::tuple<bool, bool, bool>, std::vector<FBindFunction*>> Actions[EKey::State::MAX];
+	// modifierKey bindings for the specific key
+	std::map<std::tuple<Ctrl, Alt, Shift>, std::vector<FBindFunction*>> Actions[EKey::State::MAX];
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////

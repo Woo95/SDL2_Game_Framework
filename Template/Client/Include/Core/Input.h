@@ -14,8 +14,8 @@ private:
 private:
 	// KEYBOARD
 	std::unordered_map<SDL_Scancode, FKey*> mKeys;
-	bool mCtrl = false;
-	bool mAlt = false;
+	bool mCtrl  = false;
+	bool mAlt   = false;
 	bool mShift = false;
 
 	// MOUSE
@@ -33,7 +33,7 @@ private:
 	void HandleInputState(bool& press, bool& hold, bool& release, bool isPressed);
 
 	void UpdateBindFunction();
-	void ExecuteBindFunctions(std::tuple<bool, bool, bool>& modifierKeys, void* bindKey, EKey::State state, EInput::Type type);
+	void ExecuteBindFunctions(std::tuple<Ctrl, Alt, Shift>& modifierKeys, void* bindKey, EKey::State state, EInput::Type type);
 
 	bool CreateKey(SDL_Scancode keyCode);
 	bool CreateMouse(Uint8 button);
@@ -43,11 +43,11 @@ public:
 	{
 		switch (state)
 		{
-			case EKey::State::Press:
+			case EKey::State::PRESS:
 				return mMouses[button]->Press;
-			case EKey::State::Hold:
+			case EKey::State::HOLD:
 				return mMouses[button]->Hold;
-			case EKey::State::Release:
+			case EKey::State::RELEASE:
 				return mMouses[button]->Release;
 		}
 	}
@@ -77,7 +77,7 @@ public:
 		*/
 #pragma endregion
 
-		std::tuple<bool, bool, bool> modifierKeys = std::make_tuple(ctrl, alt, shift);
+		std::tuple<Ctrl, Alt, Shift> modifierKeys = std::make_tuple(ctrl, alt, shift);
 
 		key->Actions[state][modifierKeys].emplace_back(bindFunc);
 	}
@@ -95,7 +95,7 @@ public:
 		bindFunc->obj   = obj;
 		bindFunc->func  = std::bind(func, obj);
 
-		std::tuple<bool, bool, bool> modifierKeys = std::make_tuple(ctrl, alt, shift);
+		std::tuple<Ctrl, Alt, Shift> modifierKeys = std::make_tuple(ctrl, alt, shift);
 
 		mouse->Actions[state][modifierKeys].emplace_back(bindFunc);
 	}
@@ -108,8 +108,8 @@ public:
 		if (!key)
 			return;
 
-		std::map<std::tuple<bool, bool, bool>, std::vector<FBindFunction*>>::iterator iter    = key->Actions[state].begin();
-		std::map<std::tuple<bool, bool, bool>, std::vector<FBindFunction*>>::iterator iterEnd = key->Actions[state].end();
+		std::map<std::tuple<Ctrl, Alt, Shift>, std::vector<FBindFunction*>>::iterator iter    = key->Actions[state].begin();
+		std::map<std::tuple<Ctrl, Alt, Shift>, std::vector<FBindFunction*>>::iterator iterEnd = key->Actions[state].end();
 
 		for (; iter != iterEnd; iter++)
 		{
@@ -137,8 +137,8 @@ public:
 		if (!mouse)
 			return;
 
-		std::map<std::tuple<bool, bool, bool>, std::vector<FBindFunction*>>::iterator iter    = mouse->Actions[state].begin();
-		std::map<std::tuple<bool, bool, bool>, std::vector<FBindFunction*>>::iterator iterEnd = mouse->Actions[state].end();
+		std::map<std::tuple<Ctrl, Alt, Shift>, std::vector<FBindFunction*>>::iterator iter    = mouse->Actions[state].begin();
+		std::map<std::tuple<Ctrl, Alt, Shift>, std::vector<FBindFunction*>>::iterator iterEnd = mouse->Actions[state].end();
 
 		for (; iter != iterEnd; iter++)
 		{

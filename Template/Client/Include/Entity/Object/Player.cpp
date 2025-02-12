@@ -17,12 +17,12 @@ CPlayer::CPlayer() :
  
 CPlayer::~CPlayer()
 {
-    CInput::GetInst()->DeleteFunctionFromKey<CPlayer>(SDL_SCANCODE_W, EKey::State::Hold, this);
-    CInput::GetInst()->DeleteFunctionFromKey<CPlayer>(SDL_SCANCODE_A, EKey::State::Hold, this);
-    CInput::GetInst()->DeleteFunctionFromKey<CPlayer>(SDL_SCANCODE_S, EKey::State::Hold, this);
-    CInput::GetInst()->DeleteFunctionFromKey<CPlayer>(SDL_SCANCODE_D, EKey::State::Hold, this);
+    CInput::GetInst()->DeleteFunctionFromKey<CPlayer>(SDL_SCANCODE_W, EKey::State::HOLD, this);
+    CInput::GetInst()->DeleteFunctionFromKey<CPlayer>(SDL_SCANCODE_A, EKey::State::HOLD, this);
+    CInput::GetInst()->DeleteFunctionFromKey<CPlayer>(SDL_SCANCODE_S, EKey::State::HOLD, this);
+    CInput::GetInst()->DeleteFunctionFromKey<CPlayer>(SDL_SCANCODE_D, EKey::State::HOLD, this);
 
-    CInput::GetInst()->DeleteFunctionFromMouse<CPlayer>(SDL_BUTTON_LEFT, EKey::State::Hold, this);
+    CInput::GetInst()->DeleteFunctionFromMouse<CPlayer>(SDL_BUTTON_LEFT, EKey::State::HOLD, this);
 }
 
 bool CPlayer::Init()
@@ -85,12 +85,12 @@ void CPlayer::SetupInput()
 {
     // 일반 함수 포인터랑은 다르게... 
     // 클래스 멤버 함수 포인터는 클래스 이름까지 적어줘야 되고, 값을 줄 때는 멤버 함수에다 &까지 붙여야 한다. (&CPlayer::MOVE_UP)
-    CInput::GetInst()->AddFunctionToKey<CPlayer>(false, false, false, SDL_SCANCODE_W, EKey::State::Hold, this, &CPlayer::MOVE_UP,    mScene);
-    CInput::GetInst()->AddFunctionToKey<CPlayer>(false, false, false, SDL_SCANCODE_S, EKey::State::Hold, this, &CPlayer::MOVE_DOWN,  mScene);
-    CInput::GetInst()->AddFunctionToKey<CPlayer>(false, false, false, SDL_SCANCODE_A, EKey::State::Hold, this, &CPlayer::MOVE_LEFT,  mScene);
-    CInput::GetInst()->AddFunctionToKey<CPlayer>(false, false, false, SDL_SCANCODE_D, EKey::State::Hold, this, &CPlayer::MOVE_RIGHT, mScene);
+    CInput::GetInst()->AddFunctionToKey<CPlayer>(false, false, false, SDL_SCANCODE_W, EKey::State::HOLD, this, &CPlayer::MOVE_UP,    mScene);
+    CInput::GetInst()->AddFunctionToKey<CPlayer>(false, false, false, SDL_SCANCODE_S, EKey::State::HOLD, this, &CPlayer::MOVE_DOWN,  mScene);
+    CInput::GetInst()->AddFunctionToKey<CPlayer>(false, false, false, SDL_SCANCODE_A, EKey::State::HOLD, this, &CPlayer::MOVE_LEFT,  mScene);
+    CInput::GetInst()->AddFunctionToKey<CPlayer>(false, false, false, SDL_SCANCODE_D, EKey::State::HOLD, this, &CPlayer::MOVE_RIGHT, mScene);
 
-    CInput::GetInst()->AddFunctionToMouse<CPlayer>(false, false, false, SDL_BUTTON_LEFT, EKey::State::Hold, this, &CPlayer::SHOOT, mScene);
+    CInput::GetInst()->AddFunctionToMouse<CPlayer>(false, false, false, SDL_BUTTON_LEFT, EKey::State::HOLD, this, &CPlayer::SHOOT, mScene);
 }
 
 void CPlayer::MOVE_UP()

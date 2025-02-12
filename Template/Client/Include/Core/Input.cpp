@@ -19,8 +19,8 @@ CInput::~CInput()
 
 			for (int state = 0; state < EKey::State::MAX; state++)
 			{
-				std::map<std::tuple<bool, bool, bool>, std::vector<FBindFunction*>>::iterator iter2    = key->Actions[state].begin();
-				std::map<std::tuple<bool, bool, bool>, std::vector<FBindFunction*>>::iterator iter2End = key->Actions[state].end();
+				std::map<std::tuple<Ctrl, Alt, Shift>, std::vector<FBindFunction*>>::iterator iter2    = key->Actions[state].begin();
+				std::map<std::tuple<Ctrl, Alt, Shift>, std::vector<FBindFunction*>>::iterator iter2End = key->Actions[state].end();
 
 				for (; iter2 != iter2End; iter2++)
 				{
@@ -47,8 +47,8 @@ CInput::~CInput()
 
 			for (int state = 0; state < EKey::State::MAX; state++)
 			{
-				std::map<std::tuple<bool, bool, bool>, std::vector<FBindFunction*>>::iterator iter2    = mouse->Actions[state].begin();
-				std::map<std::tuple<bool, bool, bool>, std::vector<FBindFunction*>>::iterator iter2End = mouse->Actions[state].end();
+				std::map<std::tuple<Ctrl, Alt, Shift>, std::vector<FBindFunction*>>::iterator iter2    = mouse->Actions[state].begin();
+				std::map<std::tuple<Ctrl, Alt, Shift>, std::vector<FBindFunction*>>::iterator iter2End = mouse->Actions[state].end();
 
 				for (; iter2 != iter2End; iter2++)
 				{
@@ -162,7 +162,7 @@ void CInput::HandleInputState(bool& press, bool& hold, bool& release, bool isPre
 // 등록된 입력 정보를 비교하여, 해당 입력 상태에 따라 등록된 함수들을 호출
 void CInput::UpdateBindFunction()
 {
-	std::tuple<bool, bool, bool> modifierKeys = std::make_tuple(mCtrl, mAlt, mShift);
+	std::tuple<Ctrl, Alt, Shift> modifierKeys = std::make_tuple(mCtrl, mAlt, mShift);
 
 	// For KEYBOARD
 	{
@@ -173,9 +173,9 @@ void CInput::UpdateBindFunction()
 		{
 			FKey* key = iter->second;
 
-			if (key->Press)   ExecuteBindFunctions(modifierKeys, key, EKey::State::Press,   EInput::Type::KEYBOARD);
-			if (key->Hold)    ExecuteBindFunctions(modifierKeys, key, EKey::State::Hold,    EInput::Type::KEYBOARD);
-			if (key->Release) ExecuteBindFunctions(modifierKeys, key, EKey::State::Release, EInput::Type::KEYBOARD);
+			if (key->Press)   ExecuteBindFunctions(modifierKeys, key, EKey::State::PRESS,   EInput::Type::KEYBOARD);
+			if (key->Hold)    ExecuteBindFunctions(modifierKeys, key, EKey::State::HOLD,    EInput::Type::KEYBOARD);
+			if (key->Release) ExecuteBindFunctions(modifierKeys, key, EKey::State::RELEASE, EInput::Type::KEYBOARD);
 		}
 	}
 	// FOR MOUSE
@@ -187,14 +187,14 @@ void CInput::UpdateBindFunction()
 		{
 			FMouse* mouse = iter->second;
 
-			if (mouse->Press)   ExecuteBindFunctions(modifierKeys, mouse, EKey::State::Press,   EInput::Type::MOUSE);
-			if (mouse->Hold)    ExecuteBindFunctions(modifierKeys, mouse, EKey::State::Hold,    EInput::Type::MOUSE);
-			if (mouse->Release) ExecuteBindFunctions(modifierKeys, mouse, EKey::State::Release, EInput::Type::MOUSE);
+			if (mouse->Press)   ExecuteBindFunctions(modifierKeys, mouse, EKey::State::PRESS,   EInput::Type::MOUSE);
+			if (mouse->Hold)    ExecuteBindFunctions(modifierKeys, mouse, EKey::State::HOLD,    EInput::Type::MOUSE);
+			if (mouse->Release) ExecuteBindFunctions(modifierKeys, mouse, EKey::State::RELEASE, EInput::Type::MOUSE);
 		}
 	}
 }
 
-void CInput::ExecuteBindFunctions(std::tuple<bool, bool, bool>& modifierKeys, void* input, EKey::State state, EInput::Type type)
+void CInput::ExecuteBindFunctions(std::tuple<Ctrl, Alt, Shift>& modifierKeys, void* input, EKey::State state, EInput::Type type)
 {
 	switch (type)
 	{
