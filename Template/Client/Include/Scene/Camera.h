@@ -23,6 +23,7 @@ protected:
 
 public:
 	const FVector2D GetRenderPos(const FVector2D& objPos) const { return objPos - mLookAt + (mResolution * 0.5f); }
+	const FVector2D GetWorldPos(const FVector2D& screenPos) const { return screenPos + mLookAt - (mResolution * 0.5f); }
 	
 	const FVector2D& GetLookAt() const { return mLookAt; };
 	const FVector2D& GetResolution() const { return mResolution; }
