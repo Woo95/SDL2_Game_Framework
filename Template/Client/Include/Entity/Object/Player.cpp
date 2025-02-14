@@ -17,12 +17,11 @@ CPlayer::CPlayer() :
  
 CPlayer::~CPlayer()
 {
-    CInput::GetInst()->DeleteFunctionFromKey<CPlayer>(SDL_SCANCODE_W, EKey::State::HOLD, this);
-    CInput::GetInst()->DeleteFunctionFromKey<CPlayer>(SDL_SCANCODE_A, EKey::State::HOLD, this);
-    CInput::GetInst()->DeleteFunctionFromKey<CPlayer>(SDL_SCANCODE_S, EKey::State::HOLD, this);
-    CInput::GetInst()->DeleteFunctionFromKey<CPlayer>(SDL_SCANCODE_D, EKey::State::HOLD, this);
-
-    CInput::GetInst()->DeleteFunctionFromMouse<CPlayer>(SDL_BUTTON_LEFT, EKey::State::HOLD, this);
+    CInput::GetInst()->DeleteFunctionFromBinder("UP",    this);
+    CInput::GetInst()->DeleteFunctionFromBinder("DOWN",  this);
+    CInput::GetInst()->DeleteFunctionFromBinder("LEFT",  this);
+    CInput::GetInst()->DeleteFunctionFromBinder("RIGHT", this);
+    CInput::GetInst()->DeleteFunctionFromBinder("SHOOT", this);
 }
 
 bool CPlayer::Init()
@@ -83,14 +82,19 @@ void CPlayer::Release()
 
 void CPlayer::SetupInput()
 {
-    // 일반 함수 포인터랑은 다르게... 
-    // 클래스 멤버 함수 포인터는 클래스 이름까지 적어줘야 되고, 값을 줄 때는 멤버 함수에다 &까지 붙여야 한다. (&CPlayer::MOVE_UP)
-    CInput::GetInst()->AddFunctionToKey<CPlayer>(false, false, false, SDL_SCANCODE_W, EKey::State::HOLD, this, &CPlayer::MOVE_UP,    mScene);
-    CInput::GetInst()->AddFunctionToKey<CPlayer>(false, false, false, SDL_SCANCODE_S, EKey::State::HOLD, this, &CPlayer::MOVE_DOWN,  mScene);
-    CInput::GetInst()->AddFunctionToKey<CPlayer>(false, false, false, SDL_SCANCODE_A, EKey::State::HOLD, this, &CPlayer::MOVE_LEFT,  mScene);
-    CInput::GetInst()->AddFunctionToKey<CPlayer>(false, false, false, SDL_SCANCODE_D, EKey::State::HOLD, this, &CPlayer::MOVE_RIGHT, mScene);
+    // 클래스 멤버 함수 포인터는 일반 함수와 다르게 "&클래스명::함수" 이렇게 해야한다. (ex: &CPlayer::MOVE_UP)
 
-    CInput::GetInst()->AddFunctionToMouse<CPlayer>(false, false, false, SDL_BUTTON_LEFT, EKey::State::HOLD, this, &CPlayer::SHOOT, mScene);
+    CInput::GetInst()->AddFunctionToBinder("UP",    this, &CPlayer::MOVE_UP,    mScene);
+    CInput::GetInst()->AddFunctionToBinder("DOWN",  this, &CPlayer::MOVE_DOWN,  mScene);
+    CInput::GetInst()->AddFunctionToBinder("LEFT",  this, &CPlayer::MOVE_LEFT,  mScene);
+    CInput::GetInst()->AddFunctionToBinder("RIGHT", this, &CPlayer::MOVE_RIGHT, mScene);
+    CInput::GetInst()->AddFunctionToBinder("SHOOT", this, &CPlayer::SHOOT,      mScene);
+    
+    CInput::GetInst()->AddInputToBinder("UP",    SDL_SCANCODE_W,  EKey::State::HOLD);
+    CInput::GetInst()->AddInputToBinder("DOWN",  SDL_SCANCODE_S,  EKey::State::HOLD);
+    CInput::GetInst()->AddInputToBinder("LEFT",  SDL_SCANCODE_A,  EKey::State::HOLD);
+    CInput::GetInst()->AddInputToBinder("RIGHT", SDL_SCANCODE_D,  EKey::State::HOLD);
+    CInput::GetInst()->AddInputToBinder("SHOOT", SDL_BUTTON_LEFT, EKey::State::HOLD);
 }
 
 void CPlayer::MOVE_UP()

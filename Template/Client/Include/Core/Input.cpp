@@ -8,61 +8,18 @@ CInput::CInput()
 
 CInput::~CInput()
 {
-	// 이 코드블럭 안의 지역변수는 여기에서만 메모리가 유지된다.
+	std::unordered_map<std::string, FBinder*>::iterator iter    = mBinders.begin();
+	std::unordered_map<std::string, FBinder*>::iterator iterEnd = mBinders.end();
+
+	for (; iter != iterEnd; iter++)
 	{
-		std::unordered_map<SDL_Scancode, FKey*>::iterator iter1    = mKeys.begin();
-		std::unordered_map<SDL_Scancode, FKey*>::iterator iter1End = mKeys.end();
+		FBinder* binder = iter->second;
 
-		for (; iter1 != iter1End; iter1++)
+		for (FBindFunction* action : binder->Functions)
 		{
-			FKey* key = iter1->second;
-
-			for (int state = 0; state < EKey::State::MAX; state++)
-			{
-				std::map<std::tuple<Ctrl, Alt, Shift>, std::vector<FBindFunction*>>::iterator iter2    = key->Actions[state].begin();
-				std::map<std::tuple<Ctrl, Alt, Shift>, std::vector<FBindFunction*>>::iterator iter2End = key->Actions[state].end();
-
-				for (; iter2 != iter2End; iter2++)
-				{
-					std::vector<FBindFunction*>& bindFuncs = iter2->second;
-
-					for (FBindFunction* func : bindFuncs)
-					{
-						SAFE_DELETE(func);
-					}
-				}
-			}
-			SAFE_DELETE(key);
+			SAFE_DELETE(action);
 		}
-		mKeys.clear();
-	}
-	// 이 코드블럭 안의 지역변수는 여기에서만 메모리가 유지된다.
-	{
-		std::unordered_map<Uint8, FMouse*>::iterator iter1    = mMouses.begin();
-		std::unordered_map<Uint8, FMouse*>::iterator iter1End = mMouses.end();
-
-		for (; iter1 != iter1End; iter1++)
-		{
-			FMouse* mouse = iter1->second;
-
-			for (int state = 0; state < EKey::State::MAX; state++)
-			{
-				std::map<std::tuple<Ctrl, Alt, Shift>, std::vector<FBindFunction*>>::iterator iter2    = mouse->Actions[state].begin();
-				std::map<std::tuple<Ctrl, Alt, Shift>, std::vector<FBindFunction*>>::iterator iter2End = mouse->Actions[state].end();
-
-				for (; iter2 != iter2End; iter2++)
-				{
-					std::vector<FBindFunction*>& bindFuncs = iter2->second;
-
-					for (FBindFunction* func : bindFuncs)
-					{
-						SAFE_DELETE(func);
-					}
-				}
-			}
-			SAFE_DELETE(mouse);
-		}
-		mMouses.clear();
+		SAFE_DELETE(binder);
 	}
 }
 
@@ -85,10 +42,10 @@ void CInput::Update()
 {
 	UpdateInput();
 
-	UpdateBindFunction();
+	HandleBinderFuncs();
 }
 
-// 실시간 마우스 및 키보드 입력을 감지 및 업데이트
+// 실시간 키보드 및 마우스 입력값 감지
 void CInput::UpdateInput()
 {
 	// FOR KEYBOARD //
@@ -97,134 +54,128 @@ void CInput::UpdateInput()
 		//배열의 각 요소는 키의 상태를 나타내며, 0은 안 눌림, 1은 눌림을 의미한다.
 		const Uint8* keyboardState = SDL_GetKeyboardState(nullptr);
 
-		mCtrl  = keyboardState[SDL_SCANCODE_LCTRL];
-		mAlt   = keyboardState[SDL_SCANCODE_LALT];
-		mShift = keyboardState[SDL_SCANCODE_LSHIFT];
-
-		std::unordered_map<SDL_Scancode, FKey*>::iterator iter    = mKeys.begin();
-		std::unordered_map<SDL_Scancode, FKey*>::iterator iterEnd = mKeys.end();
+		std::unordered_map<SDL_Scancode, FInputState>::iterator iter    = mKeys.begin();
+		std::unordered_map<SDL_Scancode, FInputState>::iterator iterEnd = mKeys.end();
 
 		for (; iter != iterEnd; iter++)
 		{
 			bool isPressed = keyboardState[iter->first];
-			FKey* key = iter->second;
+			FInputState& key = iter->second;
 
-			HandleInputState(key->Press, key->Hold, key->Release, isPressed);
+			HandleInputState(key.Press, key.Hold, key.Release, isPressed);
 		}
 	}
-	//// FOR MOUSE //
+
+	// FOR MOUSE //
 	{
 		int mouseX, mouseY;
-		// mouseState의 각 비트는 특정 마우스 버튼의 상태를 나타내며, 1은 눌림, 0은 안 눌림을 의미한다.
+		// mouseState의 각 비트는 특정 마우스 버튼의 상태를 나타내며, 1은 눌림, 0은 안 눌림을 의미한다
 		Uint32 mouseState = SDL_GetMouseState(&mouseX, &mouseY);
 
 		mMousePos = { (float)mouseX, (float)mouseY };
 
-		std::unordered_map<Uint8, FMouse*>::iterator iter    = mMouses.begin();
-		std::unordered_map<Uint8, FMouse*>::iterator iterEnd = mMouses.end();
+		std::unordered_map<Uint8, FInputState>::iterator iter    = mMouses.begin();
+		std::unordered_map<Uint8, FInputState>::iterator iterEnd = mMouses.end();
 
 		for (; iter != iterEnd; iter++)
 		{
 			bool isPressed = mouseState & SDL_BUTTON(iter->first);
-			FMouse* mouse = iter->second;
+			FInputState& mouse = iter->second;
 
-			HandleInputState(mouse->Press, mouse->Hold, mouse->Release, isPressed);
+			HandleInputState(mouse.Press, mouse.Hold, mouse.Release, isPressed);
 		}
 	}
 }
 
+// 실시간 키보드 및 마우스 입력값 정보 업데이트
 void CInput::HandleInputState(bool& press, bool& hold, bool& release, bool isPressed)
 {
 	if (isPressed)
 	{
-		if (!hold) // 처음 누르기 시작한 단계.
+		if (!hold) // press 처음 누르기 시작한 상태.
 		{
 			press = true;
 			hold  = true;
 		}
-		else // 이전 프레임에 누른 상태, 현재도 누르고 있다는 의미
-		{
+		else // hold 하는 중. 이전 프레임에 누른 상태.
 			press = false;
+	}
+	else
+	{
+		if (hold) // 지금 막 hold에서 press를 뗀 상태.
+		{
+			press   = false;
+			hold    = false;
+			release = true;
 		}
-	}
-	else if (hold) // 키를 현재 누른 상태가 아니다. 즉, 지금 막 떼었다는 의미
-	{
-		press   = false;
-		hold    = false;
-		release = true;
-	}
-	else if (release) // Release가 true라는 뜻은, "이전 프레임에 Release를 했다는 의미". 즉, 이제는 Release도 아니다.
-	{
-		release = false;
+		else if (release) // 이전 프레임에 release를 한 상태.
+			release = false;
 	}
 }
 
 // 등록된 입력 정보를 비교하여, 해당 입력 상태에 따라 등록된 함수들을 호출
-void CInput::UpdateBindFunction()
+void CInput::HandleBinderFuncs()
 {
-	std::tuple<Ctrl, Alt, Shift> modifierKeys = std::make_tuple(mCtrl, mAlt, mShift);
+	std::unordered_map<std::string, FBinder*>::iterator iter    = mBinders.begin();
+	std::unordered_map<std::string, FBinder*>::iterator iterEnd = mBinders.end();
 
-	// For KEYBOARD
+	for (; iter != iterEnd; iter++)
 	{
-		std::unordered_map<SDL_Scancode, FKey*>::iterator iter    = mKeys.begin();
-		std::unordered_map<SDL_Scancode, FKey*>::iterator iterEnd = mKeys.end();
+		FBinder* binder = iter->second;
 
-		for (; iter != iterEnd; iter++)
+		if (binder->Keys.empty() && binder->Mouses.empty())
+			continue;
+
+		bool shouldExecute = true;
+
+		// KEYBOARD //
+		for (std::pair<SDL_Scancode, EKey::State>& binderKey : binder->Keys)
 		{
-			FKey* key = iter->second;
+			const SDL_Scancode& key   = binderKey.first;
+			const EKey::State&  state = binderKey.second;
 
-			if (key->Press)   ExecuteBindFunctions(modifierKeys, key, EKey::State::PRESS,   EInput::Type::KEYBOARD);
-			if (key->Hold)    ExecuteBindFunctions(modifierKeys, key, EKey::State::HOLD,    EInput::Type::KEYBOARD);
-			if (key->Release) ExecuteBindFunctions(modifierKeys, key, EKey::State::RELEASE, EInput::Type::KEYBOARD);
+			std::unordered_map<SDL_Scancode, FInputState>::iterator iter = mKeys.find(key);
+			if (iter == mKeys.end() || !VerifyState(state, iter->second))
+			{
+				shouldExecute = false;
+				break;
+			}
 		}
-	}
-	// FOR MOUSE
-	{
-		std::unordered_map<Uint8, FMouse*>::iterator iter    = mMouses.begin();
-		std::unordered_map<Uint8, FMouse*>::iterator iterEnd = mMouses.end();
 
-		for (; iter != iterEnd; iter++)
+		if (!shouldExecute) // 키보드에서 이미 매치되지 않기 때문에 조합이 틀리다.
+			continue;
+
+		// MOUSE //
+		for (std::pair<Uint8, EKey::State>& binderMouse : binder->Mouses)
 		{
-			FMouse* mouse = iter->second;
+			const Uint8&       mouse = binderMouse.first;
+			const EKey::State& state = binderMouse.second;
 
-			if (mouse->Press)   ExecuteBindFunctions(modifierKeys, mouse, EKey::State::PRESS,   EInput::Type::MOUSE);
-			if (mouse->Hold)    ExecuteBindFunctions(modifierKeys, mouse, EKey::State::HOLD,    EInput::Type::MOUSE);
-			if (mouse->Release) ExecuteBindFunctions(modifierKeys, mouse, EKey::State::RELEASE, EInput::Type::MOUSE);
+			std::unordered_map<Uint8, FInputState>::iterator iter = mMouses.find(mouse);
+			if (iter == mMouses.end() || !VerifyState(state, iter->second))
+			{
+				shouldExecute = false;
+				break;
+			}
+		}
+
+		if (shouldExecute)
+		{
+			for (FBindFunction* bindFunc : binder->Functions)
+				bindFunc->func();
 		}
 	}
 }
 
-void CInput::ExecuteBindFunctions(std::tuple<Ctrl, Alt, Shift>& modifierKeys, void* input, EKey::State state, EInput::Type type)
+// 등록된 키 조합의 상태와 일치하는 입력 값의 상태를 반환
+bool CInput::VerifyState(EKey::State state, const FInputState& inputState)
 {
-	switch (type)
+	switch (state) 
 	{
-		case EInput::Type::KEYBOARD:
-		{
-			FKey* key = (FKey*)input;
-
-			if (key->Actions[state].find(modifierKeys) != key->Actions[state].end()) // if found
-			{
-				std::vector<FBindFunction*>& bindFunctions = key->Actions[state][modifierKeys];
-
-				for (FBindFunction* bindFunc : bindFunctions)
-					bindFunc->func();
-			}
-		}
-		break;
-
-		case EInput::Type::MOUSE:
-		{
-			FMouse* mouse = (FMouse*)input;
-
-			if (mouse->Actions[state].find(modifierKeys) != mouse->Actions[state].end()) // if found
-			{
-				std::vector<FBindFunction*>& bindFunctions = mouse->Actions[state][modifierKeys];
-
-				for (FBindFunction* bindFunc : bindFunctions)
-					bindFunc->func();
-			}
-		}
-		break;
+		case EKey::State::PRESS:   return inputState.Press;
+		case EKey::State::HOLD:    return inputState.Hold;
+		case EKey::State::RELEASE: return inputState.Release;
+		default:                   return false;
 	}
 }
 
@@ -233,8 +184,8 @@ bool CInput::CreateKey(SDL_Scancode keyCode)
 	if (mKeys.find(keyCode) != mKeys.end())
 		return false;
 
-	FKey* key = new FKey;
-	mKeys[keyCode] = key;
+	FInputState state;
+	mKeys[keyCode] = state;
 
 	return true;
 }
@@ -244,8 +195,8 @@ bool CInput::CreateMouse(Uint8 button)
 	if (mMouses.find(button) != mMouses.end())
 		return false;
 
-	FMouse* mouse = new FMouse;
-	mMouses[button] = mouse;
+	FInputState state;
+	mMouses[button] = state;
 
 	return true;
 }
