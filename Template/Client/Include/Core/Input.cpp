@@ -4,6 +4,8 @@ CInput* CInput::mInst = nullptr;
 
 CInput::CInput()
 {
+	CMemoryPoolManager::GetInst()->CreatePool<FBinder>(20);
+	CMemoryPoolManager::GetInst()->CreatePool<FBindFunction>(20);
 }
 
 CInput::~CInput()
@@ -15,11 +17,11 @@ CInput::~CInput()
 	{
 		FBinder* binder = iter->second;
 
-		for (FBindFunction* action : binder->Functions)
+		for (FBindFunction* function : binder->Functions)
 		{
-			SAFE_DELETE(action);
+			CMemoryPoolManager::GetInst()->DeallocateKeepPool<FBindFunction>(function);
 		}
-		SAFE_DELETE(binder);
+		CMemoryPoolManager::GetInst()->DeallocateKeepPool<FBinder>(binder);
 	}
 }
 

@@ -2,6 +2,7 @@
 
 #include "InputUtils.h"
 #include "Vector2D.h"
+#include "../Manager/MemoryPoolManager.h"
 
 class CInput
 {
@@ -62,11 +63,11 @@ public:
 
 		if (!binder)
 		{
-			binder = new FBinder;
+			binder = CMemoryPoolManager::GetInst()->Allocate<FBinder>();
 			mBinders[key] = binder;
 		}
 
-		FBindFunction* binderFunc = new FBindFunction;
+		FBindFunction* binderFunc = CMemoryPoolManager::GetInst()->Allocate<FBindFunction>();
 		
 		binderFunc->scene = scene;
 		binderFunc->obj   = obj;
@@ -94,7 +95,7 @@ public:
 				std::swap(functions[i - 1], functions.back());
 				functions.pop_back();
 
-				SAFE_DELETE(bindFunc);
+				CMemoryPoolManager::GetInst()->DeallocateKeepPool<FBindFunction>(bindFunc);
 			}
 		}
 	}
