@@ -7,6 +7,7 @@
 CCollider::CCollider() :
     mProfile(nullptr),
     mColliderType(ECollider::Type::NONE),
+    mCollidedCount(0),
     mIsCollided(false)
 {
 }
@@ -39,6 +40,8 @@ void CCollider::Render(SDL_Renderer* Renderer)
 
 void CCollider::OnCollisionEnter(CCollider* other)
 {
+    mCollidedCount++;
+
     mIsCollided = true;
 }
 
@@ -49,7 +52,13 @@ void CCollider::OnCollisionStay(CCollider* other)
 
 void CCollider::OnCollisionExit(CCollider* other)
 {
-    mIsCollided = false;
+    mCollidedCount--;
+
+    if (mCollidedCount < 0)
+    {
+        mCollidedCount = 0;
+        mIsCollided = false;
+    }
 }
 
 void CCollider::SetProfile(const std::string& name)

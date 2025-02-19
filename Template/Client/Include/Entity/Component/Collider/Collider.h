@@ -23,11 +23,12 @@ public:
 	virtual ~CCollider();
 
 protected:
-	FCollisionProfile*	mProfile;
-	ECollider::Type		mColliderType;
+	FCollisionProfile*  mProfile;
+	ECollider::Type     mColliderType;
 
-	bool				mIsCollided;
-	FVector2D			mHitPoint;
+	int                 mCollidedCount;
+	bool	            mIsCollided;
+	FVector2D           mHitPoint;
 
 	//std::function<void(CCollider*, CCollider*)> mCollisionFunc; // todo
 
