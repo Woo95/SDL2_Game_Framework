@@ -18,8 +18,6 @@ bool CCircleCollider::Init()
 {
 	CCollider::Init();
 
-	SetProfile("TestProfile");
-
 	return true;
 }
 

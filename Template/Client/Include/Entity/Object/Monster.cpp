@@ -16,7 +16,8 @@ bool CMonster::Init()
     if (!CObject::Init())
         return false;
 
-    CComponent* collider = AllocateComponent<CBoxCollider>("collider", mRootComponent);
+    CCollider* collider = AllocateComponent<CBoxCollider>("collider", mRootComponent);
+    collider->SetProfile("Monster");
     collider->GetTransform()->SetWorldScale(50.f, 75.f);
     collider->GetTransform()->SetPivot(0.5f, 0.5f);
 

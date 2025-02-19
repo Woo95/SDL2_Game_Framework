@@ -21,7 +21,12 @@ CCollisionManager::~CCollisionManager()
 
 bool CCollisionManager::Init()
 {
-	CreateProfile("TestProfile", ECollisionChannel::DEFAULT, ECollisionInteraction::ENABLE_COLLISION);
+	CreateProfile("Player",  ECollisionChannel::PLAYER,  ECollisionInteraction::ENABLE_COLLISION);
+	CreateProfile("Monster", ECollisionChannel::MONSTER, ECollisionInteraction::ENABLE_COLLISION);
+	CreateProfile("Bullet",  ECollisionChannel::BULLET,  ECollisionInteraction::ENABLE_COLLISION);
+
+	SetCollisionInteraction("Player", ECollisionChannel::BULLET, ECollisionInteraction::DISABLE_COLLISION);
+	SetCollisionInteraction("Bullet", ECollisionChannel::PLAYER, ECollisionInteraction::DISABLE_COLLISION);
 
 	return true;
 }

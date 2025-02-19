@@ -18,8 +18,6 @@ bool CBoxCollider::Init()
 {
 	CCollider::Init();
 
-	SetProfile("TestProfile");
-
 	return true;
 }
 

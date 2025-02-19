@@ -34,6 +34,7 @@ bool CPlayer::Init()
 
     // 충돌체 컴포넌트 만들기
     mColliderComponent = AllocateComponent<CBoxCollider>("collider", mMovementComponent);
+    mColliderComponent->SetProfile("Player");
 
     // 위치 설정 (충돌체 컴포넌트)
     CTransform* colliderTrans = mColliderComponent->GetTransform();

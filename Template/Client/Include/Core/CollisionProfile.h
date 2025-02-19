@@ -10,6 +10,7 @@ namespace ECollisionChannel
 		DEFAULT,
 		PLAYER,
 		MONSTER,
+		BULLET,
 		END
 	};
 }

@@ -22,7 +22,8 @@ bool CBullet::Init()
     mMovementComponent = AllocateComponent<CMovementComponent>("Movement", mRootComponent);
 
     // 충돌체 컴포넌트 만들기
-    CCircleCollider* collider = AllocateComponent<CCircleCollider>("collider", mMovementComponent);
+    CCollider* collider = AllocateComponent<CCircleCollider>("collider", mMovementComponent);
+    collider->SetProfile("Bullet");
 
     // 위치 설정 (충돌체 컴포넌트)
     CTransform* colliderTrans = collider->GetTransform();
