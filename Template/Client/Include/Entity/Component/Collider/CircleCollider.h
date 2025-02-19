@@ -18,10 +18,10 @@ private:
 	FCircle mCircle;
 
 public:
-	virtual bool Init();
-	virtual void Update(float DeltaTime);
-	virtual void LateUpdate(float DeltaTime);
-	virtual void Render(SDL_Renderer* Renderer);
+	virtual bool Init()                         override;
+	virtual void Update(float DeltaTime)        override;
+	virtual void LateUpdate(float DeltaTime)    override;
+	virtual void Render(SDL_Renderer* Renderer) override;
 
 	virtual bool Intersect(CCollider* other) final;
 

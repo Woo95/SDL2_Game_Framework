@@ -13,8 +13,10 @@ private:
 	FVector2D mDirection;
 
 public:
-	virtual void Update(float DeltaTime);
-	virtual void LateUpdate(float DeltaTime);
+	virtual bool Init()                         override;
+	virtual void Update(float DeltaTime)        override;
+	virtual void LateUpdate(float DeltaTime)    override;
+	virtual void Render(SDL_Renderer* Renderer) override;
 
 private:
 	virtual void Release() final;

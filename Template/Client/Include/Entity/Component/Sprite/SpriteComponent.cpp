@@ -25,10 +25,7 @@ CSpriteComponent::~CSpriteComponent()
 
 bool CSpriteComponent::Init()
 {
-	if (!CComponent::Init())
-		return false;
-
-	return true;
+	return CComponent::Init();
 }
 
 void CSpriteComponent::Update(float DeltaTime)
@@ -37,6 +34,11 @@ void CSpriteComponent::Update(float DeltaTime)
 
 	if (mAnimation)
 		mAnimation->Update(DeltaTime);
+}
+
+void CSpriteComponent::LateUpdate(float DeltaTime)
+{
+	CComponent::LateUpdate(DeltaTime);
 }
 
 void CSpriteComponent::Render(SDL_Renderer* Renderer)

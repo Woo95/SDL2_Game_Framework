@@ -18,6 +18,8 @@ CCollider::~CCollider()
 
 bool CCollider::Init()
 {
+    CComponent::Init();
+
     mObject->GetScene()->GetCollision()->AddCollider(this);
 
     return true;

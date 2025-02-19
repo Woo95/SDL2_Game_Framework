@@ -16,9 +16,7 @@ CBoxCollider::~CBoxCollider()
 
 bool CBoxCollider::Init()
 {
-	CCollider::Init();
-
-	return true;
+	return CCollider::Init();
 }
 
 void CBoxCollider::Update(float DeltaTime)

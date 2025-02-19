@@ -16,9 +16,7 @@ CCircleCollider::~CCircleCollider()
 
 bool CCircleCollider::Init()
 {
-	CCollider::Init();
-
-	return true;
+	return CCollider::Init();
 }
 
 void CCircleCollider::Update(float DeltaTime)
