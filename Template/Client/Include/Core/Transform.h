@@ -1,19 +1,19 @@
 #pragma once
 
-#include "../../Core/Vector2D.h"
-#include "../../Core/GameInfo.h"
+#include "Vector2D.h"
+#include "GameInfo.h"
 
 class CTransform
 {
 	friend class CComponent;
+	friend class CUserWidget;
+	friend class CWidget;
 
 private:
 	CTransform();
 	~CTransform();
 
 private:
-	class CComponent* mComponent = nullptr;
-
 	CTransform* mParent = nullptr;
 	std::vector<CTransform*> mChilds;
 

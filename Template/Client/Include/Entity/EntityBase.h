@@ -4,6 +4,7 @@
 
 class CEntityBase abstract
 {
+	friend class CScene;
 	friend class CObject;
 	friend class CComponent;
 
@@ -19,18 +20,16 @@ protected:
 
 public:
 	const std::string& GetName() const { return mName; }
-	const size_t GetID() const { return mID; }
+	size_t   GetID() const { return mID; }
 	bool GetActive() const { return mActive; }
 	bool GetEnable() const { return mEnable; }
 
-public:
-	void SetName(const std::string& name) 
-	{ 
+private:
+	void SetName(const std::string& name)
+	{
 		mName = name;
 		mID = std::hash<std::string>()(name);
 	}
-
-private:
 	void SetEnable(bool enable) 
 	{ 
 		mEnable = enable; 

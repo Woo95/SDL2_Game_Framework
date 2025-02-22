@@ -1,22 +1,14 @@
 #include "Component.h"
-#include "Transform.h"
 
 CComponent::CComponent()
 {
 	mTransform = new CTransform;
-
-	mTransform->mComponent = this;
 }
 
 CComponent::~CComponent()
 {
-	for (size_t i = mChilds.size(); i > 0; i--)
+	for (CComponent* child : mChilds)
 	{
-		CComponent* child = mChilds[i - 1];
-
-		std::swap(mChilds[i - 1], mChilds.back());
-		mChilds.pop_back();
-
 		child->Release();
 	}
 	SAFE_DELETE(mTransform);

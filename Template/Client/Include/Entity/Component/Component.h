@@ -4,7 +4,7 @@
 #include "../../Core/GameInfo.h"
 #include "../../Manager/MemoryPoolManager.h"
 #include "../../Core/Vector2D.h"
-#include "Transform.h"
+#include "../../Core/Transform.h"
 
 /*
 	"Game Object"는 게임 내에서 나타나는 모든 요소를 지칭한다.
@@ -21,7 +21,7 @@ protected:
 
 protected:
 	class CObject* mObject = nullptr;
-	CTransform* mTransform;
+	CTransform* mTransform = nullptr;
 
 	CComponent* mParent = nullptr;
 	std::vector<CComponent*> mChilds;

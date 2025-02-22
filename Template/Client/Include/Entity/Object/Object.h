@@ -3,7 +3,7 @@
 #include "../EntityBase.h"
 #include "../../Manager/MemoryPoolManager.h"
 #include "../Component/Component.h"
-#include "../Component/Transform.h"
+#include "../../Core/Transform.h"
 
 class CObject abstract	: public CEntityBase
 {
