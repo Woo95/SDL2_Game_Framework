@@ -6,6 +6,8 @@
 
 class CBoxCollider; 
 class CCircleCollider;
+class CWidgetBase;
+
 /* 
 CollisionManager: 충돌 계산 및 프로필 저장.
 	- 게임 내 모든 충돌 관련 프로필을 저장하고 관리함.
@@ -39,6 +41,8 @@ public:
 	bool AABBCircleCollision(CBoxCollider* collider1, CCircleCollider* collider2);
 	bool AABBPointCollision(CBoxCollider* collider, const FVector2D& point);
 	bool CirclePointCollision(CCircleCollider* collider, const FVector2D& point);
+
+	bool AABBPointCollision(const SDL_Rect& rect, const FVector2D& point); // for the ui
 
 public:
 	static CCollisionManager* GetInst()

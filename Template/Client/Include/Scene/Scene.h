@@ -2,11 +2,12 @@
 
 #include "../Core/GameInfo.h"
 #include "../Manager/MemoryPoolManager.h"
-#include "../Core/LayerUtils.h"
+#include "../Core/Utils/LayerUtils.h"
 #include "Layer.h"
 
 class CSceneCollision;
 class CCamera;
+class CSceneUI;
 class CTexture;
 
 // 추상 클래스 선언 - 인스턴스화 불가 (abstract 키워드로 명시 안하더라도, 순수 가상 함수가 있으면 자동으로 추상 클래스)
@@ -23,7 +24,8 @@ protected:
     std::vector<CLayer*> mLayers;
 
     CSceneCollision* mSceneCollision;
-    CCamera* mCamera;
+    CCamera*  mCamera;
+    CSceneUI* mSceneUI;
 
     std::unordered_set<std::string> mTextureKeys;
 

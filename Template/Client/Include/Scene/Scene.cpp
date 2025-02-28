@@ -1,12 +1,14 @@
 #include "Scene.h"
 #include "../Scene/Collision/SceneCollision.h"
 #include "Camera.h"
+#include "../Scene/UI/SceneUI.h"
 #include "../Manager/Resource/AssetManager.h"
 #include "../Manager/Resource/TextureManager.h"
 
 CScene::CScene() :
     mSceneCollision(nullptr),
-    mCamera(nullptr)
+    mCamera(nullptr),
+    mSceneUI(nullptr)
 {
     mLayers.resize(ELayer::Type::MAX);
 
@@ -36,12 +38,18 @@ void CScene::Update(float DeltaTime)
 
     if (mCamera)
         mCamera->Update(DeltaTime);
+
+    if (mSceneUI)
+        mSceneUI->Update(DeltaTime);
 }
 
 void CScene::LateUpdate(float DeltaTime)
 {
     for (CLayer* layer : mLayers)
         layer->LateUpdate(DeltaTime);
+
+    if (mSceneUI)
+        mSceneUI->LateUpdate(DeltaTime);
 }
 
 void CScene::Render(SDL_Renderer* Renderer)
@@ -51,6 +59,9 @@ void CScene::Render(SDL_Renderer* Renderer)
 
     if (mSceneCollision)
         mSceneCollision->Render(Renderer);
+
+    if (mSceneUI)
+        mSceneUI->Render(Renderer);
 }
 
 void CScene::UnloadTextures()

@@ -1,6 +1,7 @@
 #include "CollisionManager.h"
 #include "../Entity/Component/Collider/BoxCollider.h"
 #include "../Entity/Component/Collider/CircleCollider.h"
+#include "../Widget/WidgetBase.h"
 
 CCollisionManager* CCollisionManager::mInst = nullptr;
 
@@ -140,14 +141,26 @@ bool CCollisionManager::AABBCircleCollision(CBoxCollider* collider1, CCircleColl
 	return true;
 }
 
+bool CCollisionManager::AABBPointCollision(const SDL_Rect& rect, const FVector2D& point)
+{
+	if (rect.x + rect.w < point.x ||
+	    rect.x > point.x          ||
+	    rect.y + rect.h < point.y ||
+		rect.y > point.y)
+	{
+		return false;
+	}
+	return true;
+}
+
 bool CCollisionManager::AABBPointCollision(CBoxCollider* collider, const FVector2D& point)
 {
 	const SDL_FRect& box = collider->GetRect();
 
 	if (box.x + box.w < point.x ||
-		box.x > point.x         ||
-		box.y + box.h < point.y ||
-		box.y > point.y)
+	    box.x > point.x         ||
+	    box.y + box.h < point.y ||
+	    box.y > point.y)
 	{
 		return false;
 	}
@@ -155,7 +168,6 @@ bool CCollisionManager::AABBPointCollision(CBoxCollider* collider, const FVector
 	collider->mHitPoint = point;
 
 	return true;
-
 }
 
 bool CCollisionManager::CirclePointCollision(CCircleCollider* collider, const FVector2D& point)
