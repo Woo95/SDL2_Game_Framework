@@ -1,6 +1,6 @@
 #pragma once
 
-#include "InputUtils.h"
+#include "Utils/InputUtils.h"
 #include "Vector2D.h"
 #include "../Manager/MemoryPoolManager.h"
 
@@ -51,6 +51,8 @@ public:
 				return mMouses[button].Hold;
 			case EKey::State::RELEASE:
 				return mMouses[button].Release;
+			default:
+				return false;
 		}
 	}
 	const FVector2D& GetMousePos() const { return mMousePos; }

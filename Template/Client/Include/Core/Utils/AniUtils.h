@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GameInfo.h"
+#include "../GameInfo.h"
 
 enum class EAnimationType : unsigned char
 {

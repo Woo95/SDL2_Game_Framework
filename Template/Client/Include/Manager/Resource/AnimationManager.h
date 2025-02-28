@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../Core/AniUtils.h"
+#include "../../Core/Utils/AniUtils.h"
 
 class CAnimation;
 

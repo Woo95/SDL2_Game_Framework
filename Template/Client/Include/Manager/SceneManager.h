@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Core/GameInfo.h"
-#include "../Core/SceneState.h"
+#include "../Core/SceneUtils.h"
 
 class CSceneManager
 {

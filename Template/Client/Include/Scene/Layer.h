@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Core/GameInfo.h"
-#include "../Core/LayerUtils.h"
+#include "../Core/Utils/LayerUtils.h"
 
 class CLayer
 {
