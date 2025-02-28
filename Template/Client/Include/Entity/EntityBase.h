@@ -30,12 +30,12 @@ private:
 		mName = name;
 		mID = std::hash<std::string>()(name);
 	}
+	void SetActive(bool active)
+	{
+		mActive = active;
+	}
 	void SetEnable(bool enable) 
 	{ 
 		mEnable = enable; 
-	}
-	void SetActive(bool active) 
-	{ 
-		mActive = active; 
 	}
 };

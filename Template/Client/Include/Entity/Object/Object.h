@@ -5,7 +5,10 @@
 #include "../Component/Component.h"
 #include "../../Core/Transform.h"
 
-class CObject abstract	: public CEntityBase
+class CScene;
+class CLayer;
+
+class CObject abstract : public CEntityBase
 {
 	friend class CScene;
 	friend class CLayer;
@@ -13,10 +16,10 @@ class CObject abstract	: public CEntityBase
 protected:
 	CObject();
 	virtual ~CObject();
-		
+	
 protected:
-	class CScene* mScene;
-	class CLayer* mLayer;
+	CScene* mScene;
+	CLayer* mLayer;
 
 	CComponent* mRootComponent;
 
@@ -30,10 +33,10 @@ private:
 	virtual void Release() = 0;	// Scene.h에서 object memoryPool usage 위하여
 
 public:
-	CScene*     GetScene() const { return mScene; }
+	CScene* GetScene() const { return mScene; }
 	CTransform* GetTransform() const { return mRootComponent->GetTransform(); }
 	CComponent* GetComponent(const std::string& name = "")
-	{ 
+	{
 		if (name.empty())
 		{
 			return mRootComponent;
