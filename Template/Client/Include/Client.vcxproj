@@ -19,12 +19,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Core\InputUtils.h" />
+    <ClInclude Include="Core\Utils\WidgetUtils.h" />
+    <ClInclude Include="Widget\Image.h" />
+    <ClInclude Include="Manager\Resource\UIManager.h" />
+    <ClInclude Include="Widget\Button.h" />
+    <ClInclude Include="Core\Utils\InputUtils.h" />
     <ClInclude Include="Manager\Resource\DataManager.h" />
+    <ClInclude Include="Scene\UI\MenuUI.h" />
+    <ClInclude Include="Scene\UI\SceneUI.h" />
     <ClInclude Include="Scene\Camera.h" />
     <ClInclude Include="Entity\Object\Background.h" />
-    <ClInclude Include="Core\AniUtils.h" />
-    <ClInclude Include="Core\LayerUtils.h" />
+    <ClInclude Include="Core\Utils\AniUtils.h" />
+    <ClInclude Include="Core\Utils\LayerUtils.h" />
     <ClInclude Include="Scene\Layer.h" />
     <ClInclude Include="Manager\Resource\AnimationManager.h" />
     <ClInclude Include="Resource\Animation.h" />
@@ -120,7 +126,7 @@
     <ClInclude Include="Core\External\SDL\SDL_vulkan.h" />
     <ClInclude Include="Core\GameInfo.h" />
     <ClInclude Include="Core\Input.h" />
-    <ClInclude Include="Core\SceneState.h" />
+    <ClInclude Include="Core\SceneUtils.h" />
     <ClInclude Include="Core\StaticMemoryPool.h" />
     <ClInclude Include="Core\Timer.h" />
     <ClInclude Include="Entity\EntityBase.h" />
@@ -138,14 +144,22 @@
     <ClInclude Include="Scene\MenuScene.h" />
     <ClInclude Include="Scene\PlayScene.h" />
     <ClInclude Include="Scene\Scene.h" />
-    <ClInclude Include="Entity\Component\Transform.h" />
+    <ClInclude Include="Core\Transform.h" />
     <ClInclude Include="Core\Vector2D.h" />
     <ClInclude Include="Manager\Resource\TextureManager.h" />
     <ClInclude Include="Resource\Texture.h" />
     <ClInclude Include="Entity\Component\Sprite\SpriteComponent.h" />
+    <ClInclude Include="Widget\WidgetBase.h" />
+    <ClInclude Include="Widget\UserWidget.h" />
+    <ClInclude Include="Widget\Widget.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Widget\Image.cpp" />
+    <ClCompile Include="Manager\Resource\UIManager.cpp" />
+    <ClCompile Include="Widget\Button.cpp" />
     <ClCompile Include="Manager\Resource\DataManager.cpp" />
+    <ClCompile Include="Scene\UI\MenuUI.cpp" />
+    <ClCompile Include="Scene\UI\SceneUI.cpp" />
     <ClCompile Include="Scene\Camera.cpp" />
     <ClCompile Include="Entity\Object\Background.cpp" />
     <ClCompile Include="Scene\Layer.cpp" />
@@ -176,10 +190,12 @@
     <ClCompile Include="Scene\MenuScene.cpp" />
     <ClCompile Include="Scene\PlayScene.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
-    <ClCompile Include="Entity\Component\Transform.cpp" />
+    <ClCompile Include="Core\Transform.cpp" />
     <ClCompile Include="Manager\Resource\TextureManager.cpp" />
     <ClCompile Include="Resource\Texture.cpp" />
     <ClCompile Include="Entity\Component\Sprite\SpriteComponent.cpp" />
+    <ClCompile Include="Widget\UserWidget.cpp" />
+    <ClCompile Include="Widget\Widget.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />

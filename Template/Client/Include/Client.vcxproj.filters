@@ -79,6 +79,24 @@
     <Filter Include="Framework\03. Scene\02. Camera">
       <UniqueIdentifier>{825e3b1d-8348-4dbc-90c3-9d9b09cc2e77}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\06. Widget">
+      <UniqueIdentifier>{da9c17e3-b3ba-47ea-9466-274356354b9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\06. Widget\01. Widgets">
+      <UniqueIdentifier>{7097eb5a-ad77-4391-a116-6c28c10a1dac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\06. Widget\02. UserWidgets">
+      <UniqueIdentifier>{fbe36ed1-71f1-4f6b-a349-312f74e091f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\03. Scene\03. UI">
+      <UniqueIdentifier>{81d21286-dc7b-475b-91d0-cb58d4517747}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\01. Scenes\01. MENU">
+      <UniqueIdentifier>{98b483b4-c8f2-4d6e-96e0-7ff18e26723a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\01. Scenes\02. PLAY">
+      <UniqueIdentifier>{76319526-342d-4a1c-b6f1-1931c92a4f80}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Timer.h">
@@ -330,14 +348,8 @@
     <ClInclude Include="Manager\SceneManager.h">
       <Filter>Framework\02. Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\PlayScene.h">
-      <Filter>Game\01. Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\SceneState.h">
+    <ClInclude Include="Core\SceneUtils.h">
       <Filter>Framework\01. Core\Lib</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\MenuScene.h">
-      <Filter>Game\01. Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Core\StaticMemoryPool.h">
       <Filter>Framework\01. Core\Lib</Filter>
@@ -351,7 +363,7 @@
     <ClInclude Include="Entity\Component\Component.h">
       <Filter>Framework\04. Entity\02. Component</Filter>
     </ClInclude>
-    <ClInclude Include="Entity\Component\Transform.h">
+    <ClInclude Include="Core\Transform.h">
       <Filter>Framework\04. Entity\02. Component\00. Transform</Filter>
     </ClInclude>
     <ClInclude Include="Core\Vector2D.h">
@@ -423,7 +435,7 @@
     <ClInclude Include="Entity\Component\MovementComponent.h">
       <Filter>Framework\04. Entity\02. Component\01. Components\Movement</Filter>
     </ClInclude>
-    <ClInclude Include="Core\AniUtils.h">
+    <ClInclude Include="Core\Utils\AniUtils.h">
       <Filter>Framework\01. Core\Lib</Filter>
     </ClInclude>
     <ClInclude Include="Entity\Object\Bullet.h">
@@ -435,7 +447,7 @@
     <ClInclude Include="Entity\Object\Player.h">
       <Filter>Game\02. Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Core\LayerUtils.h">
+    <ClInclude Include="Core\Utils\LayerUtils.h">
       <Filter>Framework\01. Core\Lib</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Layer.h">
@@ -450,8 +462,41 @@
     <ClInclude Include="Manager\Resource\DataManager.h">
       <Filter>Framework\02. Manager\01. Resource</Filter>
     </ClInclude>
-    <ClInclude Include="Core\InputUtils.h">
+    <ClInclude Include="Core\Utils\InputUtils.h">
       <Filter>Framework\01. Core\Lib\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget\UserWidget.h">
+      <Filter>Framework\06. Widget\02. UserWidgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget\Widget.h">
+      <Filter>Framework\06. Widget\01. Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\UI\SceneUI.h">
+      <Filter>Framework\03. Scene\03. UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget\Button.h">
+      <Filter>Framework\06. Widget\01. Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget\WidgetBase.h">
+      <Filter>Framework\06. Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Utils\WidgetUtils.h">
+      <Filter>Framework\01. Core\Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\Resource\UIManager.h">
+      <Filter>Framework\02. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\MenuScene.h">
+      <Filter>Game\01. Scenes\01. MENU</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\UI\MenuUI.h">
+      <Filter>Game\01. Scenes\01. MENU</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\PlayScene.h">
+      <Filter>Game\01. Scenes\02. PLAY</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget\Image.h">
+      <Filter>Framework\06. Widget\01. Widgets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -467,12 +512,6 @@
     <ClCompile Include="Manager\SceneManager.cpp">
       <Filter>Framework\02. Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\PlayScene.cpp">
-      <Filter>Game\01. Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\MenuScene.cpp">
-      <Filter>Game\01. Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="Manager\MemoryPoolManager.cpp">
       <Filter>Framework\02. Manager</Filter>
     </ClCompile>
@@ -482,7 +521,7 @@
     <ClCompile Include="Entity\Component\Component.cpp">
       <Filter>Framework\04. Entity\02. Component</Filter>
     </ClCompile>
-    <ClCompile Include="Entity\Component\Transform.cpp">
+    <ClCompile Include="Core\Transform.cpp">
       <Filter>Framework\04. Entity\02. Component\00. Transform</Filter>
     </ClCompile>
     <ClCompile Include="Core\Vector2D.cpp">
@@ -559,6 +598,33 @@
     </ClCompile>
     <ClCompile Include="Manager\Resource\DataManager.cpp">
       <Filter>Framework\02. Manager\01. Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Widget\UserWidget.cpp">
+      <Filter>Framework\06. Widget\02. UserWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Widget\Widget.cpp">
+      <Filter>Framework\06. Widget\01. Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\UI\SceneUI.cpp">
+      <Filter>Framework\03. Scene\03. UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Widget\Button.cpp">
+      <Filter>Framework\06. Widget\01. Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager\Resource\UIManager.cpp">
+      <Filter>Framework\02. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\MenuScene.cpp">
+      <Filter>Game\01. Scenes\01. MENU</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\UI\MenuUI.cpp">
+      <Filter>Game\01. Scenes\01. MENU</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\PlayScene.cpp">
+      <Filter>Game\01. Scenes\02. PLAY</Filter>
+    </ClCompile>
+    <ClCompile Include="Widget\Image.cpp">
+      <Filter>Framework\06. Widget\01. Widgets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -2,18 +2,23 @@
 #include "../Manager/SceneManager.h"
 #include "../Manager/Resource/AssetManager.h"
 #include "../Manager/Resource/TextureManager.h"
+#include "../Scene/UI/MenuUI.h"
 
 CMenuScene::CMenuScene()
 {
+	mSceneUI = new CMenuUI;
 }
 
 CMenuScene::~CMenuScene()
 {
+	SAFE_DELETE(mSceneUI);
 }
 
 bool CMenuScene::Enter()
 {
-	CSceneManager::GetInst()->Change(EScene::State::PLAY);
+	mSceneUI->Init();
+
+	//CSceneManager::GetInst()->Change(EScene::State::PLAY);
 
 	return true;
 }
@@ -42,8 +47,5 @@ void CMenuScene::LoadTextures()
 {
 	CTextureManager* TM = CAssetManager::GetInst()->GetTextureManager();
 
-	TM->LoadTexture("Antonio",    "Antonio.png",                this);
-	TM->LoadTexture("Imelda",     "Imelda.png",                 this);
-	TM->LoadTexture("Pasqualina", "Pasqualina.png",             this);
-	TM->LoadTexture("Stage2",     "Inlaid_Library_stage_2.png", this);
+	TM->LoadTexture("UI", "UI.png", this);
 }
