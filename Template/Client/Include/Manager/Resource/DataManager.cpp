@@ -2,6 +2,7 @@
 #include "PathManager.h"
 #include "AssetManager.h"
 #include "AnimationManager.h"
+#include "UIManager.h"
 #include "../../Resource/Animation.h"
 #include <fstream> // for file input/output
 #include <sstream> // for stringstream
@@ -57,7 +58,7 @@ void CDataManager::LoadAllAnimationData()
 		// 애니메이션이 없을 경우, 애니메이션 생성
 		AM->CreateAnimation(key);
 
-		CAnimation* animation = AM->FindAnimation(key);
+		CAnimation* animation = AM->GetAnimation(key);
 
 		if (animation)
 		{
@@ -78,6 +79,49 @@ void CDataManager::LoadAllAnimationData()
 				data->frames.emplace_back(SDL_Rect{ x, y, w, h });
 			}
 			animation->AddAnimationState(state, data);
+		}
+		row.clear();
+	}
+	file.close();
+}
+
+void CDataManager::LoadAllUIData()
+{
+	LoadAllButtonData();
+}
+
+void CDataManager::LoadAllButtonData()
+{
+	std::string filePath = CPathManager::GetInst()->FindPath(DATA_PATH);
+	filePath += "Button.csv";
+
+	std::ifstream file(filePath);
+
+	if (!file.is_open())
+	{
+		std::cerr << "Cannot open file at: " << filePath << "\n";
+		return;
+	}
+
+	CUIManager* UIM = CAssetManager::GetInst()->GetUIManager();
+
+	std::string line;
+	std::getline(file, line);
+
+	while (std::getline(file, line))
+	{
+		std::vector<std::string> row = Split(line, ',');
+
+		const std::string& key = row[0];
+
+		for (int i = 0; i < 12; i+=4)
+		{
+			int x = std::stoi(row[1 + i].substr(1));
+			int y = std::stoi(row[2 + i]);
+			int w = std::stoi(row[3 + i]);
+			int h = std::stoi(row[4 + i].substr(0, row[4 + i].length() - 1));
+
+			UIM->mUIs[key].emplace_back(SDL_Rect{ x,y,w,h });
 		}
 		row.clear();
 	}

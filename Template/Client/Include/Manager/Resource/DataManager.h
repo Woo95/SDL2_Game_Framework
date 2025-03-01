@@ -15,4 +15,8 @@ private:
 
 public:
     void LoadAllAnimationData();
+    void LoadAllUIData();
+
+private:
+    void LoadAllButtonData();
 };

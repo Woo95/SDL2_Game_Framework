@@ -15,6 +15,7 @@ private:
 
 	class CTextureManager*   mTextureManager;
 	class CAnimationManager* mAnimationManager;
+	class CUIManager*        mUIManager;
 
 	static CAssetManager* mInst;
 
@@ -24,6 +25,8 @@ private:
 public:
 	CTextureManager*   GetTextureManager()   const { return mTextureManager; }
 	CAnimationManager* GetAnimationManager() const { return mAnimationManager; }
+	CUIManager*        GetUIManager()        const { return mUIManager; }
+
 
 public:
 	static CAssetManager* GetInst()
