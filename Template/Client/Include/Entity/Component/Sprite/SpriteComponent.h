@@ -12,7 +12,7 @@ public:
 	virtual ~CSpriteComponent();
 
 private:
-	std::shared_ptr<CTexture>   mTexture;
+	std::shared_ptr<CTexture> mTexture;
 	CAnimation* mAnimation;
 
 	SDL_RendererFlip mFlip;

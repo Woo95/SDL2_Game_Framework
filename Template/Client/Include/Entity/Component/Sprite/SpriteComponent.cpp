@@ -66,10 +66,13 @@ void CSpriteComponent::SetTexture(const std::string& key)
 
 void CSpriteComponent::SetAnimation(const std::string& key)
 {
-	CAnimation* base = CAssetManager::GetInst()->GetAnimationManager()->FindAnimation(key);
+	CAnimation* base = CAssetManager::GetInst()->GetAnimationManager()->GetAnimation(key);
 
-	mAnimation = base->Clone();
-	mAnimation->mOwner = this;
+	if (base)
+	{
+		mAnimation = base->Clone();
+		mAnimation->mOwner = this;
+	}
 }
 
 const SDL_Rect& CSpriteComponent::GetFrame() const

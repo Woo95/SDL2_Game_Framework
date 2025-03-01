@@ -19,19 +19,7 @@ CAnimationManager::~CAnimationManager()
     CMemoryPoolManager::GetInst()->DeletePool<CAnimation>();
 }
 
-void CAnimationManager::CreateAnimation(const std::string& key)
-{
-    CAnimation* animation = FindAnimation(key);
-
-    if (!animation)
-    {
-        CAnimation* newAnimation = CMemoryPoolManager::GetInst()->Allocate<CAnimation>();
-
-        mAnimations[key] = newAnimation;
-    }
-}
-
-CAnimation* CAnimationManager::FindAnimation(const std::string& key)
+CAnimation* CAnimationManager::GetAnimation(const std::string& key)
 {
     std::unordered_map<std::string, CAnimation*>::iterator iter = mAnimations.find(key);
 
@@ -39,4 +27,16 @@ CAnimation* CAnimationManager::FindAnimation(const std::string& key)
         return nullptr;
 
     return iter->second;
+}
+
+void CAnimationManager::CreateAnimation(const std::string& key)
+{
+    CAnimation* animation = GetAnimation(key);
+
+    if (!animation)
+    {
+        CAnimation* newAnimation = CMemoryPoolManager::GetInst()->Allocate<CAnimation>();
+
+        mAnimations[key] = newAnimation;
+    }
 }

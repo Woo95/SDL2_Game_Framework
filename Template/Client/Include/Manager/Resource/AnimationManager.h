@@ -17,7 +17,7 @@ private:
     std::unordered_map<std::string, CAnimation*> mAnimations;
 
 public:
-    CAnimation* FindAnimation(const std::string& key);
+    CAnimation* GetAnimation(const std::string& key);
 
 private:
     void CreateAnimation(const std::string& key);
