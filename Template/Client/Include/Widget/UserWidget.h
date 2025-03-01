@@ -17,7 +17,7 @@ private:
 private:
 	CSceneUI* mSceneUI = nullptr;
 
-	bool mIsMovable = false;
+	bool mIsMovable = true;
 	FVector2D mDragOffset = FVector2D::ZERO;
 
 	std::vector<CWidget*> mWidgets;

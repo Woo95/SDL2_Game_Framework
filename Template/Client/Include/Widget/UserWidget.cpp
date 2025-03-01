@@ -44,7 +44,7 @@ void CUserWidget::Render(SDL_Renderer* Renderer)
 {
 #ifdef _DEBUG
     SDL_SetRenderDrawColor(Renderer, 255, 165, 0, 255);
-    SDL_RenderFillRect(Renderer, &mRect);
+    SDL_RenderDrawRect(Renderer, &mRect);
 #endif
 
     for (CWidget* widget : mWidgets)
