@@ -4,6 +4,15 @@
 
 class CCollider;
 
+namespace EPair
+{
+	enum Status
+	{
+		COLLIDED,
+		NOT_COLLIDED
+	};
+}
+
 struct FColliderPair
 {
 public:

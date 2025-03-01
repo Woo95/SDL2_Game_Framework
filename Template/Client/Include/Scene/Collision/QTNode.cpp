@@ -55,7 +55,6 @@ void CQTNode::Render(SDL_Renderer* Renderer)
 	SDL_SetRenderDrawColor(Renderer, 255, 255, 255, 255);
 
 	// 카메라가 있을 경우, 카메라 좌표계를 반영한 렌더링 좌표로 변환
- 	
 	if (mCamera)
 	{
 		const FVector2D renderPos = mCamera->GetRenderPos(FVector2D(mBoundary.x, mBoundary.y));

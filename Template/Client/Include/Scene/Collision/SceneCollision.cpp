@@ -32,20 +32,30 @@ void CSceneCollision::AddCollider(CCollider* collider)
 
 void CSceneCollision::CleanPairs()
 {
-	std::unordered_map<FColliderPair, bool>::iterator iter    = mPairs.begin();
-	std::unordered_map<FColliderPair, bool>::iterator iterEnd = mPairs.end();
+	std::unordered_map<FColliderPair, EPair::Status>::iterator iter    = mPairs.begin();
+	std::unordered_map<FColliderPair, EPair::Status>::iterator iterEnd = mPairs.end();
 
 	while (iter != iterEnd)
 	{
 		CCollider* collider1 = iter->first.collider1;
 		CCollider* collider2 = iter->first.collider2;
 
-		if (collider1->GetActive() == false ||
-			collider2->GetActive() == false)
+		if (iter->second == EPair::COLLIDED)
 		{
-			collider1->OnCollisionExit(collider2);
-			collider2->OnCollisionExit(collider1);
+			if (!collider1->GetActive() || !collider2->GetActive())
+			{
+				collider1->OnCollisionExit(collider2);
+				collider2->OnCollisionExit(collider1);
+			}
+		}
+		else if (iter->second == EPair::NOT_COLLIDED)
+		{
+			if (!collider1->GetActive()) collider1->OnCollisionExit(collider2);
+			if (!collider2->GetActive()) collider2->OnCollisionExit(collider1);
+		}
 
+		if (!collider1->GetActive() || !collider2->GetActive())
+		{
 			iter = mPairs.erase(iter);
 			continue;
 		}
@@ -56,21 +66,21 @@ void CSceneCollision::CleanPairs()
 void CSceneCollision::HandleCollision(CCollider* collider1, CCollider* collider2)
 {
 	FColliderPair pair = { collider1, collider2 };
-	
+
 	// pair가 존재하지 않을 경우
 	if (mPairs.find(pair) == mPairs.end())
 	{
-		mPairs[pair] = false;
+		mPairs[pair] = EPair::NOT_COLLIDED;
 	}
 
 	if (collider1->Intersect(collider2))
 	{
-		if (mPairs[pair] == false)
+		if (mPairs[pair] == EPair::NOT_COLLIDED)
 		{
 			collider1->OnCollisionEnter(collider2);
 			collider2->OnCollisionEnter(collider1);
 
-			mPairs[pair] = true;
+			mPairs[pair] = EPair::COLLIDED;
 		}
 		else
 		{
@@ -80,7 +90,7 @@ void CSceneCollision::HandleCollision(CCollider* collider1, CCollider* collider2
 	}
 	else
 	{
-		if (mPairs[pair] == true)
+		if (mPairs[pair] == EPair::COLLIDED)
 		{
 			collider1->OnCollisionExit(collider2);
 			collider2->OnCollisionExit(collider1);

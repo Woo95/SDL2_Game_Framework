@@ -19,7 +19,7 @@ public:
 private:
 	CQuadTree* mQuadTree;
 
-	std::unordered_map<FColliderPair, bool> mPairs;
+	std::unordered_map<FColliderPair, EPair::Status> mPairs;
 
 public:
 	void Update(float DeltaTime);
