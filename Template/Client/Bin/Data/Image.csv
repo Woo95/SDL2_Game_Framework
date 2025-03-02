@@ -1,2 +1,2 @@
-Name,Frame
-IntroBG,"0, 0, 1280, 800"
+Name,frameCount (int),
+IntroBG,1,"0, 0, 1280, 800"

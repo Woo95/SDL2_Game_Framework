@@ -153,11 +153,13 @@ void CDataManager::LoadAllImageData()
 
 		const std::string& key = row[0];
 
+		int frameCount = std::stoi(row[1]) * 4;
+		for (int i = 0; i < frameCount; i += 4)
 		{
-			int x = std::stoi(row[1].substr(1));
-			int y = std::stoi(row[2]);
-			int w = std::stoi(row[3]);
-			int h = std::stoi(row[4].substr(0, row[4].length() - 1));
+			int x = std::stoi(row[2 + i].substr(1));
+			int y = std::stoi(row[3 + i]);
+			int w = std::stoi(row[4 + i]);
+			int h = std::stoi(row[5 + i].substr(0, row[5].length() - 1));
 
 			UIM->mUIs[key].emplace_back(SDL_Rect{ x,y,w,h });
 		}
