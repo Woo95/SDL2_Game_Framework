@@ -19,7 +19,7 @@ void CImage::Render(SDL_Renderer* Renderer)
 
 	SDL_SetTextureAlphaMod(mTexture.get()->GetTexture(), mAlpha);
 
-	SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &mFrame, &mRect);
+	SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &mFrames[0], &mRect);
 }
 
 void CImage::SetTexture(const std::string& key)
@@ -31,7 +31,7 @@ void CImage::SetFrame(const std::string& key)
 {
 	const std::vector<SDL_Rect>* const image = CAssetManager::GetInst()->GetUIManager()->GetUIFrames(key);
 
-	mFrame = (*image)[0];
+	mFrames = *image;
 }
 
 void CImage::SetAlpha(Uint8 alpha)

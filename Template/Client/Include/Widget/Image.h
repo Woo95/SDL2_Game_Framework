@@ -10,9 +10,9 @@ public:
 	CImage();
 	virtual ~CImage();
 
-private:
+protected:
 	std::shared_ptr<CTexture> mTexture = nullptr;
-	SDL_Rect mFrame = {};
+	std::vector<SDL_Rect> mFrames;
 	Uint8 mAlpha = 255;
 
 public:
