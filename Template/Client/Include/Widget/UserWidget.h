@@ -17,7 +17,7 @@ private:
 private:
 	CSceneUI* mSceneUI = nullptr;
 
-	bool mIsMovable = true;
+	bool mIsMovable = false;
 	FVector2D mDragOffset = FVector2D::ZERO;
 
 	std::vector<CWidget*> mWidgets;
@@ -30,6 +30,11 @@ protected:
 	virtual void Render(SDL_Renderer* Renderer);
 
 public:
+	void SetMovable(bool movable)
+	{
+		mIsMovable = movable;
+	}
+
 	CWidget* FindWidget(size_t id);
 
 	template <typename T>

@@ -47,5 +47,6 @@ void CMenuScene::LoadTextures()
 {
 	CTextureManager* TM = CAssetManager::GetInst()->GetTextureManager();
 
-	TM->LoadTexture("UI", "UI.png", this);
+	TM->LoadTexture("UI",      "UI.png",      this);
+	TM->LoadTexture("IntroBG", "IntroBG.png", this);
 }
