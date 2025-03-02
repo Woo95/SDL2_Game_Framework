@@ -88,6 +88,7 @@ void CDataManager::LoadAllAnimationData()
 void CDataManager::LoadAllUIData()
 {
 	LoadAllButtonData();
+	LoadAllImageData();
 }
 
 void CDataManager::LoadAllButtonData()
@@ -120,6 +121,43 @@ void CDataManager::LoadAllButtonData()
 			int y = std::stoi(row[2 + i]);
 			int w = std::stoi(row[3 + i]);
 			int h = std::stoi(row[4 + i].substr(0, row[4 + i].length() - 1));
+
+			UIM->mUIs[key].emplace_back(SDL_Rect{ x,y,w,h });
+		}
+		row.clear();
+	}
+	file.close();
+}
+
+void CDataManager::LoadAllImageData()
+{
+	std::string filePath = CPathManager::GetInst()->FindPath(DATA_PATH);
+	filePath += "Image.csv";
+
+	std::ifstream file(filePath);
+
+	if (!file.is_open())
+	{
+		std::cerr << "Cannot open file at: " << filePath << "\n";
+		return;
+	}
+
+	CUIManager* UIM = CAssetManager::GetInst()->GetUIManager();
+
+	std::string line;
+	std::getline(file, line);
+
+	while (std::getline(file, line))
+	{
+		std::vector<std::string> row = Split(line, ',');
+
+		const std::string& key = row[0];
+
+		{
+			int x = std::stoi(row[1].substr(1));
+			int y = std::stoi(row[2]);
+			int w = std::stoi(row[3]);
+			int h = std::stoi(row[4].substr(0, row[4].length() - 1));
 
 			UIM->mUIs[key].emplace_back(SDL_Rect{ x,y,w,h });
 		}

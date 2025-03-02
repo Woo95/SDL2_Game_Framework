@@ -19,4 +19,5 @@ public:
 
 private:
     void LoadAllButtonData();
+    void LoadAllImageData();
 };
