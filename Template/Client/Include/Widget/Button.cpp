@@ -36,13 +36,13 @@ void CButton::SetTexture(const std::string& key)
 
 void CButton::SetFrame(const std::string& key)
 {
-	const std::vector<SDL_Rect>* const button = CAssetManager::GetInst()->GetUIManager()->GetUIFrames(key);
+	const std::vector<SDL_Rect>* const framesPtr = CAssetManager::GetInst()->GetUIManager()->GetUIFrames(key);
 
-	if (button)
+	if (framesPtr)
 	{
 		for (size_t i = 0; i < EButton::State::MAX; i++)
 		{
-			mFrames[i] = (*button)[i];
+			mFrames[i] = (*framesPtr)[i];
 		}
 	}
 }

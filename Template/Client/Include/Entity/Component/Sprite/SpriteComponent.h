@@ -13,6 +13,7 @@ public:
 
 private:
 	std::shared_ptr<CTexture> mTexture;
+	SDL_Rect mFrame = {};
 	CAnimation* mAnimation;
 
 	SDL_RendererFlip mFlip;
@@ -31,7 +32,9 @@ public:
 	CAnimation* GetAnimation() const { return mAnimation; }
 
 	void SetTexture(const std::string& key);
+	void SetSprite(const std::string& key);
 	void SetAnimation(const std::string& key);
+
 	void SetFlip(SDL_RendererFlip flip) { mFlip = flip; }
 
 private:

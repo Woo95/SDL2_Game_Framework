@@ -29,9 +29,9 @@ void CImage::SetTexture(const std::string& key)
 
 void CImage::SetFrame(const std::string& key)
 {
-	const std::vector<SDL_Rect>* const image = CAssetManager::GetInst()->GetUIManager()->GetUIFrames(key);
+	const std::vector<SDL_Rect>* const framePtr = CAssetManager::GetInst()->GetUIManager()->GetUIFrames(key);
 
-	mFrames = *image;
+	mFrames = *framePtr;
 }
 
 void CImage::SetAlpha(Uint8 alpha)

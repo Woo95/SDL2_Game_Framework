@@ -17,6 +17,7 @@ bool CBackground::Init()
     // 스프라이트 컴포넌트 만들기
     CSpriteComponent* sprite = AllocateComponent<CSpriteComponent>("sprite", mRootComponent);
     sprite->SetTexture("Stage1");
+    sprite->SetSprite("Mad_Forest");
 
     // 위치 설정 (스프라이트 컴포넌트)
     CTransform* spriteTrans = sprite->GetTransform();

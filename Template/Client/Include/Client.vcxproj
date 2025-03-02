@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Manager\Resource\SpriteManager.h" />
     <ClInclude Include="Widget\AnimatedImage.h" />
     <ClInclude Include="Core\Utils\WidgetUtils.h" />
     <ClInclude Include="Widget\Image.h" />
@@ -157,7 +158,6 @@
   <ItemGroup>
     <ClCompile Include="Widget\AnimatedImage.cpp" />
     <ClCompile Include="Widget\Image.cpp" />
-    <ClCompile Include="Manager\Resource\UIManager.cpp" />
     <ClCompile Include="Widget\Button.cpp" />
     <ClCompile Include="Manager\Resource\DataManager.cpp" />
     <ClCompile Include="Scene\UI\MenuUI.cpp" />

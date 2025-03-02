@@ -1,6 +1,7 @@
 #include "SpriteComponent.h"
 #include "../../../Manager/Resource/AssetManager.h"
 #include "../../../Manager/Resource/TextureManager.h"
+#include "../../../Manager/Resource/SpriteManager.h"
 #include "../../../Manager/Resource/AnimationManager.h"
 #include "../../../Resource/Texture.h"
 #include "../../../Resource/Animation.h"
@@ -48,7 +49,7 @@ void CSpriteComponent::Render(SDL_Renderer* Renderer)
 	if (mTexture)
 	{
 		const SDL_Rect& frame = GetFrame();
-		const SDL_Rect dest  = GetDest();
+		const SDL_Rect  dest  = GetDest();
 
 		SDL_RenderCopyEx(Renderer, mTexture.get()->GetTexture(), &frame, &dest, 0.0, nullptr, mFlip);
 	}
@@ -64,6 +65,13 @@ void CSpriteComponent::SetTexture(const std::string& key)
 	mTexture = CAssetManager::GetInst()->GetTextureManager()->FindTexture(key);
 }
 
+void CSpriteComponent::SetSprite(const std::string& key)
+{
+	const SDL_Rect* const framePtr = CAssetManager::GetInst()->GetSpriteManager()->GetSpriteFrame(key);
+
+	mFrame = *framePtr;
+}
+
 void CSpriteComponent::SetAnimation(const std::string& key)
 {
 	CAnimation* base = CAssetManager::GetInst()->GetAnimationManager()->GetAnimation(key);
@@ -77,7 +85,7 @@ void CSpriteComponent::SetAnimation(const std::string& key)
 
 const SDL_Rect& CSpriteComponent::GetFrame() const
 {
-	return mAnimation ? mAnimation->GetCurrentFrame() : mTexture->GetTextureFrame();
+	return mAnimation ? mAnimation->GetCurrentFrame() : mFrame;
 }
 
 const SDL_Rect CSpriteComponent::GetDest() const

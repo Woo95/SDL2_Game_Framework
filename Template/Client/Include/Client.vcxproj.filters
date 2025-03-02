@@ -483,9 +483,6 @@
     <ClInclude Include="Core\Utils\WidgetUtils.h">
       <Filter>Framework\01. Core\Lib</Filter>
     </ClInclude>
-    <ClInclude Include="Manager\Resource\UIManager.h">
-      <Filter>Framework\02. Manager</Filter>
-    </ClInclude>
     <ClInclude Include="Scene\MenuScene.h">
       <Filter>Game\01. Scenes\01. MENU</Filter>
     </ClInclude>
@@ -500,6 +497,12 @@
     </ClInclude>
     <ClInclude Include="Widget\AnimatedImage.h">
       <Filter>Framework\06. Widget\01. Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\Resource\UIManager.h">
+      <Filter>Framework\02. Manager\01. Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\Resource\SpriteManager.h">
+      <Filter>Framework\02. Manager\01. Resource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -613,9 +616,6 @@
     </ClCompile>
     <ClCompile Include="Widget\Button.cpp">
       <Filter>Framework\06. Widget\01. Widgets</Filter>
-    </ClCompile>
-    <ClCompile Include="Manager\Resource\UIManager.cpp">
-      <Filter>Framework\02. Manager</Filter>
     </ClCompile>
     <ClCompile Include="Scene\MenuScene.cpp">
       <Filter>Game\01. Scenes\01. MENU</Filter>
