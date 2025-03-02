@@ -88,7 +88,6 @@ int CGameManager::Run()
         }
         Logic();
     }
-
     return 0;
 }
 

@@ -4,6 +4,7 @@
 #include "../Scene/UI/SceneUI.h"
 #include "../Manager/Resource/AssetManager.h"
 #include "../Manager/Resource/TextureManager.h"
+#include "../Manager/GameManager.h"
 
 CScene::CScene() :
     mSceneCollision(nullptr),
@@ -17,6 +18,7 @@ CScene::CScene() :
         mLayers[i] = CMemoryPoolManager::GetInst()->Allocate<CLayer>();
     }
     mCamera = new CCamera;
+    mCamera->SetResolution(CGameManager::GetInst()->GetResolution());
 }
 
 CScene::~CScene()

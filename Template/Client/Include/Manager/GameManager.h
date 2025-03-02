@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Core/GameInfo.h"
+#include "../Core/Vector2D.h"
 
 class CGameManager
 {
@@ -21,6 +22,13 @@ public:
 
 public:
 	SDL_Renderer* GetRenderer() const { return mRenderer; }
+	FVector2D GetResolution() const
+	{
+		int width, height;
+		SDL_GetWindowSize(mWindow, &width, &height);
+
+		return FVector2D(float(width), float(height));
+	}
 
 private:
 	void Logic();

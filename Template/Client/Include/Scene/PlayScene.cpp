@@ -10,8 +10,6 @@
 
 CPlayScene::CPlayScene()
 {
-	mCamera->SetResolution(FVector2D(1280, 720)); // temporary camera resolution size
-
 	mSceneCollision = new CSceneCollision(mCamera);
 }
 
