@@ -29,11 +29,11 @@ private:
 
 	EButton::State mCurrentState = EButton::State::UNHOVER;
 
-public:
+private:
 	virtual void Render(SDL_Renderer* Renderer) override;
 
 public:
 	void SetTexture(const std::string& key);
-	void SetFrames(const std::string& key);
+	void SetFrame(const std::string& key);
 	void SetAlpha(Uint8 alpha);
 };

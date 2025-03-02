@@ -34,7 +34,7 @@ void CButton::SetTexture(const std::string& key)
 	mTexture = CAssetManager::GetInst()->GetTextureManager()->FindTexture(key);
 }
 
-void CButton::SetFrames(const std::string& key)
+void CButton::SetFrame(const std::string& key)
 {
 	const std::vector<SDL_Rect>* const button = CAssetManager::GetInst()->GetUIManager()->GetUIFrames(key);
 

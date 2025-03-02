@@ -49,7 +49,7 @@ bool CMenuUI::Init()
 
 	// 버튼 텍스쳐 및 프레임 설정
 	button->SetTexture("UI");
-	button->SetFrames("BlueButton");
+	button->SetFrame("BlueButton");
 
 	// 유저위젯 자식으로 버튼 추가 및 유저위젯 위치 설정
 	userWidget->AddWidget(button);
@@ -70,7 +70,7 @@ bool CMenuUI::Init()
 
 	// 버튼 텍스쳐 및 프레임 설정
 	button->SetTexture("UI");
-	button->SetFrames("GreenButton");
+	button->SetFrame("GreenButton");
 
 	// 유저위젯 자식으로 버튼 추가 및 유저위젯 위치 설정
 	userWidget->AddWidget(button);

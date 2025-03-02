@@ -498,6 +498,9 @@
     <ClInclude Include="Widget\Image.h">
       <Filter>Framework\06. Widget\01. Widgets</Filter>
     </ClInclude>
+    <ClInclude Include="Widget\AnimatedImage.h">
+      <Filter>Framework\06. Widget\01. Widgets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Timer.cpp">
@@ -624,6 +627,9 @@
       <Filter>Game\01. Scenes\02. PLAY</Filter>
     </ClCompile>
     <ClCompile Include="Widget\Image.cpp">
+      <Filter>Framework\06. Widget\01. Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Widget\AnimatedImage.cpp">
       <Filter>Framework\06. Widget\01. Widgets</Filter>
     </ClCompile>
   </ItemGroup>
