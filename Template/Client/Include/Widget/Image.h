@@ -15,7 +15,7 @@ protected:
 	std::vector<SDL_Rect> mFrames;
 	Uint8 mAlpha = 255;
 
-public:
+private:
 	virtual void Render(SDL_Renderer* Renderer);
 
 public:

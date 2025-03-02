@@ -19,4 +19,14 @@ private:
 private:
 	virtual void Render(SDL_Renderer* Renderer);
 	virtual void Update(float DeltaTime);
+
+public:
+	void SetIsLoop(bool isLoop)
+	{
+		mIsLoop = isLoop;
+	}
+	void SetIntervalPerFrame(float intervalPerFrame)
+	{
+		mIntervalPerFrame = intervalPerFrame;
+	}
 };
