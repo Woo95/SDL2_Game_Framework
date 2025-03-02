@@ -1,4 +1,4 @@
-Name,"Type {NONE, TIME, MOVE}","State {NONE, IDLE, WALK, JUMP}",Loop (TRUE/FALSE),IntervalPerFrame (float),frameCount (int),,,,
+Name,"Type {NONE, TIME, MOVE}","State {NONE, IDLE, WALK, JUMP}",Loop (TRUE/FALSE),IntervalPerFrame (float),FrameCount (int),,,,
 Antonio,2,2,1,150,4,"0,0,31,32","31,0,31,32","62,0,31,32","94,0,31,32"
 Imelda,2,2,1,150,4,"0,0,31,32","31,0,31,32","64,0,33,32","96,0,34,32"
 Pasqualina,2,2,1,150,4,"0,0,29,32","30,0,29,32","60,0,30,32","91,0,30,32"
