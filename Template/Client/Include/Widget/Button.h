@@ -25,6 +25,7 @@ public:
 private:
 	std::shared_ptr<CTexture> mTexture = nullptr;
 	SDL_Rect mFrames[EButton::State::MAX] = {};
+	Uint8 mAlpha = 255;
 
 	EButton::State mCurrentState = EButton::State::UNHOVER;
 
@@ -33,5 +34,6 @@ public:
 
 public:
 	void SetTexture(const std::string& key);
-	void SetButton(const std::string& key);
+	void SetFrames(const std::string& key);
+	void SetAlpha(Uint8 alpha);
 };
