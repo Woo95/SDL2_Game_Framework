@@ -8,12 +8,20 @@ class CUIManager
     friend class CDataManager;
 
 private:
-    CUIManager();
-    ~CUIManager();
+    CUIManager()  = default;
+    ~CUIManager() = default;
 
 private:
     std::unordered_map<std::string, std::vector<SDL_Rect>> mUIs;
 
 public:
-    const std::vector<SDL_Rect>* const GetUIFrames(const std::string& key);
+    const std::vector<SDL_Rect>* const GetUIFrames(const std::string& key)
+    {
+        std::unordered_map<std::string, std::vector<SDL_Rect>>::iterator iter = mUIs.find(key);
+
+        if (iter == mUIs.end())
+            return nullptr;
+
+        return &iter->second;
+    }
 };

@@ -14,6 +14,7 @@ private:
 	class CDataManager*      mDataManager;
 
 	class CTextureManager*   mTextureManager;
+	class CSpriteManager*    mSpriteManager;
 	class CAnimationManager* mAnimationManager;
 	class CUIManager*        mUIManager;
 
@@ -24,6 +25,7 @@ private:
 
 public:
 	CTextureManager*   GetTextureManager()   const { return mTextureManager; }
+	CSpriteManager*    GetSpriteManager()    const { return mSpriteManager; }
 	CAnimationManager* GetAnimationManager() const { return mAnimationManager; }
 	CUIManager*        GetUIManager()        const { return mUIManager; }
 

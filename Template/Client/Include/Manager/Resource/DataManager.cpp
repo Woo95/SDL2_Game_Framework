@@ -1,6 +1,7 @@
 #include "DataManager.h"
 #include "PathManager.h"
 #include "AssetManager.h"
+#include "SpriteManager.h"
 #include "AnimationManager.h"
 #include "UIManager.h"
 #include "../../Resource/Animation.h"
@@ -29,10 +30,47 @@ std::vector<std::string> CDataManager::Split(const std::string& line, char delim
 	return row;
 }
 
+void CDataManager::LoadAllSpriteData()
+{
+	std::string filePath = CPathManager::GetInst()->FindPath(DATA_PATH);
+	filePath += "\\Entity\\Sprite.csv";
+
+	std::ifstream file(filePath);
+
+	if (!file.is_open())
+	{
+		std::cerr << "Cannot open file at: " << filePath << "\n";
+		return;
+	}
+
+	CSpriteManager* SM = CAssetManager::GetInst()->GetSpriteManager();
+
+	std::string line;
+	std::getline(file, line);
+
+	while (std::getline(file, line))
+	{
+		std::vector<std::string> row = Split(line, ',');
+
+		const std::string& key = row[0];
+
+		{
+			int x = std::stoi(row[1].substr(1));
+			int y = std::stoi(row[2]);
+			int w = std::stoi(row[3]);
+			int h = std::stoi(row[4].substr(0, row[4].length() - 1));
+
+			SM->mSprites[key] = SDL_Rect{ x,y,w,h };
+		}
+		row.clear();
+	}
+	file.close();
+}
+
 void CDataManager::LoadAllAnimationData()
 {
 	std::string filePath = CPathManager::GetInst()->FindPath(DATA_PATH);
-	filePath += "Animation.csv";
+	filePath += "\\Entity\\Animation.csv";
 
 	std::ifstream file(filePath);
 
@@ -94,7 +132,7 @@ void CDataManager::LoadAllUIData()
 void CDataManager::LoadAllButtonData()
 {
 	std::string filePath = CPathManager::GetInst()->FindPath(DATA_PATH);
-	filePath += "Button.csv";
+	filePath += "\\Widget\\Button.csv";
 
 	std::ifstream file(filePath);
 
@@ -132,7 +170,7 @@ void CDataManager::LoadAllButtonData()
 void CDataManager::LoadAllImageData()
 {
 	std::string filePath = CPathManager::GetInst()->FindPath(DATA_PATH);
-	filePath += "Image.csv";
+	filePath += "\\Widget\\Image.csv";
 
 	std::ifstream file(filePath);
 
