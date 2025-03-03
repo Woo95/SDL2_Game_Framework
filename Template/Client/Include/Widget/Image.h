@@ -13,7 +13,7 @@ public:
 protected:
 	std::shared_ptr<CTexture> mTexture = nullptr;
 	std::vector<SDL_Rect> mFrames;
-	Uint8 mAlpha = 255;
+	SDL_Color mColor = { 255, 255, 255, 255 };
 
 private:
 	virtual void Render(SDL_Renderer* Renderer);
@@ -21,5 +21,6 @@ private:
 public:
 	void SetTexture(const std::string& key);
 	void SetFrame(const std::string& key);
+	void SetColor(Uint8 r, Uint8 g, Uint8 b);
 	void SetAlpha(Uint8 alpha);
 };

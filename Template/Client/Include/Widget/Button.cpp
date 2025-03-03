@@ -24,7 +24,8 @@ void CButton::Render(SDL_Renderer* Renderer)
 {
 	CWidget::Render(Renderer);
 
-	SDL_SetTextureAlphaMod(mTexture.get()->GetTexture(), mAlpha);
+	SDL_SetTextureColorMod(mTexture.get()->GetTexture(), mColor.r, mColor.g, mColor.b);
+	SDL_SetTextureAlphaMod(mTexture.get()->GetTexture(), mColor.a);
 
 	SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &mFrames[mCurrentState], &mRect);
 }
@@ -47,9 +48,16 @@ void CButton::SetFrame(const std::string& key)
 	}
 }
 
+void CButton::SetColor(Uint8 r, Uint8 g, Uint8 b)
+{
+	mColor.r = r;
+	mColor.g = g;
+	mColor.b = b;
+}
+
 void CButton::SetAlpha(Uint8 alpha)
 {
-	mAlpha = alpha;
+	mColor.a = alpha;
 
 	// 투명도를 고려한 블렌드로 설정
 	SDL_SetTextureBlendMode(mTexture.get()->GetTexture(), SDL_BLENDMODE_BLEND);

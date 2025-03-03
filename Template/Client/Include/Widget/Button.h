@@ -1,18 +1,7 @@
 #pragma once
 
-#include "../Core/GameInfo.h"
 #include "Widget.h"
-
-namespace EButton
-{
-	enum State : unsigned char
-	{
-		UNHOVER,
-		HOVER,
-		CLICK,
-		MAX
-	};
-}
+#include "../Core/Utils/WidgetUtils.h"
 
 class CTexture;
 
@@ -24,8 +13,8 @@ public:
 
 private:
 	std::shared_ptr<CTexture> mTexture = nullptr;
-	SDL_Rect mFrames[EButton::State::MAX] = {};
-	Uint8 mAlpha = 255;
+	SDL_Rect  mFrames[EButton::State::MAX] = {};
+	SDL_Color mColor = { 255, 255, 255, 255 };
 
 	EButton::State mCurrentState = EButton::State::UNHOVER;
 
@@ -35,5 +24,6 @@ private:
 public:
 	void SetTexture(const std::string& key);
 	void SetFrame(const std::string& key);
+	void SetColor(Uint8 r, Uint8 g, Uint8 b);
 	void SetAlpha(Uint8 alpha);
 };

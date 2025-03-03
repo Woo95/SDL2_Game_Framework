@@ -16,7 +16,8 @@ void CAnimatedImage::Render(SDL_Renderer* Renderer)
 {
 	CWidget::Render(Renderer);
 
-	SDL_SetTextureAlphaMod(mTexture.get()->GetTexture(), mAlpha);
+	SDL_SetTextureColorMod(mTexture.get()->GetTexture(), mColor.r, mColor.g, mColor.b);
+	SDL_SetTextureAlphaMod(mTexture.get()->GetTexture(), mColor.a);
 
 	SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &mFrames[mCurrIdx], &mRect);
 }
