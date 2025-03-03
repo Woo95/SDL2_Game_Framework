@@ -1,2 +1,3 @@
-Name,frameCount (int),
+Name,frameCount (int)
 IntroBG,1,"0, 0, 1280, 800"
+HpBar,2,"0, 17, 321, 14","0, 2, 321, 14"
