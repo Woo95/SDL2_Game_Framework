@@ -25,3 +25,20 @@ namespace EButton
 		MAX
 	};
 }
+
+// for the CProgressBar class
+namespace EProgBar
+{
+	enum Method
+	{
+		LeftToRight,
+		BottomToTop
+	};
+
+	enum State
+	{
+		BACK,
+		FILL,
+		MAX
+	};
+}

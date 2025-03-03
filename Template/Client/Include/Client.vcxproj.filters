@@ -504,6 +504,9 @@
     <ClInclude Include="Manager\Resource\SpriteManager.h">
       <Filter>Framework\02. Manager\01. Resource</Filter>
     </ClInclude>
+    <ClInclude Include="Widget\ProgressBar.h">
+      <Filter>Framework\06. Widget\01. Widgets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Timer.cpp">
@@ -630,6 +633,9 @@
       <Filter>Framework\06. Widget\01. Widgets</Filter>
     </ClCompile>
     <ClCompile Include="Widget\AnimatedImage.cpp">
+      <Filter>Framework\06. Widget\01. Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Widget\ProgressBar.cpp">
       <Filter>Framework\06. Widget\01. Widgets</Filter>
     </ClCompile>
   </ItemGroup>

@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Manager\Resource\SpriteManager.h" />
+    <ClInclude Include="Widget\ProgressBar.h" />
     <ClInclude Include="Widget\AnimatedImage.h" />
     <ClInclude Include="Core\Utils\WidgetUtils.h" />
     <ClInclude Include="Widget\Image.h" />
@@ -156,6 +157,7 @@
     <ClInclude Include="Widget\Widget.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Widget\ProgressBar.cpp" />
     <ClCompile Include="Widget\AnimatedImage.cpp" />
     <ClCompile Include="Widget\Image.cpp" />
     <ClCompile Include="Widget\Button.cpp" />
