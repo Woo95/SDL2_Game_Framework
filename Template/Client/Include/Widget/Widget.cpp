@@ -49,15 +49,15 @@ void CWidget::Update(float DeltaTime)
 
 void CWidget::LateUpdate(float DeltaTime)
 {
-	for (size_t i = mChilds.size(); i > 0; i--)
+	for (CWidget* child : mChilds)
 	{
-		CWidget* child = mChilds[i - 1];
-
 		if (!child->GetActive())
 		{
-			// Active아닌 component는 마지막 요소랑 바꿔준 후 제거
-			std::swap(mChilds[i - 1], mChilds.back());
-			mChilds.pop_back();
+			// mWidgets 벡터의 순서를 유지하면서 userWidget 제거
+			mChilds.erase(std::remove(mChilds.begin(), mChilds.end(), child), mChilds.end());
+
+			// transform 벡터의 순서를 유지하면서 transform 제거
+			mTransform->mChilds.erase(std::remove(mTransform->mChilds.begin(), mTransform->mChilds.end(), child->mTransform), mTransform->mChilds.end());
 
 			SAFE_DELETE(child);
 

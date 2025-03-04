@@ -29,7 +29,7 @@ public:
 	const SDL_Rect& GetRect()  const { return mRect; }
 	CTransform* GetTransform() const { return mTransform; }
 
-public:
+protected:
 	void SetName(const std::string& name)
 	{
 		mName = name;

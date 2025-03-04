@@ -26,6 +26,16 @@ void CSceneUI::Update(float DeltaTime)
 
 	for (CUserWidget* userWidget : mUserWidgets)
 	{
+		if (!userWidget->GetActive())
+		{
+			userWidget->Destroy();
+
+			continue;
+		}
+		else if (!userWidget->GetEnable())
+		{
+			continue;
+		}
 		userWidget->Update(DeltaTime);
 	}
 }
@@ -34,6 +44,19 @@ void CSceneUI::LateUpdate(float DeltaTime)
 {
 	for (CUserWidget* userWidget : mUserWidgets)
 	{
+		if (!userWidget->GetActive())
+		{
+			// mUserWidgets 벡터의 순서를 유지하면서 userWidget 제거
+			mUserWidgets.erase(std::remove(mUserWidgets.begin(), mUserWidgets.end(), userWidget), mUserWidgets.end());
+			
+			SAFE_DELETE(userWidget);
+
+			continue;
+		}
+		else if (!userWidget->GetEnable())
+		{
+			continue;
+		}
 		userWidget->LateUpdate(DeltaTime);
 	}
 }
@@ -42,6 +65,9 @@ void CSceneUI::Render(SDL_Renderer* Renderer)
 {
 	for (CUserWidget* userWidget : mUserWidgets)
 	{
+		if (!userWidget->GetActive() || !userWidget->GetEnable())
+			continue;
+		
 		userWidget->Render(Renderer);
 	}
 }
@@ -101,6 +127,8 @@ void CSceneUI::BringUserWidgetToTop(CUserWidget* userWidget)
 	if (mUserWidgets.back() == userWidget || mUserWidgets.empty())
 		return;
 
+	// mUserWidgets 벡터의 순서를 유지하면서 userWidget 제거
 	mUserWidgets.erase(std::remove(mUserWidgets.begin(), mUserWidgets.end(), userWidget), mUserWidgets.end());
+	// 제거했던 userWidget을 맨 뒤에 추가
 	mUserWidgets.emplace_back(userWidget);
 }

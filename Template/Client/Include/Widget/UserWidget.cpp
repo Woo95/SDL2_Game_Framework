@@ -28,6 +28,16 @@ void CUserWidget::Update(float DeltaTime)
 
     for (CWidget* widget : mWidgets)
     {
+        if (!widget->GetActive())
+        {
+            widget->Destroy();
+
+            continue;
+        }
+        else if (!widget->GetEnable())
+        {
+            continue;
+        }
         widget->Update(DeltaTime);
     }
 }
@@ -36,6 +46,22 @@ void CUserWidget::LateUpdate(float DeltaTime)
 {
     for (CWidget* widget : mWidgets)
     {
+        if (!widget->GetActive())
+        {
+            // mWidgets 벡터의 순서를 유지하면서 userWidget 제거
+            mWidgets.erase(std::remove(mWidgets.begin(), mWidgets.end(), widget), mWidgets.end());
+
+            // transform 벡터의 순서를 유지하면서 transform 제거
+            mTransform->mChilds.erase(std::remove(mTransform->mChilds.begin(), mTransform->mChilds.end(), widget->mTransform), mTransform->mChilds.end());
+
+            SAFE_DELETE(widget);
+
+            continue;
+        }
+        else if (!widget->GetEnable())
+        {
+            continue;
+        }
         widget->LateUpdate(DeltaTime);
     }
 }
@@ -49,6 +75,9 @@ void CUserWidget::Render(SDL_Renderer* Renderer)
 
     for (CWidget* widget : mWidgets)
     {
+    	if (!widget->GetActive() || !widget->GetEnable())
+    		continue;
+    	
         widget->Render(Renderer);
     }
 }
