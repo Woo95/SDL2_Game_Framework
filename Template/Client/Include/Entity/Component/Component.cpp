@@ -50,9 +50,13 @@ void CComponent::LateUpdate(float DeltaTime)
 
 		if (!child->GetActive())
 		{
-			// Active아닌 component는 마지막 요소랑 바꿔준 후 제거
+			// 부모의 "자식 component" 목록에서 자신을 마지막 요소랑 바꿔준 후 제거
 			std::swap(mChilds[i - 1], mChilds.back());
 			mChilds.pop_back();
+
+			// 부모의 "자식 transform" 목록에서 자신을 마지막 요소랑 바꿔준 후 제거
+			std::swap(mTransform->mChilds[i - 1], mTransform->mChilds.back());
+			mTransform->mChilds.pop_back();
 
 			child->Release();
 
