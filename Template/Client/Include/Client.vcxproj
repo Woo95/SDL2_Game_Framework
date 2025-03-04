@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\External\SDL\SDL_ttf.h" />
     <ClInclude Include="Manager\Resource\SpriteManager.h" />
     <ClInclude Include="Widget\ProgressBar.h" />
     <ClInclude Include="Widget\AnimatedImage.h" />

@@ -507,6 +507,9 @@
     <ClInclude Include="Widget\ProgressBar.h">
       <Filter>Framework\06. Widget\01. Widgets</Filter>
     </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_ttf.h">
+      <Filter>Framework\01. Core\External\SDL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Timer.cpp">
