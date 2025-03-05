@@ -11,12 +11,12 @@ private:
     ~CDataManager();
 
 private:
+    bool Init();
+
     std::vector<std::string> Split(const std::string& line, char delimiter);
 
     void LoadAllSpriteData();
     void LoadAllAnimationData();
-
-    void LoadAllUIData();
     void LoadAllButtonData();
     void LoadAllImageData();
 };

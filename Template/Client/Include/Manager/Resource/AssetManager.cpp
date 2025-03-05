@@ -33,12 +33,11 @@ bool CAssetManager::Init()
 	mAnimationManager = new CAnimationManager;
 	mUIManager        = new CUIManager;
 
-	if (!mTextureManager->Init())
+	if (!mDataManager->Init())
 		return false;
 
-	mDataManager->LoadAllSpriteData();
-	mDataManager->LoadAllAnimationData();
-	mDataManager->LoadAllUIData();
+	if (!mTextureManager->Init())
+		return false;
 
 	return true;
 }

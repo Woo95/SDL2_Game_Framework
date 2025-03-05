@@ -4,6 +4,8 @@
 
 class CPathManager
 {
+	friend class CGameManager;
+
 private:
 	CPathManager();
 	~CPathManager();
@@ -13,8 +15,10 @@ private:
 
 	static CPathManager* mInst;
 
-public:
+private:
 	bool Init();
+
+public:
 	bool AddPath(const std::string& newPathKey, const char* newPathSegment);
 	const char* FindPath(const std::string& key);
 

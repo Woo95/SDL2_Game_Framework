@@ -16,6 +16,16 @@ CDataManager::~CDataManager()
 {
 }
 
+bool CDataManager::Init()
+{
+	LoadAllSpriteData();
+	LoadAllAnimationData();
+	LoadAllButtonData();
+	LoadAllImageData();
+
+	return true;
+}
+
 std::vector<std::string> CDataManager::Split(const std::string& line, char delimiter)
 {
 	std::stringstream stream(line);
@@ -121,12 +131,6 @@ void CDataManager::LoadAllAnimationData()
 		row.clear();
 	}
 	file.close();
-}
-
-void CDataManager::LoadAllUIData()
-{
-	LoadAllButtonData();
-	LoadAllImageData();
 }
 
 void CDataManager::LoadAllButtonData()
