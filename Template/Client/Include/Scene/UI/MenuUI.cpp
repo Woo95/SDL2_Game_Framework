@@ -3,6 +3,7 @@
 #include "../../Widget/Image.h"
 #include "../../Widget/Button.h"
 #include "../../Widget/ProgressBar.h"
+#include "../../Widget/TextBlock.h"
 
 CMenuUI::CMenuUI()
 {
@@ -56,6 +57,20 @@ bool CMenuUI::Init()
 
 	//////////////////////////////////////////////////////////
 
+	// 텍스트 생성 및 설정
+	CTextBlock* textBlock = CreateWidget<CTextBlock>("textBlock1");
+	textBlock->GetTransform()->SetWorldScale(80.f, 50.f);
+	textBlock->GetTransform()->SetPivot(0.5f, 0.5f);
+
+	// 텍스트 폰트 설정
+	textBlock->SetFont("Cormorant");
+	textBlock->SetText("SAMPLE");
+
+	// 유저위젯 자식으로 텍스트 추가 및 유저위젯 설정
+	button->AddChild(textBlock);
+
+	//////////////////////////////////////////////////////////
+
 	// 프로그레스 바 생성 및 설정
 	CProgressBar* progressBar = CreateWidget<CProgressBar>("progressBar1");
 	progressBar->GetTransform()->SetWorldScale(200.f, 25.f);
@@ -70,10 +85,11 @@ bool CMenuUI::Init()
 	// 유저위젯 자식으로 프로그레스 바 추가 및 유저위젯 설정
 	userWidget->AddWidget(progressBar);
 	progressBar->GetTransform()->SetRelativePos(0.f, -100.f);
-	userWidget->GetTransform()->SetWorldPos(640.f, 400.f);
 
 	//////////////////////////////////////////////////////////
 
+	userWidget->GetTransform()->SetWorldPos(640.f, 400.f);
+	
 	return true;
 }
 
