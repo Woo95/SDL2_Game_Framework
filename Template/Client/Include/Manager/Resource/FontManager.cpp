@@ -12,7 +12,14 @@ CFontManager::~CFontManager()
 
 bool CFontManager::Init()
 {
-	return TTF_Init() == 0;
+	if (TTF_Init() != 0)
+		return false;
+
+	if (!LoadFont("Cormorant", "Cormorant.ttf", 32))
+		return false;
+
+
+	return true;
 }
 
 bool CFontManager::LoadFont(const std::string& key, const char* fileName, int fontSize)
