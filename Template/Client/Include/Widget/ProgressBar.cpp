@@ -17,10 +17,10 @@ CProgressBar::~CProgressBar()
 
 void CProgressBar::Render(SDL_Renderer* Renderer)
 {
-	CWidget::Render(Renderer);
-
 	RenderBack(Renderer);
 	RenderFill(Renderer);
+
+	CWidget::Render(Renderer);
 }
 
 void CProgressBar::RenderBack(SDL_Renderer* Renderer)

@@ -22,12 +22,12 @@ CButton::~CButton()
 
 void CButton::Render(SDL_Renderer* Renderer)
 {
-	CWidget::Render(Renderer);
-
 	SDL_SetTextureColorMod(mTexture.get()->GetTexture(), mColor.r, mColor.g, mColor.b);
 	SDL_SetTextureAlphaMod(mTexture.get()->GetTexture(), mColor.a);
 
 	SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &mFrames[mCurrentState], &mRect);
+
+	CWidget::Render(Renderer);
 }
 
 void CButton::SetTexture(const std::string& key)

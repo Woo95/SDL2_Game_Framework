@@ -24,22 +24,22 @@ CTextBlock::~CTextBlock()
 
 void CTextBlock::Render(SDL_Renderer* Renderer)
 {
-	CWidget::Render(Renderer);
-
 	if (mHasShadow)
 	{
 		UpdateTextTexture(Renderer, mUpdateShadowTexture, mShadowTexture, mShadowColor);
 
-		mRect.x += mShadowOffset.x;
-		mRect.y += mShadowOffset.y;
+		mRect.x += (int)mShadowOffset.x;
+		mRect.y += (int)mShadowOffset.y;
 
 		SDL_RenderCopy(Renderer, mShadowTexture, nullptr, &mRect);
 
-		mRect.x -= mShadowOffset.x;
-		mRect.y -= mShadowOffset.y;
+		mRect.x -= (int)mShadowOffset.x;
+		mRect.y -= (int)mShadowOffset.y;
 	}
 	UpdateTextTexture(Renderer, mUpdateTexture, mTexture, mColor);
 	SDL_RenderCopy(Renderer, mTexture, nullptr, &mRect);
+
+	CWidget::Render(Renderer);
 }
 
 void CTextBlock::UpdateTextTexture(SDL_Renderer* Renderer, bool& updateTexture, SDL_Texture*& texture, SDL_Color color)

@@ -93,7 +93,6 @@ void CWidget::AddChild(CWidget* child)
 	child->mParent = this;
 
 	mChilds.emplace_back(child);
-	child->SetZOrder(GetZOrder() + 1);
 
 	mTransform->AddChild(child->mTransform);
 }

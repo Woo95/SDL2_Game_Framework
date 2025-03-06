@@ -12,16 +12,6 @@ CAnimatedImage::~CAnimatedImage()
 {
 }
 
-void CAnimatedImage::Render(SDL_Renderer* Renderer)
-{
-	CWidget::Render(Renderer);
-
-	SDL_SetTextureColorMod(mTexture.get()->GetTexture(), mColor.r, mColor.g, mColor.b);
-	SDL_SetTextureAlphaMod(mTexture.get()->GetTexture(), mColor.a);
-
-	SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &mFrames[mCurrIdx], &mRect);
-}
-
 void CAnimatedImage::Update(float DeltaTime)
 {
 	CWidget::Update(DeltaTime);
@@ -38,4 +28,14 @@ void CAnimatedImage::Update(float DeltaTime)
 		}
 		mFrameInterval = 0.0f;
 	}
+}
+
+void CAnimatedImage::Render(SDL_Renderer* Renderer)
+{
+	SDL_SetTextureColorMod(mTexture.get()->GetTexture(), mColor.r, mColor.g, mColor.b);
+	SDL_SetTextureAlphaMod(mTexture.get()->GetTexture(), mColor.a);
+
+	SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &mFrames[mCurrIdx], &mRect);
+
+	CWidget::Render(Renderer);
 }

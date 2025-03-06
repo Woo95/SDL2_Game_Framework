@@ -43,7 +43,6 @@ public:
 		widget->mUserWidget = this;
 
 		mWidgets.emplace_back(widget);
-		widget->SetZOrder(0);
 
 		mTransform->AddChild(widget->mTransform);
 	}

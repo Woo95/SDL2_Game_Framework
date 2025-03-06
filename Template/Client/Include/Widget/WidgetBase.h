@@ -14,7 +14,6 @@ protected:
 	size_t mID = -1;
 	bool mActive = true;	// handle object/component to be deleted
 	bool mEnable = true;	// handle object/component to be rendered
-	int  mZOrder = 0;
 
 	SDL_Rect    mRect = { 0, 0, 0, 0 };
 	CTransform* mTransform = nullptr;
@@ -24,7 +23,6 @@ public:
 	size_t   GetID() const { return mID; }
 	bool GetActive() const { return mActive; }
 	bool GetEnable() const { return mEnable; }
-	int  GetZOrder() const { return mZOrder; }
 
 	const SDL_Rect& GetRect()  const { return mRect; }
 	CTransform* GetTransform() const { return mTransform; }
@@ -42,10 +40,6 @@ protected:
 	void SetEnable(bool enable)
 	{
 		mEnable = enable;
-	}
-	void SetZOrder(int zOrder)
-	{
-		mZOrder = zOrder;
 	}
 
 	void UpdateRect()

@@ -15,12 +15,12 @@ CImage::~CImage()
 
 void CImage::Render(SDL_Renderer* Renderer)
 {
-	CWidget::Render(Renderer);
-
 	SDL_SetTextureColorMod(mTexture.get()->GetTexture(), mColor.r, mColor.g, mColor.b);
 	SDL_SetTextureAlphaMod(mTexture.get()->GetTexture(), mColor.a);
 
 	SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &mFrames[0], &mRect);
+
+	CWidget::Render(Renderer);
 }
 
 void CImage::SetTexture(const std::string& key)
