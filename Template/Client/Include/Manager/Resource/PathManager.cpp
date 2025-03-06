@@ -24,6 +24,7 @@ bool CPathManager::Init()
 	// BASE_PATH를 기준으로 새로운 경로 추가
 	AddPath(TEXTURE_PATH, "Texture\\");
 	AddPath(DATA_PATH,    "Data\\");
+	AddPath(FONT_PATH,    "Font\\");
 	AddPath(SOUND_PATH,   "Sound\\");
 
 	return true;

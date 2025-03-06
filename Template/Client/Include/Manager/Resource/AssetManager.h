@@ -17,6 +17,7 @@ private:
 	class CSpriteManager*    mSpriteManager;
 	class CAnimationManager* mAnimationManager;
 	class CUIManager*        mUIManager;
+	class CFontManager*      mFontManager;
 
 	static CAssetManager* mInst;
 
@@ -28,6 +29,7 @@ public:
 	CSpriteManager*    GetSpriteManager()    const { return mSpriteManager; }
 	CAnimationManager* GetAnimationManager() const { return mAnimationManager; }
 	CUIManager*        GetUIManager()        const { return mUIManager; }
+	CFontManager*      GetFontManager()      const { return mFontManager; }
 
 
 public:

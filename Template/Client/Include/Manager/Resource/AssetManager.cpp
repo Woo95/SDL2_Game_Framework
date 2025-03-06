@@ -4,6 +4,7 @@
 #include "SpriteManager.h"
 #include "AnimationManager.h"
 #include "UIManager.h"
+#include "FontManager.h"
 
 CAssetManager* CAssetManager::mInst = nullptr;
 
@@ -12,7 +13,8 @@ CAssetManager::CAssetManager() :
 	mTextureManager(nullptr),
 	mSpriteManager(nullptr),
 	mAnimationManager(nullptr),
-	mUIManager(nullptr)
+	mUIManager(nullptr),
+	mFontManager(nullptr)
 {
 }
 
@@ -23,6 +25,7 @@ CAssetManager::~CAssetManager()
 	SAFE_DELETE(mAnimationManager);
 	SAFE_DELETE(mTextureManager);
 	SAFE_DELETE(mUIManager);
+	SAFE_DELETE(mFontManager);
 }
 
 bool CAssetManager::Init()
@@ -32,11 +35,15 @@ bool CAssetManager::Init()
 	mSpriteManager    = new CSpriteManager;
 	mAnimationManager = new CAnimationManager;
 	mUIManager        = new CUIManager;
+	mFontManager      = new CFontManager;
 
 	if (!mDataManager->Init())
 		return false;
 
 	if (!mTextureManager->Init())
+		return false;
+
+	if (!mFontManager->Init())
 		return false;
 
 	return true;

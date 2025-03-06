@@ -1,0 +1,42 @@
+#include "FontManager.h"
+#include "../../Resource/Font.h"
+
+CFontManager::CFontManager()
+{
+}
+
+CFontManager::~CFontManager()
+{
+	mFonts.clear();
+}
+
+bool CFontManager::Init()
+{
+	return TTF_Init() == 0;
+}
+
+bool CFontManager::LoadFont(const std::string& key, const char* fileName, int fontSize)
+{
+	if (!FindFont(key))
+	{
+		std::shared_ptr<CFont> newFont = std::make_shared<CFont>();
+
+		if (newFont->LoadFont(fileName, fontSize))
+		{
+			mFonts[key] = newFont;
+
+			return true;
+		}
+	}
+	return false;
+}
+
+std::shared_ptr<CFont> CFontManager::FindFont(const std::string& key)
+{
+	std::unordered_map<std::string, std::shared_ptr<CFont>>::iterator iter = mFonts.find(key);
+
+	if (iter == mFonts.end())
+		return nullptr;
+
+	return iter->second;
+}
