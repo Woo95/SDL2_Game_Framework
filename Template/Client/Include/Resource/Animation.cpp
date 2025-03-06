@@ -1,5 +1,5 @@
 #include "Animation.h"
-#include "../Entity/Component/Sprite/SpriteComponent.h"
+#include "../Entity/Component/SpriteComponent.h"
 #include "../Manager/MemoryPoolManager.h"
 
 CAnimation::CAnimation() :

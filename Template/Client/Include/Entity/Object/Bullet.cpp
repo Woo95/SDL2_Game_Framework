@@ -1,7 +1,7 @@
 #include "Bullet.h"
 #include "../Component/MovementComponent.h"
 #include "../Component/Collider/CircleCollider.h"
-#include "../../Entity/Component/Sprite/SpriteComponent.h"
+#include "../../Entity/Component/SpriteComponent.h"
 
 CBullet::CBullet() :
     mMovementComponent(nullptr),

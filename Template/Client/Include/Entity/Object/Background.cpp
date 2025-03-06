@@ -1,5 +1,5 @@
 #include "Background.h"
-#include "../../Entity/Component/Sprite/SpriteComponent.h"
+#include "../../Entity/Component/SpriteComponent.h"
 
 CBackground::CBackground()
 {

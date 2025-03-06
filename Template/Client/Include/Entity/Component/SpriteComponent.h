@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Component.h"
+#include "Component.h"
 
 class CTexture;
 class CAnimation;
@@ -13,7 +13,7 @@ public:
 
 private:
 	std::shared_ptr<CTexture> mTexture;
-	SDL_Rect mFrame = {};
+	SDL_Rect mFrame;
 	CAnimation* mAnimation;
 
 	SDL_RendererFlip mFlip;

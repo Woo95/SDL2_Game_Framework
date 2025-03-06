@@ -1,16 +1,17 @@
 #include "SpriteComponent.h"
-#include "../../../Manager/Resource/AssetManager.h"
-#include "../../../Manager/Resource/TextureManager.h"
-#include "../../../Manager/Resource/SpriteManager.h"
-#include "../../../Manager/Resource/AnimationManager.h"
-#include "../../../Resource/Texture.h"
-#include "../../../Resource/Animation.h"
-#include "../../Object/Object.h"
-#include "../../../Scene/Scene.h"
-#include "../../../Scene/Camera.h"
+#include "../../Manager/Resource/AssetManager.h"
+#include "../../Manager/Resource/TextureManager.h"
+#include "../../Manager/Resource/SpriteManager.h"
+#include "../../Manager/Resource/AnimationManager.h"
+#include "../../Resource/Texture.h"
+#include "../../Resource/Animation.h"
+#include "../Object/Object.h"
+#include "../../Scene/Scene.h"
+#include "../../Scene/Camera.h"
 
 CSpriteComponent::CSpriteComponent() :
 	mTexture(nullptr),
+	mFrame({}),
 	mAnimation(nullptr),
 	mFlip(SDL_FLIP_NONE)
 {

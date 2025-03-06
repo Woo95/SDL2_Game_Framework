@@ -1,6 +1,6 @@
 #include "Monster.h"
 #include "../Component/Collider/BoxCollider.h"
-#include "../../Entity/Component/Sprite/SpriteComponent.h"
+#include "../../Entity/Component/SpriteComponent.h"
 #include "../../Resource/Animation.h"
 
 CMonster::CMonster()

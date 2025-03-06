@@ -3,7 +3,7 @@
 #include "../../Core/Input.h"
 #include "../Component/MovementComponent.h"
 #include "../Component/Collider/BoxCollider.h"
-#include "../../Entity/Component/Sprite/SpriteComponent.h"
+#include "../../Entity/Component/SpriteComponent.h"
 #include "../../Resource/Animation.h"
 #include "../../Scene/Scene.h"
 #include "../../Scene/Camera.h"

@@ -414,7 +414,7 @@
     <ClInclude Include="Core\External\SDL\SDL_image.h">
       <Filter>Framework\01. Core\External\SDL</Filter>
     </ClInclude>
-    <ClInclude Include="Entity\Component\Sprite\SpriteComponent.h">
+    <ClInclude Include="Entity\Component\SpriteComponent.h">
       <Filter>Framework\04. Entity\02. Component\01. Components\Texture</Filter>
     </ClInclude>
     <ClInclude Include="Manager\Resource\AnimationManager.h">
@@ -575,7 +575,7 @@
     <ClCompile Include="Resource\Texture.cpp">
       <Filter>Framework\05. Resource</Filter>
     </ClCompile>
-    <ClCompile Include="Entity\Component\Sprite\SpriteComponent.cpp">
+    <ClCompile Include="Entity\Component\SpriteComponent.cpp">
       <Filter>Framework\04. Entity\02. Component\01. Components\Texture</Filter>
     </ClCompile>
     <ClCompile Include="Manager\Resource\AnimationManager.cpp">
