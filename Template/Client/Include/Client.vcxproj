@@ -20,7 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\External\SDL\SDL_ttf.h" />
+    <ClInclude Include="Resource\Font.h" />
+    <ClInclude Include="Manager\Resource\FontManager.h" />
     <ClInclude Include="Manager\Resource\SpriteManager.h" />
+    <ClInclude Include="Widget\TextBlock.h" />
     <ClInclude Include="Widget\ProgressBar.h" />
     <ClInclude Include="Widget\AnimatedImage.h" />
     <ClInclude Include="Core\Utils\WidgetUtils.h" />
@@ -158,6 +161,9 @@
     <ClInclude Include="Widget\Widget.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Resource\Font.cpp" />
+    <ClCompile Include="Manager\Resource\FontManager.cpp" />
+    <ClCompile Include="Widget\TextBlock.cpp" />
     <ClCompile Include="Widget\ProgressBar.cpp" />
     <ClCompile Include="Widget\AnimatedImage.cpp" />
     <ClCompile Include="Widget\Image.cpp" />

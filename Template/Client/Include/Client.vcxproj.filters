@@ -510,6 +510,15 @@
     <ClInclude Include="Core\External\SDL\SDL_ttf.h">
       <Filter>Framework\01. Core\External\SDL</Filter>
     </ClInclude>
+    <ClInclude Include="Manager\Resource\FontManager.h">
+      <Filter>Framework\02. Manager\01. Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Font.h">
+      <Filter>Framework\05. Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget\TextBlock.h">
+      <Filter>Framework\06. Widget\01. Widgets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Timer.cpp">
@@ -639,6 +648,15 @@
       <Filter>Framework\06. Widget\01. Widgets</Filter>
     </ClCompile>
     <ClCompile Include="Widget\ProgressBar.cpp">
+      <Filter>Framework\06. Widget\01. Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager\Resource\FontManager.cpp">
+      <Filter>Framework\02. Manager\01. Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Font.cpp">
+      <Filter>Framework\05. Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Widget\TextBlock.cpp">
       <Filter>Framework\06. Widget\01. Widgets</Filter>
     </ClCompile>
   </ItemGroup>
