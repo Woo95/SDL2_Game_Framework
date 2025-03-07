@@ -23,6 +23,7 @@
     <ClInclude Include="Resource\Font.h" />
     <ClInclude Include="Manager\Resource\FontManager.h" />
     <ClInclude Include="Manager\Resource\SpriteManager.h" />
+    <ClInclude Include="Entity\Component\WidgetComponent.h" />
     <ClInclude Include="Widget\TextBlock.h" />
     <ClInclude Include="Widget\ProgressBar.h" />
     <ClInclude Include="Widget\AnimatedImage.h" />
@@ -155,7 +156,7 @@
     <ClInclude Include="Core\Vector2D.h" />
     <ClInclude Include="Manager\Resource\TextureManager.h" />
     <ClInclude Include="Resource\Texture.h" />
-    <ClInclude Include="Entity\Component\Sprite\SpriteComponent.h" />
+    <ClInclude Include="Entity\Component\SpriteComponent.h" />
     <ClInclude Include="Widget\WidgetBase.h" />
     <ClInclude Include="Widget\UserWidget.h" />
     <ClInclude Include="Widget\Widget.h" />
@@ -163,6 +164,7 @@
   <ItemGroup>
     <ClCompile Include="Resource\Font.cpp" />
     <ClCompile Include="Manager\Resource\FontManager.cpp" />
+    <ClCompile Include="Entity\Component\WidgetComponent.cpp" />
     <ClCompile Include="Widget\TextBlock.cpp" />
     <ClCompile Include="Widget\ProgressBar.cpp" />
     <ClCompile Include="Widget\AnimatedImage.cpp" />
@@ -204,7 +206,7 @@
     <ClCompile Include="Core\Transform.cpp" />
     <ClCompile Include="Manager\Resource\TextureManager.cpp" />
     <ClCompile Include="Resource\Texture.cpp" />
-    <ClCompile Include="Entity\Component\Sprite\SpriteComponent.cpp" />
+    <ClCompile Include="Entity\Component\SpriteComponent.cpp" />
     <ClCompile Include="Widget\UserWidget.cpp" />
     <ClCompile Include="Widget\Widget.cpp" />
   </ItemGroup>

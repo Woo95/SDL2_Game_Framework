@@ -97,6 +97,9 @@
     <Filter Include="Game\01. Scenes\02. PLAY">
       <UniqueIdentifier>{76319526-342d-4a1c-b6f1-1931c92a4f80}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\04. Entity\02. Component\01. Components\Widget">
+      <UniqueIdentifier>{b40e51fc-55c0-4e85-ae1c-35cf81ba079a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Timer.h">
@@ -519,6 +522,9 @@
     <ClInclude Include="Widget\TextBlock.h">
       <Filter>Framework\06. Widget\01. Widgets</Filter>
     </ClInclude>
+    <ClInclude Include="Entity\Component\WidgetComponent.h">
+      <Filter>Framework\04. Entity\02. Component\01. Components\Widget</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Timer.cpp">
@@ -658,6 +664,9 @@
     </ClCompile>
     <ClCompile Include="Widget\TextBlock.cpp">
       <Filter>Framework\06. Widget\01. Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity\Component\WidgetComponent.cpp">
+      <Filter>Framework\04. Entity\02. Component\01. Components\Widget</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
