@@ -19,7 +19,7 @@ private:
 	EButton::State mCurrentState = EButton::State::UNHOVER;
 
 private:
-	virtual void Render(SDL_Renderer* Renderer) override;
+	virtual void Render(SDL_Renderer* Renderer) final;
 
 public:
 	void SetTexture(const std::string& key);

@@ -17,8 +17,8 @@ private:
 	float mIntervalPerFrame = 0.3f;
 
 private:
-	virtual void Update(float DeltaTime) override;
-	virtual void Render(SDL_Renderer* Renderer) override;
+	virtual void Update(float DeltaTime)        final;
+	virtual void Render(SDL_Renderer* Renderer) final;
 
 public:
 	void SetIsLoop(bool isLoop)

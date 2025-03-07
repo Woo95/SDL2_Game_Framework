@@ -5,9 +5,13 @@
 
 class CWidgetBase abstract
 {
-	friend class CWidget;
-	friend class CUserWidget;
 	friend class CSceneUI;
+	friend class CUserWidget;
+	friend class CWidget;
+
+public:
+	CWidgetBase() = default;
+	virtual ~CWidgetBase() = default;
 
 protected:
 	std::string mName;
@@ -17,6 +21,11 @@ protected:
 
 	SDL_Rect    mRect = { 0, 0, 0, 0 };
 	CTransform* mTransform = nullptr;
+
+protected:
+	virtual void Update(float DeltaTime)        = 0;
+	virtual void LateUpdate(float DeltaTime)    = 0;
+	virtual void Render(SDL_Renderer* Renderer) = 0;
 
 public:
 	const std::string& GetName() const { return mName; }

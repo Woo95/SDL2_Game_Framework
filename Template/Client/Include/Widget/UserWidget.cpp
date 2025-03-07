@@ -17,11 +17,6 @@ CUserWidget::~CUserWidget()
     SAFE_DELETE(mTransform);
 }
 
-bool CUserWidget::Init()
-{
-    return true;
-}
-
 void CUserWidget::Update(float DeltaTime)
 {
     UpdateRect();

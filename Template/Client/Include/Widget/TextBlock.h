@@ -27,7 +27,7 @@ private:
 	FVector2D mShadowOffset = { 2.f, 2.f };
 
 private:
-	virtual void Render(SDL_Renderer* Renderer) override;
+	virtual void Render(SDL_Renderer* Renderer) final;
 
 	void UpdateTextTexture(SDL_Renderer* Renderer, bool& updateTexture, SDL_Texture*& texture, SDL_Color color);
 

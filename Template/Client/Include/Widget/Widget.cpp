@@ -17,16 +17,6 @@ CWidget::~CWidget()
 	SAFE_DELETE(mTransform);
 }
 
-bool CWidget::Init()
-{
-	for (CWidget* child : mChilds)
-	{
-		if (!child->Init())
-			return false;
-	}
-	return true;
-}
-
 void CWidget::Update(float DeltaTime)
 {
 	UpdateRect();

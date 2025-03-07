@@ -39,12 +39,6 @@ public:
 		userWidget->SetName(name);
 		userWidget->mSceneUI = this;
 
-		if (!userWidget->Init())
-		{
-			SAFE_DELETE(userWidget);
-			return nullptr;
-		}
-
 		mUserWidgets.emplace_back(userWidget);
 		return userWidget;
 	}
@@ -55,12 +49,6 @@ public:
 		T* widget = new T;
 
 		widget->SetName(name);
-
-		if (!widget->Init())
-		{
-			SAFE_DELETE(widget);
-			return nullptr;
-		}
 
 		return widget;
 	}

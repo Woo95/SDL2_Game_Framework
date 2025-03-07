@@ -20,7 +20,7 @@ private:
 	EProgBar::Method mFillMethod = EProgBar::Method::LeftToRight;
 
 private:
-	virtual void Render(SDL_Renderer* Renderer) override;
+	virtual void Render(SDL_Renderer* Renderer) final;
 
 	void RenderBack(SDL_Renderer* Renderer);
 	void RenderFill(SDL_Renderer* Renderer);
