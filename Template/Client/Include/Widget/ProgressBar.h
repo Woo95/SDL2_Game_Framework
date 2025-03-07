@@ -20,10 +20,10 @@ private:
 	EProgBar::Method mFillMethod = EProgBar::Method::LeftToRight;
 
 private:
-	virtual void Render(SDL_Renderer* Renderer) final;
+	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO) final;
 
-	void RenderBack(SDL_Renderer* Renderer);
-	void RenderFill(SDL_Renderer* Renderer);
+	void RenderBack(SDL_Renderer* Renderer, const SDL_Rect& renderRect);
+	void RenderFill(SDL_Renderer* Renderer, SDL_Rect& renderRect);
 
 public:
 	void SetTexture(const std::string& key);

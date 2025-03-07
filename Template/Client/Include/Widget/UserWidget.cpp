@@ -61,19 +61,24 @@ void CUserWidget::LateUpdate(float DeltaTime)
     }
 }
 
-void CUserWidget::Render(SDL_Renderer* Renderer)
+void CUserWidget::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
 {
 #ifdef _DEBUG
+    SDL_Rect renderRect = mRect;
+
+    renderRect.x += (int)topLeft.x;
+    renderRect.y += (int)topLeft.y;
+
     SDL_SetRenderDrawColor(Renderer, 255, 165, 0, 255);
-    SDL_RenderDrawRect(Renderer, &mRect);
+    SDL_RenderDrawRect(Renderer, &renderRect);
 #endif
 
     for (CWidget* widget : mWidgets)
     {
-    	if (!widget->GetActive() || !widget->GetEnable())
-    		continue;
-    	
-        widget->Render(Renderer);
+        if (!widget->GetActive() || !widget->GetEnable())
+            continue;
+
+        widget->Render(Renderer, topLeft);
     }
 }
 

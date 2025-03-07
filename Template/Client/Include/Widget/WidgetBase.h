@@ -8,6 +8,7 @@ class CWidgetBase abstract
 	friend class CSceneUI;
 	friend class CUserWidget;
 	friend class CWidget;
+	friend class CWidgetComponent;
 
 public:
 	CWidgetBase() = default;
@@ -23,9 +24,9 @@ protected:
 	CTransform* mTransform = nullptr;
 
 protected:
-	virtual void Update(float DeltaTime)        = 0;
-	virtual void LateUpdate(float DeltaTime)    = 0;
-	virtual void Render(SDL_Renderer* Renderer) = 0;
+	virtual void Update(float DeltaTime)     = 0;
+	virtual void LateUpdate(float DeltaTime) = 0;
+	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO) = 0;
 
 public:
 	const std::string& GetName() const { return mName; }

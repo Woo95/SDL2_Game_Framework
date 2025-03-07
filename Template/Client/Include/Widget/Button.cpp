@@ -20,14 +20,19 @@ CButton::~CButton()
 	mTexture = nullptr;
 }
 
-void CButton::Render(SDL_Renderer* Renderer)
+void CButton::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
 {
+	SDL_Rect renderRect = mRect;
+
+	renderRect.x += (int)topLeft.x;
+	renderRect.y += (int)topLeft.y;
+
 	SDL_SetTextureColorMod(mTexture.get()->GetTexture(), mColor.r, mColor.g, mColor.b);
 	SDL_SetTextureAlphaMod(mTexture.get()->GetTexture(), mColor.a);
 
-	SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &mFrames[mCurrentState], &mRect);
+	SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &mFrames[mCurrentState], &renderRect);
 
-	CWidget::Render(Renderer);
+	CWidget::Render(Renderer, topLeft);
 }
 
 void CButton::SetTexture(const std::string& key)

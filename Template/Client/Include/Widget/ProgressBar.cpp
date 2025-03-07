@@ -15,35 +15,39 @@ CProgressBar::~CProgressBar()
 	mTexture = nullptr;
 }
 
-void CProgressBar::Render(SDL_Renderer* Renderer)
+void CProgressBar::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
 {
-	RenderBack(Renderer);
-	RenderFill(Renderer);
+	SDL_Rect renderRect = mRect;
 
-	CWidget::Render(Renderer);
+	renderRect.x += (int)topLeft.x;
+	renderRect.y += (int)topLeft.y;
+
+	RenderBack(Renderer, renderRect);
+	RenderFill(Renderer, renderRect);
+
+	CWidget::Render(Renderer, topLeft);
 }
 
-void CProgressBar::RenderBack(SDL_Renderer* Renderer)
+void CProgressBar::RenderBack(SDL_Renderer* Renderer, const SDL_Rect& renderRect)
 {
 	const SDL_Color& color = mColors[EProgBar::State::BACK];
 	SDL_SetTextureColorMod(mTexture.get()->GetTexture(), color.r, color.g, color.b);
 	SDL_SetTextureAlphaMod(mTexture.get()->GetTexture(), color.a);
 
-	SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &mFrames[EProgBar::State::BACK], &mRect);
+	SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &mFrames[EProgBar::State::BACK], &renderRect);
 }
 
-void CProgressBar::RenderFill(SDL_Renderer* Renderer)
+void CProgressBar::RenderFill(SDL_Renderer* Renderer, SDL_Rect& renderRect)
 {
-	// fillFrame 참조 및 원본 값 저장
-	SDL_Rect& fillFrame = mFrames[EProgBar::State::FILL];
-	const SDL_Rect originalFrame = fillFrame;
-	const SDL_Rect originalRect  = mRect;
+	// fillFrame 값 복사
+	SDL_Rect fillFrame = mFrames[EProgBar::State::FILL];
 
 	// 좌-우 방향 프로그레스 바의 텍스쳐 및 출력 영역 처리
 	if (mFillMethod == EProgBar::Method::LeftToRight)
 	{
 		fillFrame.w = (int)(fillFrame.w * mPercent);
-		mRect.w = (int)(mRect.w * mPercent);
+
+		renderRect.w = (int)(renderRect.w * mPercent);
 	}
 	// 하-상 방향 프로그레스 바의 텍스쳐 및 출력 영역 처리
 	else if (mFillMethod == EProgBar::Method::BottomToTop)
@@ -52,20 +56,19 @@ void CProgressBar::RenderFill(SDL_Renderer* Renderer)
 		fillFrame.y += fillFrame.h - newHeight;
 		fillFrame.h = newHeight;
 
-		newHeight = (int)(mRect.h * mPercent); 
-		mRect.y += mRect.h - newHeight;
-		mRect.h = newHeight;
+		newHeight = (int)(renderRect.h * mPercent);
+		renderRect.y += renderRect.h - newHeight;
+		renderRect.h = newHeight;
 	}
 
 	const SDL_Color& color = mColors[EProgBar::State::FILL];
 	SDL_SetTextureColorMod(mTexture.get()->GetTexture(), color.r, color.g, color.b);
 	SDL_SetTextureAlphaMod(mTexture.get()->GetTexture(), color.a);
 
-	SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &mFrames[EProgBar::State::FILL], &mRect);
+	SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &fillFrame, &renderRect);
 
-	// 원본 텍스쳐 및 출력 영역 복원
-	mFrames[EProgBar::State::FILL] = originalFrame;
-	mRect = originalRect;
+	// 원본 출력 영역 복원
+	renderRect = mRect;
 }
 
 void CProgressBar::SetTexture(const std::string& key)

@@ -26,9 +26,9 @@ protected:
 	std::unordered_map<EWidgetInput::Event, std::vector<std::function<void()>>> mEventCallbacks;
 
 protected:
-	virtual void Update(float DeltaTime)        override;
-	virtual void LateUpdate(float DeltaTime)    override;
-	virtual void Render(SDL_Renderer* Renderer) override;
+	virtual void Update(float DeltaTime)     override;
+	virtual void LateUpdate(float DeltaTime) override;
+	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO) override;
 
 public:
 	void AddChild(CWidget* child);

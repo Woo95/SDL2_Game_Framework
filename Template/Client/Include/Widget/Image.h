@@ -16,7 +16,7 @@ protected:
 	SDL_Color mColor = { 255, 255, 255, 255 };
 
 private:
-	virtual void Render(SDL_Renderer* Renderer) override;
+	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO) override;
 
 public:
 	void SetTexture(const std::string& key);

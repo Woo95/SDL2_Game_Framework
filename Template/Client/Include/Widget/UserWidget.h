@@ -24,9 +24,9 @@ private:
 	CWidget* mCurrHovered = nullptr;
 
 protected:
-	virtual void Update(float DeltaTime)        override;
-	virtual void LateUpdate(float DeltaTime)    override;
-	virtual void Render(SDL_Renderer* Renderer) override;
+	virtual void Update(float DeltaTime)     override;
+	virtual void LateUpdate(float DeltaTime) override;
+	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO) override;
 
 public:
 	void SetMovable(bool movable)

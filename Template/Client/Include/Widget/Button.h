@@ -19,7 +19,7 @@ private:
 	EButton::State mCurrentState = EButton::State::UNHOVER;
 
 private:
-	virtual void Render(SDL_Renderer* Renderer) final;
+	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO) final;
 
 public:
 	void SetTexture(const std::string& key);

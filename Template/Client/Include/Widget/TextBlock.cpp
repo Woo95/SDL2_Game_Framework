@@ -22,24 +22,26 @@ CTextBlock::~CTextBlock()
 	mFont = nullptr;
 }
 
-void CTextBlock::Render(SDL_Renderer* Renderer)
+void CTextBlock::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
 {
+	SDL_Rect renderRect = mRect;
+
 	if (mHasShadow)
 	{
 		UpdateTextTexture(Renderer, mUpdateShadowTexture, mShadowTexture, mShadowColor);
 
-		mRect.x += (int)mShadowOffset.x;
-		mRect.y += (int)mShadowOffset.y;
+		renderRect.x += (int)(mShadowOffset.x + topLeft.x);
+		renderRect.y += (int)(mShadowOffset.y + topLeft.y);
 
-		SDL_RenderCopy(Renderer, mShadowTexture, nullptr, &mRect);
+		SDL_RenderCopy(Renderer, mShadowTexture, nullptr, &renderRect);
 
-		mRect.x -= (int)mShadowOffset.x;
-		mRect.y -= (int)mShadowOffset.y;
+		renderRect.x -= (int)(mShadowOffset.x + topLeft.x);
+		renderRect.y -= (int)(mShadowOffset.y + topLeft.y);
 	}
 	UpdateTextTexture(Renderer, mUpdateTexture, mTexture, mColor);
-	SDL_RenderCopy(Renderer, mTexture, nullptr, &mRect);
+	SDL_RenderCopy(Renderer, mTexture, nullptr, &renderRect);
 
-	CWidget::Render(Renderer);
+	CWidget::Render(Renderer, topLeft);
 }
 
 void CTextBlock::UpdateTextTexture(SDL_Renderer* Renderer, bool& updateTexture, SDL_Texture*& texture, SDL_Color color)

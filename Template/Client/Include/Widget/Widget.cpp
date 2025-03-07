@@ -61,11 +61,16 @@ void CWidget::LateUpdate(float DeltaTime)
 	}
 }
 
-void CWidget::Render(SDL_Renderer* Renderer)
+void CWidget::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
 {
 #ifdef _DEBUG
+	SDL_Rect renderRect = mRect;
+
+	renderRect.x += (int)topLeft.x;
+	renderRect.y += (int)topLeft.y;
+
 	SDL_SetRenderDrawColor(Renderer, 255, 255, 0, 255);
-	SDL_RenderDrawRect(Renderer, &mRect);
+	SDL_RenderDrawRect(Renderer, &renderRect);
 #endif
 
 	for (CWidget* child : mChilds)
@@ -73,7 +78,7 @@ void CWidget::Render(SDL_Renderer* Renderer)
 		if (!child->GetActive() || !child->GetEnable())
 			continue;
 
-		child->Render(Renderer);
+		child->Render(Renderer, topLeft);
 	}
 }
 
