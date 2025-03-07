@@ -5,7 +5,7 @@
 #include "../../../Scene/Camera.h"
 
 CBoxCollider::CBoxCollider() :
-	mRect{}
+	mRect({})
 {
 	mColliderType = ECollider::Type::BOX;
 }
@@ -23,9 +23,13 @@ void CBoxCollider::Update(float DeltaTime)
 {
 	CCollider::Update(DeltaTime);
 
-	// 월드 좌표와 스케일을 사용해 좌상단 좌표 계산
-	const FVector2D& scale   = mTransform->GetWorldScale();
-	const FVector2D& topLeft = mTransform->GetWorldPos() - mTransform->GetPivot() * scale;
+	// 월드 스케일, 위치, 피벗을 반환
+	const FVector2D& scale = mTransform->GetWorldScale();
+	const FVector2D& pos   = mTransform->GetWorldPos();
+	const FVector2D& pivot = mTransform->GetPivot();
+
+	// 좌상단 좌표 계산
+	FVector2D topLeft = pos - pivot * scale;
 
 	// 사각형 정보 생성
 	mRect = { topLeft.x, topLeft.y, scale.x, scale.y };
@@ -40,24 +44,22 @@ void CBoxCollider::Render(SDL_Renderer* Renderer)
 {
 	CCollider::Render(Renderer);
 
-#ifdef _DEBUG	
+#ifdef _DEBUG
 	// 렌더 색상 설정
 	if (!mIsCollided)
 		SDL_SetRenderDrawColor(Renderer, 0, 255, 0, 255);
 	else
 		SDL_SetRenderDrawColor(Renderer, 255, 0, 0, 255);
 
-	// 카메라가 있을 경우, 카메라 좌표계를 반영한 렌더링 좌표로 변환
-	CCamera* camera = GetObject()->GetScene()->GetCamera();
-	if (camera)
-	{
-		const FVector2D renderPos = camera->GetRenderPos(FVector2D(mRect.x, mRect.y));
+	// 해당 객체의 위치와 크기를 포함한 영역을 반환
+	SDL_FRect renderRect = mRect;
 
-		mRect = { renderPos.x, renderPos.y, mRect.w, mRect.h };
-	}
+	// 카메라가 있을 경우, 카메라 좌표계를 반영한 렌더링 좌표로 변환
+	if (CCamera* camera = GetObject()->GetScene()->GetCamera())
+		renderRect = camera->GetRenderPos(renderRect);
 
 	// 사각형 그리기
-	SDL_RenderDrawRectF(Renderer, &mRect);
+	SDL_RenderDrawRectF(Renderer, &renderRect);
 #endif
 }
 

@@ -5,7 +5,7 @@
 #include "../../../Scene/Camera.h"
 
 CCircleCollider::CCircleCollider() :
-	mCircle{}
+	mCircle({})
 {
 	mColliderType = ECollider::Type::CIRCLE;
 }
@@ -49,17 +49,15 @@ void CCircleCollider::Render(SDL_Renderer* Renderer)
 	else
 		SDL_SetRenderDrawColor(Renderer, 255, 0, 0, 255);
 
-	// 카메라가 있을 경우, 카메라 좌표계를 반영한 렌더링 좌표로 변환
-	CCamera* camera = GetObject()->GetScene()->GetCamera();
-	if (camera)
-	{
-		const FVector2D renderPos = camera->GetRenderPos(mCircle.center);
+	// 해당 객체의 위치와 크기를 포함한 영역을 반환
+	FCircle renderCircle = mCircle;
 
-		mCircle.center = renderPos;
-	}
+	// 카메라가 있을 경우, 카메라 좌표계를 반영한 렌더링 좌표로 변환
+	if (CCamera* camera = GetObject()->GetScene()->GetCamera())
+		renderCircle.center = camera->GetRenderPos(renderCircle.center);
 
 	// 원 그리기
-	RenderDrawCircle(Renderer, mCircle);
+	RenderDrawCircle(Renderer, renderCircle);
 #endif
 }
 

@@ -91,13 +91,16 @@ const SDL_Rect& CSpriteComponent::GetFrame() const
 
 const SDL_Rect CSpriteComponent::GetDest() const
 {
-	// 월드 좌표와 스케일을 사용해 좌상단 좌표 계산
+	// 월드 스케일, 위치, 피벗을 반환
 	const FVector2D& scale = mTransform->GetWorldScale();
-	FVector2D topLeft = mTransform->GetWorldPos() - mTransform->GetPivot() * scale;
+	const FVector2D& pos   = mTransform->GetWorldPos();
+	const FVector2D& pivot = mTransform->GetPivot();
+
+	// 좌상단 좌표 계산
+	FVector2D topLeft = pos - pivot * scale;
 
 	// 카메라가 있을 경우, 카메라 좌표계를 반영한 렌더링 좌표로 변환
-	CCamera* camera = GetObject()->GetScene()->GetCamera();
-	if (camera)
+	if (CCamera* camera = GetObject()->GetScene()->GetCamera())
 		topLeft = camera->GetRenderPos(topLeft);
 
 	// 사각형 정보 생성

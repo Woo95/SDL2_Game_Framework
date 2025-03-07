@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../Core/GameInfo.h"
 #include "../Core/Vector2D.h"
 
 class CObject;
@@ -23,12 +24,21 @@ protected:
 
 public:
 	const FVector2D GetRenderPos(const FVector2D& objPos) const { return objPos - mLookAt + (mResolution * 0.5f); }
+	const SDL_FRect GetRenderPos(const SDL_FRect& objFRect) const
+	{
+		return SDL_FRect
+		{
+			objFRect.x - mLookAt.x + (mResolution.x * 0.5f),
+			objFRect.y - mLookAt.y + (mResolution.y * 0.5f),
+			objFRect.w,
+			objFRect.h
+		};
+	}
 	const FVector2D GetWorldPos(const FVector2D& screenPos) const { return screenPos + mLookAt - (mResolution * 0.5f); }
 	
 	const FVector2D& GetLookAt() const { return mLookAt; };
 	const FVector2D& GetResolution() const { return mResolution; }
 
-	void SetLookAt(const FVector2D& lookAt) { mLookAt = lookAt; }
 	void SetTarget(CObject* target) { mTarget = target; }
 	void SetResolution(const FVector2D& resolution) { mResolution = resolution; }
 };
