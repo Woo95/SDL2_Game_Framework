@@ -12,6 +12,7 @@ public:
 	class CMovementComponent* mMovementComponent;
 	class CCollider*          mColliderComponent;
 	class CSpriteComponent*   mSpriteComponent;
+	class CWidgetComponent*   mWidgetComponent;
 
 public:
 	virtual bool Init();

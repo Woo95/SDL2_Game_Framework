@@ -59,6 +59,8 @@ void CPlayScene::LoadTextures()
 {
 	CTextureManager* TM = CAssetManager::GetInst()->GetTextureManager();
 
+	TM->LoadTexture("UI", "UI.png", this);
+
 	TM->LoadTexture("Antonio",    "Antonio.png",            this);
 	TM->LoadTexture("Imelda",     "Imelda.png",             this);
 	TM->LoadTexture("Pasqualina", "Pasqualina.png",         this);

@@ -18,7 +18,7 @@ bool CMenuScene::Enter()
 {
 	mSceneUI->Init();
 
-	//CSceneManager::GetInst()->Change(EScene::State::PLAY);
+	CSceneManager::GetInst()->Change(EScene::State::PLAY);
 
 	return true;
 }

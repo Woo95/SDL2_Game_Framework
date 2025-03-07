@@ -42,7 +42,8 @@ protected:
 
 public:
     CSceneCollision* GetCollision() const { return mSceneCollision; }
-    CCamera* GetCamera() const { return mCamera; }
+    CCamera*  GetCamera()  const { return mCamera; }
+    CSceneUI* GetSceneUI() const { return mSceneUI; }
 
     void AddTextureKey(const std::string& key) { mTextureKeys.insert(key); }
 
