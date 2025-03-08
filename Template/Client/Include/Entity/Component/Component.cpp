@@ -1,8 +1,9 @@
 #include "Component.h"
+#include "../../Manager/MemoryPoolManager.h"
 
 CComponent::CComponent()
 {
-	mTransform = new CTransform;
+	mTransform = CMemoryPoolManager::GetInst()->Allocate<CTransform>();
 }
 
 CComponent::~CComponent()
@@ -11,7 +12,7 @@ CComponent::~CComponent()
 	{
 		child->Release();
 	}
-	SAFE_DELETE(mTransform);
+	CMemoryPoolManager::GetInst()->DeallocateButKeepPool<CTransform>(mTransform);
 }
 
 bool CComponent::Init()
@@ -55,8 +56,10 @@ void CComponent::LateUpdate(float DeltaTime)
 			mChilds.pop_back();
 
 			// 부모의 "자식 transform" 목록에서 자신을 마지막 요소랑 바꿔준 후 제거
-			std::swap(mTransform->mChilds[i - 1], mTransform->mChilds.back());
-			mTransform->mChilds.pop_back();
+			std::vector<CTransform*> transChilds = mTransform->GetChilds();
+
+			std::swap(mTransform->GetChilds()[i - 1], mTransform->GetChilds().back());
+			mTransform->GetChilds().pop_back();
 
 			child->Release();
 

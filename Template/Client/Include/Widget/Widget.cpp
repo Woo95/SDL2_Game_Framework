@@ -2,10 +2,11 @@
 #include "UserWidget.h"
 #include "../Manager/CollisionManager.h"
 #include "../Scene/UI/SceneUI.h"
+#include "../Manager/MemoryPoolManager.h"
 
 CWidget::CWidget()
 {
-	mTransform = new CTransform;
+	mTransform = CMemoryPoolManager::GetInst()->Allocate<CTransform>();
 }
 
 CWidget::~CWidget()
@@ -14,7 +15,7 @@ CWidget::~CWidget()
 	{
 		SAFE_DELETE(child);
 	}
-	SAFE_DELETE(mTransform);
+	CMemoryPoolManager::GetInst()->DeallocateButKeepPool<CTransform>(mTransform);
 }
 
 void CWidget::Update(float DeltaTime)
@@ -47,7 +48,7 @@ void CWidget::LateUpdate(float DeltaTime)
 			mChilds.erase(std::remove(mChilds.begin(), mChilds.end(), child), mChilds.end());
 
 			// transform 벡터의 순서를 유지하면서 transform 제거
-			mTransform->mChilds.erase(std::remove(mTransform->mChilds.begin(), mTransform->mChilds.end(), child->mTransform), mTransform->mChilds.end());
+			mTransform->GetChilds().erase(std::remove(mTransform->GetChilds().begin(), mTransform->GetChilds().end(), child->mTransform), mTransform->GetChilds().end());
 
 			SAFE_DELETE(child);
 

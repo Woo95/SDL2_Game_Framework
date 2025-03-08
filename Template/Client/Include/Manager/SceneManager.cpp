@@ -2,11 +2,14 @@
 #include "../Scene/MenuScene.h"
 #include "../Scene/PlayScene.h"
 #include "MemoryPoolManager.h"
+#include "../Core/Transform.h"
 
 CSceneManager* CSceneManager::mInst = nullptr;
 
 CSceneManager::CSceneManager()
 {
+	CMemoryPoolManager::GetInst()->CreatePool<CTransform>(300);
+
 	CMemoryPoolManager::GetInst()->CreatePool<CLayer>(ELayer::Type::MAX);
 }
 
@@ -19,6 +22,8 @@ CSceneManager::~CSceneManager()
 	}
 
 	CMemoryPoolManager::GetInst()->DeletePool<CLayer>();
+
+	CMemoryPoolManager::GetInst()->DeletePool<CTransform>();
 }
 
 bool CSceneManager::Init()

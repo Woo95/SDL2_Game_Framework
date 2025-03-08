@@ -1,13 +1,12 @@
 #pragma once
 
-#include "Vector2D.h"
 #include "GameInfo.h"
+#include "Vector2D.h"
 
 class CTransform
 {
-	friend class CComponent;
-	friend class CUserWidget;
-	friend class CWidget;
+	template <typename T>
+	friend class CStaticMemoryPool;
 
 private:
 	CTransform();
@@ -28,7 +27,8 @@ private:
 	float     mRelativeRotation;
 	FVector2D mRelativeScale;
 
-private:
+public:
+	std::vector<CTransform*>& GetChilds() { return mChilds; }
 	void AddChild(CTransform* child);
 
 public:
