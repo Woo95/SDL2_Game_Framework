@@ -38,14 +38,11 @@ protected:
     virtual void Render(SDL_Renderer* Renderer);
 
     virtual void LoadTextures() = 0;
-    void UnloadTextures();
 
 public:
     CSceneCollision* GetCollision() const { return mSceneCollision; }
     CCamera*  GetCamera()  const { return mCamera; }
     CSceneUI* GetSceneUI() const { return mSceneUI; }
-
-    void AddTextureKey(const std::string& key) { mTextureKeys.insert(key); }
 
     template <typename T, int initialCapacity = 50>
     T* AllocateObject(const std::string& name, ELayer::Type type = ELayer::Type::OBJECT)
@@ -90,4 +87,8 @@ public:
             }
         }
     }
+
+protected:
+    void LoadTexture(const std::string& key, const char* fileName);
+    void UnloadTextures();
 };

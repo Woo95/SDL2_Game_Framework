@@ -22,11 +22,8 @@ bool CTextureManager::Init()
 	return true;
 }
 
-bool CTextureManager::LoadTexture(const std::string& key, const char* fileName, CScene* scene)
+bool CTextureManager::LoadTexture(const std::string& key, const char* fileName)
 {
-	if (scene)
-		scene->AddTextureKey(key);
-
 	if (!FindTexture(key))
 	{
 		std::shared_ptr<CTexture> newTexture = std::make_shared<CTexture>();

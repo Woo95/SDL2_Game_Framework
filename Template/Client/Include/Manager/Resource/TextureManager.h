@@ -20,7 +20,7 @@ private:
 	bool Init();
 
 public:
-	bool LoadTexture  (const std::string& key, const char* fileName, CScene* scene = nullptr);
+	bool LoadTexture(const std::string& key, const char* fileName);
 	bool UnloadTexture(const std::string& key);
 	std::shared_ptr<CTexture> FindTexture(const std::string& key);
 };

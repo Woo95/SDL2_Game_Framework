@@ -45,8 +45,6 @@ void CMenuScene::Render(SDL_Renderer* Renderer)
 
 void CMenuScene::LoadTextures()
 {
-	CTextureManager* TM = CAssetManager::GetInst()->GetTextureManager();
-
-	TM->LoadTexture("UI",      "UI.png",      this);
-	TM->LoadTexture("IntroBG", "IntroBG.png", this);
+	LoadTexture("UI",      "UI.png");
+	LoadTexture("IntroBG", "IntroBG.png");
 }

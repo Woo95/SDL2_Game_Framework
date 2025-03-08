@@ -66,6 +66,14 @@ void CScene::Render(SDL_Renderer* Renderer)
         mSceneUI->Render(Renderer);
 }
 
+void CScene::LoadTexture(const std::string& key, const char* fileName)
+{
+    CTextureManager* TM = CAssetManager::GetInst()->GetTextureManager();
+
+    TM->LoadTexture(key, fileName);
+    mTextureKeys.insert(key);
+}
+
 void CScene::UnloadTextures()
 {
     CTextureManager* TM = CAssetManager::GetInst()->GetTextureManager();
