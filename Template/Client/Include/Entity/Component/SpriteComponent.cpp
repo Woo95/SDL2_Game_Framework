@@ -45,8 +45,6 @@ void CSpriteComponent::LateUpdate(float DeltaTime)
 
 void CSpriteComponent::Render(SDL_Renderer* Renderer)
 {
-	CComponent::Render(Renderer);
-
 	if (mTexture)
 	{
 		const SDL_Rect& frame = GetFrame();
@@ -54,6 +52,8 @@ void CSpriteComponent::Render(SDL_Renderer* Renderer)
 
 		SDL_RenderCopyEx(Renderer, mTexture.get()->GetTexture(), &frame, &dest, 0.0, nullptr, mFlip);
 	}
+
+	CComponent::Render(Renderer);
 }
 
 void CSpriteComponent::Release()
