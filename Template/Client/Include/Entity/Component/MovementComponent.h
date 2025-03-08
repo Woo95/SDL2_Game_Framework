@@ -13,13 +13,13 @@ private:
 	FVector2D mDirection;
 
 public:
-	virtual bool Init()                         override;
-	virtual void Update(float DeltaTime)        override;
-	virtual void LateUpdate(float DeltaTime)    override;
-	virtual void Render(SDL_Renderer* Renderer) override;
+	virtual bool Init() final;
 
 private:
-	virtual void Release() final;
+	virtual void Update(float DeltaTime)        final;
+	virtual void LateUpdate(float DeltaTime)    final;
+	virtual void Render(SDL_Renderer* Renderer) final;
+	virtual void Release()                      final;
 
 public:
 	float GetSpeed() const

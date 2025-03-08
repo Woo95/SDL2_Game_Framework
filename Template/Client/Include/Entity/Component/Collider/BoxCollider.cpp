@@ -63,6 +63,11 @@ void CBoxCollider::Render(SDL_Renderer* Renderer)
 #endif
 }
 
+void CBoxCollider::Release()
+{
+	CMemoryPoolManager::GetInst()->Deallocate<CBoxCollider>(this);
+}
+
 bool CBoxCollider::Intersect(CCollider* other)
 {
 	switch (other->GetColliderType())
@@ -73,9 +78,4 @@ bool CBoxCollider::Intersect(CCollider* other)
 		return CCollisionManager::GetInst()->AABBCircleCollision(this, (CCircleCollider*)other);
 	}
 	return true;
-}
-
-void CBoxCollider::Release()
-{
-	CMemoryPoolManager::GetInst()->Deallocate<CBoxCollider>(this);
 }

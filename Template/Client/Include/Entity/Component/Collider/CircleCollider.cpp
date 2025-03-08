@@ -61,6 +61,11 @@ void CCircleCollider::Render(SDL_Renderer* Renderer)
 #endif
 }
 
+void CCircleCollider::Release()
+{
+	CMemoryPoolManager::GetInst()->Deallocate<CCircleCollider>(this);
+}
+
 bool CCircleCollider::Intersect(CCollider* other)
 {
 	switch (other->GetColliderType())
@@ -72,12 +77,6 @@ bool CCircleCollider::Intersect(CCollider* other)
 	}
 	return true;
 }
-
-void CCircleCollider::Release()
-{
-	CMemoryPoolManager::GetInst()->Deallocate<CCircleCollider>(this);
-}
-
 
 // Bresenham's circle drawing algorithm
 void CCircleCollider::RenderDrawCircle(SDL_Renderer* renderer, const FCircle& circle)

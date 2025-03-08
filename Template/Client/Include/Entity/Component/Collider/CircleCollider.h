@@ -18,15 +18,15 @@ private:
 	FCircle mCircle;
 
 public:
-	virtual bool Init()                         override;
-	virtual void Update(float DeltaTime)        override;
-	virtual void LateUpdate(float DeltaTime)    override;
-	virtual void Render(SDL_Renderer* Renderer) override;
-
-	virtual bool Intersect(CCollider* other) final;
+	virtual bool Init() final;
 
 private:
-	virtual void Release() final;
+	virtual void Update(float DeltaTime)        final;
+	virtual void LateUpdate(float DeltaTime)    final;
+	virtual void Render(SDL_Renderer* Renderer) final;
+	virtual void Release()                      final;
+
+	virtual bool Intersect(CCollider* other)    final;
 
 public:
 	const FCircle& GetCircle() const { return mCircle; }
