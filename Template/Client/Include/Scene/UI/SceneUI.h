@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../Core/GameInfo.h"
+#include "../../Manager/MemoryPoolManager.h"
 
 class CUserWidget;
 class CWidget;
@@ -31,10 +32,16 @@ public:
 public:
 	CUserWidget* FindUserWidget(const std::string& name = "");
 
-	template <typename T>
+	template <typename T, int initialCapacity = 10>
 	T* CreateUserWidget(const std::string& name)
 	{
-		T* userWidget = new T;
+		// 해당 타입의 메모리 풀이 없으면 새로 생성
+		if (!CMemoryPoolManager::GetInst()->HasPool<T>())
+		{
+			CMemoryPoolManager::GetInst()->CreatePool<T>(initialCapacity);
+		}
+
+		T* userWidget = CMemoryPoolManager::GetInst()->Allocate<T>();
 
 		userWidget->SetName(name);
 		userWidget->mSceneUI = this;
@@ -43,10 +50,16 @@ public:
 		return userWidget;
 	}
 
-	template <typename T>
+	template <typename T, int initialCapacity = 10>
 	T* CreateWidget(const std::string& name)
 	{
-		T* widget = new T;
+		// 해당 타입의 메모리 풀이 없으면 새로 생성
+		if (!CMemoryPoolManager::GetInst()->HasPool<T>())
+		{
+			CMemoryPoolManager::GetInst()->CreatePool<T>(initialCapacity);
+		}
+
+		T* widget = CMemoryPoolManager::GetInst()->Allocate<T>();
 
 		widget->SetName(name);
 

@@ -27,6 +27,7 @@ protected:
 	virtual void Update(float DeltaTime)     = 0;
 	virtual void LateUpdate(float DeltaTime) = 0;
 	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO) = 0;
+	virtual void Release() = 0;
 
 public:
 	const std::string& GetName() const { return mName; }

@@ -3,6 +3,7 @@
 #include "../Manager/Resource/TextureManager.h"
 #include "../Manager/Resource/UIManager.h"
 #include "../Resource/Texture.h"
+#include "../Manager/MemoryPoolManager.h"
 
 CProgressBar::CProgressBar()
 {
@@ -26,6 +27,11 @@ void CProgressBar::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
 	RenderFill(Renderer, renderRect);
 
 	CWidget::Render(Renderer, topLeft);
+}
+
+void CProgressBar::Release()
+{
+	CMemoryPoolManager::GetInst()->Deallocate<CProgressBar>(this);
 }
 
 void CProgressBar::RenderBack(SDL_Renderer* Renderer, const SDL_Rect& renderRect)

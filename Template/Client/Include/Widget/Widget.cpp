@@ -13,7 +13,7 @@ CWidget::~CWidget()
 {
 	for (CWidget* child : mChilds)
 	{
-		SAFE_DELETE(child);
+		child->Release();
 	}
 	CMemoryPoolManager::GetInst()->DeallocateButKeepPool<CTransform>(mTransform);
 }
@@ -50,7 +50,7 @@ void CWidget::LateUpdate(float DeltaTime)
 			// transform 벡터의 순서를 유지하면서 transform 제거
 			mTransform->GetChilds().erase(std::remove(mTransform->GetChilds().begin(), mTransform->GetChilds().end(), child->mTransform), mTransform->GetChilds().end());
 
-			SAFE_DELETE(child);
+			child->Release();
 
 			continue;
 		}
@@ -101,7 +101,7 @@ bool CWidget::DeleteChild(CWidget* child)
 	if (!childToDelete)
 		return false;
 
-	SAFE_DELETE(childToDelete);
+	childToDelete->Release();
 
 	return true;
 }

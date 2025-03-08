@@ -2,6 +2,7 @@
 #include "../Manager/Resource/AssetManager.h"
 #include "../Manager/Resource/FontManager.h"
 #include "../Resource/Font.h"
+#include "../Manager/MemoryPoolManager.h"
 
 CTextBlock::CTextBlock()
 {
@@ -42,6 +43,11 @@ void CTextBlock::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
 	SDL_RenderCopy(Renderer, mTexture, nullptr, &renderRect);
 
 	CWidget::Render(Renderer, topLeft);
+}
+
+void CTextBlock::Release()
+{
+	CMemoryPoolManager::GetInst()->Deallocate<CTextBlock>(this);
 }
 
 void CTextBlock::UpdateTextTexture(SDL_Renderer* Renderer, bool& updateTexture, SDL_Texture*& texture, SDL_Color color)

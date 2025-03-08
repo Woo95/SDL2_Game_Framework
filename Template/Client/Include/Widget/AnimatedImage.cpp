@@ -3,6 +3,7 @@
 #include "../Manager/Resource/TextureManager.h"
 #include "../Manager/Resource/UIManager.h"
 #include "../Resource/Texture.h"
+#include "../Manager/MemoryPoolManager.h"
 
 CAnimatedImage::CAnimatedImage()
 {
@@ -43,4 +44,9 @@ void CAnimatedImage::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
 	SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &mFrames[mCurrIdx], &renderRect);
 
 	CWidget::Render(Renderer, topLeft);
+}
+
+void CAnimatedImage::Release()
+{
+	CMemoryPoolManager::GetInst()->Deallocate<CAnimatedImage>(this);
 }

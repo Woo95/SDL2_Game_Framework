@@ -3,6 +3,7 @@
 #include "../Manager/Resource/TextureManager.h"
 #include "../Manager/Resource/UIManager.h"
 #include "../Resource/Texture.h"
+#include "../Manager/MemoryPoolManager.h"
 
 CImage::CImage()
 {
@@ -26,6 +27,11 @@ void CImage::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
 	SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &mFrames[0], &renderRect);
 
 	CWidget::Render(Renderer, topLeft);
+}
+
+void CImage::Release()
+{
+	CMemoryPoolManager::GetInst()->Deallocate<CImage>(this);
 }
 
 void CImage::SetTexture(const std::string& key)

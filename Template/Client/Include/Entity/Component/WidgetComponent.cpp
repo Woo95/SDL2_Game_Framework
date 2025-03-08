@@ -12,7 +12,7 @@ CWidgetComponent::CWidgetComponent() :
 CWidgetComponent::~CWidgetComponent()
 {
 	if (mWidget)
-		SAFE_DELETE(mWidget);
+		mWidget->Release();
 }
 
 bool CWidgetComponent::Init()
@@ -67,7 +67,7 @@ void CWidgetComponent::Release()
 void CWidgetComponent::SetWidget(CWidgetBase* widget)
 {
 	if (mWidget)
-		SAFE_DELETE(mWidget);
+		mWidget->Release();
 
 	mWidget = widget;
 }

@@ -10,7 +10,7 @@ class CUserWidget : public CWidgetBase
 	friend class CSceneUI;
 	friend class CWidget;
 
-private:
+public:
 	CUserWidget();
 	virtual ~CUserWidget();
 
@@ -27,6 +27,7 @@ protected:
 	virtual void Update(float DeltaTime)     override;
 	virtual void LateUpdate(float DeltaTime) override;
 	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO) override;
+	virtual void Release() override;
 
 public:
 	void SetMovable(bool movable)

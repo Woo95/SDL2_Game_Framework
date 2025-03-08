@@ -11,7 +11,7 @@ CSceneUI::~CSceneUI()
 {
 	for (CUserWidget* userWidget : mUserWidgets)
 	{
-		SAFE_DELETE(userWidget);
+		userWidget->Release();
 	}
 }
 
@@ -49,7 +49,7 @@ void CSceneUI::LateUpdate(float DeltaTime)
 			// mUserWidgets 벡터의 순서를 유지하면서 userWidget 제거
 			mUserWidgets.erase(std::remove(mUserWidgets.begin(), mUserWidgets.end(), userWidget), mUserWidgets.end());
 			
-			SAFE_DELETE(userWidget);
+			userWidget->Release();
 
 			continue;
 		}

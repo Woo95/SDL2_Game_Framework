@@ -3,6 +3,7 @@
 #include "../Manager/Resource/TextureManager.h"
 #include "../Manager/Resource/UIManager.h"
 #include "../Resource/Texture.h"
+#include "../Manager/MemoryPoolManager.h"
 
 CButton::CButton()
 {
@@ -10,8 +11,8 @@ CButton::CButton()
 
 	AddEventCallback(EWidgetInput::Event::UNHOVER, [this]() {mCurrentState = EButton::State::UNHOVER;});
 	AddEventCallback(EWidgetInput::Event::HOVER,   [this]() {mCurrentState = EButton::State::HOVER;});
-	AddEventCallback(EWidgetInput::Event::CLICK,   [this]() {mCurrentState = EButton::State::CLICK; });
-	AddEventCallback(EWidgetInput::Event::HOLD,    [this]() {mCurrentState = EButton::State::CLICK; });
+	AddEventCallback(EWidgetInput::Event::CLICK,   [this]() {mCurrentState = EButton::State::CLICK;});
+	AddEventCallback(EWidgetInput::Event::HOLD,    [this]() {mCurrentState = EButton::State::CLICK;});
 	AddEventCallback(EWidgetInput::Event::RELEASE, [this]() {mCurrentState = mMouseHovered ? EButton::State::HOVER : EButton::State::UNHOVER;});
 }
 
@@ -33,6 +34,11 @@ void CButton::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
 	SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &mFrames[mCurrentState], &renderRect);
 
 	CWidget::Render(Renderer, topLeft);
+}
+
+void CButton::Release()
+{
+	CMemoryPoolManager::GetInst()->Deallocate<CButton>(this);
 }
 
 void CButton::SetTexture(const std::string& key)

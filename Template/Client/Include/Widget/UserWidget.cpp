@@ -13,7 +13,7 @@ CUserWidget::~CUserWidget()
 {
     for (CWidget* widget : mWidgets)
     {
-        SAFE_DELETE(widget);
+        widget->Release();
     }
     CMemoryPoolManager::GetInst()->DeallocateButKeepPool<CTransform>(mTransform);
 }
@@ -50,7 +50,7 @@ void CUserWidget::LateUpdate(float DeltaTime)
             // transform 벡터의 순서를 유지하면서 transform 제거
             mTransform->GetChilds().erase(std::remove(mTransform->GetChilds().begin(), mTransform->GetChilds().end(), widget->mTransform), mTransform->GetChilds().end());
 
-            SAFE_DELETE(widget);
+            widget->Release();
 
             continue;
         }
@@ -81,6 +81,11 @@ void CUserWidget::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
     SDL_SetRenderDrawColor(Renderer, 255, 165, 0, 255);
     SDL_RenderDrawRect(Renderer, &renderRect);
 #endif
+}
+
+void CUserWidget::Release()
+{
+    CMemoryPoolManager::GetInst()->Deallocate<CUserWidget>(this);
 }
 
 CWidget* CUserWidget::FindWidget(size_t id)

@@ -17,6 +17,7 @@ protected:
 
 private:
 	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO) override;
+	virtual void Release() override;
 
 public:
 	void SetTexture(const std::string& key);

@@ -19,6 +19,7 @@ private:
 private:
 	virtual void Update(float DeltaTime) final;
 	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO) final;
+	virtual void Release() final;
 
 public:
 	void SetIsLoop(bool isLoop)
