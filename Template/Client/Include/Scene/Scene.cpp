@@ -25,7 +25,7 @@ CScene::~CScene()
 {
     for (CLayer* layer : mLayers)
     {
-        CMemoryPoolManager::GetInst()->DeallocateKeepPool<CLayer>(layer);
+        CMemoryPoolManager::GetInst()->DeallocateButKeepPool<CLayer>(layer);
     }
     SAFE_DELETE(mCamera);
 }

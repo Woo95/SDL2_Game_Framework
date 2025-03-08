@@ -19,9 +19,9 @@ CInput::~CInput()
 
 		for (FBindFunction* function : binder->Functions)
 		{
-			CMemoryPoolManager::GetInst()->DeallocateKeepPool<FBindFunction>(function);
+			CMemoryPoolManager::GetInst()->DeallocateButKeepPool<FBindFunction>(function);
 		}
-		CMemoryPoolManager::GetInst()->DeallocateKeepPool<FBinder>(binder);
+		CMemoryPoolManager::GetInst()->DeallocateButKeepPool<FBinder>(binder);
 	}
 }
 

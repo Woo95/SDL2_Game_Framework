@@ -97,7 +97,7 @@ public:
 				std::swap(functions[i - 1], functions.back());
 				functions.pop_back();
 
-				CMemoryPoolManager::GetInst()->DeallocateKeepPool<FBindFunction>(bindFunc);
+				CMemoryPoolManager::GetInst()->DeallocateButKeepPool<FBindFunction>(bindFunc);
 			}
 		}
 	}

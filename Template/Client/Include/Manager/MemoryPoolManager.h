@@ -81,7 +81,7 @@ public:
 		}
 	}
 	template <typename T>
-	void DeallocateKeepPool(T* deallocPtr)
+	void DeallocateButKeepPool(T* deallocPtr)
 	{
 		if (HasPool<T>())
 		{
