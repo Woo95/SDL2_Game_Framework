@@ -32,6 +32,7 @@ public:
 
 private:
 	void Logic();
+
 	void Update();
 	void LateUpdate();
 	void Render();

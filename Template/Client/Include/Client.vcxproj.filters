@@ -525,6 +525,9 @@
     <ClInclude Include="Entity\Component\WidgetComponent.h">
       <Filter>Framework\04. Entity\02. Component\01. Components\Widget</Filter>
     </ClInclude>
+    <ClInclude Include="Core\External\SDL\SDL_mixer.h">
+      <Filter>Framework\01. Core\External\SDL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Timer.cpp">

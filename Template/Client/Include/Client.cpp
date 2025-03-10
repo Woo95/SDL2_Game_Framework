@@ -1,11 +1,6 @@
 #include <windows.h>
 #include "Manager/GameManager.h"
 
-#pragma comment(lib, "SDL2.lib")
-#pragma comment(lib, "SDL2main.lib")
-#pragma comment(lib, "SDL2_image.lib")
-#pragma comment(lib, "SDL2_ttf.lib")
-
 int main(int argc, char* argv[])
 {
     // 기본적으로 콘솔 창 숨기기
