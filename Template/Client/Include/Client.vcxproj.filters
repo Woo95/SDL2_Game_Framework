@@ -351,7 +351,7 @@
     <ClInclude Include="Manager\SceneManager.h">
       <Filter>Framework\02. Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Core\SceneUtils.h">
+    <ClInclude Include="Core\Utils\SceneUtils.h">
       <Filter>Framework\01. Core\Lib</Filter>
     </ClInclude>
     <ClInclude Include="Core\StaticMemoryPool.h">

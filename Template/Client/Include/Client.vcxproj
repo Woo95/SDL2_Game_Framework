@@ -135,7 +135,7 @@
     <ClInclude Include="Core\External\SDL\SDL_vulkan.h" />
     <ClInclude Include="Core\GameInfo.h" />
     <ClInclude Include="Core\Input.h" />
-    <ClInclude Include="Core\SceneUtils.h" />
+    <ClInclude Include="Core\Utils\SceneUtils.h" />
     <ClInclude Include="Core\StaticMemoryPool.h" />
     <ClInclude Include="Core\Timer.h" />
     <ClInclude Include="Entity\EntityBase.h" />
