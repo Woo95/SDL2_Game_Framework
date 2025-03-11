@@ -43,7 +43,7 @@ std::vector<std::string> CDataManager::Split(const std::string& line, char delim
 void CDataManager::LoadAllSpriteData()
 {
 	std::string filePath = CPathManager::GetInst()->FindPath(DATA_PATH);
-	filePath += "\\Entity\\Sprite.csv";
+	filePath += "Entity\\Sprite.csv";
 
 	std::ifstream file(filePath);
 
@@ -80,7 +80,7 @@ void CDataManager::LoadAllSpriteData()
 void CDataManager::LoadAllAnimationData()
 {
 	std::string filePath = CPathManager::GetInst()->FindPath(DATA_PATH);
-	filePath += "\\Entity\\Animation.csv";
+	filePath += "Entity\\Animation.csv";
 
 	std::ifstream file(filePath);
 
@@ -136,7 +136,7 @@ void CDataManager::LoadAllAnimationData()
 void CDataManager::LoadAllButtonData()
 {
 	std::string filePath = CPathManager::GetInst()->FindPath(DATA_PATH);
-	filePath += "\\Widget\\Button.csv";
+	filePath += "Widget\\Button.csv";
 
 	std::ifstream file(filePath);
 
@@ -174,7 +174,7 @@ void CDataManager::LoadAllButtonData()
 void CDataManager::LoadAllImageData()
 {
 	std::string filePath = CPathManager::GetInst()->FindPath(DATA_PATH);
-	filePath += "\\Widget\\Image.csv";
+	filePath += "Widget\\Image.csv";
 
 	std::ifstream file(filePath);
 
