@@ -38,6 +38,17 @@ bool CFontManager::LoadFont(const std::string& key, const char* fileName, int fo
 	return false;
 }
 
+bool CFontManager::UnloadFont(const std::string& key)
+{
+	if (FindFont(key))
+	{
+		mFonts.erase(key);
+
+		return true;
+	}
+	return false;
+}
+
 std::shared_ptr<CFont> CFontManager::FindFont(const std::string& key)
 {
 	std::unordered_map<std::string, std::shared_ptr<CFont>>::iterator iter = mFonts.find(key);

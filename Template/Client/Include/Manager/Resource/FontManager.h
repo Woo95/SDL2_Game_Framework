@@ -21,5 +21,6 @@ private:
 
 public:
 	bool LoadFont(const std::string& key, const char* fileName, int fontSize);
+	bool UnloadFont(const std::string& key);
 	std::shared_ptr<CFont> FindFont(const std::string& key);
 };
