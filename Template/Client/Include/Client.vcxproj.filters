@@ -100,6 +100,12 @@
     <Filter Include="Framework\04. Entity\02. Component\01. Components\Widget">
       <UniqueIdentifier>{b40e51fc-55c0-4e85-ae1c-35cf81ba079a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\05. Resource\Sound">
+      <UniqueIdentifier>{da8f1731-e4b8-4b9a-bb31-714cfd9c64b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\01. Core\Lib\Utils">
+      <UniqueIdentifier>{864f2210-c647-41c2-8d5a-56af69addf9a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Timer.h">
@@ -351,9 +357,6 @@
     <ClInclude Include="Manager\SceneManager.h">
       <Filter>Framework\02. Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Utils\SceneUtils.h">
-      <Filter>Framework\01. Core\Lib</Filter>
-    </ClInclude>
     <ClInclude Include="Core\StaticMemoryPool.h">
       <Filter>Framework\01. Core\Lib</Filter>
     </ClInclude>
@@ -438,9 +441,6 @@
     <ClInclude Include="Entity\Component\MovementComponent.h">
       <Filter>Framework\04. Entity\02. Component\01. Components\Movement</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Utils\AniUtils.h">
-      <Filter>Framework\01. Core\Lib</Filter>
-    </ClInclude>
     <ClInclude Include="Entity\Object\Bullet.h">
       <Filter>Game\02. Objects</Filter>
     </ClInclude>
@@ -449,9 +449,6 @@
     </ClInclude>
     <ClInclude Include="Entity\Object\Player.h">
       <Filter>Game\02. Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Utils\LayerUtils.h">
-      <Filter>Framework\01. Core\Lib</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Layer.h">
       <Filter>Framework\03. Scene</Filter>
@@ -464,9 +461,6 @@
     </ClInclude>
     <ClInclude Include="Manager\Resource\DataManager.h">
       <Filter>Framework\02. Manager\01. Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Utils\InputUtils.h">
-      <Filter>Framework\01. Core\Lib\Input</Filter>
     </ClInclude>
     <ClInclude Include="Widget\UserWidget.h">
       <Filter>Framework\06. Widget\02. UserWidgets</Filter>
@@ -482,9 +476,6 @@
     </ClInclude>
     <ClInclude Include="Widget\WidgetBase.h">
       <Filter>Framework\06. Widget</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Utils\WidgetUtils.h">
-      <Filter>Framework\01. Core\Lib</Filter>
     </ClInclude>
     <ClInclude Include="Scene\MenuScene.h">
       <Filter>Game\01. Scenes\01. MENU</Filter>
@@ -527,6 +518,30 @@
     </ClInclude>
     <ClInclude Include="Core\External\SDL\SDL_mixer.h">
       <Filter>Framework\01. Core\External\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\Resource\SoundManager.h">
+      <Filter>Framework\02. Manager\01. Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Sound\BGM.h">
+      <Filter>Framework\05. Resource\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Sound\SFX.h">
+      <Filter>Framework\05. Resource\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Utils\InputUtils.h">
+      <Filter>Framework\01. Core\Lib\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Utils\SceneUtils.h">
+      <Filter>Framework\01. Core\Lib\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Utils\LayerUtils.h">
+      <Filter>Framework\01. Core\Lib\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Utils\WidgetUtils.h">
+      <Filter>Framework\01. Core\Lib\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Utils\AniUtils.h">
+      <Filter>Framework\01. Core\Lib\Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -670,6 +685,15 @@
     </ClCompile>
     <ClCompile Include="Entity\Component\WidgetComponent.cpp">
       <Filter>Framework\04. Entity\02. Component\01. Components\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager\Resource\SoundManager.cpp">
+      <Filter>Framework\02. Manager\01. Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Sound\BGM.cpp">
+      <Filter>Framework\05. Resource\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\Sound\SFX.cpp">
+      <Filter>Framework\05. Resource\Sound</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

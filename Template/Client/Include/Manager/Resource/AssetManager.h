@@ -18,6 +18,7 @@ private:
 	class CAnimationManager* mAnimationManager;
 	class CUIManager*        mUIManager;
 	class CFontManager*      mFontManager;
+	class CSoundManager*     mSoundManager;
 
 	static CAssetManager* mInst;
 
@@ -30,6 +31,7 @@ public:
 	CAnimationManager* GetAnimationManager() const { return mAnimationManager; }
 	CUIManager*        GetUIManager()        const { return mUIManager; }
 	CFontManager*      GetFontManager()      const { return mFontManager; }
+	CSoundManager*     GetSoundManager()     const { return mSoundManager; }
 
 
 public:
