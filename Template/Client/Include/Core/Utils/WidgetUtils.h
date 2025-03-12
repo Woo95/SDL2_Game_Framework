@@ -3,7 +3,7 @@
 // for the CWidget class
 namespace EWidgetInput
 {
-	enum Event
+	enum Event : unsigned char
 	{
 		UNHOVER,
 		HOVER,
@@ -29,13 +29,13 @@ namespace EButton
 // for the CProgressBar class
 namespace EProgBar
 {
-	enum Method
+	enum Method : unsigned char
 	{
 		LeftToRight,
 		BottomToTop
 	};
 
-	enum State
+	enum State : unsigned char
 	{
 		BACK,
 		FILL,
