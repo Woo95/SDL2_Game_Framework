@@ -91,5 +91,6 @@ public:
 protected:
     void LoadTexture(const std::string& key, const char* fileName);
 
+private:
     void UnloadResources();
 };

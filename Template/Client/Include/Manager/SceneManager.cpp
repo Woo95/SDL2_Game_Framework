@@ -50,17 +50,18 @@ void CSceneManager::Render(SDL_Renderer* Renderer)
 
 void CSceneManager::Change(EScene::State state)
 {
-	// 새로운 씬 생성 및 텍스쳐 로드
+	// 새로운 씬 생성 및 리소스들 로드
 	CScene* newScene = GetSceneFromState(state);
 	newScene->LoadResources();
 
-	// 이전 씬 정리 및 텍스쳐 언로드
+	// 이전 씬 정리
 	if (!mScene.empty())
 	{
 		CScene* oldScene = mScene.top();
 
 		if (oldScene->Exit())
 		{
+			// 사용하지 않는 리소스들 언로드
 			SAFE_DELETE(oldScene);
 			mScene.pop();
 		}
