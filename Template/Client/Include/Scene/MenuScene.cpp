@@ -18,7 +18,7 @@ bool CMenuScene::Enter()
 {
 	mSceneUI->Init();
 
-	CSceneManager::GetInst()->Change(EScene::State::PLAY);
+	//CSceneManager::GetInst()->Change(EScene::State::PLAY);
 
 	return true;
 }
@@ -47,4 +47,6 @@ void CMenuScene::LoadResources()
 {
 	LoadTexture("UI",      "UI.png");
 	LoadTexture("IntroBG", "IntroBG.png");
+
+	LoadFont("Cormorant", "Cormorant.ttf", 32);
 }

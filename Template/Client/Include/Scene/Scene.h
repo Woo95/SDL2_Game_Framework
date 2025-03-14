@@ -9,6 +9,7 @@ class CSceneCollision;
 class CCamera;
 class CSceneUI;
 class CTexture;
+class CFont;
 
 // 추상 클래스 선언 - 인스턴스화 불가 (abstract 키워드로 명시 안하더라도, 순수 가상 함수가 있으면 자동으로 추상 클래스)
 class CScene abstract	
@@ -28,6 +29,7 @@ protected:
     CSceneUI* mSceneUI;
 
     std::vector<std::shared_ptr<CTexture>> mTextures;
+    std::vector<std::shared_ptr<CFont>> mFonts;
 
 protected:
 	virtual bool Enter() = 0;
@@ -90,6 +92,7 @@ public:
 
 protected:
     void LoadTexture(const std::string& key, const char* fileName);
+    void LoadFont(const std::string& key, const char* fileName, int fontSize);
 
 private:
     void UnloadResources();

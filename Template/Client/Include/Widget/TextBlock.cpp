@@ -73,7 +73,7 @@ void CTextBlock::UpdateTextTexture(SDL_Renderer* Renderer, bool& updateTexture, 
 
 void CTextBlock::SetFont(const std::string& key)
 {
-	mFont = CAssetManager::GetInst()->GetFontManager()->FindFont(key);
+	mFont = CAssetManager::GetInst()->GetFontManager()->GetFont(key);
 }
 
 void CTextBlock::SetColor(Uint8 r, Uint8 g, Uint8 b)

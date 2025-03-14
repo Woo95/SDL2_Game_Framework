@@ -4,6 +4,7 @@
 #include "../Scene/UI/SceneUI.h"
 #include "../Manager/Resource/AssetManager.h"
 #include "../Manager/Resource/TextureManager.h"
+#include "../Manager/Resource/FontManager.h"
 #include "../Manager/GameManager.h"
 
 CScene::CScene() :
@@ -75,7 +76,15 @@ void CScene::LoadTexture(const std::string& key, const char* fileName)
     mTextures.emplace_back(TM->LoadTexture(key, fileName));
 }
 
+void CScene::LoadFont(const std::string& key, const char* fileName, int fontSize)
+{
+    CFontManager* FM = CAssetManager::GetInst()->GetFontManager();
+
+    mFonts.emplace_back(FM->LoadFont(key, fileName, fontSize));
+}
+
 void CScene::UnloadResources()
 {
     mTextures.clear();
+    mFonts.clear();
 }
