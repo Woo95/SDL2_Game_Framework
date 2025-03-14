@@ -43,7 +43,7 @@ void CMenuScene::Render(SDL_Renderer* Renderer)
 	CScene::Render(Renderer);
 }
 
-void CMenuScene::LoadTextures()
+void CMenuScene::LoadResources()
 {
 	LoadTexture("UI",      "UI.png");
 	LoadTexture("IntroBG", "IntroBG.png");

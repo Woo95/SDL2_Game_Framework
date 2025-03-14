@@ -52,18 +52,12 @@ void CSceneManager::Change(EScene::State state)
 {
 	// 새로운 씬 생성 및 텍스쳐 로드
 	CScene* newScene = GetSceneFromState(state);
-	newScene->LoadTextures();
+	newScene->LoadResources();
 
 	// 이전 씬 정리 및 텍스쳐 언로드
 	if (!mScene.empty())
 	{
 		CScene* oldScene = mScene.top();
-
-		// 새로운 씬에서 로드된 텍스쳐 키를 이전 씬에서 삭제
-		for (const std::string& key : newScene->mTextureKeys)
-			oldScene->mTextureKeys.erase(key);
-
-		oldScene->UnloadTextures();
 
 		if (oldScene->Exit())
 		{

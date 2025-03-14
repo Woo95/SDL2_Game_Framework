@@ -4,7 +4,7 @@
 
 CTexture::CTexture() : 
 	mTexture(nullptr),
-	mSize({0,0,0,0})
+	mSize({})
 {
 }
 

@@ -14,13 +14,12 @@ private:
 	~CTextureManager();
 
 private:
-	std::unordered_map<std::string, std::shared_ptr<CTexture>> mTextures;
+	std::unordered_map<std::string, std::weak_ptr<CTexture>> mTextures;
 
 private:
 	bool Init();
 
 public:
-	bool LoadTexture(const std::string& key, const char* fileName);
-	bool UnloadTexture(const std::string& key);
-	std::shared_ptr<CTexture> FindTexture(const std::string& key);
+	std::shared_ptr<CTexture> LoadTexture(const std::string& key, const char* fileName);
+	std::shared_ptr<CTexture> GetTexture(const std::string& key);
 };

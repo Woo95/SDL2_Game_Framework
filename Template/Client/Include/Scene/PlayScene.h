@@ -18,5 +18,5 @@ public:
     virtual void LateUpdate(float DeltaTime)    final;
     virtual void Render(SDL_Renderer* Renderer) final;
 
-    virtual void LoadTextures() final;
+    virtual void LoadResources() final;
 };

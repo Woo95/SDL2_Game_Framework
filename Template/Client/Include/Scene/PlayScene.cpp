@@ -4,8 +4,6 @@
 #include "../Entity/Object/Monster.h"
 #include "../Entity/Object/Background.h"
 #include "Collision/SceneCollision.h"
-#include "../Manager/Resource/AssetManager.h"
-#include "../Manager/Resource/TextureManager.h"
 #include "../Scene/Camera.h"
 
 CPlayScene::CPlayScene()
@@ -55,7 +53,7 @@ void CPlayScene::Render(SDL_Renderer* Renderer)
 	CScene::Render(Renderer);
 }
 
-void CPlayScene::LoadTextures()
+void CPlayScene::LoadResources()
 {
 	LoadTexture("UI", "UI.png");
 

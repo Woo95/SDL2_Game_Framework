@@ -22,39 +22,28 @@ bool CTextureManager::Init()
 	return true;
 }
 
-bool CTextureManager::LoadTexture(const std::string& key, const char* fileName)
+std::shared_ptr<CTexture> CTextureManager::LoadTexture(const std::string& key, const char* fileName)
 {
-	if (!FindTexture(key))
+	std::shared_ptr<CTexture> texture = GetTexture(key);
+
+	if (!texture)
 	{
-		std::shared_ptr<CTexture> newTexture = std::make_shared<CTexture>();
+		texture = std::make_shared<CTexture>();
 
-		if (newTexture->LoadTexture(fileName))
+		if (texture->LoadTexture(fileName))
 		{
-			mTextures[key] = newTexture;
-
-			return true;
+			mTextures[key] = texture;
 		}
 	}
-	return false;
+	return texture;
 }
 
-bool CTextureManager::UnloadTexture(const std::string& key)
+std::shared_ptr<CTexture> CTextureManager::GetTexture(const std::string& key)
 {
-	if (FindTexture(key))
-	{
-		mTextures.erase(key);
-
-		return true;
-	}
-	return false;
-}
-
-std::shared_ptr<CTexture> CTextureManager::FindTexture(const std::string& key)
-{
-	std::unordered_map<std::string, std::shared_ptr<CTexture>>::iterator iter = mTextures.find(key);
+	std::unordered_map<std::string, std::weak_ptr<CTexture>>::iterator iter = mTextures.find(key);
 
 	if (iter == mTextures.end())
 		return nullptr;
 
-	return iter->second;
+	return iter->second.lock();
 }

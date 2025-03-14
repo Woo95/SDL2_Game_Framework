@@ -27,7 +27,7 @@ protected:
     CCamera*  mCamera;
     CSceneUI* mSceneUI;
 
-    std::unordered_set<std::string> mTextureKeys;
+    std::vector<std::shared_ptr<CTexture>> mTextures;
 
 protected:
 	virtual bool Enter() = 0;
@@ -37,7 +37,7 @@ protected:
     virtual void LateUpdate(float DeltaTime);
     virtual void Render(SDL_Renderer* Renderer);
 
-    virtual void LoadTextures() = 0;
+    virtual void LoadResources() = 0;
 
 public:
     CSceneCollision* GetCollision() const { return mSceneCollision; }
@@ -90,5 +90,6 @@ public:
 
 protected:
     void LoadTexture(const std::string& key, const char* fileName);
-    void UnloadTextures();
+
+    void UnloadResources();
 };

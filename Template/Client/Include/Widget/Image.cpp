@@ -36,7 +36,7 @@ void CImage::Release()
 
 void CImage::SetTexture(const std::string& key)
 {
-	mTexture = CAssetManager::GetInst()->GetTextureManager()->FindTexture(key);
+	mTexture = CAssetManager::GetInst()->GetTextureManager()->GetTexture(key);
 }
 
 void CImage::SetFrame(const std::string& key)

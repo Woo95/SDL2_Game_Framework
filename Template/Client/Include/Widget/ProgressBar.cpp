@@ -79,7 +79,7 @@ void CProgressBar::RenderFill(SDL_Renderer* Renderer, SDL_Rect& renderRect)
 
 void CProgressBar::SetTexture(const std::string& key)
 {
-	mTexture = CAssetManager::GetInst()->GetTextureManager()->FindTexture(key);
+	mTexture = CAssetManager::GetInst()->GetTextureManager()->GetTexture(key);
 }
 
 void CProgressBar::SetFrame(const std::string& key)

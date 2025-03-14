@@ -28,6 +28,8 @@ CScene::~CScene()
         CMemoryPoolManager::GetInst()->DeallocateButKeepPool<CLayer>(layer);
     }
     SAFE_DELETE(mCamera);
+
+    UnloadResources();
 }
 
 void CScene::Update(float DeltaTime)
@@ -70,16 +72,10 @@ void CScene::LoadTexture(const std::string& key, const char* fileName)
 {
     CTextureManager* TM = CAssetManager::GetInst()->GetTextureManager();
 
-    TM->LoadTexture(key, fileName);
-    mTextureKeys.insert(key);
+    mTextures.emplace_back(TM->LoadTexture(key, fileName));
 }
 
-void CScene::UnloadTextures()
+void CScene::UnloadResources()
 {
-    CTextureManager* TM = CAssetManager::GetInst()->GetTextureManager();
-
-    for (const std::string& key : mTextureKeys)
-    {
-        TM->UnloadTexture(key);
-    }
+    mTextures.clear();
 }

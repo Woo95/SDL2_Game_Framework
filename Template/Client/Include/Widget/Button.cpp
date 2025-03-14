@@ -43,7 +43,7 @@ void CButton::Release()
 
 void CButton::SetTexture(const std::string& key)
 {
-	mTexture = CAssetManager::GetInst()->GetTextureManager()->FindTexture(key);
+	mTexture = CAssetManager::GetInst()->GetTextureManager()->GetTexture(key);
 }
 
 void CButton::SetFrame(const std::string& key)

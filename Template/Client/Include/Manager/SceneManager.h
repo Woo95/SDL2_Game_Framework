@@ -3,6 +3,8 @@
 #include "../Core/GameInfo.h"
 #include "../Core/Utils/SceneUtils.h"
 
+class CScene;
+
 class CSceneManager
 {
 	friend class CGameManager;
@@ -12,7 +14,7 @@ private:
 	~CSceneManager();
 
 private:
-	std::stack<class CScene*> mScene;
+	std::stack<CScene*> mScene;
 
 	static CSceneManager* mInst;
 

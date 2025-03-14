@@ -63,7 +63,7 @@ void CSpriteComponent::Release()
 
 void CSpriteComponent::SetTexture(const std::string& key)
 {
-	mTexture = CAssetManager::GetInst()->GetTextureManager()->FindTexture(key);
+	mTexture = CAssetManager::GetInst()->GetTextureManager()->GetTexture(key);
 }
 
 void CSpriteComponent::SetSprite(const std::string& key)
