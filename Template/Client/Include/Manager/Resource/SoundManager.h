@@ -1,12 +1,11 @@
 #pragma once
 
 #include "../../Core/GameInfo.h"
-
-class CSFX;
-class CBGM;
+#include "../../Resource/Sound/SFX.h"
+#include "../../Resource/Sound/BGM.h"
 
 template <typename T>
-using SoundMap = std::unordered_map<std::string, std::shared_ptr<T>>;
+using SoundMap = std::unordered_map<std::string, std::weak_ptr<T>>;
 
 class CSoundManager
 {
@@ -25,45 +24,31 @@ private:
 
 public:
 	template <typename T>
-	bool LoadSound(const std::string& key, const char* fileName)
+	std::shared_ptr<T> LoadSound(const std::string& key, const char* fileName)
 	{
-		SoundMap<T>& soundMap = GetSoundMap<T>();
+		std::shared_ptr<T> sound = GetSound<T>(key);
 
-		if (soundMap.find(key) == soundMap.end())
+		if (!sound)
 		{
-			std::shared_ptr<T> newSound = std::make_shared<T>();
+			sound = std::make_shared<T>();
 
-			if (newSound->LoadSound(fileName))
+			if (sound->LoadSound(fileName))
 			{
-				soundMap[key] = newSound;
-				return true;
+				GetSoundMap<T>()[key] = sound;
 			}
 		}
-		return false;
+		return sound;
 	}
 
 	template <typename T>
-	bool UnloadSound(const std::string& key)
-	{
-		SoundMap<T>& soundMap = GetSoundMap<T>();
-
-		if (FindSound<T>(key))
-		{
-			soundMap.erase(key);
-			return true;
-		}
-		return false;
-	}
-
-	template <typename T>
-	std::shared_ptr<T> FindSound(const std::string& key)
+	std::shared_ptr<T> GetSound(const std::string& key)
 	{
 		SoundMap<T>& soundMap = GetSoundMap<T>();
 
 		if (soundMap.find(key) == soundMap.end())
 			return nullptr;
 
-		return soundMap[key];
+		return soundMap[key].lock();
 	}
 
 	template <typename T>
@@ -73,7 +58,7 @@ public:
 
 		for (auto& pair : soundMap)
 		{
-			pair.second.get()->SetVolume(volume);
+			pair.second.lock()->SetVolume(volume);
 		}
 	}
 
@@ -83,7 +68,7 @@ public:
 
 private:
 	template <typename T>
-	std::unordered_map<std::string, std::shared_ptr<T>>& GetSoundMap()
+	std::unordered_map<std::string, std::weak_ptr<T>>& GetSoundMap()
 	{
 		if constexpr (std::is_same_v<T, CSFX>)
 			return mSFXs;

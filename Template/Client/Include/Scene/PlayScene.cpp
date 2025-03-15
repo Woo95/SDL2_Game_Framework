@@ -5,6 +5,8 @@
 #include "../Entity/Object/Background.h"
 #include "Collision/SceneCollision.h"
 #include "../Scene/Camera.h"
+#include "../Manager/Resource/AssetManager.h"
+#include "../Manager/Resource/SoundManager.h"
 
 CPlayScene::CPlayScene()
 {
@@ -27,6 +29,10 @@ bool CPlayScene::Enter()
 	AllocateObject<CMonster, 10>("Monster", ELayer::Type::OBJECT);
 
 	mCamera->SetTarget(player);
+
+	CAssetManager::GetInst()->GetSoundManager()->SetVolume<CBGM>(5);
+	CAssetManager::GetInst()->GetSoundManager()->GetSound<CBGM>("Stage1_BGM")->Play();
+	//CAssetManager::GetInst()->GetSoundManager()->GetSound<CBGM>("Stage1_BGM")->SetVolume(5);
 
 	return true;
 }
@@ -62,4 +68,6 @@ void CPlayScene::LoadResources()
 	LoadTexture("Pasqualina", "Pasqualina.png");
 	LoadTexture("Bullet",     "Bullet.png");
 	LoadTexture("Stage1",     "Mad_Forest_stage_1.png");
+
+	LoadBGM("Stage1_BGM", "bgm_will_beginning.wav");
 }

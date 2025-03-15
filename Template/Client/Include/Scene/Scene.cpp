@@ -5,6 +5,7 @@
 #include "../Manager/Resource/AssetManager.h"
 #include "../Manager/Resource/TextureManager.h"
 #include "../Manager/Resource/FontManager.h"
+#include "../Manager/Resource/SoundManager.h"
 #include "../Manager/GameManager.h"
 
 CScene::CScene() :
@@ -83,8 +84,24 @@ void CScene::LoadFont(const std::string& key, const char* fileName, int fontSize
     mFonts.emplace_back(FM->LoadFont(key, fileName, fontSize));
 }
 
+void CScene::LoadSFX(const std::string& key, const char* fileName)
+{
+    CSoundManager* SM = CAssetManager::GetInst()->GetSoundManager();
+    
+    mSFXs.emplace_back(SM->LoadSound<CSFX>(key, fileName));
+}
+
+void CScene::LoadBGM(const std::string& key, const char* fileName)
+{
+    CSoundManager* SM = CAssetManager::GetInst()->GetSoundManager();
+
+    mBGMs.emplace_back(SM->LoadSound<CBGM>(key, fileName));
+}
+
 void CScene::UnloadResources()
 {
     mTextures.clear();
     mFonts.clear();
+    mSFXs.clear();
+    mBGMs.clear();
 }

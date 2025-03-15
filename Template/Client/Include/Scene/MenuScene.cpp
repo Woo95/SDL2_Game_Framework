@@ -2,6 +2,7 @@
 #include "../Manager/SceneManager.h"
 #include "../Manager/Resource/AssetManager.h"
 #include "../Manager/Resource/TextureManager.h"
+#include "../Manager/Resource/SoundManager.h"
 #include "../Scene/UI/MenuUI.h"
 
 CMenuScene::CMenuScene()
@@ -17,6 +18,10 @@ CMenuScene::~CMenuScene()
 bool CMenuScene::Enter()
 {
 	mSceneUI->Init();
+
+	CAssetManager::GetInst()->GetSoundManager()->SetVolume<CSFX>(5);
+	CAssetManager::GetInst()->GetSoundManager()->GetSound<CSFX>("TitleIntro_SFX")->Play();
+	//CAssetManager::GetInst()->GetSoundManager()->GetSound<CSFX>("TitleIntro_SFX")->SetVolume(5);
 
 	//CSceneManager::GetInst()->Change(EScene::State::PLAY);
 
@@ -49,4 +54,6 @@ void CMenuScene::LoadResources()
 	LoadTexture("IntroBG", "IntroBG.png");
 
 	LoadFont("Cormorant", "Cormorant.ttf", 32);
+
+	LoadSFX("TitleIntro_SFX", "sfx_titleIntro.wav");
 }

@@ -5,12 +5,6 @@
 #include "../Core/Utils/LayerUtils.h"
 #include "Layer.h"
 
-class CSceneCollision;
-class CCamera;
-class CSceneUI;
-class CTexture;
-class CFont;
-
 // 추상 클래스 선언 - 인스턴스화 불가 (abstract 키워드로 명시 안하더라도, 순수 가상 함수가 있으면 자동으로 추상 클래스)
 class CScene abstract	
 {
@@ -24,12 +18,15 @@ protected:
 protected:
     std::vector<CLayer*> mLayers;
 
-    CSceneCollision* mSceneCollision;
-    CCamera*  mCamera;
-    CSceneUI* mSceneUI;
+    class CSceneCollision* mSceneCollision;
+    class CCamera*  mCamera;
+    class CSceneUI* mSceneUI;
 
-    std::vector<std::shared_ptr<CTexture>> mTextures;
-    std::vector<std::shared_ptr<CFont>> mFonts;
+    // Resources //
+    std::vector<std::shared_ptr<class CTexture>> mTextures;
+    std::vector<std::shared_ptr<class CFont>>    mFonts;
+    std::vector<std::shared_ptr<class CSFX>>     mSFXs;
+    std::vector<std::shared_ptr<class CBGM>>     mBGMs;
 
 protected:
 	virtual bool Enter() = 0;
@@ -93,6 +90,8 @@ public:
 protected:
     void LoadTexture(const std::string& key, const char* fileName);
     void LoadFont(const std::string& key, const char* fileName, int fontSize);
+    void LoadSFX(const std::string& key, const char* fileName);
+    void LoadBGM(const std::string& key, const char* fileName);
 
 private:
     void UnloadResources();

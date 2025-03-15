@@ -19,5 +19,5 @@ public:
 	void SetVolume(int volume);
 
 private:
-	virtual bool LoadSound(const char* fileName);
+	bool LoadSound(const char* fileName);
 };
