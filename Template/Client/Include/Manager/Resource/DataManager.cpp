@@ -201,7 +201,7 @@ void CDataManager::LoadAllImageData()
 			int x = std::stoi(row[2 + i].substr(1));
 			int y = std::stoi(row[3 + i]);
 			int w = std::stoi(row[4 + i]);
-			int h = std::stoi(row[5 + i].substr(0, row[5].length() - 1));
+			int h = std::stoi(row[5 + i].substr(0, row[5 + i].length() - 1));
 
 			UIM->mUIs[key].emplace_back(SDL_Rect{ x,y,w,h });
 		}
