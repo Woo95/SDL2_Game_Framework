@@ -118,7 +118,7 @@ void CPlayer::SetupInput()
     CInput::GetInst()->AddInputToBinder("DOWN",  SDL_SCANCODE_S,  EKey::State::HOLD);
     CInput::GetInst()->AddInputToBinder("LEFT",  SDL_SCANCODE_A,  EKey::State::HOLD);
     CInput::GetInst()->AddInputToBinder("RIGHT", SDL_SCANCODE_D,  EKey::State::HOLD);
-    CInput::GetInst()->AddInputToBinder("SHOOT", SDL_BUTTON_LEFT, EKey::State::HOLD);
+    CInput::GetInst()->AddInputToBinder("SHOOT", SDL_BUTTON_LEFT, EKey::State::PRESS);
 }
 
 void CPlayer::MOVE_UP()

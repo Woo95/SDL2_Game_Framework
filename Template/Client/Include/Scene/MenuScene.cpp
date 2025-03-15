@@ -23,8 +23,6 @@ bool CMenuScene::Enter()
 	CAssetManager::GetInst()->GetSoundManager()->GetSound<CSFX>("TitleIntro_SFX")->Play();
 	//CAssetManager::GetInst()->GetSoundManager()->GetSound<CSFX>("TitleIntro_SFX")->SetVolume(5);
 
-	//CSceneManager::GetInst()->Change(EScene::State::PLAY);
-
 	return true;
 }
 
