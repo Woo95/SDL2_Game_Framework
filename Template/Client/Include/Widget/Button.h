@@ -21,6 +21,9 @@ private:
 private:
 	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO) final;
 	virtual void Release() final;
+	
+	virtual void HandleHovered(bool isPressed, bool isHeld, bool isReleased) final;
+	virtual void HandleUnhovered() final;
 
 public:
 	void SetTexture(const std::string& key);

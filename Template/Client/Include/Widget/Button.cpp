@@ -1,19 +1,15 @@
 #include "Button.h"
+#include "UserWidget.h"
+#include "../Scene/UI/SceneUI.h"
 #include "../Manager/Resource/AssetManager.h"
-#include "../Manager/Resource/TextureManager.h"
 #include "../Manager/Resource/UIManager.h"
+#include "../Manager/Resource/TextureManager.h"
 #include "../Resource/Texture.h"
 #include "../Manager/MemoryPoolManager.h"
 
 CButton::CButton()
 {
 	mIsTriggerable = true;
-
-	AddEventCallback(EWidgetInput::Event::UNHOVER, [this]() {mCurrentState = EButton::State::UNHOVER;});
-	AddEventCallback(EWidgetInput::Event::HOVER,   [this]() {mCurrentState = EButton::State::HOVER;});
-	AddEventCallback(EWidgetInput::Event::CLICK,   [this]() {mCurrentState = EButton::State::CLICK;});
-	AddEventCallback(EWidgetInput::Event::HOLD,    [this]() {mCurrentState = EButton::State::CLICK;});
-	AddEventCallback(EWidgetInput::Event::RELEASE, [this]() {mCurrentState = mMouseHovered ? EButton::State::HOVER : EButton::State::UNHOVER;});
 }
 
 CButton::~CButton()
@@ -39,6 +35,66 @@ void CButton::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
 void CButton::Release()
 {
 	CMemoryPoolManager::GetInst()->Deallocate<CButton>(this);
+}
+
+void CButton::HandleHovered(bool isPressed, bool isHeld, bool isReleased)
+{
+	// 만약 잡혀 있는 위젯이 존재하고, 현재 위젯이 아니면 처리하지 않음
+	CWidget* currHeld = mUserWidget->GetSceneUI()->GetHeldWidget();
+	if (currHeld && currHeld != this)
+		return;
+
+	// 위젯 최초로 호버할 때 처리
+	if (!mMouseHovered)
+	{
+		mMouseHovered = true;
+
+		if (currHeld == this)
+		{
+			mCurrentState = EButton::State::CLICK;
+			ExecuteCallback(EWidgetInput::Event::HOLD);
+		}
+		else
+		{
+			mCurrentState = EButton::State::HOVER;
+			ExecuteCallback(EWidgetInput::Event::HOVER);
+		}
+	}
+	// 위젯 호버 중일 때 처리
+	else
+	{
+		if (isPressed && !currHeld)
+		{
+			mUserWidget->GetSceneUI()->SetHeldWidget(this);
+			mUserWidget->GetSceneUI()->BringUserWidgetToTop(mUserWidget);
+
+			mCurrentState = EButton::State::CLICK;
+			ExecuteCallback(EWidgetInput::Event::CLICK);
+		}
+		else if (isHeld && currHeld == this)
+		{
+			mCurrentState = EButton::State::CLICK;
+			ExecuteCallback(EWidgetInput::Event::HOLD);
+		}
+		else if (isReleased && currHeld == this)
+		{
+			mUserWidget->GetSceneUI()->SetHeldWidget(nullptr);
+
+			mCurrentState = EButton::State::HOVER;
+			ExecuteCallback(EWidgetInput::Event::RELEASE);
+		}
+	}
+}
+
+void CButton::HandleUnhovered()
+{
+	if (mMouseHovered)
+	{
+		mMouseHovered = false;
+
+		mCurrentState = EButton::State::UNHOVER;
+		ExecuteCallback(EWidgetInput::Event::UNHOVER);
+	}
 }
 
 void CButton::SetTexture(const std::string& key)
