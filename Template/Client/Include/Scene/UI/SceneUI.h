@@ -31,6 +31,13 @@ public:
 
 public:
 	CUserWidget* FindUserWidget(const std::string& name = "");
+	void BringUserWidgetToTop(CUserWidget* userWidget);
+
+	CWidget* GetHeldWidget() const { return mHeldWidget; }
+	void SetHeldWidget(CWidget* heldWidget) 
+	{
+		mHeldWidget = heldWidget; 
+	}
 
 	template <typename T, int initialCapacity = 10>
 	T* CreateUserWidget(const std::string& name)
@@ -68,9 +75,4 @@ public:
 
 private:
 	void UpdateInput();
-
-	CWidget* GetHeldWidget() const { return mHeldWidget; }
-	void SetHeldWidget(CWidget* heldWidget) { mHeldWidget = heldWidget; }
-
-	void BringUserWidgetToTop(CUserWidget* userWidget);
 };

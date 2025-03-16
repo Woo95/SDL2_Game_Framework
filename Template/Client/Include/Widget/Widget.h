@@ -31,10 +31,15 @@ protected:
 	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO) override;
 	virtual void Release() = 0;
 
+	// 마우스와 상호작용이 있는 위젯들에서 따로 구현
+	virtual void HandleHovered(bool isPressed, bool isHeld, bool isReleased) {};
+	virtual void HandleUnhovered() {};
+
 public:
+	CWidget* FindWidget(size_t id);
+
 	void AddChild(CWidget* child);
 	bool DeleteChild(CWidget* child);
-	CWidget* FindWidget(size_t id);
 
 	void AddEventCallback(EWidgetInput::Event event, const std::function<void()>& func)
 	{
@@ -46,11 +51,8 @@ public:
 	void Disable();
 	void Destroy();
 
-private:
+protected:
 	CWidget* GetHoveredWidget(const FVector2D& mousePos);
-
-	void HandleHovered(bool isPressed, bool isHeld, bool isReleased);
-	void HandleUnhovered();
 
 	void ExecuteCallback(EWidgetInput::Event event);
 };

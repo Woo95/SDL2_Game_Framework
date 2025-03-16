@@ -83,6 +83,21 @@ void CWidget::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
 #endif
 }
 
+CWidget* CWidget::FindWidget(size_t id)
+{
+	if (mID == id)
+		return this;
+
+	for (CWidget* child : mChilds)
+	{
+		CWidget* foundWidget = child->FindWidget(id);
+
+		if (foundWidget)
+			return foundWidget;
+	}
+	return nullptr;
+}
+
 void CWidget::AddChild(CWidget* child)
 {
 	child->mUserWidget = mUserWidget;
@@ -104,21 +119,6 @@ bool CWidget::DeleteChild(CWidget* child)
 	childToDelete->Release();
 
 	return true;
-}
-
-CWidget* CWidget::FindWidget(size_t id)
-{
-	if (mID == id)
-		return this;
-
-	for (CWidget* child : mChilds)
-	{
-		CWidget* foundWidget = child->FindWidget(id);
-
-		if (foundWidget)
-			return foundWidget;
-	}
-	return nullptr;
 }
 
 void CWidget::Enable()
@@ -161,56 +161,6 @@ CWidget* CWidget::GetHoveredWidget(const FVector2D& mousePos)
 			return childHovered;
 	}
 	return mIsTriggerable ? this : nullptr;
-}
-
-void CWidget::HandleHovered(bool isPressed, bool isHeld, bool isReleased)
-{
-	if (!mIsTriggerable)
-		return;
-
-	// 만약 잡혀 있는 위젯이 존재하고, 현재 위젯이 아니면 처리하지 않음
-	CWidget* currHeld = mUserWidget->mSceneUI->GetHeldWidget();
-	if (currHeld && currHeld != this)
-		return;
-
-	// 위젯 최초로 호버할 때 처리
-	if (!mMouseHovered)
-	{
-		mMouseHovered = true;
-
-		if (currHeld == this)
-			ExecuteCallback(EWidgetInput::Event::HOLD);
-		else
-			ExecuteCallback(EWidgetInput::Event::HOVER);
-	}
-	// 위젯 호버 중일 때 처리
-	else
-	{
-		if (isPressed && !currHeld)
-		{
-			mUserWidget->BringToTop();
-			mUserWidget->mSceneUI->SetHeldWidget(this);
-			ExecuteCallback(EWidgetInput::Event::CLICK);
-		}
-		else if (isHeld && currHeld == this)
-		{
-			ExecuteCallback(EWidgetInput::Event::HOLD);
-		}
-		else if (isReleased && currHeld == this)
-		{
-			mUserWidget->mSceneUI->SetHeldWidget(nullptr);
-			ExecuteCallback(EWidgetInput::Event::RELEASE);
-		}
-	}
-}
-
-void CWidget::HandleUnhovered()
-{
-	if (mMouseHovered)
-	{
-		mMouseHovered = false;
-		ExecuteCallback(EWidgetInput::Event::UNHOVER);
-	}
 }
 
 void CWidget::ExecuteCallback(EWidgetInput::Event event)

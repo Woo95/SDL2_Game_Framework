@@ -178,7 +178,7 @@ void CUserWidget::HandleDragging(const FVector2D& mousePos, bool isPressed, bool
     if (isPressed)
     {
         mDragOffset = mousePos - GetTransform()->GetWorldPos();
-        BringToTop();
+        mSceneUI->BringUserWidgetToTop(this);
     }
     else if (isHeld && mDragOffset != FVector2D::ZERO)
     {
@@ -187,10 +187,4 @@ void CUserWidget::HandleDragging(const FVector2D& mousePos, bool isPressed, bool
     }
     else if (isReleased)
         mDragOffset = FVector2D::ZERO;
-}
-
-void CUserWidget::BringToTop()
-{
-    if (mIsMovable)
-        mSceneUI->BringUserWidgetToTop(this);
 }

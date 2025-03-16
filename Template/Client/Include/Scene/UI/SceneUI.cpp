@@ -84,6 +84,17 @@ CUserWidget* CSceneUI::FindUserWidget(const std::string& name)
 	return nullptr;
 }
 
+void CSceneUI::BringUserWidgetToTop(CUserWidget* userWidget)
+{
+	if (mUserWidgets.back() == userWidget || mUserWidgets.empty() || !userWidget->mIsMovable)
+		return;
+
+	// mUserWidgets 벡터의 순서를 유지하면서 userWidget 제거
+	mUserWidgets.erase(std::remove(mUserWidgets.begin(), mUserWidgets.end(), userWidget), mUserWidgets.end());
+	// 제거했던 userWidget을 맨 뒤에 추가
+	mUserWidgets.emplace_back(userWidget);
+}
+
 void CSceneUI::UpdateInput()
 {
 	const FVector2D& mousePos = CInput::GetInst()->GetMousePos();
@@ -120,15 +131,4 @@ void CSceneUI::UpdateInput()
 	// 마우스 좌클릭을 떼었을 때, 잡고 있던 Widget 해제
 	if (mHeldWidget && isReleased)
 		mHeldWidget = nullptr;
-}
-
-void CSceneUI::BringUserWidgetToTop(CUserWidget* userWidget)
-{
-	if (mUserWidgets.back() == userWidget || mUserWidgets.empty())
-		return;
-
-	// mUserWidgets 벡터의 순서를 유지하면서 userWidget 제거
-	mUserWidgets.erase(std::remove(mUserWidgets.begin(), mUserWidgets.end(), userWidget), mUserWidgets.end());
-	// 제거했던 userWidget을 맨 뒤에 추가
-	mUserWidgets.emplace_back(userWidget);
 }

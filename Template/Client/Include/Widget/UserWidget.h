@@ -30,6 +30,8 @@ protected:
 	virtual void Release() override;
 
 public:
+	CSceneUI* GetSceneUI() const { return mSceneUI; }
+
 	void SetMovable(bool movable)
 	{
 		mIsMovable = movable;
@@ -56,6 +58,4 @@ private:
 	void HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased);
 	void HandleUnhovered();
 	void HandleDragging(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased);
-
-	void BringToTop();
 };
