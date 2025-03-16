@@ -52,7 +52,7 @@ bool CMenuUI::Init()
 	// 버튼 텍스쳐 및 프레임 설정
 	button->SetTexture("UI");
 	button->SetFrame("BlueButton");
-	button->AddEventCallback(EWidgetInput::Event::CLICK, [](){CSceneManager::GetInst()->Change(EScene::State::PLAY);});
+	button->AddEventCallback(EWidgetInput::Event::RELEASE, [](){CSceneManager::GetInst()->Change(EScene::State::PLAY);});
 
 	// 유저위젯 자식으로 버튼 추가
 	userWidget->AddWidget(button);
