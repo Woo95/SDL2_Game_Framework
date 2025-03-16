@@ -59,7 +59,7 @@ public:
 
 public:
 	template <typename T>
-	void AddFunctionToBinder(const std::string& key, T* obj, void(T::* func)(), CScene* scene)
+	void AddFunctionToBinder(const std::string& key, T* obj, void(T::* func)())
 	{
 		FBinder* binder = mBinders[key];
 
@@ -71,7 +71,6 @@ public:
 
 		FBindFunction* binderFunc = CMemoryPoolManager::GetInst()->Allocate<FBindFunction>();
 		
-		binderFunc->scene = scene;
 		binderFunc->obj   = obj;
 		binderFunc->func  = std::bind(func, obj);
 

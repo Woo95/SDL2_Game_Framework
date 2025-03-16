@@ -108,11 +108,11 @@ void CPlayer::SetupInput()
 {
     // 클래스 멤버 함수 포인터는 일반 함수와 다르게 "&클래스명::함수" 이렇게 해야한다. (ex: &CPlayer::MOVE_UP)
 
-    CInput::GetInst()->AddFunctionToBinder("UP",    this, &CPlayer::MOVE_UP,    mScene);
-    CInput::GetInst()->AddFunctionToBinder("DOWN",  this, &CPlayer::MOVE_DOWN,  mScene);
-    CInput::GetInst()->AddFunctionToBinder("LEFT",  this, &CPlayer::MOVE_LEFT,  mScene);
-    CInput::GetInst()->AddFunctionToBinder("RIGHT", this, &CPlayer::MOVE_RIGHT, mScene);
-    CInput::GetInst()->AddFunctionToBinder("SHOOT", this, &CPlayer::SHOOT,      mScene);
+    CInput::GetInst()->AddFunctionToBinder("UP",    this, &CPlayer::MOVE_UP);
+    CInput::GetInst()->AddFunctionToBinder("DOWN",  this, &CPlayer::MOVE_DOWN);
+    CInput::GetInst()->AddFunctionToBinder("LEFT",  this, &CPlayer::MOVE_LEFT);
+    CInput::GetInst()->AddFunctionToBinder("RIGHT", this, &CPlayer::MOVE_RIGHT);
+    CInput::GetInst()->AddFunctionToBinder("SHOOT", this, &CPlayer::SHOOT);
     
     CInput::GetInst()->AddInputToBinder("UP",    SDL_SCANCODE_W,  EKey::State::HOLD);
     CInput::GetInst()->AddInputToBinder("DOWN",  SDL_SCANCODE_S,  EKey::State::HOLD);
