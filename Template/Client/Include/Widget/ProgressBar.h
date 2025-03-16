@@ -23,6 +23,7 @@ private:
 	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO) final;
 	virtual void Release() final;
 
+public:
 	void RenderBack(SDL_Renderer* Renderer, const SDL_Rect& renderRect);
 	void RenderFill(SDL_Renderer* Renderer, SDL_Rect& renderRect);
 
