@@ -28,7 +28,7 @@ CSceneManager::~CSceneManager()
 
 bool CSceneManager::Init()
 {
-	Change(EScene::State::MENU);
+	ApplyChange(EScene::State::MENU);
 
 	return true;
 }
@@ -41,6 +41,9 @@ void CSceneManager::Update(float DeltaTime)
 void CSceneManager::LateUpdate(float DeltaTime)
 {
 	mScene.top()->LateUpdate(DeltaTime);
+
+	if (mPendingScene != EScene::State::NONE)
+		ApplyChange(mPendingScene);
 }
 
 void CSceneManager::Render(SDL_Renderer* Renderer)
@@ -48,7 +51,12 @@ void CSceneManager::Render(SDL_Renderer* Renderer)
 	mScene.top()->Render(Renderer);
 }
 
-void CSceneManager::Change(EScene::State state)
+void CSceneManager::PendingChange(EScene::State state)
+{
+	mPendingScene = state;
+}
+
+void CSceneManager::ApplyChange(EScene::State state)
 {
 	// 새로운 씬 생성 및 리소스들 로드
 	CScene* newScene = GetSceneFromState(state);
@@ -70,6 +78,9 @@ void CSceneManager::Change(EScene::State state)
 	// 새로운 씬 추가
 	mScene.push(newScene);
 	mScene.top()->Enter();
+
+	// 새로운 씬 플래그 초기화
+	mPendingScene = EScene::State::NONE;
 }
 
 CScene* CSceneManager::GetSceneFromState(EScene::State state)

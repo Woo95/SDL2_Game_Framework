@@ -15,11 +15,13 @@ private:
 
 private:
 	std::stack<CScene*> mScene;
+	EScene::State mPendingScene = EScene::State::NONE;
 
 	static CSceneManager* mInst;
 
 public:
-	void Change(EScene::State state);
+	void PendingChange(EScene::State state);
+	void ApplyChange(EScene::State state);
 
 private:
 	bool Init();
