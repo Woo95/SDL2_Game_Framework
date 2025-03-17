@@ -11,11 +11,13 @@ CWidget::CWidget()
 
 CWidget::~CWidget()
 {
+	CMemoryPoolManager::GetInst()->DeallocateButKeepPool<CTransform>(mTransform);
+
 	for (CWidget* child : mChilds)
 	{
 		child->Release();
 	}
-	CMemoryPoolManager::GetInst()->DeallocateButKeepPool<CTransform>(mTransform);
+	mChilds.clear();
 }
 
 void CWidget::Update(float DeltaTime)

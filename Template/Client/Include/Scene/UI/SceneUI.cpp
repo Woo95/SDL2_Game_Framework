@@ -13,6 +13,7 @@ CSceneUI::~CSceneUI()
 	{
 		userWidget->Release();
 	}
+	mUserWidgets.clear();
 }
 
 bool CSceneUI::Init()

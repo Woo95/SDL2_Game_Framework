@@ -11,11 +11,13 @@ CUserWidget::CUserWidget()
 
 CUserWidget::~CUserWidget()
 {
+    CMemoryPoolManager::GetInst()->DeallocateButKeepPool<CTransform>(mTransform);
+
     for (CWidget* widget : mWidgets)
     {
         widget->Release();
     }
-    CMemoryPoolManager::GetInst()->DeallocateButKeepPool<CTransform>(mTransform);
+    mWidgets.clear();
 }
 
 void CUserWidget::Update(float DeltaTime)
