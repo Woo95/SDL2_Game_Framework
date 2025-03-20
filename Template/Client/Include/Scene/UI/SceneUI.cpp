@@ -1,4 +1,5 @@
 #include "SceneUI.h"
+#include "../../Widget/Widget.h"
 #include "../../Widget/UserWidget.h"
 #include "../../Manager/CollisionManager.h"
 #include "../../Core/Input.h"
@@ -96,6 +97,19 @@ void CSceneUI::BringUserWidgetToTop(CUserWidget* userWidget)
 	mUserWidgets.emplace_back(userWidget);
 }
 
+CUserWidget* CSceneUI::FindHoveredUserWidget(const FVector2D& mousePos)
+{
+	for (size_t i = mUserWidgets.size(); i > 0; i--)
+	{
+		CUserWidget* newHovered = mUserWidgets[i - 1];
+		if (CCollisionManager::GetInst()->AABBPointCollision(newHovered->GetRect(), mousePos))
+		{
+			return newHovered;
+		}
+	}
+	return nullptr;
+}
+
 void CSceneUI::UpdateInput()
 {
 	const FVector2D& mousePos = CInput::GetInst()->GetMousePos();
@@ -104,30 +118,33 @@ void CSceneUI::UpdateInput()
 	bool isHeld     = CInput::GetInst()->GetMouseButtonState(SDL_BUTTON_LEFT, EKey::State::HOLD);
 	bool isReleased = CInput::GetInst()->GetMouseButtonState(SDL_BUTTON_LEFT, EKey::State::RELEASE);
 
-	// 마우스 위에 호버된 최상위 UserWidget 찾기
-    CUserWidget* newHovered = nullptr;
-    for (size_t i = mUserWidgets.size(); i > 0; i--)
-    {
-        CUserWidget* userWidget = mUserWidgets[i - 1];
-        if (CCollisionManager::GetInst()->AABBPointCollision(userWidget->GetRect(), mousePos))
-        {
-            newHovered = userWidget;
-            break;
-        }
-    }
-	// 현재 호버된 mCurrentHovered가 바뀔 경우
-	if (mCurrHovered != newHovered)
+	// 마우스 좌클릭을 홀드 중에, 잡고 있는 Widget이 존재할 경우
+	if (mHeldWidget && isHeld)
 	{
-		// 기존 호버된 userWidget이 있다면 HandleUnhovered()를 1회 실행
-		if (mCurrHovered)
-			mCurrHovered->HandleUnhovered();
-
-		mCurrHovered = newHovered;
+		// 잡고 있는 Widget의 영역 밖일 경우, Unhovered() 실행
+		if (!CCollisionManager::GetInst()->AABBPointCollision(mHeldWidget->GetRect(), mousePos))
+		{
+			mHeldWidget->HandleUnhovered(mousePos);
+			return;
+		}
 	}
-	// 호버된 userWidget이 있을 경우 HandleHovered() 실행 
-    if (mCurrHovered)
-        mCurrHovered->HandleHovered(mousePos, isPressed, isHeld, isReleased);
 
+	// 마우스 위에 호버된 최상위 UserWidget 찾기
+	CUserWidget* newHovered = FindHoveredUserWidget(mousePos);
+	{
+		// 현재 호버된 mCurrentHovered가 바뀔 경우
+		if (mCurrHovered != newHovered)
+		{
+			// 기존 호버된 userWidget이 있다면 HandleUnhovered()를 1회 실행
+			if (mCurrHovered)
+				mCurrHovered->HandleUnhovered(mousePos);
+
+			mCurrHovered = newHovered;
+		}
+		// 호버된 userWidget이 있을 경우 HandleHovered() 실행 
+		if (mCurrHovered)
+			mCurrHovered->HandleHovered(mousePos, isPressed, isHeld, isReleased);
+	}
 
 	// 마우스 좌클릭을 떼었을 때, 잡고 있던 Widget 해제
 	if (mHeldWidget && isReleased)

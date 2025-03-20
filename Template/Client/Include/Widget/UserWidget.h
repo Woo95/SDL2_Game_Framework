@@ -55,7 +55,9 @@ public:
 	void Destroy();
 
 private:
+	CWidget* FindHoveredWidget(const FVector2D& mousePos);
+
 	void HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased);
-	void HandleUnhovered();
+	void HandleUnhovered(const FVector2D& mousePos);
 	void HandleDragging(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased);
 };

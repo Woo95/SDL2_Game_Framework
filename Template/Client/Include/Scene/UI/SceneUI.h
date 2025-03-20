@@ -2,6 +2,7 @@
 
 #include "../../Core/GameInfo.h"
 #include "../../Manager/MemoryPoolManager.h"
+#include "../../Core/Vector2D.h"
 
 class CUserWidget;
 class CWidget;
@@ -36,9 +37,10 @@ public:
 	CWidget* GetHeldWidget() const { return mHeldWidget; }
 	void SetHeldWidget(CWidget* heldWidget) 
 	{
-		mHeldWidget = heldWidget; 
+		mHeldWidget = heldWidget;
 	}
 
+public:
 	template <typename T, int initialCapacity = 10>
 	T* CreateUserWidget(const std::string& name)
 	{
@@ -74,5 +76,7 @@ public:
 	}
 
 private:
+	CUserWidget* FindHoveredUserWidget(const FVector2D& mousePos);
+
 	void UpdateInput();
 };

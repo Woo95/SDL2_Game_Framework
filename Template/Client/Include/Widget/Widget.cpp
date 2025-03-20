@@ -150,19 +150,19 @@ void CWidget::Destroy()
 	SetActive(false);
 }
 
-CWidget* CWidget::GetHoveredWidget(const FVector2D& mousePos)
+CWidget* CWidget::FindHoveredWidget(const FVector2D& mousePos)
 {
 	if (!CCollisionManager::GetInst()->AABBPointCollision(GetRect(), mousePos))
 		return nullptr;
 
 	for (size_t i = mChilds.size(); i > 0; i--)
 	{
-		CWidget* childHovered = mChilds[i - 1]->GetHoveredWidget(mousePos);
+		CWidget* childHovered = mChilds[i - 1]->FindHoveredWidget(mousePos);
 
 		if (childHovered)
 			return childHovered;
 	}
-	return mIsTriggerable ? this : nullptr;
+	return mIsInteractable ? this : nullptr;
 }
 
 void CWidget::ExecuteCallback(EWidgetInput::Event event)

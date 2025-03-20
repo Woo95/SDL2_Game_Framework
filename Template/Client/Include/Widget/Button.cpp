@@ -9,7 +9,7 @@
 
 CButton::CButton()
 {
-	mIsTriggerable = true;
+	mIsInteractable = true;
 }
 
 CButton::~CButton()
@@ -37,7 +37,7 @@ void CButton::Release()
 	CMemoryPoolManager::GetInst()->Deallocate<CButton>(this);
 }
 
-void CButton::HandleHovered(bool isPressed, bool isHeld, bool isReleased)
+void CButton::HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased)
 {
 	// 만약 잡혀 있는 위젯이 존재하고, 현재 위젯이 아니면 처리하지 않음
 	CWidget* currHeld = mUserWidget->GetSceneUI()->GetHeldWidget();
@@ -51,7 +51,7 @@ void CButton::HandleHovered(bool isPressed, bool isHeld, bool isReleased)
 
 		if (currHeld == this)
 		{
-			mCurrentState = EButton::State::CLICK;
+			mCurrentState = EButton::State::HOLD;
 			ExecuteCallback(EWidgetInput::Event::HOLD);
 		}
 		else
@@ -68,12 +68,12 @@ void CButton::HandleHovered(bool isPressed, bool isHeld, bool isReleased)
 			mUserWidget->GetSceneUI()->SetHeldWidget(this);
 			mUserWidget->GetSceneUI()->BringUserWidgetToTop(mUserWidget);
 
-			mCurrentState = EButton::State::CLICK;
+			mCurrentState = EButton::State::HOLD;
 			ExecuteCallback(EWidgetInput::Event::CLICK);
 		}
 		else if (isHeld && currHeld == this)
 		{
-			mCurrentState = EButton::State::CLICK;
+			mCurrentState = EButton::State::HOLD;
 			ExecuteCallback(EWidgetInput::Event::HOLD);
 		}
 		else if (isReleased && currHeld == this)
@@ -86,13 +86,14 @@ void CButton::HandleHovered(bool isPressed, bool isHeld, bool isReleased)
 	}
 }
 
-void CButton::HandleUnhovered()
+void CButton::HandleUnhovered(const FVector2D& mousePos)
 {
+	// 이전 프레임에서 위젯이 호버 상태였다면, 1회 실행
 	if (mMouseHovered)
 	{
 		mMouseHovered = false;
 
-		mCurrentState = EButton::State::UNHOVER;
+		mCurrentState = EButton::State::NORMAL;
 		ExecuteCallback(EWidgetInput::Event::UNHOVER);
 	}
 }

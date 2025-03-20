@@ -16,14 +16,14 @@ private:
 	SDL_Rect  mFrames[EButton::State::MAX] = {};
 	SDL_Color mColor = { 255, 255, 255, 255 };
 
-	EButton::State mCurrentState = EButton::State::UNHOVER;
+	EButton::State mCurrentState = EButton::State::NORMAL;
 
 private:
 	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO) final;
 	virtual void Release() final;
 	
-	virtual void HandleHovered(bool isPressed, bool isHeld, bool isReleased) final;
-	virtual void HandleUnhovered() final;
+	virtual void HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased) final;
+	virtual void HandleUnhovered(const FVector2D& mousePos) final;
 
 public:
 	void SetTexture(const std::string& key);

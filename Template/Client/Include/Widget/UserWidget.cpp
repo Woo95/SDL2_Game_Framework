@@ -134,42 +134,46 @@ void CUserWidget::Destroy()
     }
 }
 
+CWidget* CUserWidget::FindHoveredWidget(const FVector2D& mousePos)
+{
+    for (size_t i = mWidgets.size(); i > 0; i--)
+    {
+        CWidget* newHovered = mWidgets[i - 1];
+        if (CCollisionManager::GetInst()->AABBPointCollision(newHovered->GetRect(), mousePos))
+        {
+            return newHovered->FindHoveredWidget(mousePos);
+        }
+    }
+    return nullptr;
+}
+
 void CUserWidget::HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased)
 {
     // 마우스 위에 호버된 최상위 Widget 찾기
-    CWidget* newHovered = nullptr;
-    for (size_t i = mWidgets.size(); i > 0; i--)
+    CWidget* newHovered = FindHoveredWidget(mousePos);
     {
-        CWidget* widget = mWidgets[i - 1];
-        if (CCollisionManager::GetInst()->AABBPointCollision(widget->GetRect(), mousePos))
+        // 현재 호버된 mCurrentHovered가 바뀔 경우
+        if (mCurrHovered != newHovered)
         {
-            newHovered = widget->GetHoveredWidget(mousePos);
-            break;
+            // 기존 호버된 Widget이 있다면 HandleUnhovered()를 1회 실행
+            if (mCurrHovered)
+                mCurrHovered->HandleUnhovered(mousePos);
+
+            mCurrHovered = newHovered;
         }
-    }
-
-    // 현재 호버된 mCurrentHovered가 바뀔 경우
-    if (mCurrHovered != newHovered)
-    {
-        // 기존 호버된 Widget이 있다면 HandleUnhovered()를 1회 실행
+        // 호버된 Widget이 있을 경우 HandleHovered() 실행 
         if (mCurrHovered)
-            mCurrHovered->HandleUnhovered();
-
-        mCurrHovered = newHovered;
+            mCurrHovered->HandleHovered(mousePos, isPressed, isHeld, isReleased);
     }
-
-    // 호버된 Widget이 있을 경우 HandleHovered() 실행 
-    if (mCurrHovered)
-        mCurrHovered->HandleHovered(isPressed, isHeld, isReleased);
 
     // 자신의 드래그 이벤트 처리
     HandleDragging(mousePos, isPressed, isHeld, isReleased);
 }
 
-void CUserWidget::HandleUnhovered()
+void CUserWidget::HandleUnhovered(const FVector2D& mousePos)
 {    
     if (mCurrHovered)
-        mCurrHovered->HandleUnhovered();
+        mCurrHovered->HandleUnhovered(mousePos);
 }
 
 void CUserWidget::HandleDragging(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased)

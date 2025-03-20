@@ -20,8 +20,8 @@ protected:
 	CWidget* mParent = nullptr;
 	std::vector<CWidget*> mChilds;
 
-	bool mIsTriggerable = false;
-	bool mMouseHovered  = false;
+	bool mIsInteractable = false;
+	bool mMouseHovered   = false;
 
 	std::unordered_map<EWidgetInput::Event, std::vector<std::function<void()>>> mEventCallbacks;
 
@@ -32,8 +32,8 @@ protected:
 	virtual void Release() = 0;
 
 	// 마우스와 상호작용이 있는 위젯들에서 따로 구현
-	virtual void HandleHovered(bool isPressed, bool isHeld, bool isReleased) {};
-	virtual void HandleUnhovered() {};
+	virtual void HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased) {};
+	virtual void HandleUnhovered(const FVector2D& mousePos) {};
 
 public:
 	CWidget* FindWidget(size_t id);
@@ -52,7 +52,7 @@ public:
 	void Destroy();
 
 protected:
-	CWidget* GetHoveredWidget(const FVector2D& mousePos);
+	CWidget* FindHoveredWidget(const FVector2D& mousePos);
 
 	void ExecuteCallback(EWidgetInput::Event event);
 };
