@@ -33,7 +33,7 @@ protected:
 
 	// 마우스와 상호작용이 있는 위젯들에서 따로 구현
 	virtual void HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased) {};
-	virtual void HandleUnhovered(const FVector2D& mousePos) {};
+	virtual void HandleUnhovered(const FVector2D& mousePos, bool isHeld, bool isReleased) {};
 
 public:
 	CWidget* FindWidget(size_t id);

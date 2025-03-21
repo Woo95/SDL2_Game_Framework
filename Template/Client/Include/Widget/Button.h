@@ -23,7 +23,7 @@ private:
 	virtual void Release() final;
 	
 	virtual void HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased) final;
-	virtual void HandleUnhovered(const FVector2D& mousePos) final;
+	virtual void HandleUnhovered(const FVector2D& mousePos, bool isHeld, bool isReleased) final;
 
 public:
 	void SetTexture(const std::string& key);

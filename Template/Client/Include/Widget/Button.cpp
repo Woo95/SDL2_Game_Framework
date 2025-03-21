@@ -86,7 +86,7 @@ void CButton::HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHe
 	}
 }
 
-void CButton::HandleUnhovered(const FVector2D& mousePos)
+void CButton::HandleUnhovered(const FVector2D& mousePos, bool isHeld, bool isReleased)
 {
 	// 이전 프레임에서 위젯이 호버 상태였다면, 1회 실행
 	if (mMouseHovered)
@@ -95,6 +95,14 @@ void CButton::HandleUnhovered(const FVector2D& mousePos)
 
 		mCurrentState = EButton::State::NORMAL;
 		ExecuteCallback(EWidgetInput::Event::UNHOVER);
+	}
+	else
+	{
+		// 마우스 좌클릭을 위젯 밖에서 홀드 하다가 떼었을 때 실행
+		if (isReleased)
+		{
+			mUserWidget->GetSceneUI()->SetHeldWidget(nullptr);
+		}
 	}
 }
 

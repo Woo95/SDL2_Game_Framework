@@ -124,7 +124,7 @@ void CSceneUI::UpdateInput()
 		// 잡고 있는 Widget의 영역 밖일 경우, Unhovered() 실행
 		if (!CCollisionManager::GetInst()->AABBPointCollision(mHeldWidget->GetRect(), mousePos))
 		{
-			mHeldWidget->HandleUnhovered(mousePos);
+			mHeldWidget->HandleUnhovered(mousePos, isHeld, isReleased);
 			return;
 		}
 	}
@@ -137,7 +137,9 @@ void CSceneUI::UpdateInput()
 		{
 			// 기존 호버된 userWidget이 있다면 HandleUnhovered()를 1회 실행
 			if (mCurrHovered)
-				mCurrHovered->HandleUnhovered(mousePos);
+			{
+				mCurrHovered->HandleUnhovered(mousePos, isHeld, isReleased);
+			}
 
 			mCurrHovered = newHovered;
 		}
@@ -145,8 +147,4 @@ void CSceneUI::UpdateInput()
 		if (mCurrHovered)
 			mCurrHovered->HandleHovered(mousePos, isPressed, isHeld, isReleased);
 	}
-
-	// 마우스 좌클릭을 떼었을 때, 잡고 있던 Widget 해제
-	if (mHeldWidget && isReleased)
-		mHeldWidget = nullptr;
 }

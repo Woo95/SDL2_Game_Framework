@@ -157,7 +157,7 @@ void CUserWidget::HandleHovered(const FVector2D& mousePos, bool isPressed, bool 
         {
             // 기존 호버된 Widget이 있다면 HandleUnhovered()를 1회 실행
             if (mCurrHovered)
-                mCurrHovered->HandleUnhovered(mousePos);
+                mCurrHovered->HandleUnhovered(mousePos, isHeld, isReleased);
 
             mCurrHovered = newHovered;
         }
@@ -170,10 +170,10 @@ void CUserWidget::HandleHovered(const FVector2D& mousePos, bool isPressed, bool 
     HandleDragging(mousePos, isPressed, isHeld, isReleased);
 }
 
-void CUserWidget::HandleUnhovered(const FVector2D& mousePos)
+void CUserWidget::HandleUnhovered(const FVector2D& mousePos, bool isHeld, bool isReleased)
 {    
     if (mCurrHovered)
-        mCurrHovered->HandleUnhovered(mousePos);
+        mCurrHovered->HandleUnhovered(mousePos, isHeld, isReleased);
 }
 
 void CUserWidget::HandleDragging(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased)
