@@ -543,6 +543,9 @@
     <ClInclude Include="Core\Utils\AniUtils.h">
       <Filter>Framework\01. Core\Lib\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="Widget\Slider.h">
+      <Filter>Framework\06. Widget\01. Widgets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Timer.cpp">
@@ -694,6 +697,9 @@
     </ClCompile>
     <ClCompile Include="Resource\Sound\SFX.cpp">
       <Filter>Framework\05. Resource\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Widget\Slider.cpp">
+      <Filter>Framework\06. Widget\01. Widgets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

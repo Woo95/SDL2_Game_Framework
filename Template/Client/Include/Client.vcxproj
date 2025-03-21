@@ -28,6 +28,7 @@
     <ClInclude Include="Entity\Component\WidgetComponent.h" />
     <ClInclude Include="Manager\Resource\SoundManager.h" />
     <ClInclude Include="Resource\Sound\SFX.h" />
+    <ClInclude Include="Widget\Slider.h" />
     <ClInclude Include="Widget\TextBlock.h" />
     <ClInclude Include="Widget\ProgressBar.h" />
     <ClInclude Include="Widget\AnimatedImage.h" />
@@ -172,6 +173,7 @@
     <ClCompile Include="Entity\Component\WidgetComponent.cpp" />
     <ClCompile Include="Manager\Resource\SoundManager.cpp" />
     <ClCompile Include="Resource\Sound\SFX.cpp" />
+    <ClCompile Include="Widget\Slider.cpp" />
     <ClCompile Include="Widget\TextBlock.cpp" />
     <ClCompile Include="Widget\ProgressBar.cpp" />
     <ClCompile Include="Widget\AnimatedImage.cpp" />

@@ -4,6 +4,7 @@
 #include "../../Widget/Button.h"
 #include "../../Widget/ProgressBar.h"
 #include "../../Widget/TextBlock.h"
+#include "../../Widget/Slider.h"
 #include "../../Manager/SceneManager.h"
 
 CMenuUI::CMenuUI()
@@ -90,6 +91,20 @@ bool CMenuUI::Init()
 
 	//////////////////////////////////////////////////////////
 
+	// 슬라이더 생성 및 설정
+	CSlider* slider = CreateWidget<CSlider>("Slider1");
+	slider->GetTransform()->SetWorldScale(200.f, 25.f);
+	slider->GetTransform()->SetPivot(0.5f, 0.5f);
+
+	// 슬라이더 텍스쳐 및 프레임 설정
+	slider->SetTexture("UI");
+	slider->SetFrame("Slider");
+
+	// 유저위젯 자식으로 슬라이더 추가 및 유저위젯 설정
+	userWidget->AddWidget(slider);
+	slider->GetTransform()->SetRelativePos(0.f, 100.f);
+
+	//////////////////////////////////////////////////////////
 	userWidget->GetTransform()->SetWorldPos(640.f, 400.f);
 	
 	return true;

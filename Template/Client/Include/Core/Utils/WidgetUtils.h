@@ -19,9 +19,9 @@ namespace EButton
 {
 	enum State : unsigned char
 	{
-		UNHOVER,
+		NORMAL,
 		HOVER,
-		CLICK,
+		HOLD,
 		MAX
 	};
 }
@@ -39,6 +39,17 @@ namespace EProgBar
 	{
 		BACK,
 		FILL,
+		MAX
+	};
+}
+
+// for the CSlider class
+namespace ESlider
+{
+	enum State : unsigned char
+	{
+		TRACK,
+		THUMB,
 		MAX
 	};
 }
