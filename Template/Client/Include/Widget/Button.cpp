@@ -39,67 +39,64 @@ void CButton::Release()
 
 void CButton::HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased)
 {
-	// 만약 잡혀 있는 위젯이 존재하고, 현재 위젯이 아니면 처리하지 않음
-	CWidget* currHeld = mUserWidget->GetSceneUI()->GetHeldWidget();
-	if (currHeld && currHeld != this)
-		return;
-
-	// 위젯 최초로 호버할 때 처리
+	// 이전 프레임에서 위젯이 "언호버" 상태였다면, 단 1회 실행
 	if (!mMouseHovered)
 	{
 		mMouseHovered = true;
 
-		if (currHeld != this)
-			mCurrentState = EButton::State::HOVER;
-		else
-			mCurrentState = EButton::State::PRESSED;
+		mCurrentState = mWidgetHeld ? EButton::State::PRESSED : EButton::State::HOVER;
+		return;
 	}
-	// 위젯 호버 중일 때 처리
-	else
+
+	// 위젯 호버 상태에서 "마우스 입력" 처리 //
+
+	if (isPressed && !mWidgetHeld)
 	{
-		if (isPressed && !currHeld)
-		{
-			mUserWidget->GetSceneUI()->SetHeldWidget(this);
-			mUserWidget->GetSceneUI()->BringUserWidgetToTop(mUserWidget);
+		mWidgetHeld = true;
 
-			mCurrentState = EButton::State::PRESSED;
-			ExecuteCallback(EButton::InputEvent::CLICK);
-		}
-		else if (isHeld && currHeld == this)
-		{
-			ExecuteCallback(EButton::InputEvent::HOLD);
-		}
-		else if (isReleased && currHeld == this)
-		{
-			mUserWidget->GetSceneUI()->SetHeldWidget(nullptr);
+		mUserWidget->GetSceneUI()->SetHeldWidget(this);
+		mUserWidget->GetSceneUI()->BringUserWidgetToTop(mUserWidget);
 
-			mCurrentState = EButton::State::HOVER;
-			ExecuteCallback(EButton::InputEvent::RELEASE);
-		}
+		mCurrentState = EButton::State::PRESSED;
+		ExecuteCallback(EButton::InputEvent::CLICK);
+	}
+	else if (isHeld && mWidgetHeld)
+	{
+		ExecuteCallback(EButton::InputEvent::HOLD);
+	}
+	else if (isReleased && mWidgetHeld)
+	{
+		mWidgetHeld = false;
+
+		mUserWidget->GetSceneUI()->SetHeldWidget(nullptr);
+
+		mCurrentState = EButton::State::HOVER;
+		ExecuteCallback(EButton::InputEvent::RELEASE);
 	}
 }
 
 void CButton::HandleUnhovered(const FVector2D& mousePos, bool isHeld, bool isReleased)
 {
-	// 이전 프레임에서 위젯이 호버 상태였다면, 1회 실행
+	// 이전 프레임에서 위젯이 "호버" 상태였다면, 단 1회 실행
 	if (mMouseHovered)
 	{
 		mMouseHovered = false;
 
 		mCurrentState = EButton::State::NORMAL;
+		return;
 	}
-	else
+
+	// 마우스 좌클릭을 위젯 안에서 홀드 하다가 밖일 때 실행
+	if (isHeld && mWidgetHeld)
 	{
-		// 마우스 좌클릭을 위젯 안에서 홀드 하다가 밖일 때 실행
-		if (isHeld)
-		{
-			ExecuteCallback(EButton::InputEvent::HOLD);
-		}
-		// 마우스 좌클릭을 위젯 밖에서 홀드 하다가 떼었을 때 실행
-		else if (isReleased)
-		{
-			mUserWidget->GetSceneUI()->SetHeldWidget(nullptr);
-		}
+		ExecuteCallback(EButton::InputEvent::HOLD);
+	}
+	// 마우스 좌클릭을 위젯 밖에서 홀드 하다가 떼었을 때 실행
+	else if (isReleased)
+	{
+		mWidgetHeld = false;
+
+		mUserWidget->GetSceneUI()->SetHeldWidget(nullptr);
 	}
 }
 

@@ -125,7 +125,7 @@ void CSceneUI::UpdateInput()
 		if (!CCollisionManager::GetInst()->AABBPointCollision(mHeldWidget->GetRect(), mousePos))
 		{
 			mHeldWidget->HandleUnhovered(mousePos, isHeld, isReleased);
-			return;
+			return; // 잡고 있는 Widget만 처리
 		}
 	}
 

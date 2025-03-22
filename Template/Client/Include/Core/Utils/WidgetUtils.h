@@ -44,6 +44,14 @@ namespace ESlider
 	{
 		TRACK,
 		THUMB,
-		MAX
+		STATE_MAX
+	};
+
+	enum InputEvent : unsigned char
+	{
+		CLICK,
+		HOLD,
+		RELEASE,
+		INPUT_EVENT_MAX
 	};
 }

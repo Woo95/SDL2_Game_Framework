@@ -49,90 +49,62 @@ void CSlider::Release()
 
 void CSlider::HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased)
 {
-    // 만약 잡혀 있는 위젯이 존재하고, 현재 위젯이 아니면 처리하지 않음
-    CWidget* currHeld = mUserWidget->GetSceneUI()->GetHeldWidget();
-    if (currHeld && currHeld != this)
-        return;
+    // 위젯 호버 상태에서 "마우스 입력" 처리 //
 
-    // 위젯 최초로 호버할 때 처리
-    if (!mMouseHovered)
+    if (isPressed && !mWidgetHeld)
     {
-        mMouseHovered = true;
+        mWidgetHeld = true;
 
-        if (currHeld == this)
-            ExecuteCallback(EWidgetInput::Event::HOLD);
-        else
-            ExecuteCallback(EWidgetInput::Event::HOVER);
+        // Thumb 클릭
+        if (CCollisionManager::GetInst()->AABBPointCollision(mThumbRect, mousePos))
+        {
+            // Thumb을 클릭한 상태의 오프셋 저장
+            mThumbOffsetX = mousePos.x - mThumbRect.x;
+        }
+        // Track 클릭
+        else if (CCollisionManager::GetInst()->AABBPointCollision(mTrackRect, mousePos))
+        {
+            // Track을 클릭한 상태의 오프셋 저장
+            mThumbOffsetX = mThumbRect.w * 0.5f;
+        }
+        ComputePercent(mousePos);
+
+        mUserWidget->GetSceneUI()->SetHeldWidget(this);
+        mUserWidget->GetSceneUI()->BringUserWidgetToTop(mUserWidget);
+
+        ExecuteCallback(ESlider::InputEvent::CLICK);
     }
-    // 위젯 호버 중일 때 처리
-    else
+    else if (isHeld && mWidgetHeld)
     {
-        if (isPressed && !currHeld)
-        {
-            mIsDragging = true;
+        ComputePercent(mousePos);
 
-            // onThumb
-            if (CCollisionManager::GetInst()->AABBPointCollision(mThumbRect, mousePos))
-            {
-                // Thumb을 클릭한 상태의 오프셋 저장
-                mThumbOffsetX = mousePos.x - mThumbRect.x;
-            }
-            // onTrack
-            else if (CCollisionManager::GetInst()->AABBPointCollision(mTrackRect, mousePos))
-            {
-                // Track을 클릭한 상태의 오프셋 저장
-                mThumbOffsetX = mThumbRect.w * 0.5f;
-            }
-            ComputePercent(mousePos);
+        ExecuteCallback(ESlider::InputEvent::HOLD);
+    }
+    else if (isReleased && mWidgetHeld)
+    {
+        mWidgetHeld = false;
 
-            mUserWidget->GetSceneUI()->SetHeldWidget(this);
-            mUserWidget->GetSceneUI()->BringUserWidgetToTop(mUserWidget);
+        mUserWidget->GetSceneUI()->SetHeldWidget(nullptr);
 
-            ExecuteCallback(EWidgetInput::Event::CLICK);
-        }
-        // 위젯 홀드 시
-        else if (isHeld && currHeld == this)
-        {
-            ComputePercent(mousePos);
-
-            ExecuteCallback(EWidgetInput::Event::HOLD);
-        }
-        else if (isReleased && currHeld == this)
-        {
-            mIsDragging = false;
-
-            mUserWidget->GetSceneUI()->SetHeldWidget(nullptr);
-
-            ExecuteCallback(EWidgetInput::Event::RELEASE);
-        }
+        ExecuteCallback(ESlider::InputEvent::RELEASE);
     }
 }
 
 void CSlider::HandleUnhovered(const FVector2D& mousePos, bool isHeld, bool isReleased)
 {	
-    // 이전 프레임에서 위젯이 호버 상태였다면, 1회 실행
-    if (mMouseHovered)
+    // 마우스 좌클릭을 위젯 안에서 홀드 하다가 밖일 때 실행
+    if (isHeld && mWidgetHeld)
     {
-        mMouseHovered = false;
+        ComputePercent(mousePos);
 
-        ExecuteCallback(EWidgetInput::Event::UNHOVER);
+        ExecuteCallback(ESlider::InputEvent::HOLD);
     }
-    else
+    // 마우스 좌클릭을 위젯 밖에서 홀드 하다가 떼었을 때 실행
+    else if (isReleased)
     {
-        // 위젯이 호버 상태에서 마우스 좌클릭을 한 상태로 위젯 밖에 나가 있을때 실행
-        if (isHeld && mIsDragging)
-        {
-            ComputePercent(mousePos);
+        mWidgetHeld = false;
 
-            ExecuteCallback(EWidgetInput::Event::HOLD);
-        }
-        // 마우스 좌클릭을 위젯 밖에서 홀드 하다가 떼었을 때 실행
-        else if (isReleased)
-        {
-            mIsDragging = false;
-
-            mUserWidget->GetSceneUI()->SetHeldWidget(nullptr);
-        }
+        mUserWidget->GetSceneUI()->SetHeldWidget(nullptr);
     }
 }
 
@@ -147,7 +119,7 @@ void CSlider::SetFrame(const std::string& key)
 
     if (framesPtr)
     {
-        for (size_t i = 0; i < ESlider::State::MAX; i++)
+        for (size_t i = 0; i < ESlider::State::STATE_MAX; i++)
             mFrames[i] = (*framesPtr)[i];
     }
 }
@@ -161,7 +133,7 @@ void CSlider::SetColor(ESlider::State state, Uint8 r, Uint8 g, Uint8 b)
 
 void CSlider::SetAlpha(Uint8 alpha)
 {
-    for (size_t i = 0; i < ESlider::State::MAX; i++)
+    for (size_t i = 0; i < ESlider::State::STATE_MAX; i++)
         mColors[i].a = alpha;
 
     // 투명도를 고려한 블렌드로 설정
