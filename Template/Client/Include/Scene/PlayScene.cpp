@@ -30,9 +30,9 @@ bool CPlayScene::Enter()
 
 	mCamera->SetTarget(player);
 
-	CAssetManager::GetInst()->GetSoundManager()->SetVolume<CBGM>(5);
+	CAssetManager::GetInst()->GetSoundManager()->SetVolume<CBGM>(0.1f);
 	CAssetManager::GetInst()->GetSoundManager()->GetSound<CBGM>("Stage1_BGM")->Play();
-	//CAssetManager::GetInst()->GetSoundManager()->GetSound<CBGM>("Stage1_BGM")->SetVolume(5);
+	//CAssetManager::GetInst()->GetSoundManager()->GetSound<CBGM>("Stage1_BGM")->SetVolume(0.1f);
 
 	return true;
 }

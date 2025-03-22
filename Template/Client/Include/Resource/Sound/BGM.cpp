@@ -21,9 +21,12 @@ void CBGM::Play()
 		Mix_PlayMusic(mSound, -1); // -1: loop
 }
 
-void CBGM::SetVolume(int volume)
+void CBGM::SetVolume(float volume)
 {
-	Mix_VolumeMusic(volume); // 0 ~ 128
+	volume = std::clamp(volume, 0.0f, 1.0f);
+	int scaledVolume = (int)(volume * MIX_MAX_VOLUME);
+	
+	Mix_VolumeMusic(scaledVolume);
 }
 
 bool CBGM::LoadSound(const char* fileName)

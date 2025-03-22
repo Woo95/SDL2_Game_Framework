@@ -22,9 +22,12 @@ void CSFX::Play()
 	Mix_PlayChannel(-1, mSound, 0);
 }
 
-void CSFX::SetVolume(int volume)
+void CSFX::SetVolume(float volume)
 {
-	Mix_VolumeChunk(mSound, volume);
+	volume = std::clamp(volume, 0.0f, 1.0f);
+	int scaledVolume = (int)(volume * MIX_MAX_VOLUME);
+
+	Mix_VolumeChunk(mSound, scaledVolume);
 }
 
 bool CSFX::LoadSound(const char* fileName)

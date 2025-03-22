@@ -52,7 +52,7 @@ public:
 	}
 
 	template <typename T>
-	void SetVolume(int volume)
+	void SetVolume(float volume)
 	{
 		SoundMap<T>& soundMap = GetSoundMap<T>();
 

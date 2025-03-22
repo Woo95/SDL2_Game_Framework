@@ -16,7 +16,7 @@ private:
 
 public:
 	void Play();
-	void SetVolume(int volume);
+	void SetVolume(float volume);
 
 private:
 	bool LoadSound(const char* fileName);
