@@ -164,14 +164,3 @@ CWidget* CWidget::FindHoveredWidget(const FVector2D& mousePos)
 	}
 	return mIsInteractable ? this : nullptr;
 }
-
-void CWidget::ExecuteCallback(EWidgetInput::Event event)
-{
-	if (!mEventCallbacks.count(event))
-		return;
-
-	for (auto& callback : mEventCallbacks[event])
-	{
-		callback();
-	}
-}

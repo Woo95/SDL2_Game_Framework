@@ -23,8 +23,6 @@ protected:
 	bool mIsInteractable = false;
 	bool mMouseHovered   = false;
 
-	std::unordered_map<EWidgetInput::Event, std::vector<std::function<void()>>> mEventCallbacks;
-
 protected:
 	virtual void Update(float DeltaTime)     override;
 	virtual void LateUpdate(float DeltaTime) override;
@@ -41,11 +39,6 @@ public:
 	void AddChild(CWidget* child);
 	bool DeleteChild(CWidget* child);
 
-	void AddEventCallback(EWidgetInput::Event event, const std::function<void()>& func)
-	{
-		mEventCallbacks[event].push_back(func);
-	}
-
 public:
 	void Enable();
 	void Disable();
@@ -53,6 +46,4 @@ public:
 
 protected:
 	CWidget* FindHoveredWidget(const FVector2D& mousePos);
-
-	void ExecuteCallback(EWidgetInput::Event event);
 };

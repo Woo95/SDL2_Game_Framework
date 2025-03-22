@@ -49,16 +49,10 @@ void CButton::HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHe
 	{
 		mMouseHovered = true;
 
-		if (currHeld == this)
-		{
-			mCurrentState = EButton::State::HOLD;
-			ExecuteCallback(EWidgetInput::Event::HOLD);
-		}
-		else
-		{
+		if (currHeld != this)
 			mCurrentState = EButton::State::HOVER;
-			ExecuteCallback(EWidgetInput::Event::HOVER);
-		}
+		else
+			mCurrentState = EButton::State::PRESSED;
 	}
 	// 위젯 호버 중일 때 처리
 	else
@@ -68,20 +62,19 @@ void CButton::HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHe
 			mUserWidget->GetSceneUI()->SetHeldWidget(this);
 			mUserWidget->GetSceneUI()->BringUserWidgetToTop(mUserWidget);
 
-			mCurrentState = EButton::State::HOLD;
-			ExecuteCallback(EWidgetInput::Event::CLICK);
+			mCurrentState = EButton::State::PRESSED;
+			ExecuteCallback(EButton::InputEvent::CLICK);
 		}
 		else if (isHeld && currHeld == this)
 		{
-			mCurrentState = EButton::State::HOLD;
-			ExecuteCallback(EWidgetInput::Event::HOLD);
+			ExecuteCallback(EButton::InputEvent::HOLD);
 		}
 		else if (isReleased && currHeld == this)
 		{
 			mUserWidget->GetSceneUI()->SetHeldWidget(nullptr);
 
 			mCurrentState = EButton::State::HOVER;
-			ExecuteCallback(EWidgetInput::Event::RELEASE);
+			ExecuteCallback(EButton::InputEvent::RELEASE);
 		}
 	}
 }
@@ -94,12 +87,16 @@ void CButton::HandleUnhovered(const FVector2D& mousePos, bool isHeld, bool isRel
 		mMouseHovered = false;
 
 		mCurrentState = EButton::State::NORMAL;
-		ExecuteCallback(EWidgetInput::Event::UNHOVER);
 	}
 	else
 	{
+		// 마우스 좌클릭을 위젯 안에서 홀드 하다가 밖일 때 실행
+		if (isHeld)
+		{
+			ExecuteCallback(EButton::InputEvent::HOLD);
+		}
 		// 마우스 좌클릭을 위젯 밖에서 홀드 하다가 떼었을 때 실행
-		if (isReleased)
+		else if (isReleased)
 		{
 			mUserWidget->GetSceneUI()->SetHeldWidget(nullptr);
 		}
@@ -117,7 +114,7 @@ void CButton::SetFrame(const std::string& key)
 
 	if (framesPtr)
 	{
-		for (size_t i = 0; i < EButton::State::MAX; i++)
+		for (size_t i = 0; i < EButton::State::STATE_MAX; i++)
 		{
 			mFrames[i] = (*framesPtr)[i];
 		}

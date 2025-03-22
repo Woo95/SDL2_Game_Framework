@@ -1,19 +1,5 @@
 #pragma once
 
-// for the CWidget class
-namespace EWidgetInput
-{
-	enum Event : unsigned char
-	{
-		UNHOVER,
-		HOVER,
-		CLICK,
-		HOLD,
-		RELEASE,
-		MAX
-	};
-}
-
 // for the CButton class
 namespace EButton
 {
@@ -21,8 +7,16 @@ namespace EButton
 	{
 		NORMAL,
 		HOVER,
+		PRESSED,
+		STATE_MAX
+	};
+
+	enum InputEvent : unsigned char
+	{
+		CLICK,
 		HOLD,
-		MAX
+		RELEASE,
+		INPUT_EVENT_MAX
 	};
 }
 
