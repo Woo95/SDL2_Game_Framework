@@ -40,9 +40,9 @@ void CButton::Release()
 void CButton::HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased)
 {
 	// 이전 프레임에서 위젯이 "언호버" 상태였다면, 단 1회 실행
-	if (!mMouseHovered)
+	if (!mWidgetHovered)
 	{
-		mMouseHovered = true;
+		mWidgetHovered = true;
 
 		mCurrentState = mWidgetHeld ? EButton::State::PRESSED : EButton::State::HOVER;
 		return;
@@ -78,9 +78,9 @@ void CButton::HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHe
 void CButton::HandleUnhovered(const FVector2D& mousePos, bool isHeld, bool isReleased)
 {
 	// 이전 프레임에서 위젯이 "호버" 상태였다면, 단 1회 실행
-	if (mMouseHovered)
+	if (mWidgetHovered)
 	{
-		mMouseHovered = false;
+		mWidgetHovered = false;
 
 		mCurrentState = EButton::State::NORMAL;
 		return;

@@ -21,8 +21,8 @@ protected:
 	std::vector<CWidget*> mChilds;
 
 	bool mIsInteractable = false;
-	bool mMouseHovered = false;
-	bool mWidgetHeld   = false;
+	bool mWidgetHovered  = false;
+	bool mWidgetHeld     = false;
 
 protected:
 	virtual void Update(float DeltaTime)     override;

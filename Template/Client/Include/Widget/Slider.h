@@ -16,7 +16,7 @@ private:
 	SDL_Rect  mFrames[ESlider::State::STATE_MAX] = {};
 	SDL_Color mColors[ESlider::State::STATE_MAX] = {};
 
-	float mCurrentPercent = 0.5f;
+	float mPercent = 0.0f;
 	
 	SDL_Rect mTrackRect = { 0, 0, 0, 10 };
 	SDL_Rect mThumbRect = { 0, 0, 25, 0 };
@@ -34,6 +34,11 @@ private:
 	virtual void HandleUnhovered(const FVector2D& mousePos, bool isHeld, bool isReleased) final;
 
 public:
+	void SetPercent(float percent)
+	{
+		mPercent = percent;
+	}
+
 	void SetTexture(const std::string& key);
 	void SetFrame(const std::string& key);
 	void SetColor(ESlider::State state, Uint8 r, Uint8 g, Uint8 b);
@@ -59,6 +64,6 @@ private:
 			return;
 
 		for (const auto& callback : mEvent[event])
-			callback(mCurrentPercent);
+			callback(mPercent);
 	}
 };

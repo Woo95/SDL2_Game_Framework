@@ -55,6 +55,9 @@ void CSlider::HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHe
     {
         mWidgetHeld = true;
 
+        mUserWidget->GetSceneUI()->SetHeldWidget(this);
+        mUserWidget->GetSceneUI()->BringUserWidgetToTop(mUserWidget);
+
         // Thumb 클릭
         if (CCollisionManager::GetInst()->AABBPointCollision(mThumbRect, mousePos))
         {
@@ -68,9 +71,6 @@ void CSlider::HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHe
             mThumbOffsetX = mThumbRect.w * 0.5f;
         }
         ComputePercent(mousePos);
-
-        mUserWidget->GetSceneUI()->SetHeldWidget(this);
-        mUserWidget->GetSceneUI()->BringUserWidgetToTop(mUserWidget);
 
         ExecuteCallback(ESlider::InputEvent::CLICK);
     }
@@ -145,7 +145,7 @@ void CSlider::ComputePercent(const FVector2D& mousePos)
     float thumbPos   = mousePos.x - mRect.x - mThumbOffsetX;
     float trackRange = (float)(mRect.w - mThumbRect.w);
 
-    mCurrentPercent = std::clamp(thumbPos / trackRange, 0.0f, 1.0f);
+    mPercent = std::clamp(thumbPos / trackRange, 0.0f, 1.0f);
 }
 
 void CSlider::UpdateTrackRect()
@@ -163,7 +163,7 @@ void CSlider::UpdateThumbRect()
     if (mThumbRect.w > mRect.w)
         mThumbRect.w = mRect.w;
 
-    int trackPosX = (int)(mRect.x + (mRect.w - mThumbRect.w) * mCurrentPercent);
+    int trackPosX = (int)(mRect.x + (mRect.w - mThumbRect.w) * mPercent);
     trackPosX = std::clamp(trackPosX, mRect.x, (mRect.x + mRect.w) - mThumbRect.w);
 
     mThumbRect = { trackPosX, mRect.y, mThumbRect.w, mRect.h };
