@@ -6,6 +6,8 @@
 #include "../../Widget/TextBlock.h"
 #include "../../Widget/Slider.h"
 #include "../../Manager/SceneManager.h"
+#include "../../Manager/Resource/AssetManager.h"
+#include "../../Manager/Resource/SoundManager.h"
 
 CMenuUI::CMenuUI()
 {
@@ -99,6 +101,8 @@ bool CMenuUI::Init()
 	// 슬라이더 텍스쳐 및 프레임 설정
 	slider->SetTexture("UI");
 	slider->SetFrame("Slider");
+	slider->SetPercent(0.1f);
+	slider->AddCallback(ESlider::InputEvent::HOLD, [](float percent){CAssetManager::GetInst()->GetSoundManager()->SetVolume<CSFX>(percent);});
 
 	// 유저위젯 자식으로 슬라이더 추가 및 유저위젯 설정
 	userWidget->AddWidget(slider);
