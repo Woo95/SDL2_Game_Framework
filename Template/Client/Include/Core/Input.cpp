@@ -174,10 +174,14 @@ bool CInput::VerifyState(EKey::State state, const FInputState& inputState)
 {
 	switch (state) 
 	{
-		case EKey::State::PRESS:   return inputState.Press;
-		case EKey::State::HOLD:    return inputState.Hold;
-		case EKey::State::RELEASE: return inputState.Release;
-		default:                   return false;
+		case EKey::State::PRESS:
+			return inputState.Press;
+		case EKey::State::HOLD:
+			return inputState.Hold;
+		case EKey::State::RELEASE:
+			return inputState.Release;
+		default:
+			return false;
 	}
 }
 

@@ -47,7 +47,7 @@ struct FInputState
 // 바인드된 함수에 대한 정보를 담는 구조체
 struct FBindFunction
 {
-	void*   obj   = nullptr;    // 모든 타입의 포인터를 범용적으로 저장하는 변수
+	void* obj = nullptr; // 모든 타입의 포인터를 범용적으로 저장하는 변수
 	std::function<void()> func; // 호출할 함수를 저장하는 변수
 };
 
