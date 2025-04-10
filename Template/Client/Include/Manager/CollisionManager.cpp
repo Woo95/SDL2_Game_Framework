@@ -22,42 +22,33 @@ CCollisionManager::~CCollisionManager()
 
 bool CCollisionManager::Init()
 {
-	CreateProfile("Player",  ECollisionChannel::PLAYER,  ECollisionInteraction::ENABLE_COLLISION);
-	CreateProfile("Monster", ECollisionChannel::MONSTER, ECollisionInteraction::ENABLE_COLLISION);
-	CreateProfile("Bullet",  ECollisionChannel::BULLET,  ECollisionInteraction::ENABLE_COLLISION);
+	CreateProfile("Player",  ECollisionChannel::PLAYER,  ECollisionInteraction::BLOCK);
+	CreateProfile("Monster", ECollisionChannel::MONSTER, ECollisionInteraction::BLOCK);
+	CreateProfile("Bullet",  ECollisionChannel::BULLET,  ECollisionInteraction::OVERLAP);
 
-	SetCollisionInteraction("Player", ECollisionChannel::BULLET, ECollisionInteraction::DISABLE_COLLISION);
-	SetCollisionInteraction("Bullet", ECollisionChannel::PLAYER, ECollisionInteraction::DISABLE_COLLISION);
+	SetCollisionInteraction("Player", ECollisionChannel::BULLET, ECollisionInteraction::IGNORE);
+	SetCollisionInteraction("Bullet", ECollisionChannel::PLAYER, ECollisionInteraction::IGNORE);
 
 	return true;
 }
 
-bool CCollisionManager::CreateProfile(const std::string& name, ECollisionChannel::Type channel, ECollisionInteraction::Type interaction)
+bool CCollisionManager::CreateProfile(const std::string& name, ECollisionChannel::Type myChannel, ECollisionInteraction::Type interaction)
 {
 	if (FindProfile(name))	// exist
 		return false;
 
-	FCollisionProfile* profile = new FCollisionProfile;
-
-	profile->mProfileName = name;
-	profile->mChannel     = channel;
-	for (int i = 0; i < ECollisionChannel::END; i++)
-	{
-		profile->mInteractArr[i] = interaction;
-	}
-
-	mProfileMap[name] = profile;
+	mProfileMap[name] = new FCollisionProfile(name, myChannel, interaction);
 
 	return true;
 }
 
-bool CCollisionManager::SetCollisionInteraction(const std::string& name, ECollisionChannel::Type channel, ECollisionInteraction::Type interaction)
+bool CCollisionManager::SetCollisionInteraction(const std::string& name, ECollisionChannel::Type otherChannel, ECollisionInteraction::Type interaction)
 {
 	FCollisionProfile* profile = FindProfile(name);
 	if (!profile)
 		return false;
 
-	profile->mInteractArr[channel] = interaction;
+	profile->collisionResponses[otherChannel] = interaction;
 
 	return true;
 }

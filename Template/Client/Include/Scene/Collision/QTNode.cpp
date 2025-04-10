@@ -36,8 +36,8 @@ void CQTNode::Update(float DeltaTime)
 					FCollisionProfile* profile1 = mColliders[i]->GetProfile();
 					FCollisionProfile* profile2 = mColliders[j]->GetProfile();
 
-					if (profile1->mInteractArr[profile2->mChannel] == ECollisionInteraction::DISABLE_COLLISION ||
-						profile2->mInteractArr[profile1->mChannel] == ECollisionInteraction::DISABLE_COLLISION)
+					if (profile1->collisionResponses[profile2->channel] == ECollisionInteraction::IGNORE ||
+						profile2->collisionResponses[profile1->channel] == ECollisionInteraction::IGNORE)
 					{
 						continue;
 					}

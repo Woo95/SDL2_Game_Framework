@@ -27,11 +27,11 @@ private:
 public:
 	bool Init();
 
-	bool CreateProfile(const std::string& name, ECollisionChannel::Type channel, 
-		ECollisionInteraction::Type interaction = ECollisionInteraction::ENABLE_COLLISION);
+	bool CreateProfile(const std::string& name, ECollisionChannel::Type myChannel,
+		ECollisionInteraction::Type interaction);
 
-	bool SetCollisionInteraction(const std::string& name, ECollisionChannel::Type channel,
-		ECollisionInteraction::Type interaction = ECollisionInteraction::ENABLE_COLLISION);
+	bool SetCollisionInteraction(const std::string& name, ECollisionChannel::Type otherChannel,
+		ECollisionInteraction::Type interaction);
 
 	FCollisionProfile* FindProfile(const std::string& name);
 
