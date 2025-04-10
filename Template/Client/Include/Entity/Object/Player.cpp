@@ -10,6 +10,7 @@
 #include "../../Entity/Component/WidgetComponent.h"
 #include "../../Scene/UI/SceneUI.h"
 #include "../../Widget/ProgressBar.h"
+#include "../../Entity/Component/Rigidbody.h"
 
 CPlayer::CPlayer() :
     mMovementComponent(nullptr),
@@ -55,6 +56,9 @@ bool CPlayer::Init()
     CTransform* spriteTrans = mSpriteComponent->GetTransform();
     spriteTrans->SetWorldScale(75.f, 75.f);
     spriteTrans->SetPivot(0.5f, 0.5f);
+
+    // 리지드바디 컴포넌트 만들기
+    CRigidbody* rb = AllocateComponent<CRigidbody>("rigidbody", mSpriteComponent);
 
     /////////////////////////////////////////////////////////////////////////////////////////////
 
