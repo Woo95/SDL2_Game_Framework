@@ -7,15 +7,21 @@
 #include "../Scene/Camera.h"
 #include "../Manager/Resource/AssetManager.h"
 #include "../Manager/Resource/SoundManager.h"
+#include "../Manager/GameManager.h"
 
 CPlayScene::CPlayScene()
 {
+	mCamera = new CCamera;
+	mCamera->SetResolution(CGameManager::GetInst()->GetResolution());
+
 	mSceneCollision = new CSceneCollision(mCamera);
 }
 
 CPlayScene::~CPlayScene()
 {
 	SAFE_DELETE(mSceneCollision);
+
+	SAFE_DELETE(mCamera);
 
 	Exit();
 }
