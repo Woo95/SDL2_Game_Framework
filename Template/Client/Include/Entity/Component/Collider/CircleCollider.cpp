@@ -7,6 +7,8 @@
 CCircleCollider::CCircleCollider() :
 	mCircle({})
 {
+	mTypeID = typeid(CCircleCollider).hash_code();
+
 	mColliderType = ECollider::Type::CIRCLE;
 }
 

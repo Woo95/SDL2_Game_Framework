@@ -7,6 +7,7 @@
 CWidgetComponent::CWidgetComponent() :
 	mWidget(nullptr)
 {
+	mTypeID = typeid(CWidgetComponent).hash_code();
 }
 
 CWidgetComponent::~CWidgetComponent()

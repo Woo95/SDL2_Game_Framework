@@ -7,6 +7,8 @@
 CBoxCollider::CBoxCollider() :
 	mRect({})
 {
+	mTypeID = typeid(CBoxCollider).hash_code();
+
 	mColliderType = ECollider::Type::BOX;
 }
 

@@ -5,6 +5,7 @@ CMovementComponent::CMovementComponent() :
 	mSpeed(500.f), 
 	mDirection(FVector2D::ZERO)
 {
+	mTypeID = typeid(CMovementComponent).hash_code();
 }
 
 CMovementComponent::~CMovementComponent()

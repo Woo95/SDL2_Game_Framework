@@ -15,6 +15,7 @@ CSpriteComponent::CSpriteComponent() :
 	mAnimation(nullptr),
 	mFlip(SDL_FLIP_NONE)
 {
+	mTypeID = typeid(CSpriteComponent).hash_code();
 }
 
 CSpriteComponent::~CSpriteComponent()

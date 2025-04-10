@@ -20,6 +20,8 @@ protected:
 	virtual ~CComponent();
 
 protected:
+	size_t mTypeID = -1;
+
 	class CObject* mObject = nullptr;
 	CTransform* mTransform = nullptr;
 
@@ -42,10 +44,28 @@ public:
 
 	void AddChild(CComponent* child);
 	bool DeleteChild(CComponent* child);
-	CComponent* FindComponent(size_t id);
 
 public:
 	void Enable();
 	void Disable();
 	void Destroy();
+
+private:
+	CComponent* FindComponent(size_t id);
+
+	template <typename T>
+	T* FindComponent()
+	{
+		if (mTypeID == typeid(T).hash_code())
+			return (T*)this;
+
+		for (CComponent* child : mChilds)
+		{
+			T* foundComp = child->FindComponent<T>();
+
+			if (foundComp)
+				return foundComp;
+		}
+		return nullptr;
+	}
 };

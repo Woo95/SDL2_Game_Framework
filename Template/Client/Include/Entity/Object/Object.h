@@ -48,6 +48,11 @@ public:
 			return mRootComponent->FindComponent(hashID);
 		}
 	}
+	template <typename T>
+	T* GetComponent()
+	{
+		return mRootComponent->FindComponent<T>();
+	}
 
 public:
 	template <typename T, int initialCapacity = 10>
