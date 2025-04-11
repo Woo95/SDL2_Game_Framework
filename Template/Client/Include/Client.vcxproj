@@ -21,6 +21,8 @@
   <ItemGroup>
     <ClInclude Include="Core\External\SDL\SDL_mixer.h" />
     <ClInclude Include="Core\External\SDL\SDL_ttf.h" />
+    <ClInclude Include="Core\PhysicsConfig.h" />
+    <ClInclude Include="Core\Utils\PhysicsUtils.h" />
     <ClInclude Include="Resource\Sound\BGM.h" />
     <ClInclude Include="Resource\Font.h" />
     <ClInclude Include="Manager\Resource\FontManager.h" />
@@ -28,6 +30,8 @@
     <ClInclude Include="Entity\Component\WidgetComponent.h" />
     <ClInclude Include="Manager\Resource\SoundManager.h" />
     <ClInclude Include="Resource\Sound\SFX.h" />
+    <ClInclude Include="Entity\Component\Rigidbody.h" />
+    <ClInclude Include="Manager\PhysicsManager.h" />
     <ClInclude Include="Widget\Slider.h" />
     <ClInclude Include="Widget\TextBlock.h" />
     <ClInclude Include="Widget\ProgressBar.h" />
@@ -173,6 +177,8 @@
     <ClCompile Include="Entity\Component\WidgetComponent.cpp" />
     <ClCompile Include="Manager\Resource\SoundManager.cpp" />
     <ClCompile Include="Resource\Sound\SFX.cpp" />
+    <ClCompile Include="Entity\Component\Rigidbody.cpp" />
+    <ClCompile Include="Manager\PhysicsManager.cpp" />
     <ClCompile Include="Widget\Slider.cpp" />
     <ClCompile Include="Widget\TextBlock.cpp" />
     <ClCompile Include="Widget\ProgressBar.cpp" />

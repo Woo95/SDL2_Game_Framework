@@ -76,9 +76,6 @@
     <Filter Include="Framework\03. Scene\01. Collision">
       <UniqueIdentifier>{5f949429-47db-4625-860f-1c3d6575c0cb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\03. Scene\02. Camera">
-      <UniqueIdentifier>{825e3b1d-8348-4dbc-90c3-9d9b09cc2e77}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\06. Widget">
       <UniqueIdentifier>{da9c17e3-b3ba-47ea-9466-274356354b9c}</UniqueIdentifier>
     </Filter>
@@ -87,9 +84,6 @@
     </Filter>
     <Filter Include="Framework\06. Widget\02. UserWidgets">
       <UniqueIdentifier>{fbe36ed1-71f1-4f6b-a349-312f74e091f3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\03. Scene\03. UI">
-      <UniqueIdentifier>{81d21286-dc7b-475b-91d0-cb58d4517747}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\01. Scenes\01. MENU">
       <UniqueIdentifier>{98b483b4-c8f2-4d6e-96e0-7ff18e26723a}</UniqueIdentifier>
@@ -105,6 +99,15 @@
     </Filter>
     <Filter Include="Framework\01. Core\Lib\Utils">
       <UniqueIdentifier>{864f2210-c647-41c2-8d5a-56af69addf9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\04. Entity\02. Component\01. Components\Rigidbody">
+      <UniqueIdentifier>{fad9dcaa-8d17-4a1f-8e22-6207d29226b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\03. Scene\03. Camera">
+      <UniqueIdentifier>{825e3b1d-8348-4dbc-90c3-9d9b09cc2e77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\03. Scene\04. UI">
+      <UniqueIdentifier>{81d21286-dc7b-475b-91d0-cb58d4517747}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -457,7 +460,7 @@
       <Filter>Game\02. Objects</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Camera.h">
-      <Filter>Framework\03. Scene\02. Camera</Filter>
+      <Filter>Framework\03. Scene\03. Camera</Filter>
     </ClInclude>
     <ClInclude Include="Manager\Resource\DataManager.h">
       <Filter>Framework\02. Manager\01. Resource</Filter>
@@ -469,7 +472,7 @@
       <Filter>Framework\06. Widget\01. Widgets</Filter>
     </ClInclude>
     <ClInclude Include="Scene\UI\SceneUI.h">
-      <Filter>Framework\03. Scene\03. UI</Filter>
+      <Filter>Framework\03. Scene\04. UI</Filter>
     </ClInclude>
     <ClInclude Include="Widget\Button.h">
       <Filter>Framework\06. Widget\01. Widgets</Filter>
@@ -545,6 +548,18 @@
     </ClInclude>
     <ClInclude Include="Widget\Slider.h">
       <Filter>Framework\06. Widget\01. Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity\Component\Rigidbody.h">
+      <Filter>Framework\04. Entity\02. Component\01. Components\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\PhysicsConfig.h">
+      <Filter>Framework\01. Core\Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Utils\PhysicsUtils.h">
+      <Filter>Framework\01. Core\Lib\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager\PhysicsManager.h">
+      <Filter>Framework\02. Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -642,7 +657,7 @@
       <Filter>Game\02. Objects</Filter>
     </ClCompile>
     <ClCompile Include="Scene\Camera.cpp">
-      <Filter>Framework\03. Scene\02. Camera</Filter>
+      <Filter>Framework\03. Scene\03. Camera</Filter>
     </ClCompile>
     <ClCompile Include="Manager\Resource\DataManager.cpp">
       <Filter>Framework\02. Manager\01. Resource</Filter>
@@ -654,7 +669,7 @@
       <Filter>Framework\06. Widget\01. Widgets</Filter>
     </ClCompile>
     <ClCompile Include="Scene\UI\SceneUI.cpp">
-      <Filter>Framework\03. Scene\03. UI</Filter>
+      <Filter>Framework\03. Scene\04. UI</Filter>
     </ClCompile>
     <ClCompile Include="Widget\Button.cpp">
       <Filter>Framework\06. Widget\01. Widgets</Filter>
@@ -700,6 +715,12 @@
     </ClCompile>
     <ClCompile Include="Widget\Slider.cpp">
       <Filter>Framework\06. Widget\01. Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity\Component\Rigidbody.cpp">
+      <Filter>Framework\04. Entity\02. Component\01. Components\Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager\PhysicsManager.cpp">
+      <Filter>Framework\02. Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
