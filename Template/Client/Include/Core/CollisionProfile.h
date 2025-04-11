@@ -2,10 +2,10 @@
 
 #include <string>
 
-// 충돌 채널들
-namespace ECollisionChannel
+namespace ECollision
 {
-	enum Type : unsigned char
+	// 충돌 채널들
+	enum Channel : unsigned char
 	{
 		DEFAULT,
 		PLAYER,
@@ -13,12 +13,9 @@ namespace ECollisionChannel
 		BULLET,
 		END
 	};
-}
 
-// 충돌 상호작용 유형들
-namespace ECollisionInteraction
-{
-	enum Type : unsigned char
+	// 충돌 상호작용 유형들
+	enum Interaction : unsigned char
 	{
 		IGNORE,  // 충돌 무시 (감지 및 반응 없음)
 		OVERLAP, // 충돌 감지만 함 (이벤트 발생, 물리 반응 없음)
@@ -29,8 +26,8 @@ namespace ECollisionInteraction
 // 충돌 프로필 (충돌 데이터 컨테이너)
 struct FCollisionProfile
 {
-	using Channel = ECollisionChannel::Type;
-	using Interaction = ECollisionInteraction::Type;
+	using Channel = ECollision::Channel;
+	using Interaction = ECollision::Interaction;
 
 public:
 	FCollisionProfile(const std::string& myName, Channel myChannel, Interaction defaultInteraction) :

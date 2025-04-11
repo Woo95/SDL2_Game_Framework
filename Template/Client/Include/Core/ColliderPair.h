@@ -6,8 +6,9 @@ class CCollider;
 
 namespace EPair
 {
-	enum Status
+	enum Status : unsigned char
 	{
+		DNE,
 		COLLIDED,
 		NOT_COLLIDED
 	};

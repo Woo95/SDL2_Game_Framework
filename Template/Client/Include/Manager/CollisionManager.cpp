@@ -22,17 +22,17 @@ CCollisionManager::~CCollisionManager()
 
 bool CCollisionManager::Init()
 {
-	CreateProfile("Player",  ECollisionChannel::PLAYER,  ECollisionInteraction::BLOCK);
-	CreateProfile("Monster", ECollisionChannel::MONSTER, ECollisionInteraction::BLOCK);
-	CreateProfile("Bullet",  ECollisionChannel::BULLET,  ECollisionInteraction::OVERLAP);
+	CreateProfile("Player",  ECollision::Channel::PLAYER,  ECollision::Interaction::BLOCK);
+	CreateProfile("Monster", ECollision::Channel::MONSTER, ECollision::Interaction::BLOCK);
+	CreateProfile("Bullet",  ECollision::Channel::BULLET,  ECollision::Interaction::OVERLAP);
 
-	SetCollisionInteraction("Player", ECollisionChannel::BULLET, ECollisionInteraction::IGNORE);
-	SetCollisionInteraction("Bullet", ECollisionChannel::PLAYER, ECollisionInteraction::IGNORE);
+	SetCollisionInteraction("Player", ECollision::Channel::BULLET, ECollision::Interaction::IGNORE);
+	SetCollisionInteraction("Bullet", ECollision::Channel::PLAYER, ECollision::Interaction::IGNORE);
 
 	return true;
 }
 
-bool CCollisionManager::CreateProfile(const std::string& name, ECollisionChannel::Type myChannel, ECollisionInteraction::Type interaction)
+bool CCollisionManager::CreateProfile(const std::string& name, ECollision::Channel myChannel, ECollision::Interaction interaction)
 {
 	if (FindProfile(name))	// exist
 		return false;
@@ -42,7 +42,7 @@ bool CCollisionManager::CreateProfile(const std::string& name, ECollisionChannel
 	return true;
 }
 
-bool CCollisionManager::SetCollisionInteraction(const std::string& name, ECollisionChannel::Type otherChannel, ECollisionInteraction::Type interaction)
+bool CCollisionManager::SetCollisionInteraction(const std::string& name, ECollision::Channel otherChannel, ECollision::Interaction interaction)
 {
 	FCollisionProfile* profile = FindProfile(name);
 	if (!profile)
