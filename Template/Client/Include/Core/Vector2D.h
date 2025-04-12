@@ -97,6 +97,11 @@ public:
 #pragma endregion
 
 #pragma region ARITHMETIC OPERATORS
+	FVector2D operator - () const
+	{
+		return FVector2D(-x, -y);
+	}
+
 	FVector2D operator + (const FVector2D& refVec2D)	const
 	{
 		return FVector2D(x + refVec2D.x, y + refVec2D.y);
