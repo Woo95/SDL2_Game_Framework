@@ -49,14 +49,14 @@ void CSceneCollision::HandleCollision(CCollider* collider1, CCollider* collider2
 			collider2->OnCollisionEnter(collider1);
 
 			status = EPair::COLLIDED;
-
-			// behaviour for the rigidbody
-			ResolveOverlapIfPushable(collider1, collider2);
 		}
 		else
 		{
 			collider1->OnCollisionStay(collider2);
 			collider2->OnCollisionStay(collider1);
+
+			// behaviour for the rigidbody
+			ResolveOverlapIfPushable(collider1, collider2);
 		}
 	}
 	else

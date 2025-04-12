@@ -4,6 +4,7 @@
 #include "SceneManager.h"
 #include "MemoryPoolManager.h"
 #include "CollisionManager.h"
+#include "PhysicsManager.h"
 #include "Resource/AssetManager.h"
 #include "Resource/PathManager.h"
 
@@ -17,6 +18,8 @@ CGameManager::~CGameManager()
 {
     CSceneManager::DestroyInst();
     
+    CPhysicsManager::DestroyInst();
+
     CCollisionManager::DestroyInst();
 
     CInput::DestroyInst();
