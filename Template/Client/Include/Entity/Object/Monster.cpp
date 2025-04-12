@@ -2,6 +2,7 @@
 #include "../Component/Collider/BoxCollider.h"
 #include "../../Entity/Component/SpriteComponent.h"
 #include "../../Resource/Animation.h"
+#include "../../Entity/Component/Rigidbody.h"
 
 CMonster::CMonster()
 {
@@ -28,6 +29,8 @@ bool CMonster::Init()
 
     sprite->GetTransform()->SetWorldScale(75.f, 75.f);
     sprite->GetTransform()->SetPivot(0.5f, 0.5f);
+
+    CRigidbody* rb = AllocateComponent<CRigidbody>("rigidbody", sprite);
 
     GetTransform()->SetWorldPos(800.f, 200.f);
 

@@ -5,7 +5,7 @@
 CRigidbody::CRigidbody() :
 	mType(ERigidbodyType::DYNAMIC),
 	mMass(100.0f),
-	mGravityScale(1.0f),
+	mGravityScale(0.0f),
 	mVelocity(FVector2D::ZERO),
 	mAcceleration(FVector2D::ZERO),
 	mAccumulatedForce(FVector2D::ZERO)
