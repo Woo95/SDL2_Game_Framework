@@ -35,8 +35,9 @@ void CSceneCollision::AddCollider(CCollider* collider)
 
 void CSceneCollision::HandleCollision(CCollider* collider1, CCollider* collider2)
 {
+	// collider 쌍을 key로 사용하여 상태를 가져옴 (없으면 enum의 첫 번째 값, EPair::DNE 자동 삽입)
 	FColliderPair  pair = { collider1, collider2 };
-	EPair::Status& status = mPairs[pair]; // pair가 없으면 EPair::DNE(=enum 첫 값)으로 자동 삽입
+	EPair::Status& status = mPairs[pair];
 
 	if (status == EPair::DNE)
 		status = EPair::NOT_COLLIDED;
@@ -55,7 +56,6 @@ void CSceneCollision::HandleCollision(CCollider* collider1, CCollider* collider2
 			collider1->OnCollisionStay(collider2);
 			collider2->OnCollisionStay(collider1);
 
-			// behaviour for the rigidbody
 			ResolveOverlapIfPushable(collider1, collider2);
 		}
 	}
@@ -65,12 +65,13 @@ void CSceneCollision::HandleCollision(CCollider* collider1, CCollider* collider2
 		{
 			collider1->OnCollisionExit(collider2);
 			collider2->OnCollisionExit(collider1);
-
-			mPairs.erase(pair);
 		}
+		// 비충돌 pair는 제거
+		mPairs.erase(pair);
 	}
 }
 
+// "Pushable Object": DYNAMIC Rigidbody이며, 상대 Collider와 BLOCK 상호작용일 때 
 void CSceneCollision::ResolveOverlapIfPushable(CCollider* collider1, CCollider* collider2)
 {
 	FCollisionProfile* profile1 = collider1->GetProfile();
@@ -78,14 +79,6 @@ void CSceneCollision::ResolveOverlapIfPushable(CCollider* collider1, CCollider* 
 
 	ECollision::Interaction response1to2 = profile1->collisionResponses[profile2->channel];
 	ECollision::Interaction response2to1 = profile2->collisionResponses[profile1->channel];
-
-	// Unity: 양쪽 모두 Block이 아닌 경우, 물리반응 발생 X
-	if (response1to2 != ECollision::Interaction::BLOCK && response2to1 != ECollision::Interaction::BLOCK)
-		return;
-
-	// Unreal: 양쪽 모두 Overlap인 경우, 물리반응 발생 X
-	//if (response1to2 == ECollision::Interaction::OVERLAP && response2to1 == ECollision::Interaction::OVERLAP)
-	//	return;
 
 	CRigidbody* rb1 = nullptr;
 	CRigidbody* rb2 = nullptr;
@@ -113,26 +106,17 @@ void CSceneCollision::CleanPairs()
 
 	while (iter != iterEnd)
 	{
-		CCollider* collider1  = iter->first.collider1;
-		CCollider* collider2  = iter->first.collider2;
-		EPair::Status& status = iter->second;
+		CCollider* collider1 = iter->first.collider1;
+		CCollider* collider2 = iter->first.collider2;
+		const EPair::Status& status = iter->second;
 
-		if (status == EPair::COLLIDED)
+		if (!collider1->GetActive() || !collider2->GetActive())
 		{
-			if (!collider1->GetActive() || !collider2->GetActive())
+			if (status == EPair::COLLIDED)
 			{
 				collider1->OnCollisionExit(collider2);
 				collider2->OnCollisionExit(collider1);
 			}
-		}
-		else if (status == EPair::NOT_COLLIDED)
-		{
-			if (!collider1->GetActive()) collider1->OnCollisionExit(collider2);
-			if (!collider2->GetActive()) collider2->OnCollisionExit(collider1);
-		}
-
-		if (!collider1->GetActive() || !collider2->GetActive())
-		{
 			iter = mPairs.erase(iter);
 			continue;
 		}
