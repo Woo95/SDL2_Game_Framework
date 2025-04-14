@@ -46,6 +46,9 @@ bool CPlayer::Init()
     colliderTrans->SetWorldScale(50.f, 75.f);
     colliderTrans->SetPivot(0.5f, 0.5f);
 
+    // 충돌체 함수 등록
+    mColliderComponent->AddCallbackFuncOnEnter(this, &CPlayer::KnockBackOpponent);
+
     // 스프라이트 컴포넌트 만들기
     mSpriteComponent = AllocateComponent<CSpriteComponent>("sprite", mColliderComponent);
     mSpriteComponent->SetTexture("Pasqualina");
@@ -127,25 +130,33 @@ void CPlayer::SetupInput()
 
 void CPlayer::MOVE_UP()
 {
-    mMovementComponent->MoveDir(FVector2D::UP);
+    mMovementComponent->AddMoveInput(FVector2D::UP);
 }
 void CPlayer::MOVE_DOWN()
 {
-    mMovementComponent->MoveDir(FVector2D::DOWN);
+    mMovementComponent->AddMoveInput(FVector2D::DOWN);
 }
 void CPlayer::MOVE_LEFT()
 {
-    mMovementComponent->MoveDir(FVector2D::LEFT);
+    mMovementComponent->AddMoveInput(FVector2D::LEFT);
 
     if (mSpriteComponent)
         mSpriteComponent->SetFlip(SDL_FLIP_HORIZONTAL);
 }
 void CPlayer::MOVE_RIGHT()
 {
-    mMovementComponent->MoveDir(FVector2D::RIGHT);   
+    mMovementComponent->AddMoveInput(FVector2D::RIGHT);   
 
     if (mSpriteComponent)
         mSpriteComponent->SetFlip(SDL_FLIP_NONE);
+}
+
+void CPlayer::KnockBackOpponent(CCollider* self, CCollider* other)
+{
+    if (CRigidbody* rb = other->GetObject()->GetComponent<CRigidbody>())
+    {
+        rb->AddImpulse(mMovementComponent->GetFacingDir() * 5000.0f/*knockbackPower*/);
+    }
 }
 
 void CPlayer::SHOOT()

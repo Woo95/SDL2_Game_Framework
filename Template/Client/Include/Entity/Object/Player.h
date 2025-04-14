@@ -8,7 +8,7 @@ public:
 	CPlayer();
 	virtual ~CPlayer();
 
-public:
+private:
 	class CMovementComponent* mMovementComponent;
 	class CCollider*          mColliderComponent;
 	class CSpriteComponent*   mSpriteComponent;
@@ -30,6 +30,8 @@ private:
 	void MOVE_DOWN();
 	void MOVE_LEFT();
 	void MOVE_RIGHT();
+
+	void KnockBackOpponent(CCollider* self, CCollider* other);
 
 	void SHOOT();
 };
