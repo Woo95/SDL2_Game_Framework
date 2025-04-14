@@ -2,8 +2,9 @@
 #include "../../Entity/Object/Object.h"
 
 CMovementComponent::CMovementComponent() :
-	mSpeed(500.f), 
-	mDirection(FVector2D::ZERO)
+	mSpeed(500.f),
+	mMoveDir(FVector2D::ZERO),
+	mFacingDir(FVector2D::ZERO)
 {
 	mTypeID = typeid(CMovementComponent).hash_code();
 }
@@ -41,14 +42,16 @@ void CMovementComponent::Release()
 
 void CMovementComponent::Move(float DeltaTime)
 {
-	if (mDirection != FVector2D::ZERO)
+	if (mMoveDir != FVector2D::ZERO)
 	{
 		CTransform* transform = mObject->GetTransform();
 
-		FVector2D movement = mDirection.GetNormalize() * mSpeed * DeltaTime;
+		FVector2D movement = mMoveDir.GetNormalize() * mSpeed * DeltaTime;
 
 		transform->SetWorldPos(transform->GetWorldPos() + movement);
 
-		mDirection = FVector2D::ZERO;
+		mFacingDir = mMoveDir;
+
+		mMoveDir = FVector2D::ZERO;
 	}
 }

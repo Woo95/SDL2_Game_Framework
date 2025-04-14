@@ -39,5 +39,5 @@ public:
 
 private:
 	const SDL_Rect& GetFrame() const;
-	const SDL_Rect GetDest()  const;
+	const SDL_Rect GetDest() const;
 };

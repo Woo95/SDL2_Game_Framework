@@ -9,8 +9,10 @@ public:
 	virtual ~CMovementComponent();
 
 private:
+	FVector2D mMoveDir;
+	FVector2D mFacingDir;
+
 	float mSpeed;
-	FVector2D mDirection;
 
 public:
 	virtual bool Init() final;
@@ -22,19 +24,17 @@ private:
 	virtual void Release()                      final;
 
 public:
-	float GetSpeed() const
-	{ 
-		return mSpeed; 
-	}
+	const FVector2D& GetFacingDir() const { return mFacingDir; }
+	float GetSpeed() const { return mSpeed; }
+
 	void SetSpeed(float speed)
 	{
 		mSpeed = speed;
 	}
 
-public:
-	void MoveDir(const FVector2D& direction)
+	void AddMoveInput(const FVector2D& direction)
 	{
-		mDirection += direction;
+		mMoveDir += direction;
 	}
 
 private:
