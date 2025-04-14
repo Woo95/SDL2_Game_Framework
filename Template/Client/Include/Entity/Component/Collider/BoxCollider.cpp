@@ -48,7 +48,7 @@ void CBoxCollider::Render(SDL_Renderer* Renderer)
 
 #ifdef _DEBUG
 	// 렌더 색상 설정
-	if (!mIsCollided)
+	if (!mCollidedCount)
 		SDL_SetRenderDrawColor(Renderer, 0, 255, 0, 255);
 	else
 		SDL_SetRenderDrawColor(Renderer, 255, 0, 0, 255);

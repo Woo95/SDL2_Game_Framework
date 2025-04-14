@@ -7,8 +7,7 @@
 CCollider::CCollider() :
     mProfile(nullptr),
     mColliderType(ECollider::Type::NONE),
-    mCollidedCount(0),
-    mIsCollided(false)
+    mCollidedCount(0)
 {
 }
 
@@ -44,12 +43,14 @@ void CCollider::OnCollisionEnter(CCollider* other)
 {
     mCollidedCount++;
 
-    mIsCollided = true;
+    for (const auto& callback : mOnEnterFuncs)
+        callback(this, other);
 }
 
 void CCollider::OnCollisionStay(CCollider* other)
 {
-    mIsCollided = true;
+    for (const auto& callback : mOnStayFuncs)
+        callback(this, other);
 }
 
 void CCollider::OnCollisionExit(CCollider* other)
@@ -59,7 +60,9 @@ void CCollider::OnCollisionExit(CCollider* other)
     if (mCollidedCount <= 0)
     {
         mCollidedCount = 0;
-        mIsCollided = false;
+
+        for (const auto& callback : mOnExitFuncs)
+            callback(this, other);
     }
 }
 
