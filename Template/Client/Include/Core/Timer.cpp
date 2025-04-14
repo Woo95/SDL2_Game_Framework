@@ -21,11 +21,11 @@ bool CTimer::Init()
 
 void CTimer::Update()
 {
-    DeltaTime();
-    FPS();
+    UpdateDeltaTime();
+    UpdateFPS();
 }
 
-void CTimer::DeltaTime()
+void CTimer::UpdateDeltaTime()
 {
     // 윈도우 고해상도 타이머를 얻어온다.  (매우 작은 시간 간격을 측정할 수 있는 타이머)
     Uint64   Time = SDL_GetPerformanceCounter();
@@ -44,7 +44,7 @@ void CTimer::DeltaTime()
     mTime = Time;
 }
 
-void CTimer::FPS()
+void CTimer::UpdateFPS()
 {
     // 누적 시간에 현재 프레임의 경과 시간 추가
     mFPSTime += mDeltaTime;
