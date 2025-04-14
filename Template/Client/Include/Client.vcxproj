@@ -22,6 +22,7 @@
     <ClInclude Include="Core\External\SDL\SDL_mixer.h" />
     <ClInclude Include="Core\External\SDL\SDL_ttf.h" />
     <ClInclude Include="Core\PhysicsConfig.h" />
+    <ClInclude Include="Core\Utils\ColliderUtils.h" />
     <ClInclude Include="Core\Utils\PhysicsUtils.h" />
     <ClInclude Include="Resource\Sound\BGM.h" />
     <ClInclude Include="Resource\Font.h" />

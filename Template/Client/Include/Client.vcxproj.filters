@@ -561,6 +561,9 @@
     <ClInclude Include="Manager\PhysicsManager.h">
       <Filter>Framework\02. Manager</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Utils\ColliderUtils.h">
+      <Filter>Framework\01. Core\Lib\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Timer.cpp">
