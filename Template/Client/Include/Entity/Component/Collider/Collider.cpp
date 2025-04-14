@@ -43,13 +43,13 @@ void CCollider::OnCollisionEnter(CCollider* other)
 {
     mCollidedCount++;
 
-    for (const auto& callback : mOnEnterFuncs)
+    for (const auto& callback : mCallbacks[ECollider::ENTER])
         callback(this, other);
 }
 
 void CCollider::OnCollisionStay(CCollider* other)
 {
-    for (const auto& callback : mOnStayFuncs)
+    for (const auto& callback : mCallbacks[ECollider::STAY])
         callback(this, other);
 }
 
@@ -61,7 +61,7 @@ void CCollider::OnCollisionExit(CCollider* other)
     {
         mCollidedCount = 0;
 
-        for (const auto& callback : mOnExitFuncs)
+        for (const auto& callback : mCallbacks[ECollider::EXIT])
             callback(this, other);
     }
 }

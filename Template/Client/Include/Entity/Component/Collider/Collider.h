@@ -1,18 +1,9 @@
 #pragma once
 
 #include "../Component.h"
+#include "../../../Core/Utils/ColliderUtils.h"
 #include "../../../Core/CollisionProfile.h"
 #include "../../../Core/Vector2D.h"
-
-namespace ECollider
-{
-	enum Type : unsigned char
-	{
-		NONE,
-		BOX,
-		CIRCLE
-	};
-}
 
 class CCollider abstract : public CComponent
 {
@@ -30,9 +21,7 @@ protected:
 	FVector2D           mHitPoint;
 
 	using Callback = std::function<void(CCollider*, CCollider*)>;
-	std::vector<Callback> mOnEnterFuncs;
-	std::vector<Callback> mOnStayFuncs;
-	std::vector<Callback> mOnExitFuncs;
+	std::vector<Callback> mCallbacks[ECollider::OnCollision::MAX];
 
 protected:
 	virtual bool Init()                         override;
@@ -52,28 +41,12 @@ public:
 
 	// Binders //
 	template <typename T>
-	void AddCallbackFuncOnEnter(T* obj, void(T::*func)(CCollider*, CCollider*))
+	void AddCallbackFunc(ECollider::OnCollision event, T* obj, void(T::* func)(CCollider*, CCollider*))
 	{
 		// [캡처리스트](매개변수) -> 반환타입 { 함수 본문 }
 		Callback cb = [obj, func](CCollider* col1, CCollider* col2) { (obj->*func)(col1, col2); };
 
-		mOnEnterFuncs.emplace_back(cb);
-	}	
-	template <typename T>
-	void AddCallbackFuncOnStay(T* obj, void(T::* func)(CCollider*, CCollider*))
-	{
-		// [캡처리스트](매개변수) -> 반환타입 { 함수 본문 }
-		Callback cb = [obj, func](CCollider* col1, CCollider* col2) { (obj->*func)(col1, col2); };
-
-		mOnStayFuncs.emplace_back(cb);
-	}
-	template <typename T>
-	void AddCallbackFuncOnExit(T* obj, void(T::* func)(CCollider*, CCollider*))
-	{
-		// [캡처리스트](매개변수) -> 반환타입 { 함수 본문 }
-		Callback cb = [obj, func](CCollider* col1, CCollider* col2) { (obj->*func)(col1, col2); };
-
-		mOnExitFuncs.emplace_back(cb);
+		mCallbacks[event].emplace_back(cb);
 	}
 
 public:
