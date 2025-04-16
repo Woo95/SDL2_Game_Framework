@@ -47,7 +47,7 @@ bool CPlayer::Init()
     colliderTrans->SetPivot(0.5f, 0.5f);
 
     // 충돌체 함수 등록
-    mColliderComponent->AddCallbackFuncOnEnter(this, &CPlayer::KnockBackOpponent);
+    mColliderComponent->AddCallbackFunc(ECollider::OnCollision::ENTER, this, &CPlayer::KnockBackOpponent);
 
     // 스프라이트 컴포넌트 만들기
     mSpriteComponent = AllocateComponent<CSpriteComponent>("sprite", mColliderComponent);
@@ -155,7 +155,11 @@ void CPlayer::KnockBackOpponent(CCollider* self, CCollider* other)
 {
     if (CRigidbody* rb = other->GetObject()->GetComponent<CRigidbody>())
     {
-        rb->AddImpulse(mMovementComponent->GetFacingDir() * 5000.0f/*knockbackPower*/);
+        const FVector2D& facingDir = mMovementComponent->GetFacingDir();
+        if (facingDir != FVector2D::ZERO)
+        {
+            rb->AddImpulse(facingDir.GetNormalize() * 50000.0f/*knockbackPower*/);
+        }
     }
 }
 
