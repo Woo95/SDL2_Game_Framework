@@ -156,7 +156,7 @@ void CQTNode::AddCollider(CCollider* collider)
 	}
 	else
 	{
-		mColliders.push_back(collider);
+		mColliders.emplace_back(collider);
 
 		if (ShouldSplit())
 		{

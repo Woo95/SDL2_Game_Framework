@@ -54,7 +54,7 @@ void CQuadTree::Render(SDL_Renderer* Renderer)
 
 void CQuadTree::AddCollider(CCollider* collider)
 {
-	mColliders.push_back(collider);
+	mColliders.emplace_back(collider);
 }
 
 void CQuadTree::UpdateBoundary()

@@ -87,7 +87,7 @@ void CComponent::Render(SDL_Renderer* Renderer)
 void CComponent::AddChild(CComponent* child)
 {
     child->mParent = this;
-    mChilds.push_back(child);
+    mChilds.emplace_back(child);
 
     mTransform->AddChild(child->mTransform);
 }

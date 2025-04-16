@@ -35,7 +35,7 @@ std::vector<std::string> CDataManager::Split(const std::string& line, char delim
 
 	while (std::getline(stream, cell, delimiter))
 	{
-		row.push_back(cell);
+		row.emplace_back(cell);
 	}
 	return row;
 }

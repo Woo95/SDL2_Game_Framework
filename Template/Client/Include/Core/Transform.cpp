@@ -18,5 +18,5 @@ CTransform::~CTransform()
 void CTransform::AddChild(CTransform* child)
 {
     child->mParent = this;
-    mChilds.push_back(child);
+    mChilds.emplace_back(child);
 }
