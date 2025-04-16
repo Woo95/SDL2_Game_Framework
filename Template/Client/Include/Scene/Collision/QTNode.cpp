@@ -1,7 +1,7 @@
 #include "QTNode.h"
 #include "../../Entity/Component/Collider/BoxCollider.h"
 #include "../../Entity/Component/Collider/CircleCollider.h"
-#include "../../Entity/Object/Object.h"
+#include "../../Manager/SceneManager.h"
 #include "../Scene.h"
 #include "../../Scene/Collision/SceneCollision.h"
 #include "../Camera.h"
@@ -28,7 +28,8 @@ void CQTNode::Update(float DeltaTime)
 		size_t size = mColliders.size();
 		if (size >= 2)
 		{
-			CSceneCollision* sceneCollision = mColliders[0]->GetObject()->GetScene()->GetCollision();
+			CSceneCollision* sceneCollision = CSceneManager::GetInst()->GetCurrentScene()->GetCollision();
+
 			for (size_t i = 0; i < size; i++)
 			{
 				for (size_t j = i + 1; j < size; j++)

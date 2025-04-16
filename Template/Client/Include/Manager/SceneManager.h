@@ -20,6 +20,8 @@ private:
 	static CSceneManager* mInst;
 
 public:
+	const CScene* GetCurrentScene() const { return mScene.top(); }
+
 	void PendingChange(EScene::State state);
 	void ApplyChange(EScene::State state);
 
