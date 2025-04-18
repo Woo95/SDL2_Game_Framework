@@ -6,7 +6,6 @@ namespace EScene
 	{
 		NONE,
 		MENU,
-		PLAY,
-		RESULT
+		PLAY
 	};
 }

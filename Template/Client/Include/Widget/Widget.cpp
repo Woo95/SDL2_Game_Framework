@@ -1,7 +1,6 @@
 #include "Widget.h"
 #include "UserWidget.h"
 #include "../Manager/CollisionManager.h"
-#include "../Scene/UI/SceneUI.h"
 #include "../Manager/MemoryPoolManager.h"
 
 CWidget::CWidget()

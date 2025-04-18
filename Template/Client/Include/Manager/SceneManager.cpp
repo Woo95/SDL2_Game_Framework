@@ -35,11 +35,17 @@ bool CSceneManager::Init()
 
 void CSceneManager::Update(float DeltaTime)
 {
+	if (mScene.empty())
+		return;
+
 	mScene.top()->Update(DeltaTime);
 }
 
 void CSceneManager::LateUpdate(float DeltaTime)
 {
+	if (mScene.empty())
+		return;
+
 	mScene.top()->LateUpdate(DeltaTime);
 
 	if (mPendingScene != EScene::State::NONE)
@@ -48,6 +54,9 @@ void CSceneManager::LateUpdate(float DeltaTime)
 
 void CSceneManager::Render(SDL_Renderer* Renderer)
 {
+	if (mScene.empty())
+		return;
+
 	mScene.top()->Render(Renderer);
 }
 
@@ -94,9 +103,6 @@ CScene* CSceneManager::GetSceneFromState(EScene::State state)
 		break;
 	case EScene::PLAY:
 		newScene = new CPlayScene;
-		break;
-	case EScene::RESULT:
-		// mScene.push(new CResultScene);
 		break;
 	default:
 		break;

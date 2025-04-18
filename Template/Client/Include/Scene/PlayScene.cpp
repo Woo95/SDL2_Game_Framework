@@ -45,8 +45,6 @@ bool CPlayScene::Enter()
 
 bool CPlayScene::Exit()
 {
-	// CSceneManager::GetInst()->PendingChange(EScene::State::RESULT);
-
 	return true;
 }
 
