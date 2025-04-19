@@ -2,7 +2,7 @@
 
 #include "Component.h"
 
-class CWidgetBase;
+class CWidget;
 
 class CWidgetComponent : public CComponent
 {
@@ -11,7 +11,7 @@ public:
 	virtual ~CWidgetComponent();
 
 private:
-	CWidgetBase* mWidget; // Can be either UserWidget or Widget
+	CWidget* mWidget;
 
 public:
 	virtual bool Init() final;
@@ -23,5 +23,5 @@ private:
 	virtual void Release()                      final;
 
 public:
-	void SetWidget(CWidgetBase* widget);
+	void SetWidget(CWidget* widget);
 };

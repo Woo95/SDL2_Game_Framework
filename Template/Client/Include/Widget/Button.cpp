@@ -54,8 +54,8 @@ void CButton::HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHe
 	{
 		mWidgetHeld = true;
 
-		mUserWidget->GetSceneUI()->SetHeldWidget(this);
-		mUserWidget->GetSceneUI()->BringUserWidgetToTop(mUserWidget);
+		mSceneUI->SetHeldWidget(this);
+		mSceneUI->BringWidgetToTop(FindRootWidget());
 
 		mCurrentState = EButton::State::PRESSED;
 		ExecuteCallback(EButton::InputEvent::CLICK);
@@ -68,7 +68,7 @@ void CButton::HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHe
 	{
 		mWidgetHeld = false;
 
-		mUserWidget->GetSceneUI()->SetHeldWidget(nullptr);
+		mSceneUI->SetHeldWidget(nullptr);
 
 		mCurrentState = EButton::State::HOVER;
 		ExecuteCallback(EButton::InputEvent::RELEASE);
@@ -96,7 +96,7 @@ void CButton::HandleUnhovered(const FVector2D& mousePos, bool isHeld, bool isRel
 	{
 		mWidgetHeld = false;
 
-		mUserWidget->GetSceneUI()->SetHeldWidget(nullptr);
+		mSceneUI->SetHeldWidget(nullptr);
 	}
 }
 

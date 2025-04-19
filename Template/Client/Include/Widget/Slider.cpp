@@ -55,8 +55,8 @@ void CSlider::HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHe
     {
         mWidgetHeld = true;
 
-        mUserWidget->GetSceneUI()->SetHeldWidget(this);
-        mUserWidget->GetSceneUI()->BringUserWidgetToTop(mUserWidget);
+        mSceneUI->SetHeldWidget(this);
+        mSceneUI->BringWidgetToTop(FindRootWidget());
 
         // Thumb 클릭
         if (CCollisionManager::GetInst()->AABBPointCollision(mThumbRect, mousePos))
@@ -84,7 +84,7 @@ void CSlider::HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHe
     {
         mWidgetHeld = false;
 
-        mUserWidget->GetSceneUI()->SetHeldWidget(nullptr);
+        mSceneUI->SetHeldWidget(nullptr);
 
         ExecuteCallback(ESlider::InputEvent::RELEASE);
     }
@@ -104,7 +104,7 @@ void CSlider::HandleUnhovered(const FVector2D& mousePos, bool isHeld, bool isRel
     {
         mWidgetHeld = false;
 
-        mUserWidget->GetSceneUI()->SetHeldWidget(nullptr);
+        mSceneUI->SetHeldWidget(nullptr);
     }
 }
 

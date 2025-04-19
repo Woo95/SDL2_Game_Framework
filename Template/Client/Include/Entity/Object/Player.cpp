@@ -8,7 +8,6 @@
 #include "../../Scene/Scene.h"
 #include "../../Scene/Camera.h"
 #include "../../Entity/Component/WidgetComponent.h"
-#include "../../Scene/UI/SceneUI.h"
 #include "../../Widget/ProgressBar.h"
 #include "../../Entity/Component/Rigidbody.h"
 
@@ -69,7 +68,7 @@ bool CPlayer::Init()
     mWidgetComponent = AllocateComponent<CWidgetComponent>("widget", mSpriteComponent);
 
     // 프로그레스 바 생성 및 설정
-    CProgressBar* progressBar = mScene->GetSceneUI()->CreateWidget<CProgressBar>("progressBar2");
+    CProgressBar* progressBar = CWidgetUtils::AllocateWidget<CProgressBar>("hp");
     progressBar->GetTransform()->SetWorldScale(70.f, 13.f);
     progressBar->GetTransform()->SetPivot(0.5f, 0.5f);
     progressBar->SetColor(EProgBar::State::BACK, 0, 0, 0);
@@ -78,7 +77,7 @@ bool CPlayer::Init()
     progressBar->SetTexture("UI");
     progressBar->SetFrame("HpBar");
 
-    // 유저위젯 자식으로 프로그레스 바 추가 및 유저위젯 설정
+    // 위젯 자식으로 프로그레스 바 추가 및 위젯 설정
     mWidgetComponent->SetWidget(progressBar);
     progressBar->GetTransform()->SetRelativePos(0.f, 50.f);
 

@@ -1,5 +1,5 @@
 #include "WidgetComponent.h"
-#include "../../Widget/WidgetBase.h"
+#include "../../Widget/Widget.h"
 #include "../Object/Object.h"
 #include "../../Scene/Scene.h"
 #include "../../Scene/Camera.h"
@@ -53,7 +53,7 @@ void CWidgetComponent::Render(SDL_Renderer* Renderer)
 		if (CCamera* camera = GetObject()->GetScene()->GetCamera())
 			topLeft = camera->GetRenderPos(topLeft);
 
-		// 유저위젯 또는 위젯 그리기
+		// 위젯 그리기
 		mWidget->Render(Renderer, topLeft);
 	}
 
@@ -65,7 +65,7 @@ void CWidgetComponent::Release()
 	CMemoryPoolManager::GetInst()->Deallocate<CWidgetComponent>(this);
 }
 
-void CWidgetComponent::SetWidget(CWidgetBase* widget)
+void CWidgetComponent::SetWidget(CWidget* widget)
 {
 	if (mWidget)
 		mWidget->Release();
