@@ -1,63 +1,32 @@
 #pragma once
 
-#include "WidgetBase.h"
-#include "../Core/GameInfo.h"
+#include "Widget.h"
 
-class CWidget;
-
-class CUserWidget : public CWidgetBase
+// 사용자 정의 UI 위젯의 베이스 클래스
+class CUserWidget abstract : public CWidget
 {
-	friend class CSceneUI;
-	friend class CWidget;
-
 public:
 	CUserWidget();
 	virtual ~CUserWidget();
 
 private:
-	CSceneUI* mSceneUI = nullptr;
-
 	bool mIsMovable = false;
 	FVector2D mDragOffset = FVector2D::ZERO;
 
-	std::vector<CWidget*> mWidgets;
-	CWidget* mCurrHovered = nullptr;
-
 protected:
-	virtual void Update(float DeltaTime)     override;
-	virtual void LateUpdate(float DeltaTime) override;
-	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO) override;
-	virtual void Release() override;
+	virtual void Construct() = 0;
+	virtual void Release()   = 0;
+
+	virtual void HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased) override {};
+	virtual void HandleUnhovered(const FVector2D& mousePos, bool isHeld, bool isReleased) override {};
 
 public:
-	CSceneUI* GetSceneUI() const { return mSceneUI; }
-
 	void SetMovable(bool movable)
 	{
 		mIsMovable = movable;
+		mIsInteractable |= movable;
 	}
 
-	CWidget* FindWidget(size_t id);
-
-	template <typename T>
-	void AddWidget(T* widget)
-	{
-		widget->mUserWidget = this;
-
-		mWidgets.emplace_back(widget);
-
-		mTransform->AddChild(widget->mTransform);
-	}
-
-public:
-	void Enable();
-	void Disable();
-	void Destroy();
-
-private:
-	CWidget* FindHoveredWidget(const FVector2D& mousePos);
-
-	void HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased);
-	void HandleUnhovered(const FVector2D& mousePos, bool isHeld, bool isReleased);
+protected:
 	void HandleDragging(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased);
 };

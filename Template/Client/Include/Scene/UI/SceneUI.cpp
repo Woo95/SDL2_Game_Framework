@@ -1,6 +1,5 @@
 #include "SceneUI.h"
 #include "../../Widget/Widget.h"
-#include "../../Widget/UserWidget.h"
 #include "../../Manager/CollisionManager.h"
 #include "../../Core/Input.h"
 
@@ -10,11 +9,11 @@ CSceneUI::CSceneUI()
 
 CSceneUI::~CSceneUI()
 {
-	for (CUserWidget* userWidget : mUserWidgets)
+	for (CWidget* widget : mWidgets)
 	{
-		userWidget->Release();
+		widget->Release();
 	}
-	mUserWidgets.clear();
+	mWidgets.clear();
 }
 
 bool CSceneUI::Init()
@@ -26,88 +25,99 @@ void CSceneUI::Update(float DeltaTime)
 {
 	UpdateInput();
 
-	for (CUserWidget* userWidget : mUserWidgets)
+	for (CWidget* widget : mWidgets)
 	{
-		if (!userWidget->GetActive())
+		if (!widget->GetActive())
 		{
-			userWidget->Destroy();
+			widget->Destroy();
 
 			continue;
 		}
-		else if (!userWidget->GetEnable())
+		else if (!widget->GetEnable())
 		{
 			continue;
 		}
-		userWidget->Update(DeltaTime);
+		widget->Update(DeltaTime);
 	}
 }
 
 void CSceneUI::LateUpdate(float DeltaTime)
 {
-	for (CUserWidget* userWidget : mUserWidgets)
+	for (CWidget* widget : mWidgets)
 	{
-		if (!userWidget->GetActive())
+		if (!widget->GetActive())
 		{
-			// mUserWidgets 벡터의 순서를 유지하면서 userWidget 제거
-			mUserWidgets.erase(std::remove(mUserWidgets.begin(), mUserWidgets.end(), userWidget), mUserWidgets.end());
+			// mWidgets 벡터의 순서를 유지하면서 widget 제거
+			mWidgets.erase(std::remove(mWidgets.begin(), mWidgets.end(), widget), mWidgets.end());
 			
-			userWidget->Release();
+			widget->Release();
 
 			continue;
 		}
-		else if (!userWidget->GetEnable())
+		else if (!widget->GetEnable())
 		{
 			continue;
 		}
-		userWidget->LateUpdate(DeltaTime);
+		widget->LateUpdate(DeltaTime);
 	}
 }
 
 void CSceneUI::Render(SDL_Renderer* Renderer)
 {
-	for (CUserWidget* userWidget : mUserWidgets)
+	for (CWidget* widget : mWidgets)
 	{
-		if (!userWidget->GetActive() || !userWidget->GetEnable())
+		if (!widget->GetActive() || !widget->GetEnable())
 			continue;
 		
-		userWidget->Render(Renderer);
+		widget->Render(Renderer);
 	}
 }
 
-CUserWidget* CSceneUI::FindUserWidget(const std::string& name)
+void CSceneUI::BringWidgetToTop(CWidget* widget)
 {
-	size_t hashID = std::hash<std::string>()(name);
-
-	for (CUserWidget* userWidget : mUserWidgets)
-	{
-		if (userWidget->GetID() == hashID)
-			return userWidget;
-	}
-	return nullptr;
-}
-
-void CSceneUI::BringUserWidgetToTop(CUserWidget* userWidget)
-{
-	if (mUserWidgets.back() == userWidget || mUserWidgets.empty() || !userWidget->mIsMovable)
+	if (mWidgets.back() == widget || mWidgets.empty() || !widget->mIsInteractable)
 		return;
 
-	// mUserWidgets 벡터의 순서를 유지하면서 userWidget 제거
-	mUserWidgets.erase(std::remove(mUserWidgets.begin(), mUserWidgets.end(), userWidget), mUserWidgets.end());
-	// 제거했던 userWidget을 맨 뒤에 추가
-	mUserWidgets.emplace_back(userWidget);
+	// mWidgets 벡터의 순서를 유지하면서 widget 제거
+	mWidgets.erase(std::remove(mWidgets.begin(), mWidgets.end(), widget), mWidgets.end());
+	// 제거했던 widget을 맨 뒤에 추가
+	mWidgets.emplace_back(widget);
 }
 
-CUserWidget* CSceneUI::FindHoveredUserWidget(const FVector2D& mousePos)
+void CSceneUI::SetSceneUI(CWidget* widget)
 {
-	for (size_t i = mUserWidgets.size(); i > 0; i--)
+	widget->mSceneUI = this;
+
+	for (CWidget* child : widget->mChilds)
 	{
-		CUserWidget* newHovered = mUserWidgets[i - 1];
-		if (CCollisionManager::GetInst()->AABBPointCollision(newHovered->GetRect(), mousePos))
-		{
-			return newHovered;
-		}
+		SetSceneUI(child);
+	}
+}
+
+CWidget* CSceneUI::FindHoveredWidget(const FVector2D& mousePos)
+{
+	for (size_t i = mWidgets.size(); i > 0; --i)
+	{
+		CWidget* hovered = FindHoveredInTree(mWidgets[i - 1], mousePos);
+
+		if (hovered)
+			return hovered;
 	}
 	return nullptr;
+}
+
+CWidget* CSceneUI::FindHoveredInTree(CWidget* widget, const FVector2D& mousePos)
+{
+	if (!CCollisionManager::GetInst()->AABBPointCollision(widget->GetRect(), mousePos))
+		return nullptr;
+
+	for (size_t i = widget->mChilds.size(); i > 0; --i) // 렌더링 순서를 고려한 역순 탐색
+	{
+		CWidget* childHovered = FindHoveredInTree(widget->mChilds[i - 1], mousePos);
+		if (childHovered)
+			return childHovered;
+	}
+	return widget->mIsInteractable ? widget : nullptr;
 }
 
 void CSceneUI::UpdateInput()
@@ -129,13 +139,13 @@ void CSceneUI::UpdateInput()
 		}
 	}
 
-	// 마우스 위에 호버된 최상위 UserWidget 찾기
-	CUserWidget* newHovered = FindHoveredUserWidget(mousePos);
+	// 마우스 위에 호버된 최상위 Widget 찾기
+	CWidget* newHovered = FindHoveredWidget(mousePos);
 	{
 		// 현재 호버된 mCurrentHovered가 바뀔 경우
 		if (mCurrHovered != newHovered)
 		{
-			// 기존 호버된 userWidget이 있다면 HandleUnhovered()를 1회 실행
+			// 기존 호버된 Widget이 있다면 HandleUnhovered()를 1회 실행
 			if (mCurrHovered)
 			{
 				mCurrHovered->HandleUnhovered(mousePos, isHeld, isReleased);
@@ -143,7 +153,7 @@ void CSceneUI::UpdateInput()
 
 			mCurrHovered = newHovered;
 		}
-		// 호버된 userWidget이 있을 경우 HandleHovered() 실행 
+		// 호버된 Widget이 있을 경우 HandleHovered() 실행 
 		if (mCurrHovered)
 			mCurrHovered->HandleHovered(mousePos, isPressed, isHeld, isReleased);
 	}

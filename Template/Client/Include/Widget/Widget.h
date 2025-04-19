@@ -1,21 +1,19 @@
 #pragma once
 
 #include "WidgetBase.h"
-#include "../Core/Utils/WidgetUtils.h"
-#include "../Core/GameInfo.h"
 
-// UI 위젯의 기본 클래스
+// 원초적인 UI 위젯의 기본 클래스
 class CWidget abstract : public CWidgetBase
 {
 	friend class CSceneUI;
-	friend class CUserWidget;
+	friend class CWidgetComponent;
 
 protected:
 	CWidget();
 	virtual ~CWidget();
 
 protected:
-	CUserWidget* mUserWidget = nullptr;
+	CSceneUI* mSceneUI = nullptr;
 
 	CWidget* mParent = nullptr;
 	std::vector<CWidget*> mChilds;
@@ -25,16 +23,17 @@ protected:
 	bool mWidgetHeld     = false;
 
 protected:
-	virtual void Update(float DeltaTime)     override;
-	virtual void LateUpdate(float DeltaTime) override;
-	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO) override;
+	virtual void Update(float DeltaTime);
+	virtual void LateUpdate(float DeltaTime);
+	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO);
 	virtual void Release() = 0;
 
 	// 마우스와 상호작용이 있는 위젯들에서 따로 구현
 	virtual void HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased) {};
 	virtual void HandleUnhovered(const FVector2D& mousePos, bool isHeld, bool isReleased) {};
 
-public:
+public:	
+	CWidget* FindRootWidget();
 	CWidget* FindWidget(size_t id);
 
 	void AddChild(CWidget* child);
@@ -44,7 +43,4 @@ public:
 	void Enable();
 	void Disable();
 	void Destroy();
-
-protected:
-	CWidget* FindHoveredWidget(const FVector2D& mousePos);
 };

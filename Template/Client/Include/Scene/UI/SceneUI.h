@@ -1,28 +1,22 @@
 #pragma once
 
 #include "../../Core/GameInfo.h"
-#include "../../Manager/MemoryPoolManager.h"
 #include "../../Core/Vector2D.h"
 
-class CUserWidget;
 class CWidget;
 
-// container of the CUserWidgets
+// container of the CWidgets
 class CSceneUI
 {
-	friend class CScene;
-	friend class CUserWidget;
-	friend class CWidget;
-
 public:
 	CSceneUI();
 	virtual ~CSceneUI();
 
 private:
-	std::vector<CUserWidget*> mUserWidgets;
-	CUserWidget* mCurrHovered = nullptr;
+	std::vector<CWidget*> mWidgets;
 
-	CWidget* mHeldWidget = nullptr;
+	CWidget* mCurrHovered = nullptr;
+	CWidget* mHeldWidget  = nullptr;
 
 public:
 	virtual bool Init();
@@ -31,52 +25,27 @@ public:
 	virtual void Render(SDL_Renderer* Renderer);
 
 public:
-	CUserWidget* FindUserWidget(const std::string& name = "");
-	void BringUserWidgetToTop(CUserWidget* userWidget);
+	void BringWidgetToTop(CWidget* widget);
 
 	CWidget* GetHeldWidget() const { return mHeldWidget; }
-	void SetHeldWidget(CWidget* heldWidget) 
+	void SetHeldWidget(CWidget* heldWidget)
 	{
 		mHeldWidget = heldWidget;
 	}
 
-public:
-	template <typename T, int initialCapacity = 10>
-	T* CreateUserWidget(const std::string& name)
+protected:
+	void AddWidget(CWidget* widget)
 	{
-		// 해당 타입의 메모리 풀이 없으면 새로 생성
-		if (!CMemoryPoolManager::GetInst()->HasPool<T>())
-		{
-			CMemoryPoolManager::GetInst()->CreatePool<T>(initialCapacity);
-		}
+		mWidgets.emplace_back(widget);
 
-		T* userWidget = CMemoryPoolManager::GetInst()->Allocate<T>();
-
-		userWidget->SetName(name);
-		userWidget->mSceneUI = this;
-
-		mUserWidgets.emplace_back(userWidget);
-		return userWidget;
-	}
-
-	template <typename T, int initialCapacity = 10>
-	T* CreateWidget(const std::string& name)
-	{
-		// 해당 타입의 메모리 풀이 없으면 새로 생성
-		if (!CMemoryPoolManager::GetInst()->HasPool<T>())
-		{
-			CMemoryPoolManager::GetInst()->CreatePool<T>(initialCapacity);
-		}
-
-		T* widget = CMemoryPoolManager::GetInst()->Allocate<T>();
-
-		widget->SetName(name);
-
-		return widget;
+		SetSceneUI(widget);
 	}
 
 private:
-	CUserWidget* FindHoveredUserWidget(const FVector2D& mousePos);
+	void SetSceneUI(CWidget* widget);
+
+	CWidget* FindHoveredWidget(const FVector2D& mousePos);
+	CWidget* FindHoveredInTree(CWidget* widget, const FVector2D& mousePos);
 
 	void UpdateInput();
 };

@@ -1,14 +1,11 @@
 #pragma once
 
-#include <string>
 #include "../Core/Transform.h"
+#include "../Core/Utils/WidgetUtils.h"
 
 class CWidgetBase abstract
 {
-	friend class CSceneUI;
-	friend class CUserWidget;
-	friend class CWidget;
-	friend class CWidgetComponent;
+	friend class CWidgetUtils;
 
 public:
 	CWidgetBase() = default;
@@ -22,12 +19,6 @@ protected:
 
 	SDL_Rect    mRect = { 0, 0, 0, 0 };
 	CTransform* mTransform = nullptr;
-
-protected:
-	virtual void Update(float DeltaTime)     = 0;
-	virtual void LateUpdate(float DeltaTime) = 0;
-	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO) = 0;
-	virtual void Release() = 0;
 
 public:
 	const std::string& GetName() const { return mName; }

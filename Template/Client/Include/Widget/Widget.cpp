@@ -1,7 +1,4 @@
 #include "Widget.h"
-#include "UserWidget.h"
-#include "../Manager/CollisionManager.h"
-#include "../Manager/MemoryPoolManager.h"
 
 CWidget::CWidget()
 {
@@ -45,7 +42,7 @@ void CWidget::LateUpdate(float DeltaTime)
 	{
 		if (!child->GetActive())
 		{
-			// mWidgets 벡터의 순서를 유지하면서 userWidget 제거
+			// mWidgets 벡터의 순서를 유지하면서 widget 제거
 			mChilds.erase(std::remove(mChilds.begin(), mChilds.end(), child), mChilds.end());
 
 			// transform 벡터의 순서를 유지하면서 transform 제거
@@ -84,6 +81,17 @@ void CWidget::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
 #endif
 }
 
+CWidget* CWidget::FindRootWidget()
+{
+	CWidget* rootWidget = this;
+
+	while (rootWidget->mParent)
+	{
+		rootWidget = rootWidget->mParent;
+	}
+	return rootWidget;
+}
+
 CWidget* CWidget::FindWidget(size_t id)
 {
 	if (mID == id)
@@ -101,10 +109,10 @@ CWidget* CWidget::FindWidget(size_t id)
 
 void CWidget::AddChild(CWidget* child)
 {
-	child->mUserWidget = mUserWidget;
-	child->mParent = this;
-
 	mChilds.emplace_back(child);
+
+	child->mSceneUI = FindRootWidget()->mSceneUI;
+	child->mParent = this;
 
 	mTransform->AddChild(child->mTransform);
 }
@@ -147,19 +155,4 @@ void CWidget::Destroy()
 		child->Destroy();
 	}
 	SetActive(false);
-}
-
-CWidget* CWidget::FindHoveredWidget(const FVector2D& mousePos)
-{
-	if (!CCollisionManager::GetInst()->AABBPointCollision(GetRect(), mousePos))
-		return nullptr;
-
-	for (size_t i = mChilds.size(); i > 0; i--)
-	{
-		CWidget* childHovered = mChilds[i - 1]->FindHoveredWidget(mousePos);
-
-		if (childHovered)
-			return childHovered;
-	}
-	return mIsInteractable ? this : nullptr;
 }
