@@ -1,5 +1,25 @@
 #pragma once
 
+#include "../../Manager/MemoryPoolManager.h"
+
+class CWidgetUtils
+{
+public:
+	template <typename T, int initialCapacity = 5>
+	static T* AllocateWidget(const std::string& name)
+	{
+		if (!CMemoryPoolManager::GetInst()->HasPool<T>())
+		{
+			CMemoryPoolManager::GetInst()->CreatePool<T>(initialCapacity);
+		}
+
+		T* widget = CMemoryPoolManager::GetInst()->Allocate<T>();
+		widget->SetName(name);
+
+		return widget;
+	}
+};
+
 // for the CButton class
 namespace EButton
 {
