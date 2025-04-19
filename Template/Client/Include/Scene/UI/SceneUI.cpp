@@ -128,14 +128,18 @@ void CSceneUI::UpdateInput()
 	bool isHeld     = CInput::GetInst()->GetMouseButtonState(SDL_BUTTON_LEFT, EKey::State::HOLD);
 	bool isReleased = CInput::GetInst()->GetMouseButtonState(SDL_BUTTON_LEFT, EKey::State::RELEASE);
 
-	// 마우스 좌클릭을 홀드 중에, 잡고 있는 Widget이 존재할 경우
-	if (mHeldWidget && isHeld)
+	// 마우스로 잡은 Widget이 있을 경우
+	if (mHeldWidget)
 	{
-		// 잡고 있는 Widget의 영역 밖일 경우, Unhovered() 실행
+		// 잡고있는 Widget의 영역 밖일 경우
 		if (!CCollisionManager::GetInst()->AABBPointCollision(mHeldWidget->GetRect(), mousePos))
 		{
-			mHeldWidget->HandleUnhovered(mousePos, isHeld, isReleased);
-			return; // 잡고 있는 Widget만 처리
+			// 홀드 유지 또는 떼었을 때 Unhovered() 실행
+			if (isHeld || isReleased)
+			{
+				mHeldWidget->HandleUnhovered(mousePos, isHeld, isReleased);
+				return; // 잡고 있는 Widget만 처리
+			}
 		}
 	}
 
@@ -147,9 +151,7 @@ void CSceneUI::UpdateInput()
 		{
 			// 기존 호버된 Widget이 있다면 HandleUnhovered()를 1회 실행
 			if (mCurrHovered)
-			{
 				mCurrHovered->HandleUnhovered(mousePos, isHeld, isReleased);
-			}
 
 			mCurrHovered = newHovered;
 		}

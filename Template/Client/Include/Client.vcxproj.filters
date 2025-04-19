@@ -85,12 +85,6 @@
     <Filter Include="Framework\06. Widget\02. UserWidgets">
       <UniqueIdentifier>{fbe36ed1-71f1-4f6b-a349-312f74e091f3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\01. Scenes\01. MENU">
-      <UniqueIdentifier>{98b483b4-c8f2-4d6e-96e0-7ff18e26723a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\01. Scenes\02. PLAY">
-      <UniqueIdentifier>{76319526-342d-4a1c-b6f1-1931c92a4f80}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\04. Entity\02. Component\01. Components\Widget">
       <UniqueIdentifier>{b40e51fc-55c0-4e85-ae1c-35cf81ba079a}</UniqueIdentifier>
     </Filter>
@@ -111,6 +105,12 @@
     </Filter>
     <Filter Include="Game\03. Widgets">
       <UniqueIdentifier>{b45f146a-c9c0-4f4c-afde-93f02fdeeb0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\01. Scenes\01. Menu">
+      <UniqueIdentifier>{98b483b4-c8f2-4d6e-96e0-7ff18e26723a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\01. Scenes\02. Play">
+      <UniqueIdentifier>{76319526-342d-4a1c-b6f1-1931c92a4f80}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -484,13 +484,13 @@
       <Filter>Framework\06. Widget</Filter>
     </ClInclude>
     <ClInclude Include="Scene\MenuScene.h">
-      <Filter>Game\01. Scenes\01. MENU</Filter>
+      <Filter>Game\01. Scenes\01. Menu</Filter>
     </ClInclude>
     <ClInclude Include="Scene\UI\MenuUI.h">
-      <Filter>Game\01. Scenes\01. MENU</Filter>
+      <Filter>Game\01. Scenes\01. Menu</Filter>
     </ClInclude>
     <ClInclude Include="Scene\PlayScene.h">
-      <Filter>Game\01. Scenes\02. PLAY</Filter>
+      <Filter>Game\01. Scenes\02. Play</Filter>
     </ClInclude>
     <ClInclude Include="Widget\Image.h">
       <Filter>Framework\06. Widget\01. Widgets</Filter>
@@ -687,13 +687,13 @@
       <Filter>Framework\06. Widget\01. Widgets</Filter>
     </ClCompile>
     <ClCompile Include="Scene\MenuScene.cpp">
-      <Filter>Game\01. Scenes\01. MENU</Filter>
+      <Filter>Game\01. Scenes\01. Menu</Filter>
     </ClCompile>
     <ClCompile Include="Scene\UI\MenuUI.cpp">
-      <Filter>Game\01. Scenes\01. MENU</Filter>
+      <Filter>Game\01. Scenes\01. Menu</Filter>
     </ClCompile>
     <ClCompile Include="Scene\PlayScene.cpp">
-      <Filter>Game\01. Scenes\02. PLAY</Filter>
+      <Filter>Game\01. Scenes\02. Play</Filter>
     </ClCompile>
     <ClCompile Include="Widget\Image.cpp">
       <Filter>Framework\06. Widget\01. Widgets</Filter>
