@@ -109,6 +109,9 @@
     <Filter Include="Framework\03. Scene\04. UI">
       <UniqueIdentifier>{81d21286-dc7b-475b-91d0-cb58d4517747}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\03. Widgets">
+      <UniqueIdentifier>{b45f146a-c9c0-4f4c-afde-93f02fdeeb0b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Timer.h">
@@ -564,6 +567,12 @@
     <ClInclude Include="Core\Utils\ColliderUtils.h">
       <Filter>Framework\01. Core\Lib\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="Widget\SampleUserWidget.h">
+      <Filter>Game\03. Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget\AllWidgets.h">
+      <Filter>Framework\06. Widget</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Timer.cpp">
@@ -724,6 +733,9 @@
     </ClCompile>
     <ClCompile Include="Manager\PhysicsManager.cpp">
       <Filter>Framework\02. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Widget\SampleUserWidget.cpp">
+      <Filter>Game\03. Widgets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

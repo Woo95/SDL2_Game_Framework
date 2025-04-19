@@ -33,6 +33,8 @@
     <ClInclude Include="Resource\Sound\SFX.h" />
     <ClInclude Include="Entity\Component\Rigidbody.h" />
     <ClInclude Include="Manager\PhysicsManager.h" />
+    <ClInclude Include="Widget\AllWidgets.h" />
+    <ClInclude Include="Widget\SampleUserWidget.h" />
     <ClInclude Include="Widget\Slider.h" />
     <ClInclude Include="Widget\TextBlock.h" />
     <ClInclude Include="Widget\ProgressBar.h" />
@@ -180,6 +182,7 @@
     <ClCompile Include="Resource\Sound\SFX.cpp" />
     <ClCompile Include="Entity\Component\Rigidbody.cpp" />
     <ClCompile Include="Manager\PhysicsManager.cpp" />
+    <ClCompile Include="Widget\SampleUserWidget.cpp" />
     <ClCompile Include="Widget\Slider.cpp" />
     <ClCompile Include="Widget\TextBlock.cpp" />
     <ClCompile Include="Widget\ProgressBar.cpp" />
