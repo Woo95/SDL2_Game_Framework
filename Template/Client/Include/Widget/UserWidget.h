@@ -21,6 +21,11 @@ protected:
 	virtual void HandleUnhovered(const FVector2D& mousePos, bool isHeld, bool isReleased) override {};
 
 public:
+	void SetInteractable(bool interactable)
+	{
+		mIsInteractable = interactable;
+		mIsMovable &= mIsInteractable;
+	}
 	void SetMovable(bool movable)
 	{
 		mIsMovable = movable;
