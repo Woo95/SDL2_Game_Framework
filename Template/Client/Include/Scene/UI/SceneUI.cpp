@@ -108,7 +108,7 @@ CWidget* CSceneUI::FindHoveredWidget(const FVector2D& mousePos)
 
 CWidget* CSceneUI::FindHoveredInTree(CWidget* widget, const FVector2D& mousePos)
 {
-	if (!CCollisionManager::GetInst()->AABBPointCollision(widget->GetRect(), mousePos))
+	if (!CCollisionManager::GetInst()->AABBPointCollision(widget->GetRect(), mousePos) || !widget->GetEnable())
 		return nullptr;
 
 	for (size_t i = widget->mChilds.size(); i > 0; --i) // 렌더링 순서를 고려한 역순 탐색
