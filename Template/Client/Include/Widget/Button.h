@@ -16,6 +16,10 @@ private:
 	SDL_Rect  mFrames[EButton::State::STATE_MAX] = {};
 	SDL_Color mColor = { 255, 255, 255, 255 };
 
+	// for the 9Slice
+	FVector2D mSrcCorner = FVector2D::ZERO;
+	float mCornerRatio = 0.0f;
+
 	EButton::State mCurrentState = EButton::State::NORMAL;
 
 	using EventCallback = std::function<void()>;
@@ -24,9 +28,21 @@ private:
 private:
 	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO) final;
 	virtual void Release() final;
-	
+
 	virtual void HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased) final;
 	virtual void HandleUnhovered(const FVector2D& mousePos, bool isHeld, bool isReleased) final;
+
+public:
+	void Render9Slice(SDL_Renderer* Renderer, const SDL_Rect& renderRect);
+
+	void Set9SlicingCorner(const FVector2D& srcCorner)
+	{
+		mSrcCorner = srcCorner;
+	}
+	void SetCornerRatio(float ratio)
+	{
+		mCornerRatio = ratio;
+	}
 
 public:
 	void SetTexture(const std::string& key);

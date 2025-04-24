@@ -27,7 +27,10 @@ void CButton::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
 	SDL_SetTextureColorMod(mTexture.get()->GetTexture(), mColor.r, mColor.g, mColor.b);
 	SDL_SetTextureAlphaMod(mTexture.get()->GetTexture(), mColor.a);
 
-	SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &mFrames[mCurrentState], &renderRect);
+	if ((mSrcCorner.x + mSrcCorner.y) > 0.0f)
+		Render9Slice(Renderer, renderRect);
+	else
+		SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &mFrames[mCurrentState], &renderRect);
 
 	CWidget::Render(Renderer, topLeft);
 }
@@ -100,6 +103,40 @@ void CButton::HandleUnhovered(const FVector2D& mousePos, bool isHeld, bool isRel
 	}
 }
 
+void CButton::Render9Slice(SDL_Renderer* Renderer, const SDL_Rect& renderRect)
+{
+	const SDL_Rect& srcRect = mFrames[mCurrentState];
+
+	int srcCornerW = (int)mSrcCorner.x;
+	int srcCornerH = (int)mSrcCorner.y;
+
+	int dstCornerW = (int)(srcCornerW * mCornerRatio);
+	int dstCornerH = (int)(srcCornerH * mCornerRatio);
+
+	for (int row = 0; row < 3; row++)
+	{
+		for (int col = 0; col < 3; col++)
+		{
+			SDL_Rect srcPart =
+			{
+				srcRect.x + (col == 0 ? 0 : (col == 1 ? srcCornerW : srcRect.w - srcCornerW)),
+				srcRect.y + (row == 0 ? 0 : (row == 1 ? srcCornerH : srcRect.h - srcCornerH)),
+				(col == 1 ? srcRect.w - srcCornerW * 2 : srcCornerW),
+				(row == 1 ? srcRect.h - srcCornerH * 2 : srcCornerH)
+			};
+
+			SDL_Rect dstPart =
+			{
+				renderRect.x + (col == 0 ? 0 : (col == 1 ? dstCornerW : renderRect.w - dstCornerW)),
+				renderRect.y + (row == 0 ? 0 : (row == 1 ? dstCornerH : renderRect.h - dstCornerH)),
+				(col == 1 ? renderRect.w - dstCornerW * 2 : dstCornerW),
+				(row == 1 ? renderRect.h - dstCornerH * 2 : dstCornerH)
+			};
+
+			SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &srcPart, &dstPart);
+		}
+	}
+}
 void CButton::SetTexture(const std::string& key)
 {
 	mTexture = CAssetManager::GetInst()->GetTextureManager()->GetTexture(key);
@@ -109,13 +146,8 @@ void CButton::SetFrame(const std::string& key)
 {
 	const std::vector<SDL_Rect>* const framesPtr = CAssetManager::GetInst()->GetUIManager()->GetUIFrames(key);
 
-	if (framesPtr)
-	{
-		for (size_t i = 0; i < EButton::State::STATE_MAX; i++)
-		{
-			mFrames[i] = (*framesPtr)[i];
-		}
-	}
+	for (size_t i = 0; i < EButton::State::STATE_MAX; i++)
+		mFrames[i] = (*framesPtr)[i];
 }
 
 void CButton::SetColor(Uint8 r, Uint8 g, Uint8 b)
