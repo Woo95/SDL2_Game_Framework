@@ -1,0 +1,12 @@
+########################################
+#Button [Normal/Unhovered] [Hovered] [Click]
+#ProgressBar [Back] [Fill]
+#Slider [Track] [Thumb]
+########################################
+#Type,#Name,#frames
+Button,BlueButton,3,"955, 1036, 48, 33","955, 1073, 48, 33","955, 1110, 48, 33"
+Button,GreenButton,3,"899, 797, 48, 33","949, 797, 48, 33","957, 849, 48, 33"
+Button,RedButton,3,"957, 886, 48, 33","957, 923, 48, 33","955, 961, 48, 33"
+ProgressBar,HpBar,2,"0, 17, 321, 14","0, 2, 321, 14"
+Slider,Slider,2,"0, 0, 321, 1","423, 1277, 24, 26"
+Image,IntroBG,1,"0, 0, 1280, 800"

@@ -18,10 +18,9 @@ CDataManager::~CDataManager()
 
 bool CDataManager::Init()
 {
-	LoadAllSpriteData();
-	LoadAllAnimationData();
-	LoadAllButtonData();
-	LoadAllImageData();
+	LoadAllEntitySpriteData();
+	LoadAllEntityAnimationData();
+	LoadAllWidgetData();
 
 	return true;
 }
@@ -40,7 +39,7 @@ std::vector<std::string> CDataManager::Split(const std::string& line, char delim
 	return row;
 }
 
-void CDataManager::LoadAllSpriteData()
+void CDataManager::LoadAllEntitySpriteData()
 {
 	std::string filePath = CPathManager::GetInst()->FindPath(DATA_PATH);
 	filePath += "Entity\\Sprite.csv";
@@ -60,6 +59,9 @@ void CDataManager::LoadAllSpriteData()
 
 	while (std::getline(file, line))
 	{
+		if (line[0] == '#')
+			continue;
+
 		std::vector<std::string> row = Split(line, ',');
 
 		const std::string& key = row[0];
@@ -77,7 +79,7 @@ void CDataManager::LoadAllSpriteData()
 	file.close();
 }
 
-void CDataManager::LoadAllAnimationData()
+void CDataManager::LoadAllEntityAnimationData()
 {
 	std::string filePath = CPathManager::GetInst()->FindPath(DATA_PATH);
 	filePath += "Entity\\Animation.csv";
@@ -97,6 +99,9 @@ void CDataManager::LoadAllAnimationData()
 
 	while (std::getline(file, line))
 	{
+		if (line[0] == '#')
+			continue;
+
 		std::vector<std::string> row = Split(line, ',');
 
 		const std::string& key   = row[0];
@@ -133,10 +138,10 @@ void CDataManager::LoadAllAnimationData()
 	file.close();
 }
 
-void CDataManager::LoadAllButtonData()
+void CDataManager::LoadAllWidgetData()
 {
 	std::string filePath = CPathManager::GetInst()->FindPath(DATA_PATH);
-	filePath += "Widget\\Button.csv";
+	filePath += "Widget\\Widget.csv";
 
 	std::ifstream file(filePath);
 
@@ -149,59 +154,22 @@ void CDataManager::LoadAllButtonData()
 	CUIManager* UIM = CAssetManager::GetInst()->GetUIManager();
 
 	std::string line;
-	std::getline(file, line);
-
 	while (std::getline(file, line))
 	{
+		if (line[0] == '#')
+			continue;
+
 		std::vector<std::string> row = Split(line, ',');
 
-		const std::string& key = row[0];
+		const std::string& key = row[1];
 
-		for (int i = 0; i < 12; i+=4)
-		{
-			int x = std::stoi(row[1 + i].substr(1));
-			int y = std::stoi(row[2 + i]);
-			int w = std::stoi(row[3 + i]);
-			int h = std::stoi(row[4 + i].substr(0, row[4 + i].length() - 1));
-
-			UIM->mUIs[key].emplace_back(SDL_Rect{ x,y,w,h });
-		}
-		row.clear();
-	}
-	file.close();
-}
-
-void CDataManager::LoadAllImageData()
-{
-	std::string filePath = CPathManager::GetInst()->FindPath(DATA_PATH);
-	filePath += "Widget\\Image.csv";
-
-	std::ifstream file(filePath);
-
-	if (!file.is_open())
-	{
-		std::cerr << "Cannot open file at: " << filePath << "\n";
-		return;
-	}
-
-	CUIManager* UIM = CAssetManager::GetInst()->GetUIManager();
-
-	std::string line;
-	std::getline(file, line);
-
-	while (std::getline(file, line))
-	{
-		std::vector<std::string> row = Split(line, ',');
-
-		const std::string& key = row[0];
-
-		int frameCount = std::stoi(row[1]) * 4;
+		int frameCount = std::stoi(row[2]) * 4;
 		for (int i = 0; i < frameCount; i += 4)
 		{
-			int x = std::stoi(row[2 + i].substr(1));
-			int y = std::stoi(row[3 + i]);
-			int w = std::stoi(row[4 + i]);
-			int h = std::stoi(row[5 + i].substr(0, row[5 + i].length() - 1));
+			int x = std::stoi(row[3 + i].substr(1));
+			int y = std::stoi(row[4 + i]);
+			int w = std::stoi(row[5 + i]);
+			int h = std::stoi(row[6 + i].substr(1, row[6 + i].length() - 1));
 
 			UIM->mUIs[key].emplace_back(SDL_Rect{ x,y,w,h });
 		}
