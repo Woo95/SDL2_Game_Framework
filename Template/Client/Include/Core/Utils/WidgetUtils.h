@@ -75,3 +75,15 @@ namespace ESlider
 		INPUT_EVENT_MAX
 	};
 }
+
+// for CTextBlock class
+namespace ETextBlock
+{
+	enum Alignment : unsigned char
+	{
+		FILL,
+		LEFT,
+		CENTER,
+		RIGHT
+	};
+}

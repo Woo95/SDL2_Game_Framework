@@ -27,17 +27,25 @@ void CTextBlock::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
 {
 	SDL_Rect renderRect = mRect;
 
+	renderRect.x += (int)topLeft.x;
+	renderRect.y += (int)topLeft.y;
+
+	if (mIsTextFitNeeded)
+		FitTextWidthToRect(renderRect);
+
+	ApplyAlignment(renderRect);
+
 	if (mHasShadow)
 	{
 		UpdateTextTexture(Renderer, mUpdateShadowTexture, mShadowTexture, mShadowColor);
 
-		renderRect.x += (int)(mShadowOffset.x + topLeft.x);
-		renderRect.y += (int)(mShadowOffset.y + topLeft.y);
+		renderRect.x += (int)mShadowOffset.x;
+		renderRect.y += (int)mShadowOffset.y;
 
 		SDL_RenderCopy(Renderer, mShadowTexture, nullptr, &renderRect);
 
-		renderRect.x -= (int)(mShadowOffset.x + topLeft.x);
-		renderRect.y -= (int)(mShadowOffset.y + topLeft.y);
+		renderRect.x -= (int)mShadowOffset.x;
+		renderRect.y -= (int)mShadowOffset.y;
 	}
 	UpdateTextTexture(Renderer, mUpdateTexture, mTexture, mColor);
 	SDL_RenderCopy(Renderer, mTexture, nullptr, &renderRect);
@@ -48,6 +56,41 @@ void CTextBlock::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
 void CTextBlock::Release()
 {
 	CMemoryPoolManager::GetInst()->Deallocate<CTextBlock>(this);
+}
+
+void CTextBlock::FitTextWidthToRect(const SDL_Rect& renderRect)
+{
+	if (mText.empty())
+		return;
+
+	mTextWidth = mCharWidth * mText.length();
+
+	if (renderRect.w < mTextWidth)
+		mTextWidth = (float)renderRect.w;
+
+	mIsTextFitNeeded = false;
+}
+
+void CTextBlock::ApplyAlignment(SDL_Rect& renderRect)
+{
+	if (mAlignment == ETextBlock::Alignment::FILL)
+		return;
+
+	int offsetX = 0;
+	switch (mAlignment)
+	{
+	case ETextBlock::Alignment::LEFT:
+		break;
+	case ETextBlock::Alignment::CENTER:
+		offsetX = (int)((renderRect.w - mTextWidth) * 0.5f);
+		break;
+	case ETextBlock::Alignment::RIGHT:
+		offsetX = renderRect.w - (int)mTextWidth;
+		break;
+	}
+
+	renderRect.x += offsetX;
+	renderRect.w = (int)mTextWidth;
 }
 
 void CTextBlock::UpdateTextTexture(SDL_Renderer* Renderer, bool& updateTexture, SDL_Texture*& texture, SDL_Color color)
@@ -98,4 +141,40 @@ void CTextBlock::SetShadowOffset(float x, float y)
 {
 	mShadowOffset.x = x;
 	mShadowOffset.y = y;
+}
+
+void CTextBlock::SetText(const std::string& text)
+{
+	if (mText != text)
+	{
+		mText = text;
+		mIsTextFitNeeded = true;
+		mUpdateTexture   = true;
+	}
+}
+
+void CTextBlock::AddText(const std::string& text)
+{
+	if (!text.empty())
+	{
+		mText += text;
+		mIsTextFitNeeded = true;
+		mUpdateTexture   = true;
+	}
+}
+
+void CTextBlock::ClearText()
+{
+	if (!mText.empty())
+	{
+		mText.clear();
+		mIsTextFitNeeded = true;
+		mUpdateTexture   = true;
+	}
+}
+
+void CTextBlock::SetCharWidth(float charWidth)
+{
+	mCharWidth = charWidth;
+	mIsTextFitNeeded = true;
 }
