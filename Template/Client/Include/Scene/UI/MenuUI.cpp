@@ -39,17 +39,17 @@ bool CMenuUI::Init()
 	return true;
 }
 
-void CMenuUI::Update(float DeltaTime)
+void CMenuUI::Update(float deltaTime)
 {
-	CSceneUI::Update(DeltaTime);
+	CSceneUI::Update(deltaTime);
 }
 
-void CMenuUI::LateUpdate(float DeltaTime)
+void CMenuUI::LateUpdate(float deltaTime)
 {
-	CSceneUI::LateUpdate(DeltaTime);
+	CSceneUI::LateUpdate(deltaTime);
 }
 
-void CMenuUI::Render(SDL_Renderer* Renderer)
+void CMenuUI::Render(SDL_Renderer* renderer)
 {
-	CSceneUI::Render(Renderer);
+	CSceneUI::Render(renderer);
 }

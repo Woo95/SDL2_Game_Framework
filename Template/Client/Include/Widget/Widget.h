@@ -23,9 +23,9 @@ protected:
 	bool mWidgetHeld     = false;
 
 protected:
-	virtual void Update(float DeltaTime);
-	virtual void LateUpdate(float DeltaTime);
-	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO);
+	virtual void Update(float deltaTime);
+	virtual void LateUpdate(float deltaTime);
+	virtual void Render(SDL_Renderer* renderer, const FVector2D& topLeft = FVector2D::ZERO);
 	virtual void Release() = 0;
 
 	// 마우스와 상호작용이 있는 위젯들에서 따로 구현

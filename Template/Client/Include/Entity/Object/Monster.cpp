@@ -37,19 +37,19 @@ bool CMonster::Init()
     return true;
 }
 
-void CMonster::Update(float DeltaTime)
+void CMonster::Update(float deltaTime)
 {
-    CObject::Update(DeltaTime);
+    CObject::Update(deltaTime);
 }
 
-void CMonster::LateUpdate(float DeltaTime)
+void CMonster::LateUpdate(float deltaTime)
 {
-    CObject::LateUpdate(DeltaTime);
+    CObject::LateUpdate(deltaTime);
 }
 
-void CMonster::Render(SDL_Renderer* Renderer)
+void CMonster::Render(SDL_Renderer* renderer)
 {
-    CObject::Render(Renderer);
+    CObject::Render(renderer);
 }
 
 void CMonster::Release()

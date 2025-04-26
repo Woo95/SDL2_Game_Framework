@@ -21,9 +21,9 @@ bool CCircleCollider::Init()
 	return CCollider::Init();
 }
 
-void CCircleCollider::Update(float DeltaTime)
+void CCircleCollider::Update(float deltaTime)
 {
-	CCollider::Update(DeltaTime);
+	CCollider::Update(deltaTime);
 
 	// 월드 좌표와 스케일 및 피벗 값 가져오기
 	FVector2D worldPos = mTransform->GetWorldPos();
@@ -35,21 +35,21 @@ void CCircleCollider::Update(float DeltaTime)
 	mCircle.radius = scale.x * 0.5f;
 }
 
-void CCircleCollider::LateUpdate(float DeltaTime)
+void CCircleCollider::LateUpdate(float deltaTime)
 {
-    CCollider::LateUpdate(DeltaTime);
+    CCollider::LateUpdate(deltaTime);
 }
 
-void CCircleCollider::Render(SDL_Renderer* Renderer)
+void CCircleCollider::Render(SDL_Renderer* renderer)
 {
-	CCollider::Render(Renderer);
+	CCollider::Render(renderer);
 
 #ifdef _DEBUG	
 	// 렌더 색상 설정
 	if (!mCollidedCount)
-		SDL_SetRenderDrawColor(Renderer, 0, 255, 0, 255);
+		SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
 	else
-		SDL_SetRenderDrawColor(Renderer, 255, 0, 0, 255);
+		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 
 	// 해당 객체의 위치와 크기를 포함한 영역을 반환
 	FCircle renderCircle = mCircle;
@@ -59,7 +59,7 @@ void CCircleCollider::Render(SDL_Renderer* Renderer)
 		renderCircle.center = camera->GetRenderPos(renderCircle.center);
 
 	// 원 그리기
-	RenderDrawCircle(Renderer, renderCircle);
+	RenderDrawCircle(renderer, renderCircle);
 #endif
 }
 

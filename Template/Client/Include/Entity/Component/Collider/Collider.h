@@ -25,9 +25,9 @@ protected:
 
 protected:
 	virtual bool Init()                         override;
-	virtual void Update(float DeltaTime)        override;
-	virtual void LateUpdate(float DeltaTime)    override;
-	virtual void Render(SDL_Renderer* Renderer) override;
+	virtual void Update(float deltaTime)        override;
+	virtual void LateUpdate(float deltaTime)    override;
+	virtual void Render(SDL_Renderer* renderer) override;
 	virtual void Release() = 0;
 
 public:

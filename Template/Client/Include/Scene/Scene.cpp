@@ -29,40 +29,40 @@ CScene::~CScene()
     UnloadResources();
 }
 
-void CScene::Update(float DeltaTime)
+void CScene::Update(float deltaTime)
 {
     for (CLayer* layer : mLayers)
-        layer->Update(DeltaTime);
+        layer->Update(deltaTime);
 
     if (mSceneCollision)
-        mSceneCollision->Update(DeltaTime);
+        mSceneCollision->Update(deltaTime);
 
     if (mCamera)
-        mCamera->Update(DeltaTime);
+        mCamera->Update(deltaTime);
 
     if (mSceneUI)
-        mSceneUI->Update(DeltaTime);
+        mSceneUI->Update(deltaTime);
 }
 
-void CScene::LateUpdate(float DeltaTime)
+void CScene::LateUpdate(float deltaTime)
 {
     for (CLayer* layer : mLayers)
-        layer->LateUpdate(DeltaTime);
+        layer->LateUpdate(deltaTime);
 
     if (mSceneUI)
-        mSceneUI->LateUpdate(DeltaTime);
+        mSceneUI->LateUpdate(deltaTime);
 }
 
-void CScene::Render(SDL_Renderer* Renderer)
+void CScene::Render(SDL_Renderer* renderer)
 {
     for (CLayer* layer : mLayers)
-        layer->Render(Renderer);
+        layer->Render(renderer);
 
     if (mSceneCollision)
-        mSceneCollision->Render(Renderer);
+        mSceneCollision->Render(renderer);
 
     if (mSceneUI)
-        mSceneUI->Render(Renderer);
+        mSceneUI->Render(renderer);
 }
 
 void CScene::LoadTexture(const std::string& key, const char* fileName)

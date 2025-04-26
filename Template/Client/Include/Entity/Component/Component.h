@@ -30,9 +30,9 @@ protected:
 	
 protected:
 	virtual bool Init();
-	virtual void Update(float DeltaTime);
-	virtual void LateUpdate(float DeltaTime);
-	virtual void Render(SDL_Renderer* Renderer); 
+	virtual void Update(float deltaTime);
+	virtual void LateUpdate(float deltaTime);
+	virtual void Render(SDL_Renderer* renderer); 
 
 private:
 	// mRootComponent는 메모리 풀을 사용하지 않고 new로 할당되므로 Release할 필요가 없음.

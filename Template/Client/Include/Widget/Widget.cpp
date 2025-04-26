@@ -16,7 +16,7 @@ CWidget::~CWidget()
 	mChilds.clear();
 }
 
-void CWidget::Update(float DeltaTime)
+void CWidget::Update(float deltaTime)
 {
 	UpdateRect();
 
@@ -32,11 +32,11 @@ void CWidget::Update(float DeltaTime)
 		{
 			continue;
 		}
-		child->Update(DeltaTime);
+		child->Update(deltaTime);
 	}
 }
 
-void CWidget::LateUpdate(float DeltaTime)
+void CWidget::LateUpdate(float deltaTime)
 {
 	for (CWidget* child : mChilds)
 	{
@@ -56,18 +56,18 @@ void CWidget::LateUpdate(float DeltaTime)
 		{
 			continue;
 		}
-		child->LateUpdate(DeltaTime);
+		child->LateUpdate(deltaTime);
 	}
 }
 
-void CWidget::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
+void CWidget::Render(SDL_Renderer* renderer, const FVector2D& topLeft)
 {
 	for (CWidget* child : mChilds)
 	{
 		if (!child->GetActive() || !child->GetEnable())
 			continue;
 
-		child->Render(Renderer, topLeft);
+		child->Render(renderer, topLeft);
 	}
 
 #ifdef _DEBUG
@@ -76,8 +76,8 @@ void CWidget::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
 	renderRect.x += (int)topLeft.x;
 	renderRect.y += (int)topLeft.y;
 
-	SDL_SetRenderDrawColor(Renderer, 255, 255, 0, 255);
-	SDL_RenderDrawRect(Renderer, &renderRect);
+	SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
+	SDL_RenderDrawRect(renderer, &renderRect);
 #endif
 }
 

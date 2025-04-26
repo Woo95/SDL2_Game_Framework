@@ -90,19 +90,19 @@ bool CPlayer::Init()
 	return true;
 }
 
-void CPlayer::Update(float DeltaTime)
+void CPlayer::Update(float deltaTime)
 {
-	CObject::Update(DeltaTime);
+	CObject::Update(deltaTime);
 }
 
-void CPlayer::LateUpdate(float DeltaTime)
+void CPlayer::LateUpdate(float deltaTime)
 {
-    CObject::LateUpdate(DeltaTime);
+    CObject::LateUpdate(deltaTime);
 }
 
-void CPlayer::Render(SDL_Renderer* Renderer)
+void CPlayer::Render(SDL_Renderer* renderer)
 {
-    CObject::Render(Renderer);
+    CObject::Render(renderer);
 }
 
 void CPlayer::Release()

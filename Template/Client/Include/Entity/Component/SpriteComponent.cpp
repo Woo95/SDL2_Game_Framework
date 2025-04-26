@@ -31,30 +31,30 @@ bool CSpriteComponent::Init()
 	return CComponent::Init();
 }
 
-void CSpriteComponent::Update(float DeltaTime)
+void CSpriteComponent::Update(float deltaTime)
 {
-	CComponent::Update(DeltaTime);
+	CComponent::Update(deltaTime);
 
 	if (mAnimation)
-		mAnimation->Update(DeltaTime);
+		mAnimation->Update(deltaTime);
 }
 
-void CSpriteComponent::LateUpdate(float DeltaTime)
+void CSpriteComponent::LateUpdate(float deltaTime)
 {
-	CComponent::LateUpdate(DeltaTime);
+	CComponent::LateUpdate(deltaTime);
 }
 
-void CSpriteComponent::Render(SDL_Renderer* Renderer)
+void CSpriteComponent::Render(SDL_Renderer* renderer)
 {
 	if (mTexture)
 	{
 		const SDL_Rect& frame = GetFrame();
 		const SDL_Rect  dest  = GetDest();
 
-		SDL_RenderCopyEx(Renderer, mTexture.get()->GetTexture(), &frame, &dest, 0.0, nullptr, mFlip);
+		SDL_RenderCopyEx(renderer, mTexture.get()->GetTexture(), &frame, &dest, 0.0, nullptr, mFlip);
 	}
 
-	CComponent::Render(Renderer);
+	CComponent::Render(renderer);
 }
 
 void CSpriteComponent::Release()

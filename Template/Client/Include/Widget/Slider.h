@@ -26,8 +26,8 @@ private:
 	std::vector<EventCallback> mEvent[ESlider::InputEvent::INPUT_EVENT_MAX];
 	
 private:
-	virtual void Update(float DeltaTime) final;
-	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO) final;
+	virtual void Update(float deltaTime) final;
+	virtual void Render(SDL_Renderer* renderer, const FVector2D& topLeft = FVector2D::ZERO) final;
 	virtual void Release() final;
 
 	virtual void HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased)   final;
@@ -55,8 +55,8 @@ private:
 	void UpdateTrackRect();
 	void UpdateThumbRect();
 
-	void RenderTrack(SDL_Renderer* Renderer, const FVector2D& topLeft);
-	void RenderThumb(SDL_Renderer* Renderer, const FVector2D& topLeft);
+	void RenderTrack(SDL_Renderer* renderer, const FVector2D& topLeft);
+	void RenderThumb(SDL_Renderer* renderer, const FVector2D& topLeft);
 
 	void ExecuteCallback(ESlider::InputEvent event)
 	{

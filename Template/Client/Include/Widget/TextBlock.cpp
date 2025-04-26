@@ -23,7 +23,7 @@ CTextBlock::~CTextBlock()
 	mFont = nullptr;
 }
 
-void CTextBlock::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
+void CTextBlock::Render(SDL_Renderer* renderer, const FVector2D& topLeft)
 {
 	SDL_Rect renderRect = mRect;
 
@@ -37,20 +37,20 @@ void CTextBlock::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
 
 	if (mHasShadow)
 	{
-		UpdateTextTexture(Renderer, mUpdateShadowTexture, mShadowTexture, mShadowColor);
+		UpdateTextTexture(renderer, mUpdateShadowTexture, mShadowTexture, mShadowColor);
 
 		renderRect.x += (int)mShadowOffset.x;
 		renderRect.y += (int)mShadowOffset.y;
 
-		SDL_RenderCopy(Renderer, mShadowTexture, nullptr, &renderRect);
+		SDL_RenderCopy(renderer, mShadowTexture, nullptr, &renderRect);
 
 		renderRect.x -= (int)mShadowOffset.x;
 		renderRect.y -= (int)mShadowOffset.y;
 	}
-	UpdateTextTexture(Renderer, mUpdateTexture, mTexture, mColor);
-	SDL_RenderCopy(Renderer, mTexture, nullptr, &renderRect);
+	UpdateTextTexture(renderer, mUpdateTexture, mTexture, mColor);
+	SDL_RenderCopy(renderer, mTexture, nullptr, &renderRect);
 
-	CWidget::Render(Renderer, topLeft);
+	CWidget::Render(renderer, topLeft);
 }
 
 void CTextBlock::Release()
@@ -93,7 +93,7 @@ void CTextBlock::ApplyAlignment(SDL_Rect& renderRect)
 	renderRect.w = (int)mTextWidth;
 }
 
-void CTextBlock::UpdateTextTexture(SDL_Renderer* Renderer, bool& updateTexture, SDL_Texture*& texture, SDL_Color color)
+void CTextBlock::UpdateTextTexture(SDL_Renderer* renderer, bool& updateTexture, SDL_Texture*& texture, SDL_Color color)
 {
 	if (updateTexture)
 	{
@@ -106,7 +106,7 @@ void CTextBlock::UpdateTextTexture(SDL_Renderer* Renderer, bool& updateTexture, 
 		SDL_Surface* surface = TTF_RenderText_Blended(mFont.get()->GetFont(), mText.c_str(), color);
 
 		// SDL_Surface를 GPU에서 사용할 수 있는 SDL_Texture로 변환
-		texture = SDL_CreateTextureFromSurface(Renderer, surface);
+		texture = SDL_CreateTextureFromSurface(renderer, surface);
 
 		SDL_FreeSurface(surface);
 

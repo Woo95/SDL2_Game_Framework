@@ -14,7 +14,7 @@ CImage::~CImage()
 	mTexture = nullptr;
 }
 
-void CImage::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
+void CImage::Render(SDL_Renderer* renderer, const FVector2D& topLeft)
 {
 	SDL_Rect renderRect = mRect;
 
@@ -25,11 +25,11 @@ void CImage::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
 	SDL_SetTextureAlphaMod(mTexture.get()->GetTexture(), mColor.a);
 
 	if ((mSrcCorner.x + mSrcCorner.y) > 0.0f)
-		Render9Slice(Renderer, renderRect);
+		Render9Slice(renderer, renderRect);
 	else
-		SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &mFrames[0], &renderRect);
+		SDL_RenderCopy(renderer, mTexture.get()->GetTexture(), &mFrames[0], &renderRect);
 
-	CWidget::Render(Renderer, topLeft);
+	CWidget::Render(renderer, topLeft);
 }
 
 void CImage::Release()
@@ -37,7 +37,7 @@ void CImage::Release()
 	CMemoryPoolManager::GetInst()->Deallocate<CImage>(this);
 }
 
-void CImage::Render9Slice(SDL_Renderer* Renderer, const SDL_Rect& renderRect)
+void CImage::Render9Slice(SDL_Renderer* renderer, const SDL_Rect& renderRect)
 {
 	const SDL_Rect& srcRect = mFrames[0];
 
@@ -67,7 +67,7 @@ void CImage::Render9Slice(SDL_Renderer* Renderer, const SDL_Rect& renderRect)
 				(row == 1 ? renderRect.h - dstCornerH * 2 : dstCornerH)
 			};
 
-			SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &srcPart, &dstPart);
+			SDL_RenderCopy(renderer, mTexture.get()->GetTexture(), &srcPart, &dstPart);
 		}
 	}
 }

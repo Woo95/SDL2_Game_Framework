@@ -22,9 +22,9 @@ bool CRigidbody::Init()
 	return CComponent::Init();
 }
 
-void CRigidbody::Update(float DeltaTime)
+void CRigidbody::Update(float deltaTime)
 {
-	CComponent::Update(DeltaTime);
+	CComponent::Update(deltaTime);
 
 	if (mType == ERigidbodyType::STATIC || mMass <= 0.0f)
 		return;
@@ -33,23 +33,23 @@ void CRigidbody::Update(float DeltaTime)
 
 	ApplyForces();
 	
-	ApplyAcceleration(DeltaTime);
+	ApplyAcceleration(deltaTime);
 
-	ApplyDrag(DeltaTime);
+	ApplyDrag(deltaTime);
 
-	UpdateObjectPos(DeltaTime);
+	UpdateObjectPos(deltaTime);
 
 	ClearForces();
 }
 
-void CRigidbody::LateUpdate(float DeltaTime)
+void CRigidbody::LateUpdate(float deltaTime)
 {
-	CComponent::LateUpdate(DeltaTime);
+	CComponent::LateUpdate(deltaTime);
 }
 
-void CRigidbody::Render(SDL_Renderer* Renderer)
+void CRigidbody::Render(SDL_Renderer* renderer)
 {
-	CComponent::Render(Renderer);
+	CComponent::Render(renderer);
 }
 
 void CRigidbody::Release()
@@ -87,24 +87,24 @@ void CRigidbody::ApplyForces()
 }
 
 // 가속도 만큼 속도 증가
-void CRigidbody::ApplyAcceleration(float DeltaTime)
+void CRigidbody::ApplyAcceleration(float deltaTime)
 {
-	mVelocity += mAcceleration * DeltaTime;
+	mVelocity += mAcceleration * deltaTime;
 }
 
 // 속도에 공기 저항 적용
-void CRigidbody::ApplyDrag(float DeltaTime)
+void CRigidbody::ApplyDrag(float deltaTime)
 {
-	mVelocity *= std::exp(-PhysicsConfig::LinearDrag * DeltaTime);
+	mVelocity *= std::exp(-PhysicsConfig::LinearDrag * deltaTime);
 }
 
 // 속도에 따라 오브젝트의 상대적 위치를 갱신
-void CRigidbody::UpdateObjectPos(float DeltaTime)
+void CRigidbody::UpdateObjectPos(float deltaTime)
 {
 	if (CTransform* transform = GetObject()->GetTransform())
 	{
 		// 속도에 의한 이동 계산 후, 로컬 위치 업데이트
-		FVector2D newRelativePos = transform->GetRelativePos() + mVelocity * DeltaTime;
+		FVector2D newRelativePos = transform->GetRelativePos() + mVelocity * deltaTime;
 
 		// 상대적 위치를 업데이트 (월드 위치는 내부적으로 갱신됨)
 		transform->SetRelativePos(newRelativePos);

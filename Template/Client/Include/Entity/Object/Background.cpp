@@ -28,19 +28,19 @@ bool CBackground::Init()
     return true;
 }
 
-void CBackground::Update(float DeltaTime)
+void CBackground::Update(float deltaTime)
 {
-    CObject::Update(DeltaTime);
+    CObject::Update(deltaTime);
 }
 
-void CBackground::LateUpdate(float DeltaTime)
+void CBackground::LateUpdate(float deltaTime)
 {
-    CObject::LateUpdate(DeltaTime);
+    CObject::LateUpdate(deltaTime);
 }
 
-void CBackground::Render(SDL_Renderer* Renderer)
+void CBackground::Render(SDL_Renderer* renderer)
 {
-    CObject::Render(Renderer);
+    CObject::Render(renderer);
 }
 
 void CBackground::Release()

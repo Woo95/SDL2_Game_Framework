@@ -24,19 +24,19 @@ bool CCollider::Init()
     return true;
 }
 
-void CCollider::Update(float DeltaTime)
+void CCollider::Update(float deltaTime)
 {
-    CComponent::Update(DeltaTime);
+    CComponent::Update(deltaTime);
 }
 
-void CCollider::LateUpdate(float DeltaTime)
+void CCollider::LateUpdate(float deltaTime)
 {
-    CComponent::LateUpdate(DeltaTime);
+    CComponent::LateUpdate(deltaTime);
 }
 
-void CCollider::Render(SDL_Renderer* Renderer)
+void CCollider::Render(SDL_Renderer* renderer)
 {
-    CComponent::Render(Renderer);
+    CComponent::Render(renderer);
 }
 
 void CCollider::OnCollisionEnter(CCollider* other)

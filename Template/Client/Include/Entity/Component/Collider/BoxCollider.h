@@ -15,9 +15,9 @@ public:
 	virtual bool Init() final;
 
 private:
-	virtual void Update(float DeltaTime)        final;
-	virtual void LateUpdate(float DeltaTime)    final;
-	virtual void Render(SDL_Renderer* Renderer) final;
+	virtual void Update(float deltaTime)        final;
+	virtual void LateUpdate(float deltaTime)    final;
+	virtual void Render(SDL_Renderer* renderer) final;
 	virtual void Release()                      final;
 
 	virtual bool Intersect(CCollider* other)    final;

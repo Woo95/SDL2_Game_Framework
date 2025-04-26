@@ -23,19 +23,19 @@ bool CObject::Init()
 	return mRootComponent->Init();
 }
 
-void CObject::Update(float DeltaTime)
+void CObject::Update(float deltaTime)
 {
-	mRootComponent->Update(DeltaTime);
+	mRootComponent->Update(deltaTime);
 }
 
-void CObject::LateUpdate(float DeltaTime)
+void CObject::LateUpdate(float deltaTime)
 {
-	mRootComponent->LateUpdate(DeltaTime);
+	mRootComponent->LateUpdate(deltaTime);
 }
 
-void CObject::Render(SDL_Renderer* Renderer)
+void CObject::Render(SDL_Renderer* renderer)
 {
-	mRootComponent->Render(Renderer);
+	mRootComponent->Render(renderer);
 }
 
 void CObject::Enable()

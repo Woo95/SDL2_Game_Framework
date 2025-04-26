@@ -14,7 +14,7 @@ CLayer::~CLayer()
     }
 }
 
-void CLayer::Update(float DeltaTime)
+void CLayer::Update(float deltaTime)
 {
     for (CObject* obj : mObjects)
     {
@@ -28,11 +28,11 @@ void CLayer::Update(float DeltaTime)
         {
             continue;
         }
-        obj->Update(DeltaTime);
+        obj->Update(deltaTime);
     }
 }
 
-void CLayer::LateUpdate(float DeltaTime)
+void CLayer::LateUpdate(float deltaTime)
 {
     for (size_t i = mObjects.size(); i > 0; i--)
     {
@@ -53,11 +53,11 @@ void CLayer::LateUpdate(float DeltaTime)
         {
             continue;
         }
-        obj->LateUpdate(DeltaTime);
+        obj->LateUpdate(deltaTime);
     }
 }
 
-void CLayer::Render(SDL_Renderer* Renderer)
+void CLayer::Render(SDL_Renderer* renderer)
 {
     switch (mSort)
     {
@@ -74,7 +74,7 @@ void CLayer::Render(SDL_Renderer* Renderer)
         {
             continue;
         }
-        obj->Render(Renderer);
+        obj->Render(renderer);
     }
 }
 

@@ -27,9 +27,9 @@ public:
 
 private:
 	bool Init();
-	void Update(float DeltaTime);
-	void LateUpdate(float DeltaTime);
-	void Render(SDL_Renderer* Renderer);
+	void Update(float deltaTime);
+	void LateUpdate(float deltaTime);
+	void Render(SDL_Renderer* renderer);
 
 	CScene* GetSceneFromState(EScene::State state);
 	

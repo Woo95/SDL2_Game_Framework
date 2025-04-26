@@ -45,26 +45,26 @@ bool CBullet::Init()
     return true;
 }
 
-void CBullet::Update(float DeltaTime)
+void CBullet::Update(float deltaTime)
 {
-	CObject::Update(DeltaTime);
+	CObject::Update(deltaTime);
 
     //mMovementComponent->MoveDir(FVector2D::RIGHT);
 
-    mDestroyTime += DeltaTime;
+    mDestroyTime += deltaTime;
 
     if (mDestroyTime >= 5.0f)
         Destroy();
 }
 
-void CBullet::LateUpdate(float DeltaTime)
+void CBullet::LateUpdate(float deltaTime)
 {
-    CObject::LateUpdate(DeltaTime);
+    CObject::LateUpdate(deltaTime);
 }
 
-void CBullet::Render(SDL_Renderer* Renderer)
+void CBullet::Render(SDL_Renderer* renderer)
 {
-	CObject::Render(Renderer);
+	CObject::Render(renderer);
 }
 
 void CBullet::Release()

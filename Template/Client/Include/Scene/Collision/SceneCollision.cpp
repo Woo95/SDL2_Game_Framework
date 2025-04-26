@@ -16,16 +16,16 @@ CSceneCollision::~CSceneCollision()
 	SAFE_DELETE(mQuadTree);
 }
 
-void CSceneCollision::Update(float DeltaTime)
+void CSceneCollision::Update(float deltaTime)
 {
-	mQuadTree->Update(DeltaTime);
+	mQuadTree->Update(deltaTime);
 
 	CleanPairs();
 }
 
-void CSceneCollision::Render(SDL_Renderer* Renderer)
+void CSceneCollision::Render(SDL_Renderer* renderer)
 {
-	mQuadTree->Render(Renderer);
+	mQuadTree->Render(renderer);
 }
 
 void CSceneCollision::AddCollider(CCollider* collider)

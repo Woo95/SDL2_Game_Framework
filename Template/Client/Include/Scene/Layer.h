@@ -17,9 +17,9 @@ private:
 	ESort::Type mSort = ESort::Y;
 
 protected:
-	void Update(float DeltaTime);
-	void LateUpdate(float DeltaTime);
-	void Render(SDL_Renderer* Renderer);
+	void Update(float deltaTime);
+	void LateUpdate(float deltaTime);
+	void Render(SDL_Renderer* renderer);
 
 public:
 	const std::vector<CObject*>& GetObjectVec() { return mObjects; }

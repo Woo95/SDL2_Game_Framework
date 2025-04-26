@@ -21,23 +21,23 @@ bool CWidgetComponent::Init()
 	return CComponent::Init();
 }
 
-void CWidgetComponent::Update(float DeltaTime)
+void CWidgetComponent::Update(float deltaTime)
 {
-	CComponent::Update(DeltaTime);
+	CComponent::Update(deltaTime);
 
 	if (mWidget)
-		mWidget->Update(DeltaTime);
+		mWidget->Update(deltaTime);
 }
 
-void CWidgetComponent::LateUpdate(float DeltaTime)
+void CWidgetComponent::LateUpdate(float deltaTime)
 {
-	CComponent::LateUpdate(DeltaTime);
+	CComponent::LateUpdate(deltaTime);
 
 	if (mWidget) 
-		mWidget->LateUpdate(DeltaTime);
+		mWidget->LateUpdate(deltaTime);
 }
 
-void CWidgetComponent::Render(SDL_Renderer* Renderer)
+void CWidgetComponent::Render(SDL_Renderer* renderer)
 {
 	if (mWidget)
 	{
@@ -54,10 +54,10 @@ void CWidgetComponent::Render(SDL_Renderer* Renderer)
 			topLeft = camera->GetRenderPos(topLeft);
 
 		// 위젯 그리기
-		mWidget->Render(Renderer, topLeft);
+		mWidget->Render(renderer, topLeft);
 	}
 
-	CComponent::Render(Renderer);
+	CComponent::Render(renderer);
 }
 
 void CWidgetComponent::Release()

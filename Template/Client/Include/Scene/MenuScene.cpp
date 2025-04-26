@@ -31,19 +31,19 @@ bool CMenuScene::Exit()
 	return true;
 }
 
-void CMenuScene::Update(float DeltaTime)
+void CMenuScene::Update(float deltaTime)
 {
-	CScene::Update(DeltaTime);
+	CScene::Update(deltaTime);
 }
 
-void CMenuScene::LateUpdate(float DeltaTime)
+void CMenuScene::LateUpdate(float deltaTime)
 {
-	CScene::LateUpdate(DeltaTime);
+	CScene::LateUpdate(deltaTime);
 }
 
-void CMenuScene::Render(SDL_Renderer* Renderer)
+void CMenuScene::Render(SDL_Renderer* renderer)
 {
-	CScene::Render(Renderer);
+	CScene::Render(renderer);
 }
 
 void CMenuScene::LoadResources()

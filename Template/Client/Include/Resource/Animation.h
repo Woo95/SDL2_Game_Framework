@@ -28,7 +28,7 @@ protected:
 	int   mCurrIdx;
 
 public:
-	void Update(float DeltaTime);
+	void Update(float deltaTime);
 
 public:
 	const SDL_Rect& GetCurrentFrame()

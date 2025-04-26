@@ -17,7 +17,7 @@ CButton::~CButton()
 	mTexture = nullptr;
 }
 
-void CButton::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
+void CButton::Render(SDL_Renderer* renderer, const FVector2D& topLeft)
 {
 	SDL_Rect renderRect = mRect;
 
@@ -28,11 +28,11 @@ void CButton::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
 	SDL_SetTextureAlphaMod(mTexture.get()->GetTexture(), mColor.a);
 
 	if ((mSrcCorner.x + mSrcCorner.y) > 0.0f)
-		Render9Slice(Renderer, renderRect);
+		Render9Slice(renderer, renderRect);
 	else
-		SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &mFrames[mCurrentState], &renderRect);
+		SDL_RenderCopy(renderer, mTexture.get()->GetTexture(), &mFrames[mCurrentState], &renderRect);
 
-	CWidget::Render(Renderer, topLeft);
+	CWidget::Render(renderer, topLeft);
 }
 
 void CButton::Release()
@@ -103,7 +103,7 @@ void CButton::HandleUnhovered(const FVector2D& mousePos, bool isHeld, bool isRel
 	}
 }
 
-void CButton::Render9Slice(SDL_Renderer* Renderer, const SDL_Rect& renderRect)
+void CButton::Render9Slice(SDL_Renderer* renderer, const SDL_Rect& renderRect)
 {
 	const SDL_Rect& srcRect = mFrames[mCurrentState];
 
@@ -133,7 +133,7 @@ void CButton::Render9Slice(SDL_Renderer* Renderer, const SDL_Rect& renderRect)
 				(row == 1 ? renderRect.h - dstCornerH * 2 : dstCornerH)
 			};
 
-			SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &srcPart, &dstPart);
+			SDL_RenderCopy(renderer, mTexture.get()->GetTexture(), &srcPart, &dstPart);
 		}
 	}
 }

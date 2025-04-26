@@ -48,19 +48,19 @@ bool CPlayScene::Exit()
 	return true;
 }
 
-void CPlayScene::Update(float DeltaTime)
+void CPlayScene::Update(float deltaTime)
 {
-	CScene::Update(DeltaTime);
+	CScene::Update(deltaTime);
 }
 
-void CPlayScene::LateUpdate(float DeltaTime)
+void CPlayScene::LateUpdate(float deltaTime)
 {
-	CScene::LateUpdate(DeltaTime);
+	CScene::LateUpdate(deltaTime);
 }
 
-void CPlayScene::Render(SDL_Renderer* Renderer)
+void CPlayScene::Render(SDL_Renderer* renderer)
 {
-	CScene::Render(Renderer);
+	CScene::Render(renderer);
 }
 
 void CPlayScene::LoadResources()

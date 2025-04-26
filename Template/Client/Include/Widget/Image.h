@@ -20,11 +20,11 @@ protected:
 	float mCornerRatio = 0.0f;
 
 private:
-	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO) override;
+	virtual void Render(SDL_Renderer* renderer, const FVector2D& topLeft = FVector2D::ZERO) override;
 	virtual void Release() override;
 
 public:
-	void Render9Slice(SDL_Renderer* Renderer, const SDL_Rect& renderRect);
+	void Render9Slice(SDL_Renderer* renderer, const SDL_Rect& renderRect);
 
 	void Set9SlicingCorner(const FVector2D& srcCorner)
 	{

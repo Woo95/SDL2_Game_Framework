@@ -31,9 +31,9 @@ protected:
 	virtual bool Enter() = 0;
 	virtual bool Exit()  = 0;
 
-    virtual void Update(float DeltaTime);
-    virtual void LateUpdate(float DeltaTime);
-    virtual void Render(SDL_Renderer* Renderer);
+    virtual void Update(float deltaTime);
+    virtual void LateUpdate(float deltaTime);
+    virtual void Render(SDL_Renderer* renderer);
 
     virtual void LoadResources() = 0;
 

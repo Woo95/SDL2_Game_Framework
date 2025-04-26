@@ -14,13 +14,13 @@ CQTNode::~CQTNode()
 {
 }
 
-void CQTNode::Update(float DeltaTime)
+void CQTNode::Update(float deltaTime)
 {
 	if (HasChild())
 	{
 		for (int i = 0; i < 4; i++)
 		{
-			mChilds[i]->Update(DeltaTime);
+			mChilds[i]->Update(deltaTime);
 		}
 	}
 	else
@@ -49,11 +49,11 @@ void CQTNode::Update(float DeltaTime)
 	}
 }
 
-void CQTNode::Render(SDL_Renderer* Renderer)
+void CQTNode::Render(SDL_Renderer* renderer)
 {
 #ifdef _DEBUG	
 	// 렌더 색상 설정
-	SDL_SetRenderDrawColor(Renderer, 255, 255, 255, 255);
+	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
 	// 카메라가 있을 경우, 카메라 좌표계를 반영한 렌더링 좌표로 변환
 	if (mCamera)
@@ -64,13 +64,13 @@ void CQTNode::Render(SDL_Renderer* Renderer)
 	}
 
 	// 사각형 그리기
-	SDL_RenderDrawRectF(Renderer, &mBoundary);
+	SDL_RenderDrawRectF(renderer, &mBoundary);
 
 	if (HasChild())
 	{
 		for (int i = 0; i < 4; ++i)
 		{
-			mChilds[i]->Render(Renderer);
+			mChilds[i]->Render(renderer);
 		}
 	}
 #endif

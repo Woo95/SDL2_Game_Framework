@@ -22,7 +22,7 @@ CAnimation::~CAnimation()
 	}
 }
 
-void CAnimation::Update(float DeltaTime)
+void CAnimation::Update(float deltaTime)
 {
 	FAnimationData* aniData = mAnimationStates[mCurrentState].get();
 
@@ -53,7 +53,7 @@ void CAnimation::Update(float DeltaTime)
 
 		case EAnimationType::TIME:
 		{
-			mFrameInterval += DeltaTime;
+			mFrameInterval += deltaTime;
 
 			if (mFrameInterval >= aniData->intervalPerFrame)
 			{

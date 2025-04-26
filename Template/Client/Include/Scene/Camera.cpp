@@ -12,7 +12,7 @@ CCamera::~CCamera()
 {
 }
 
-void CCamera::Update(float DeltaTime)
+void CCamera::Update(float deltaTime)
 {
 	if (!mTarget || !mTarget->GetActive() || !mTarget->GetEnable())
 	{

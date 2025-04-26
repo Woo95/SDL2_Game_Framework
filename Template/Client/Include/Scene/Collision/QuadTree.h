@@ -19,8 +19,8 @@ private:
 	std::vector<CCollider*> mColliders;
 
 public:
-	void Update(float DeltaTime);
-	void Render(SDL_Renderer* Renderer);
+	void Update(float deltaTime);
+	void Render(SDL_Renderer* renderer);
 
 public:
 	void AddCollider(CCollider* collider);

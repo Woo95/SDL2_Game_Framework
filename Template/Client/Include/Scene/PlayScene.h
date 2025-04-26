@@ -14,9 +14,9 @@ public:
     virtual bool Enter() final;
     virtual bool Exit()  final;
 
-    virtual void Update(float DeltaTime)        final;
-    virtual void LateUpdate(float DeltaTime)    final;
-    virtual void Render(SDL_Renderer* Renderer) final;
+    virtual void Update(float deltaTime)        final;
+    virtual void LateUpdate(float deltaTime)    final;
+    virtual void Render(SDL_Renderer* renderer) final;
 
     virtual void LoadResources() final;
 };

@@ -21,7 +21,7 @@ CQuadTree::~CQuadTree()
 	CMemoryPoolManager::GetInst()->DeletePool<CQTNode>();
 }
 
-void CQuadTree::Update(float DeltaTime)
+void CQuadTree::Update(float deltaTime)
 {
 	UpdateBoundary();
 
@@ -42,12 +42,12 @@ void CQuadTree::Update(float DeltaTime)
 		}
 		mRoot->AddCollider(collider);
 	}
-	mRoot->Update(DeltaTime);
+	mRoot->Update(deltaTime);
 }
 
-void CQuadTree::Render(SDL_Renderer* Renderer)
+void CQuadTree::Render(SDL_Renderer* renderer)
 {
-	mRoot->Render(Renderer);
+	mRoot->Render(renderer);
 
 	mRoot->Clear();
 }

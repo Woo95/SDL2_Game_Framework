@@ -23,9 +23,9 @@ public:
 	virtual bool Init() final;
 
 private:
-	virtual void Update(float DeltaTime)        final;
-	virtual void LateUpdate(float DeltaTime)    final;
-	virtual void Render(SDL_Renderer* Renderer) final;
+	virtual void Update(float deltaTime)        final;
+	virtual void LateUpdate(float deltaTime)    final;
+	virtual void Render(SDL_Renderer* renderer) final;
 	virtual void Release()                      final;
 
 public:
@@ -53,8 +53,8 @@ public:
 private:
 	void ApplyGravity();
 	void ApplyForces();
-	void ApplyAcceleration(float DeltaTime);
-	void ApplyDrag(float DeltaTime);
-	void UpdateObjectPos(float DeltaTime);
+	void ApplyAcceleration(float deltaTime);
+	void ApplyDrag(float deltaTime);
+	void UpdateObjectPos(float deltaTime);
 	void ClearForces();
 };

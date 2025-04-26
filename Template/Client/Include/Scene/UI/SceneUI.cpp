@@ -21,7 +21,7 @@ bool CSceneUI::Init()
 	return true;
 }
 
-void CSceneUI::Update(float DeltaTime)
+void CSceneUI::Update(float deltaTime)
 {
 	UpdateInput();
 
@@ -37,11 +37,11 @@ void CSceneUI::Update(float DeltaTime)
 		{
 			continue;
 		}
-		widget->Update(DeltaTime);
+		widget->Update(deltaTime);
 	}
 }
 
-void CSceneUI::LateUpdate(float DeltaTime)
+void CSceneUI::LateUpdate(float deltaTime)
 {
 	for (CWidget* widget : mWidgets)
 	{
@@ -58,18 +58,18 @@ void CSceneUI::LateUpdate(float DeltaTime)
 		{
 			continue;
 		}
-		widget->LateUpdate(DeltaTime);
+		widget->LateUpdate(deltaTime);
 	}
 }
 
-void CSceneUI::Render(SDL_Renderer* Renderer)
+void CSceneUI::Render(SDL_Renderer* renderer)
 {
 	for (CWidget* widget : mWidgets)
 	{
 		if (!widget->GetActive() || !widget->GetEnable())
 			continue;
 		
-		widget->Render(Renderer);
+		widget->Render(renderer);
 	}
 }
 

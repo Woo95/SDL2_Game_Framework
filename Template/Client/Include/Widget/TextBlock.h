@@ -34,12 +34,12 @@ private:
 	ETextBlock::Alignment mAlignment = ETextBlock::Alignment::FILL;
 
 private:
-	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO) final;
+	virtual void Render(SDL_Renderer* renderer, const FVector2D& topLeft = FVector2D::ZERO) final;
 	virtual void Release() final;
 
 	void FitTextWidthToRect(const SDL_Rect& renderRect);
 	void ApplyAlignment(SDL_Rect& renderRect);
-	void UpdateTextTexture(SDL_Renderer* Renderer, bool& updateTexture, SDL_Texture*& texture, SDL_Color color);
+	void UpdateTextTexture(SDL_Renderer* renderer, bool& updateTexture, SDL_Texture*& texture, SDL_Color color);
 
 public:
 	const std::string& GetText() const { return mText; }

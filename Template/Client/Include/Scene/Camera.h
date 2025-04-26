@@ -20,7 +20,7 @@ private:
 	FVector2D   mResolution;
 
 protected:
-	void Update(float DeltaTime);
+	void Update(float deltaTime);
 
 public:
 	const FVector2D GetRenderPos(const FVector2D& objPos) const { return objPos - mLookAt + (mResolution * 0.5f); }

@@ -18,21 +18,21 @@ bool CMovementComponent::Init()
 	return CComponent::Init();
 }
 
-void CMovementComponent::Update(float DeltaTime)
+void CMovementComponent::Update(float deltaTime)
 {
-	CComponent::Update(DeltaTime);
+	CComponent::Update(deltaTime);
 
-	Move(DeltaTime);
+	Move(deltaTime);
 }
 
-void CMovementComponent::LateUpdate(float DeltaTime)
+void CMovementComponent::LateUpdate(float deltaTime)
 {
-	CComponent::LateUpdate(DeltaTime);
+	CComponent::LateUpdate(deltaTime);
 }
 
-void CMovementComponent::Render(SDL_Renderer* Renderer)
+void CMovementComponent::Render(SDL_Renderer* renderer)
 {
-	CComponent::Render(Renderer);
+	CComponent::Render(renderer);
 }
 
 void CMovementComponent::Release()
@@ -40,13 +40,13 @@ void CMovementComponent::Release()
 	CMemoryPoolManager::GetInst()->Deallocate<CMovementComponent>(this);
 }
 
-void CMovementComponent::Move(float DeltaTime)
+void CMovementComponent::Move(float deltaTime)
 {
 	if (mMoveDir != FVector2D::ZERO)
 	{
 		CTransform* transform = mObject->GetTransform();
 
-		FVector2D movement = mMoveDir.GetNormalize() * mSpeed * DeltaTime;
+		FVector2D movement = mMoveDir.GetNormalize() * mSpeed * deltaTime;
 
 		transform->SetWorldPos(transform->GetWorldPos() + movement);
 

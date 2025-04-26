@@ -16,17 +16,17 @@ CProgressBar::~CProgressBar()
 	mTexture = nullptr;
 }
 
-void CProgressBar::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
+void CProgressBar::Render(SDL_Renderer* renderer, const FVector2D& topLeft)
 {
 	SDL_Rect renderRect = mRect;
 
 	renderRect.x += (int)topLeft.x;
 	renderRect.y += (int)topLeft.y;
 
-	RenderBack(Renderer, renderRect);
-	RenderFill(Renderer, renderRect);
+	RenderBack(renderer, renderRect);
+	RenderFill(renderer, renderRect);
 
-	CWidget::Render(Renderer, topLeft);
+	CWidget::Render(renderer, topLeft);
 }
 
 void CProgressBar::Release()
@@ -34,16 +34,16 @@ void CProgressBar::Release()
 	CMemoryPoolManager::GetInst()->Deallocate<CProgressBar>(this);
 }
 
-void CProgressBar::RenderBack(SDL_Renderer* Renderer, const SDL_Rect& renderRect)
+void CProgressBar::RenderBack(SDL_Renderer* renderer, const SDL_Rect& renderRect)
 {
 	const SDL_Color& color = mColors[EProgBar::State::BACK];
 	SDL_SetTextureColorMod(mTexture.get()->GetTexture(), color.r, color.g, color.b);
 	SDL_SetTextureAlphaMod(mTexture.get()->GetTexture(), color.a);
 
-	SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &mFrames[EProgBar::State::BACK], &renderRect);
+	SDL_RenderCopy(renderer, mTexture.get()->GetTexture(), &mFrames[EProgBar::State::BACK], &renderRect);
 }
 
-void CProgressBar::RenderFill(SDL_Renderer* Renderer, SDL_Rect& renderRect)
+void CProgressBar::RenderFill(SDL_Renderer* renderer, SDL_Rect& renderRect)
 {
 	// fillFrame 값 복사
 	SDL_Rect fillFrame = mFrames[EProgBar::State::FILL];
@@ -71,7 +71,7 @@ void CProgressBar::RenderFill(SDL_Renderer* Renderer, SDL_Rect& renderRect)
 	SDL_SetTextureColorMod(mTexture.get()->GetTexture(), color.r, color.g, color.b);
 	SDL_SetTextureAlphaMod(mTexture.get()->GetTexture(), color.a);
 
-	SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &fillFrame, &renderRect);
+	SDL_RenderCopy(renderer, mTexture.get()->GetTexture(), &fillFrame, &renderRect);
 
 	// 원본 출력 영역 복원
 	renderRect = mRect;

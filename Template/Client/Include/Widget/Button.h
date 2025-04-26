@@ -26,14 +26,14 @@ private:
 	std::vector<EventCallback> mEvent[EButton::InputEvent::INPUT_EVENT_MAX];
 
 private:
-	virtual void Render(SDL_Renderer* Renderer, const FVector2D& topLeft = FVector2D::ZERO) final;
+	virtual void Render(SDL_Renderer* renderer, const FVector2D& topLeft = FVector2D::ZERO) final;
 	virtual void Release() final;
 
 	virtual void HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased) final;
 	virtual void HandleUnhovered(const FVector2D& mousePos, bool isHeld, bool isReleased) final;
 
 public:
-	void Render9Slice(SDL_Renderer* Renderer, const SDL_Rect& renderRect);
+	void Render9Slice(SDL_Renderer* renderer, const SDL_Rect& renderRect);
 
 	void Set9SlicingCorner(const FVector2D& srcCorner)
 	{

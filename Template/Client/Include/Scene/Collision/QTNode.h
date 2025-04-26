@@ -28,8 +28,8 @@ private:
 	int mSplitLevel = 0;
 
 public:
-	void Update(float DeltaTime);
-	void Render(SDL_Renderer* Renderer);
+	void Update(float deltaTime);
+	void Render(SDL_Renderer* renderer);
 
 public:
 	bool HasChild();

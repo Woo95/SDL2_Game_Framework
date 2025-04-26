@@ -20,9 +20,9 @@ private:
 
 public:
 	virtual bool Init();
-	virtual void Update(float DeltaTime);
-	virtual void LateUpdate(float DeltaTime);
-	virtual void Render(SDL_Renderer* Renderer);
+	virtual void Update(float deltaTime);
+	virtual void LateUpdate(float deltaTime);
+	virtual void Render(SDL_Renderer* renderer);
 
 public:
 	void BringWidgetToTop(CWidget* widget);

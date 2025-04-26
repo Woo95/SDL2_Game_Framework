@@ -22,8 +22,8 @@ private:
 	std::unordered_map<FColliderPair, EPair::Status> mPairs;
 
 public:
-	void Update(float DeltaTime);
-	void Render(SDL_Renderer* Renderer);
+	void Update(float deltaTime);
+	void Render(SDL_Renderer* renderer);
 
 public:
 	void AddCollider(CCollider* collider);

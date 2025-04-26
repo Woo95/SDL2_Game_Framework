@@ -25,7 +25,7 @@ bool CComponent::Init()
 	return true;
 }
 
-void CComponent::Update(float DeltaTime)
+void CComponent::Update(float deltaTime)
 {
 	for (CComponent* child : mChilds)
 	{
@@ -39,11 +39,11 @@ void CComponent::Update(float DeltaTime)
 		{
 			continue;
 		}
-		child->Update(DeltaTime);
+		child->Update(deltaTime);
 	}
 }
 
-void CComponent::LateUpdate(float DeltaTime)
+void CComponent::LateUpdate(float deltaTime)
 {
 	for (size_t i = mChilds.size(); i > 0; i--)
 	{
@@ -69,18 +69,18 @@ void CComponent::LateUpdate(float DeltaTime)
 		{
 			continue;
 		}
-		child->LateUpdate(DeltaTime);
+		child->LateUpdate(deltaTime);
 	}
 }
 
-void CComponent::Render(SDL_Renderer* Renderer)
+void CComponent::Render(SDL_Renderer* renderer)
 {
 	for (CComponent* child : mChilds)
 	{
 		if (!child->GetActive() || !child->GetEnable())
 			continue;
 
-		child->Render(Renderer);
+		child->Render(renderer);
 	}
 }
 

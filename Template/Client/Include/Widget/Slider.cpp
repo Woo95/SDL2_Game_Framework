@@ -21,25 +21,25 @@ CSlider::~CSlider()
     mTexture = nullptr;
 }
 
-void CSlider::Update(float DeltaTime)
+void CSlider::Update(float deltaTime)
 {
-    CWidget::Update(DeltaTime);
+    CWidget::Update(deltaTime);
 
     UpdateTrackRect();
     UpdateThumbRect();
 }
 
-void CSlider::Render(SDL_Renderer* Renderer, const FVector2D& topLeft)
+void CSlider::Render(SDL_Renderer* renderer, const FVector2D& topLeft)
 {
     SDL_Rect renderRect = mRect;
 
     renderRect.x += (int)topLeft.x;
     renderRect.y += (int)topLeft.y;
 
-    RenderTrack(Renderer, topLeft);
-    RenderThumb(Renderer, topLeft);
+    RenderTrack(renderer, topLeft);
+    RenderThumb(renderer, topLeft);
 
-    CWidget::Render(Renderer, topLeft);
+    CWidget::Render(renderer, topLeft);
 }
 
 void CSlider::Release()
@@ -169,7 +169,7 @@ void CSlider::UpdateThumbRect()
     mThumbRect = { trackPosX, mRect.y, mThumbRect.w, mRect.h };
 }
 
-void CSlider::RenderTrack(SDL_Renderer* Renderer, const FVector2D& topLeft)
+void CSlider::RenderTrack(SDL_Renderer* renderer, const FVector2D& topLeft)
 {
     SDL_Rect trackRenderRect = mTrackRect;
 
@@ -180,10 +180,10 @@ void CSlider::RenderTrack(SDL_Renderer* Renderer, const FVector2D& topLeft)
     SDL_SetTextureColorMod(mTexture.get()->GetTexture(), color.r, color.g, color.b);
     SDL_SetTextureAlphaMod(mTexture.get()->GetTexture(), color.a);
 
-    SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &mFrames[ESlider::State::TRACK], &trackRenderRect);
+    SDL_RenderCopy(renderer, mTexture.get()->GetTexture(), &mFrames[ESlider::State::TRACK], &trackRenderRect);
 }
 
-void CSlider::RenderThumb(SDL_Renderer* Renderer, const FVector2D& topLeft)
+void CSlider::RenderThumb(SDL_Renderer* renderer, const FVector2D& topLeft)
 {
     SDL_Rect thumbRenderRect = mThumbRect;
 
@@ -194,5 +194,5 @@ void CSlider::RenderThumb(SDL_Renderer* Renderer, const FVector2D& topLeft)
     SDL_SetTextureColorMod(mTexture.get()->GetTexture(), color.r, color.g, color.b);
     SDL_SetTextureAlphaMod(mTexture.get()->GetTexture(), color.a);
 
-    SDL_RenderCopy(Renderer, mTexture.get()->GetTexture(), &mFrames[ESlider::State::THUMB], &thumbRenderRect);
+    SDL_RenderCopy(renderer, mTexture.get()->GetTexture(), &mFrames[ESlider::State::THUMB], &thumbRenderRect);
 }

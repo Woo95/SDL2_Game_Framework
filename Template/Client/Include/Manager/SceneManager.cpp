@@ -33,31 +33,31 @@ bool CSceneManager::Init()
 	return true;
 }
 
-void CSceneManager::Update(float DeltaTime)
+void CSceneManager::Update(float deltaTime)
 {
 	if (mScene.empty())
 		return;
 
-	mScene.top()->Update(DeltaTime);
+	mScene.top()->Update(deltaTime);
 }
 
-void CSceneManager::LateUpdate(float DeltaTime)
+void CSceneManager::LateUpdate(float deltaTime)
 {
 	if (mScene.empty())
 		return;
 
-	mScene.top()->LateUpdate(DeltaTime);
+	mScene.top()->LateUpdate(deltaTime);
 
 	if (mPendingScene != EScene::State::NONE)
 		ApplyChange(mPendingScene);
 }
 
-void CSceneManager::Render(SDL_Renderer* Renderer)
+void CSceneManager::Render(SDL_Renderer* renderer)
 {
 	if (mScene.empty())
 		return;
 
-	mScene.top()->Render(Renderer);
+	mScene.top()->Render(renderer);
 }
 
 void CSceneManager::PendingChange(EScene::State state)

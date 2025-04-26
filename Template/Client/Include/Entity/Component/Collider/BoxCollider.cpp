@@ -21,9 +21,9 @@ bool CBoxCollider::Init()
 	return CCollider::Init();
 }
 
-void CBoxCollider::Update(float DeltaTime)
+void CBoxCollider::Update(float deltaTime)
 {
-	CCollider::Update(DeltaTime);
+	CCollider::Update(deltaTime);
 
 	// 월드 스케일, 위치, 피벗을 반환
 	const FVector2D& scale = mTransform->GetWorldScale();
@@ -37,21 +37,21 @@ void CBoxCollider::Update(float DeltaTime)
 	mRect = { topLeft.x, topLeft.y, scale.x, scale.y };
 }
 
-void CBoxCollider::LateUpdate(float DeltaTime)
+void CBoxCollider::LateUpdate(float deltaTime)
 {
-	CCollider::LateUpdate(DeltaTime);
+	CCollider::LateUpdate(deltaTime);
 }
 
-void CBoxCollider::Render(SDL_Renderer* Renderer)
+void CBoxCollider::Render(SDL_Renderer* renderer)
 {
-	CCollider::Render(Renderer);
+	CCollider::Render(renderer);
 
 #ifdef _DEBUG
 	// 렌더 색상 설정
 	if (!mCollidedCount)
-		SDL_SetRenderDrawColor(Renderer, 0, 255, 0, 255);
+		SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
 	else
-		SDL_SetRenderDrawColor(Renderer, 255, 0, 0, 255);
+		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 
 	// 해당 객체의 위치와 크기를 포함한 영역을 반환
 	SDL_FRect renderRect = mRect;
@@ -61,7 +61,7 @@ void CBoxCollider::Render(SDL_Renderer* Renderer)
 		renderRect = camera->GetRenderPos(renderRect);
 
 	// 사각형 그리기
-	SDL_RenderDrawRectF(Renderer, &renderRect);
+	SDL_RenderDrawRectF(renderer, &renderRect);
 #endif
 }
 
