@@ -130,24 +130,6 @@ bool CWidget::DeleteChild(CWidget* child)
 	return true;
 }
 
-void CWidget::Enable()
-{
-	for (CWidget* child : mChilds)
-	{
-		child->Enable();
-	}
-	SetEnable(true);
-}
-
-void CWidget::Disable()
-{
-	for (CWidget* child : mChilds)
-	{
-		child->Disable();
-	}
-	SetEnable(false);
-}
-
 void CWidget::Destroy()
 {
 	for (CWidget* child : mChilds)

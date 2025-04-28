@@ -40,7 +40,9 @@ public:
 	bool DeleteChild(CWidget* child);
 
 public:
-	void Enable();
-	void Disable();
+	// 자신만 활성화/비활성화 (자식 영향 방지)
+	void Enable() { SetEnable(true); }
+	void Disable() { SetEnable(false); }
+	// 자식까지 안전하게 제거
 	void Destroy();
 };
