@@ -15,41 +15,41 @@ CBullet::~CBullet()
 
 bool CBullet::Init()
 {
-	if (!CObject::Init())
-		return false;
+    // 이동 컴포넌트 설정
+    mMovementComponent = AllocateComponent<CMovementComponent>("Movement");
+    GetComponent()->AddChild(mMovementComponent);
 
-    // 이동 컴포넌트 만들기
-    mMovementComponent = AllocateComponent<CMovementComponent>("Movement", mRootComponent);
-
-    // 충돌체 컴포넌트 만들기
-    CCollider* collider = AllocateComponent<CCircleCollider>("collider", mMovementComponent);
+    // 충돌체 컴포넌트 설정
+    CCollider* collider = AllocateComponent<CCircleCollider>("collider");
     collider->SetProfile("Bullet");
+    collider->GetTransform()->SetWorldScale(25.f, 25.f);
+    collider->GetTransform()->SetPivot(0.5f, 0.5f);
 
-    // 위치 설정 (충돌체 컴포넌트)
-    CTransform* colliderTrans = collider->GetTransform();
-    colliderTrans->SetWorldScale(25.f, 25.f);
-    colliderTrans->SetPivot(0.5f, 0.5f);
+    // 이동 컴포넌트에 충돌체 추가
+    mMovementComponent->AddChild(collider);
 
-    // 스프라이트 컴포넌트 만들기
-    CSpriteComponent* sprite = AllocateComponent<CSpriteComponent>("sprite", collider);
+    // 스프라이트 컴포넌트 설정
+    CSpriteComponent* sprite = AllocateComponent<CSpriteComponent>("sprite");
     sprite->SetTexture("Bullet");
     sprite->SetSprite("Bullet");
 
-    // 위치 설정 (스프라이트 컴포넌트)
-    CTransform* spriteTrans = sprite->GetTransform();
-    spriteTrans->SetWorldPos(colliderTrans->GetWorldPos());
-    spriteTrans->SetWorldScale(25.f, 25.f);
-    spriteTrans->SetPivot(0.5f, 0.5f);
+    // 스프라이트 위치 설정
+    sprite->GetTransform()->SetWorldPos(collider->GetTransform()->GetWorldPos());
+    sprite->GetTransform()->SetWorldScale(25.f, 25.f);
+    sprite->GetTransform()->SetPivot(0.5f, 0.5f);
 
+    // 충돌체에 스프라이트 추가
+    collider->AddChild(sprite);
 
-    return true;
+    // 초기화 완료 후 부모 클래스 초기화 호출
+    return CObject::Init();
 }
 
 void CBullet::Update(float deltaTime)
 {
 	CObject::Update(deltaTime);
 
-    //mMovementComponent->MoveDir(FVector2D::RIGHT);
+    //mMovementComponent->AddMoveDir(FVector2D::RIGHT);
 
     mDestroyTime += deltaTime;
 

@@ -13,8 +13,9 @@
 
 CPlayer::CPlayer() :
     mMovementComponent(nullptr),
-    mColliderComponent(nullptr),
     mSpriteComponent(nullptr),
+    mColliderComponent(nullptr),
+    mRigidbody(nullptr),
     mWidgetComponent(nullptr)
 {
 }
@@ -30,56 +31,50 @@ CPlayer::~CPlayer()
 
 bool CPlayer::Init()
 {
-    if (!CObject::Init())
-        return false;
+    // 이동 컴포넌트 설정
+    mMovementComponent = AllocateComponent<CMovementComponent>("Movement");
 
-    // 이동 컴포넌트 만들기
-    mMovementComponent = AllocateComponent<CMovementComponent>("Movement", mRootComponent);
-
-    // 충돌체 컴포넌트 만들기
-    mColliderComponent = AllocateComponent<CBoxCollider>("collider", mMovementComponent);
+    // 충돌체 컴포넌트 설정
+    mColliderComponent = AllocateComponent<CBoxCollider>("collider");
     mColliderComponent->SetProfile("Player");
+    mColliderComponent->GetTransform()->SetWorldScale(50.f, 75.f);
+    mColliderComponent->GetTransform()->SetPivot(0.5f, 0.5f);
 
-    // 위치 설정 (충돌체 컴포넌트)
-    CTransform* colliderTrans = mColliderComponent->GetTransform();
-    colliderTrans->SetWorldScale(50.f, 75.f);
-    colliderTrans->SetPivot(0.5f, 0.5f);
-
-    // 충돌체 함수 등록
+    // 충돌체 콜백 함수 등록
     mColliderComponent->AddCallbackFunc(ECollider::OnCollision::ENTER, this, &CPlayer::KnockBackOpponent);
 
-    // 스프라이트 컴포넌트 만들기
-    mSpriteComponent = AllocateComponent<CSpriteComponent>("sprite", mColliderComponent);
+    // 스프라이트 컴포넌트 설정
+    mSpriteComponent = AllocateComponent<CSpriteComponent>("sprite");
     mSpriteComponent->SetTexture("Pasqualina");
     mSpriteComponent->SetAnimation("Pasqualina");
     mSpriteComponent->GetAnimation()->SetCurrentState(EAnimationState::WALK);
-    
-    // 위치 설정 (스프라이트 컴포넌트)
-    CTransform* spriteTrans = mSpriteComponent->GetTransform();
-    spriteTrans->SetWorldScale(75.f, 75.f);
-    spriteTrans->SetPivot(0.5f, 0.5f);
+    mSpriteComponent->GetTransform()->SetWorldScale(75.f, 75.f);
+    mSpriteComponent->GetTransform()->SetPivot(0.5f, 0.5f);
 
-    // 리지드바디 컴포넌트 만들기
-    CRigidbody* rb = AllocateComponent<CRigidbody>("rigidbody", mSpriteComponent);
+    // 리지드바디 컴포넌트 설정
+    mRigidbody = AllocateComponent<CRigidbody>("rigidbody");
 
-    /////////////////////////////////////////////////////////////////////////////////////////////
+    // 위젯 컴포넌트 설정
+    mWidgetComponent = AllocateComponent<CWidgetComponent>("widget");
 
-    // 위젯 컴포넌트 만들기
-    mWidgetComponent = AllocateComponent<CWidgetComponent>("widget", mSpriteComponent);
-
-    // 프로그레스 바 생성 및 설정
+    // 프로그레스 바 설정
     CProgressBar* progressBar = CWidgetUtils::AllocateWidget<CProgressBar>("hp");
     progressBar->GetTransform()->SetWorldScale(70.f, 13.f);
     progressBar->GetTransform()->SetPivot(0.5f, 0.5f);
     progressBar->SetColor(EProgBar::State::BACK, 0, 0, 0);
-
-    // 프로그레스 바 텍스쳐 및 프레임 설정
     progressBar->SetTexture("UI");
     progressBar->SetFrame("HpBar");
 
-    // 위젯 자식으로 프로그레스 바 추가 및 위젯 설정
+    // 프로그레스 바 위젯 설정 및 추가
     mWidgetComponent->SetWidget(progressBar);
     progressBar->GetTransform()->SetRelativePos(0.f, 50.f);
+
+    // 컴포넌트들 계층 구조에 추가
+    GetComponent()->AddChild(mMovementComponent);
+    GetComponent()->AddChild(mSpriteComponent);
+    GetComponent()->AddChild(mColliderComponent);
+    GetComponent()->AddChild(mRigidbody);
+    GetComponent()->AddChild(mWidgetComponent);
 
     // 오브젝트 위치 설정
     GetTransform()->SetWorldPos(400.f, 200.f);
@@ -87,7 +82,8 @@ bool CPlayer::Init()
     // 인풋 설정
     SetupInput();
 
-	return true;
+    // 부모 클래스 초기화
+    return CObject::Init();
 }
 
 void CPlayer::Update(float deltaTime)
@@ -129,22 +125,22 @@ void CPlayer::SetupInput()
 
 void CPlayer::MOVE_UP()
 {
-    mMovementComponent->AddMoveInput(FVector2D::UP);
+    mMovementComponent->AddMoveDir(FVector2D::UP);
 }
 void CPlayer::MOVE_DOWN()
 {
-    mMovementComponent->AddMoveInput(FVector2D::DOWN);
+    mMovementComponent->AddMoveDir(FVector2D::DOWN);
 }
 void CPlayer::MOVE_LEFT()
 {
-    mMovementComponent->AddMoveInput(FVector2D::LEFT);
+    mMovementComponent->AddMoveDir(FVector2D::LEFT);
 
     if (mSpriteComponent)
         mSpriteComponent->SetFlip(SDL_FLIP_HORIZONTAL);
 }
 void CPlayer::MOVE_RIGHT()
 {
-    mMovementComponent->AddMoveInput(FVector2D::RIGHT);   
+    mMovementComponent->AddMoveDir(FVector2D::RIGHT);   
 
     if (mSpriteComponent)
         mSpriteComponent->SetFlip(SDL_FLIP_NONE);
@@ -164,7 +160,7 @@ void CPlayer::KnockBackOpponent(CCollider* self, CCollider* other)
 
 void CPlayer::SHOOT()
 {
-    CBullet* bullet = mScene->AllocateObject<CBullet>("bullet", ELayer::Type::PROJECTILE);
+    CBullet* bullet = mScene->InstantiateObject<CBullet>("bullet", ELayer::Type::PROJECTILE);
 
     bullet->GetTransform()->SetWorldPos(mScene->GetCamera()->GetWorldPos(CInput::GetInst()->GetMousePos()));
 }

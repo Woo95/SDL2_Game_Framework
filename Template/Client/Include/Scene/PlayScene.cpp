@@ -22,17 +22,15 @@ CPlayScene::~CPlayScene()
 	SAFE_DELETE(mSceneCollision);
 
 	SAFE_DELETE(mCamera);
-
-	Exit();
 }
 
 bool CPlayScene::Enter()
 {
-	AllocateObject<CBackground, 1>("Background", ELayer::Type::BACKGROUND);
+	InstantiateObject<CBackground, 1>("Background", ELayer::Type::BACKGROUND);
 
-	CObject* player = AllocateObject<CPlayer, 1>("Player", ELayer::Type::OBJECT);
+	CObject* player = InstantiateObject<CPlayer, 1>("Player", ELayer::Type::OBJECT);
 
-	AllocateObject<CMonster, 10>("Monster", ELayer::Type::OBJECT);
+	InstantiateObject<CMonster, 10>("Monster", ELayer::Type::OBJECT);
 
 	mCamera->SetTarget(player);
 

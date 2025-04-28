@@ -29,11 +29,13 @@ CInput::~CInput()
 // 각 오브젝트 클래스에서 입력 값에 호출 할 함수를 추가 및 수정한다.
 bool CInput::Init()
 {
+	// SAMPLES //
 	CreateKey(SDL_SCANCODE_W);
 	CreateKey(SDL_SCANCODE_A);
 	CreateKey(SDL_SCANCODE_S);
 	CreateKey(SDL_SCANCODE_D);
 
+	// SAMPLES //
 	CreateMouse(SDL_BUTTON_LEFT);
 	CreateMouse(SDL_BUTTON_RIGHT);
 

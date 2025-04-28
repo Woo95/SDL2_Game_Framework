@@ -82,9 +82,6 @@
     <Filter Include="Framework\06. Widget\01. Widgets">
       <UniqueIdentifier>{7097eb5a-ad77-4391-a116-6c28c10a1dac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\06. Widget\02. UserWidgets">
-      <UniqueIdentifier>{fbe36ed1-71f1-4f6b-a349-312f74e091f3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\04. Entity\02. Component\01. Components\Widget">
       <UniqueIdentifier>{b40e51fc-55c0-4e85-ae1c-35cf81ba079a}</UniqueIdentifier>
     </Filter>
@@ -103,14 +100,35 @@
     <Filter Include="Framework\03. Scene\04. UI">
       <UniqueIdentifier>{81d21286-dc7b-475b-91d0-cb58d4517747}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\03. Widgets">
-      <UniqueIdentifier>{b45f146a-c9c0-4f4c-afde-93f02fdeeb0b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\01. Scenes\01. Menu">
       <UniqueIdentifier>{98b483b4-c8f2-4d6e-96e0-7ff18e26723a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\01. Scenes\02. Play">
       <UniqueIdentifier>{76319526-342d-4a1c-b6f1-1931c92a4f80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\03. UserWidgets">
+      <UniqueIdentifier>{b45f146a-c9c0-4f4c-afde-93f02fdeeb0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\06. Widget\01. Widgets\AnimatedImage">
+      <UniqueIdentifier>{1e40b735-a746-404b-bb60-02f2b8ed4127}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\06. Widget\01. Widgets\Button">
+      <UniqueIdentifier>{6907d614-8c61-49f0-93e2-52519e4d857b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\06. Widget\01. Widgets\Image">
+      <UniqueIdentifier>{eb259626-6ccd-4ee6-bd3c-f75c7ebbde64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\06. Widget\01. Widgets\ProgressBar">
+      <UniqueIdentifier>{b602ea7f-1b51-4710-b06b-5e3d0ec37938}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\06. Widget\01. Widgets\Slider">
+      <UniqueIdentifier>{271f0fd5-27ea-4f13-a686-e154ea7d1746}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\06. Widget\01. Widgets\TextBlock">
+      <UniqueIdentifier>{8f9039b3-bb99-48c9-bca1-5fbfd8962557}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\06. Widget\00. UserWidget">
+      <UniqueIdentifier>{06e8fc30-a9f4-497c-a6ac-5c59f89abd4c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -468,17 +486,8 @@
     <ClInclude Include="Manager\Resource\DataManager.h">
       <Filter>Framework\02. Manager\01. Resource</Filter>
     </ClInclude>
-    <ClInclude Include="Widget\UserWidget.h">
-      <Filter>Framework\06. Widget\02. UserWidgets</Filter>
-    </ClInclude>
-    <ClInclude Include="Widget\Widget.h">
-      <Filter>Framework\06. Widget\01. Widgets</Filter>
-    </ClInclude>
     <ClInclude Include="Scene\UI\SceneUI.h">
       <Filter>Framework\03. Scene\04. UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Widget\Button.h">
-      <Filter>Framework\06. Widget\01. Widgets</Filter>
     </ClInclude>
     <ClInclude Include="Widget\WidgetBase.h">
       <Filter>Framework\06. Widget</Filter>
@@ -492,20 +501,11 @@
     <ClInclude Include="Scene\PlayScene.h">
       <Filter>Game\01. Scenes\02. Play</Filter>
     </ClInclude>
-    <ClInclude Include="Widget\Image.h">
-      <Filter>Framework\06. Widget\01. Widgets</Filter>
-    </ClInclude>
-    <ClInclude Include="Widget\AnimatedImage.h">
-      <Filter>Framework\06. Widget\01. Widgets</Filter>
-    </ClInclude>
     <ClInclude Include="Manager\Resource\UIManager.h">
       <Filter>Framework\02. Manager\01. Resource</Filter>
     </ClInclude>
     <ClInclude Include="Manager\Resource\SpriteManager.h">
       <Filter>Framework\02. Manager\01. Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="Widget\ProgressBar.h">
-      <Filter>Framework\06. Widget\01. Widgets</Filter>
     </ClInclude>
     <ClInclude Include="Core\External\SDL\SDL_ttf.h">
       <Filter>Framework\01. Core\External\SDL</Filter>
@@ -515,9 +515,6 @@
     </ClInclude>
     <ClInclude Include="Resource\Font.h">
       <Filter>Framework\05. Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="Widget\TextBlock.h">
-      <Filter>Framework\06. Widget\01. Widgets</Filter>
     </ClInclude>
     <ClInclude Include="Entity\Component\WidgetComponent.h">
       <Filter>Framework\04. Entity\02. Component\01. Components\Widget</Filter>
@@ -549,9 +546,6 @@
     <ClInclude Include="Core\Utils\AniUtils.h">
       <Filter>Framework\01. Core\Lib\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Widget\Slider.h">
-      <Filter>Framework\06. Widget\01. Widgets</Filter>
-    </ClInclude>
     <ClInclude Include="Entity\Component\Rigidbody.h">
       <Filter>Framework\04. Entity\02. Component\01. Components\Rigidbody</Filter>
     </ClInclude>
@@ -568,10 +562,34 @@
       <Filter>Framework\01. Core\Lib\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Widget\SampleUserWidget.h">
-      <Filter>Game\03. Widgets</Filter>
+      <Filter>Game\03. UserWidgets</Filter>
     </ClInclude>
     <ClInclude Include="Widget\AllWidgets.h">
       <Filter>Framework\06. Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget\AnimatedImage.h">
+      <Filter>Framework\06. Widget\01. Widgets\AnimatedImage</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget\Button.h">
+      <Filter>Framework\06. Widget\01. Widgets\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget\Image.h">
+      <Filter>Framework\06. Widget\01. Widgets\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget\ProgressBar.h">
+      <Filter>Framework\06. Widget\01. Widgets\ProgressBar</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget\Slider.h">
+      <Filter>Framework\06. Widget\01. Widgets\Slider</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget\TextBlock.h">
+      <Filter>Framework\06. Widget\01. Widgets\TextBlock</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget\UserWidget.h">
+      <Filter>Framework\06. Widget\00. UserWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget\Widget.h">
+      <Filter>Framework\06. Widget\01. Widgets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -674,17 +692,8 @@
     <ClCompile Include="Manager\Resource\DataManager.cpp">
       <Filter>Framework\02. Manager\01. Resource</Filter>
     </ClCompile>
-    <ClCompile Include="Widget\UserWidget.cpp">
-      <Filter>Framework\06. Widget\02. UserWidgets</Filter>
-    </ClCompile>
-    <ClCompile Include="Widget\Widget.cpp">
-      <Filter>Framework\06. Widget\01. Widgets</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\UI\SceneUI.cpp">
       <Filter>Framework\03. Scene\04. UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Widget\Button.cpp">
-      <Filter>Framework\06. Widget\01. Widgets</Filter>
     </ClCompile>
     <ClCompile Include="Scene\MenuScene.cpp">
       <Filter>Game\01. Scenes\01. Menu</Filter>
@@ -695,23 +704,11 @@
     <ClCompile Include="Scene\PlayScene.cpp">
       <Filter>Game\01. Scenes\02. Play</Filter>
     </ClCompile>
-    <ClCompile Include="Widget\Image.cpp">
-      <Filter>Framework\06. Widget\01. Widgets</Filter>
-    </ClCompile>
-    <ClCompile Include="Widget\AnimatedImage.cpp">
-      <Filter>Framework\06. Widget\01. Widgets</Filter>
-    </ClCompile>
-    <ClCompile Include="Widget\ProgressBar.cpp">
-      <Filter>Framework\06. Widget\01. Widgets</Filter>
-    </ClCompile>
     <ClCompile Include="Manager\Resource\FontManager.cpp">
       <Filter>Framework\02. Manager\01. Resource</Filter>
     </ClCompile>
     <ClCompile Include="Resource\Font.cpp">
       <Filter>Framework\05. Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="Widget\TextBlock.cpp">
-      <Filter>Framework\06. Widget\01. Widgets</Filter>
     </ClCompile>
     <ClCompile Include="Entity\Component\WidgetComponent.cpp">
       <Filter>Framework\04. Entity\02. Component\01. Components\Widget</Filter>
@@ -725,9 +722,6 @@
     <ClCompile Include="Resource\Sound\SFX.cpp">
       <Filter>Framework\05. Resource\Sound</Filter>
     </ClCompile>
-    <ClCompile Include="Widget\Slider.cpp">
-      <Filter>Framework\06. Widget\01. Widgets</Filter>
-    </ClCompile>
     <ClCompile Include="Entity\Component\Rigidbody.cpp">
       <Filter>Framework\04. Entity\02. Component\01. Components\Rigidbody</Filter>
     </ClCompile>
@@ -735,7 +729,31 @@
       <Filter>Framework\02. Manager</Filter>
     </ClCompile>
     <ClCompile Include="Widget\SampleUserWidget.cpp">
-      <Filter>Game\03. Widgets</Filter>
+      <Filter>Game\03. UserWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Widget\AnimatedImage.cpp">
+      <Filter>Framework\06. Widget\01. Widgets\AnimatedImage</Filter>
+    </ClCompile>
+    <ClCompile Include="Widget\Button.cpp">
+      <Filter>Framework\06. Widget\01. Widgets\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Widget\Image.cpp">
+      <Filter>Framework\06. Widget\01. Widgets\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Widget\ProgressBar.cpp">
+      <Filter>Framework\06. Widget\01. Widgets\ProgressBar</Filter>
+    </ClCompile>
+    <ClCompile Include="Widget\Slider.cpp">
+      <Filter>Framework\06. Widget\01. Widgets\Slider</Filter>
+    </ClCompile>
+    <ClCompile Include="Widget\TextBlock.cpp">
+      <Filter>Framework\06. Widget\01. Widgets\TextBlock</Filter>
+    </ClCompile>
+    <ClCompile Include="Widget\UserWidget.cpp">
+      <Filter>Framework\06. Widget\00. UserWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="Widget\Widget.cpp">
+      <Filter>Framework\06. Widget\01. Widgets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -10,8 +10,9 @@ public:
 
 private:
 	class CMovementComponent* mMovementComponent;
-	class CCollider*          mColliderComponent;
 	class CSpriteComponent*   mSpriteComponent;
+	class CCollider*          mColliderComponent;
+	class CRigidbody*         mRigidbody;
 	class CWidgetComponent*   mWidgetComponent;
 
 public:

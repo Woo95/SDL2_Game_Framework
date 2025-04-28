@@ -32,7 +32,7 @@ public:
 		mSpeed = speed;
 	}
 
-	void AddMoveInput(const FVector2D& direction)
+	void AddMoveDir(const FVector2D& direction)
 	{
 		mMoveDir += direction;
 	}

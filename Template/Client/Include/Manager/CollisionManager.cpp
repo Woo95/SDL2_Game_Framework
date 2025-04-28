@@ -22,10 +22,12 @@ CCollisionManager::~CCollisionManager()
 
 bool CCollisionManager::Init()
 {
+	// SAMPLES //
 	CreateProfile("Player",  ECollision::Channel::PLAYER,  ECollision::Interaction::BLOCK);
 	CreateProfile("Monster", ECollision::Channel::MONSTER, ECollision::Interaction::BLOCK);
 	CreateProfile("Bullet",  ECollision::Channel::BULLET,  ECollision::Interaction::OVERLAP);
 
+	// SAMPLES //
 	SetCollisionInteraction("Player", ECollision::Channel::BULLET, ECollision::Interaction::IGNORE);
 	SetCollisionInteraction("Bullet", ECollision::Channel::PLAYER, ECollision::Interaction::IGNORE);
 
