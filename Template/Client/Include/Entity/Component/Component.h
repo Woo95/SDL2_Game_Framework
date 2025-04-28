@@ -51,6 +51,7 @@ public:
 	void Destroy();
 
 private:
+	CComponent* FindRootComponent();
 	CComponent* FindComponent(size_t id);
 
 	template <typename T>

@@ -38,25 +38,17 @@ public:
 	CComponent* GetComponent(const std::string& name = "")
 	{
 		if (name.empty())
-		{
 			return mRootComponent;
-		}
-		else
-		{
-			size_t hashID = std::hash<std::string>()(name);
 
-			return mRootComponent->FindComponent(hashID);
-		}
+		size_t hashID = std::hash<std::string>()(name);
+		return mRootComponent->FindComponent(hashID);
 	}
 	template <typename T>
-	T* GetComponent()
-	{
-		return mRootComponent->FindComponent<T>();
-	}
+	T* GetComponent() const { return mRootComponent->FindComponent<T>(); }
 
 public:
 	template <typename T, int initialCapacity = 10>
-	T* AllocateComponent(const std::string& name, CComponent* parentComponent = nullptr)
+	T* AllocateComponent(const std::string& name)
 	{
 		// 해당 타입의 메모리 풀이 없으면 새로 생성
 		if (!CMemoryPoolManager::GetInst()->HasPool<T>())
@@ -65,19 +57,7 @@ public:
 		}
 
 		T* component = CMemoryPoolManager::GetInst()->Allocate<T>();
-
 		component->SetName(name);
-		component->mObject = this;
-
-		if (!component->Init())
-		{
-			// 초기화 실패 시, component는 container에 저장 안되니 deallocate
-			CMemoryPoolManager::GetInst()->Deallocate<T>(component);
-			return nullptr;
-		}
-
-		if (parentComponent)
-			parentComponent->AddChild(component);
 
 		return component;
 	}

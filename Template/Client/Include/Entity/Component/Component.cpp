@@ -86,8 +86,10 @@ void CComponent::Render(SDL_Renderer* renderer)
 
 void CComponent::AddChild(CComponent* child)
 {
+	mChilds.emplace_back(child);
+
+	child->mObject = FindRootComponent()->mObject;
     child->mParent = this;
-    mChilds.emplace_back(child);
 
     mTransform->AddChild(child->mTransform);
 }
@@ -103,6 +105,17 @@ bool CComponent::DeleteChild(CComponent* child)
 	childToDelete->Release();
 
 	return true;
+}
+
+CComponent* CComponent::FindRootComponent()
+{
+	CComponent* rootComponent = this;
+
+	while (rootComponent->mParent)
+	{
+		rootComponent = rootComponent->mParent;
+	}
+	return rootComponent;
 }
 
 CComponent* CComponent::FindComponent(size_t id)
