@@ -39,6 +39,15 @@ public:
 		mPercent = percent;
 	}
 
+	void SetTrackRect(const SDL_Rect& rect)
+	{
+		mTrackRect = rect;
+	}
+	void SetThumbRect(const SDL_Rect& rect)
+	{
+		mThumbRect = rect;
+	}
+
 	void SetTexture(const std::string& key);
 	void SetFrame(const std::string& key);
 	void SetColor(ESlider::State state, Uint8 r, Uint8 g, Uint8 b);
