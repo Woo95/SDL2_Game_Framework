@@ -14,7 +14,7 @@ bool CBackground::Init()
     // 스프라이트 컴포넌트 설정
     CSpriteComponent* sprite = AllocateComponent<CSpriteComponent>("sprite");
     sprite->SetTexture("Stage1");
-    sprite->SetSprite("Mad_Forest");
+    sprite->SetFrame("Mad_Forest");
     sprite->GetTransform()->SetWorldPos(-100.f, 500.f);
     sprite->GetTransform()->SetWorldScale(4096.f, 4096.f);
     sprite->GetTransform()->SetPivot(0.5f, 0.5f);

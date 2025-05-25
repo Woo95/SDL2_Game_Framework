@@ -67,7 +67,7 @@ void CSpriteComponent::SetTexture(const std::string& key)
 	mTexture = CAssetManager::GetInst()->GetTextureManager()->GetTexture(key);
 }
 
-void CSpriteComponent::SetSprite(const std::string& key)
+void CSpriteComponent::SetFrame(const std::string& key)
 {
 	const SDL_Rect* const framePtr = CAssetManager::GetInst()->GetSpriteManager()->GetSpriteFrame(key);
 

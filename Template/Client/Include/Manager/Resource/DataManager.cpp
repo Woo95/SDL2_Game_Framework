@@ -18,7 +18,7 @@ CDataManager::~CDataManager()
 
 bool CDataManager::Init()
 {
-	LoadAllEntitySpriteData();
+	LoadAllEntityFrameData();
 	LoadAllEntityAnimationData();
 	LoadAllWidgetData();
 
@@ -39,10 +39,10 @@ std::vector<std::string> CDataManager::Split(const std::string& line, char delim
 	return row;
 }
 
-void CDataManager::LoadAllEntitySpriteData()
+void CDataManager::LoadAllEntityFrameData()
 {
 	std::string filePath = CPathManager::GetInst()->FindPath(DATA_PATH);
-	filePath += "Entity\\Sprite.csv";
+	filePath += "Entity\\Frame.csv";
 
 	std::ifstream file(filePath);
 

@@ -31,7 +31,7 @@ bool CBullet::Init()
     // 스프라이트 컴포넌트 설정
     CSpriteComponent* sprite = AllocateComponent<CSpriteComponent>("sprite");
     sprite->SetTexture("Bullet");
-    sprite->SetSprite("Bullet");
+    sprite->SetFrame("Bullet");
 
     // 스프라이트 위치 설정
     sprite->GetTransform()->SetWorldPos(collider->GetTransform()->GetWorldPos());
