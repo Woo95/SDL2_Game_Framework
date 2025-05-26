@@ -14,10 +14,10 @@ public:
 	~CCamera();
 
 private:
-	FVector2D   mLookAt; // 카메라가 보는 위치
-	CObject*    mTarget;
+	FVector2D mLookAt; // 카메라가 보는 위치
+	CObject*  mTarget;
 
-	FVector2D   mResolution;
+	FVector2D mResolution;
 
 protected:
 	void Update(float deltaTime);
@@ -35,7 +35,21 @@ public:
 		};
 	}
 	const FVector2D GetWorldPos(const FVector2D& screenPos) const { return screenPos + mLookAt - (mResolution * 0.5f); }
-	
+
+	const SDL_Rect GetViewRect() const
+	{
+		FVector2D halfSize = mResolution * 0.5f;
+		FVector2D topLeft = mLookAt - halfSize;
+
+		return SDL_Rect
+		{
+			(int)(topLeft.x),
+			(int)(topLeft.y),
+			(int)(mResolution.x),
+			(int)(mResolution.y)
+		};
+	}
+
 	const FVector2D& GetLookAt() const { return mLookAt; };
 	const FVector2D& GetResolution() const { return mResolution; }
 

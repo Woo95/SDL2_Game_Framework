@@ -58,8 +58,8 @@ public:
 	const FVector2D& GetMousePos() const { return mMousePos; }
 
 public:
-	template <typename T>
-	void AddFunctionToBinder(const std::string& key, T* obj, void(T::*func)())
+	// 람다, 바인드 등 std::function 타입 함수를 키에 바인딩할 때 사용
+	void AddFunctionToBinder(const std::string& key, void* obj, const std::function<void()>& func)
 	{
 		FBinder* binder = mBinders[key];
 
@@ -70,15 +70,20 @@ public:
 		}
 
 		FBindFunction* binderFunc = CMemoryPoolManager::GetInst()->Allocate<FBindFunction>();
-		
+
 		binderFunc->obj  = obj;
-		binderFunc->func = std::bind(func, obj);
+		binderFunc->func = func;
 
 		binder->Functions.emplace_back(binderFunc);
 	}
-
+	// 클래스 멤버 함수를 키에 바인딩할 때 사용
 	template <typename T>
-	void DeleteFunctionFromBinder(const std::string& key, T* obj)
+	void AddFunctionToBinder(const std::string& key, T* obj, void(T::* func)())
+	{
+		AddFunctionToBinder(key, obj, std::bind(func, obj));
+	}
+
+	void DeleteFunctionFromBinder(const std::string& key, void* obj)
 	{
 		FBinder* binder = mBinders[key];
 
