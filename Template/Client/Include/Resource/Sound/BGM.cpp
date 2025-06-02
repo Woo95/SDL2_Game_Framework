@@ -16,16 +16,21 @@ CBGM::~CBGM()
 }
 
 void CBGM::Play()
-{ 
+{
 	if (!Mix_PlayingMusic())
 		Mix_PlayMusic(mSound, -1); // -1: loop
 }
 
+float CBGM::GetVolume() const
+{
+	return mVolume;
+}
+
 void CBGM::SetVolume(float volume)
 {
-	volume = std::clamp(volume, 0.0f, 1.0f);
-	int scaledVolume = (int)(volume * MIX_MAX_VOLUME);
-	
+	mVolume = std::clamp(volume, 0.0f, 1.0f);
+	int scaledVolume = (int)(mVolume * MIX_MAX_VOLUME);
+
 	Mix_VolumeMusic(scaledVolume);
 }
 

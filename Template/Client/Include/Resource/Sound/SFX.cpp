@@ -16,16 +16,21 @@ CSFX::~CSFX()
 }
 
 void CSFX::Play()
-{ 
+{
 	// 첫번째 인자 (-1): play on the first free channel
 	// 세번째 인자  (0): don't loop
 	Mix_PlayChannel(-1, mSound, 0);
 }
 
+float CSFX::GetVolume() const
+{
+	return mVolume;
+}
+
 void CSFX::SetVolume(float volume)
 {
-	volume = std::clamp(volume, 0.0f, 1.0f);
-	int scaledVolume = (int)(volume * MIX_MAX_VOLUME);
+	mVolume = std::clamp(volume, 0.0f, 1.0f);
+	int scaledVolume = (int)(mVolume * MIX_MAX_VOLUME);
 
 	Mix_VolumeChunk(mSound, scaledVolume);
 }

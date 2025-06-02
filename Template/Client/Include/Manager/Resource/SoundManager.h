@@ -52,6 +52,21 @@ public:
 	}
 
 	template <typename T>
+	float GetVolume()
+	{
+		SoundMap<T>& soundMap = GetSoundMap<T>();
+
+		for (auto& pair : soundMap)
+		{
+			if (auto sound = pair.second.lock())
+			{
+				return sound->GetVolume();
+			}
+		}
+		return 0.0f;
+	}
+
+	template <typename T>
 	void SetVolume(float volume)
 	{
 		SoundMap<T>& soundMap = GetSoundMap<T>();
