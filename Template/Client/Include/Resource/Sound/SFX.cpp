@@ -22,6 +22,18 @@ void CSFX::Play()
 	Mix_PlayChannel(-1, mSound, 0);
 }
 
+bool CSFX::IsPlaying() const
+{
+	const int totalChannels = Mix_AllocateChannels(-1);
+
+	for (int i = 0; i < totalChannels; i++)
+	{
+		if (Mix_Playing(i) && Mix_GetChunk(i) == mSound)
+			return true;
+	}
+	return false;
+}
+
 float CSFX::GetVolume() const
 {
 	return mVolume;

@@ -68,7 +68,7 @@ void CQTNode::Render(SDL_Renderer* renderer)
 
 	if (HasChild())
 	{
-		for (int i = 0; i < 4; ++i)
+		for (int i = 0; i < 4; i++)
 		{
 			mChilds[i]->Render(renderer);
 		}
