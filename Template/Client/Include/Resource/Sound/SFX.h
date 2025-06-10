@@ -16,6 +16,7 @@ private:
 
 public:
 	void Play();
+	void Stop();
 	bool IsPlaying() const;
 
 	float GetVolume() const;
