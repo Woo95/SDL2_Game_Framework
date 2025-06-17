@@ -16,6 +16,8 @@ private:
 	~CPhysicsManager();
 
 private:
+	const float CONST_MinMtvLSq = 0.5f;
+
 	static CPhysicsManager* mInst;
 
 public:

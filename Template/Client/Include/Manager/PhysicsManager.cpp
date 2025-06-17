@@ -74,6 +74,10 @@ void CPhysicsManager::ResolveAABBOverlap(CBoxCollider* collider1, CBoxCollider* 
     else
         mtv = FVector2D(0.f, (delta.y < 0 ? -overlapY : overlapY));
 
+    // MTV가 작으면 접촉 상태로 간주하고 무시
+    if (mtv.LengthSquared() < CONST_MinMtvLSq)
+        return;
+
     // 겹쳐진 오브젝트들 MTV 방향으로 이동
     if (pushObj1)
         MoveBy(collider1, mtv);
@@ -98,6 +102,10 @@ void CPhysicsManager::ResolveCircleCircleOverlap(CCircleCollider* collider1, CCi
 
     // 최소 이동 벡터(MTV) 계산
     FVector2D mtv = delta.GetNormalize() * overlap;
+
+    // MTV가 작으면 접촉 상태로 간주하고 무시
+    if (mtv.LengthSquared() < CONST_MinMtvLSq)
+        return;
 
     // 겹쳐진 오브젝트들 MTV 방향으로 이동
     if (pushObj1)
@@ -128,6 +136,10 @@ void CPhysicsManager::ResolveAABBCircleOverlap(CBoxCollider* collider1, CCircleC
         mtv = FVector2D((delta.x < 0 ? -overlapX : overlapX), 0.f);
     else
         mtv = FVector2D(0.f, (delta.y < 0 ? -overlapY : overlapY));
+
+    // MTV가 작으면 접촉 상태로 간주하고 무시
+    if (mtv.LengthSquared() < CONST_MinMtvLSq)
+        return;
 
     // 겹쳐진 오브젝트들 MTV 방향으로 이동
     if (pushObj1)

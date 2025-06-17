@@ -140,6 +140,11 @@ public:
 #pragma endregion
 
 public:
+	float LengthSquared() const
+	{
+		return x * x + y * y;
+	}
+
 	float Length() const
 	{
 		return sqrtf((x * x) + (y * y));
