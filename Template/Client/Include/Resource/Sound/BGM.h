@@ -12,12 +12,10 @@ public:
 
 private:
 	Mix_Music* mSound = nullptr;
-	float mVolume = 0.0f;
 
 public:
 	void Play();
-	float GetVolume() const;
-	void  SetVolume(float volume);
+	void SetVolume(float volume);
 
 private:
 	bool LoadSound(const char* fileName);

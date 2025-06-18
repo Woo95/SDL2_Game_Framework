@@ -9,8 +9,6 @@ CSoundManager::CSoundManager()
 
 CSoundManager::~CSoundManager()
 {
-    mSFXs.clear();
-    mBGMs.clear();
 }
 
 bool CSoundManager::Init()

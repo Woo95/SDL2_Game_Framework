@@ -4,8 +4,8 @@
 #include "../../Resource/Sound/SFX.h"
 #include "../../Resource/Sound/BGM.h"
 
-template <typename T>
-using SoundMap = std::unordered_map<std::string, std::weak_ptr<T>>;
+template <typename T> // T 타입을 CSFX 또는 CBGM를 사용하도록 제한
+concept SoundType = std::is_same_v<T, CSFX> || std::is_same_v<T, CBGM>;
 
 class CSoundManager
 {
@@ -16,14 +16,24 @@ private:
 	~CSoundManager();
 
 private:
-	SoundMap<CSFX> mSFXs;
-	SoundMap<CBGM> mBGMs;
+	template <SoundType T>
+	using SoundMap = std::unordered_map<std::string, std::weak_ptr<T>>;
+
+	template <SoundType T>
+	struct FSoundGroup
+	{
+		SoundMap<T> soundMap;
+		float volume = 0.0f;
+	};
+
+	FSoundGroup<CSFX> mSFXs;
+	FSoundGroup<CBGM> mBGMs;
 
 private:
 	bool Init();
 
 public:
-	template <typename T>
+	template <SoundType T>
 	std::shared_ptr<T> LoadSound(const std::string& key, const char* fileName)
 	{
 		std::shared_ptr<T> sound = GetSound<T>(key);
@@ -34,16 +44,19 @@ public:
 
 			if (sound->LoadSound(fileName))
 			{
-				GetSoundMap<T>()[key] = sound;
+				FSoundGroup<T>& soundGroup = GetSoundGroup<T>();
+
+				sound->SetVolume(soundGroup.volume);
+				soundGroup.soundMap[key] = sound;
 			}
 		}
 		return sound;
 	}
 
-	template <typename T>
+	template <SoundType T>
 	std::shared_ptr<T> GetSound(const std::string& key)
 	{
-		SoundMap<T>& soundMap = GetSoundMap<T>();
+		SoundMap<T>& soundMap = GetSoundGroup<T>().soundMap;
 
 		if (soundMap.find(key) == soundMap.end())
 			return nullptr;
@@ -51,29 +64,23 @@ public:
 		return soundMap[key].lock();
 	}
 
-	template <typename T>
+	template <SoundType T>
 	float GetVolume()
 	{
-		SoundMap<T>& soundMap = GetSoundMap<T>();
-
-		for (auto& pair : soundMap)
-		{
-			if (auto sound = pair.second.lock())
-			{
-				return sound->GetVolume();
-			}
-		}
-		return 0.0f;
+		return GetSoundGroup<T>().volume;
 	}
 
-	template <typename T>
+	template <SoundType T>
 	void SetVolume(float volume)
 	{
-		SoundMap<T>& soundMap = GetSoundMap<T>();
+		FSoundGroup<T>& soundGroup = GetSoundGroup<T>();
+		soundGroup.volume = volume;
 
-		for (auto& pair : soundMap)
+		for (auto& pair : soundGroup.soundMap)
 		{
-			pair.second.lock()->SetVolume(volume);
+			std::shared_ptr<T> sound = pair.second.lock();
+			if (sound)
+				sound->SetVolume(soundGroup.volume);
 		}
 	}
 
@@ -82,12 +89,12 @@ public:
 	void ResumeSound();
 
 private:
-	template <typename T>
-	std::unordered_map<std::string, std::weak_ptr<T>>& GetSoundMap()
+	template <SoundType T>
+	FSoundGroup<T>& GetSoundGroup()
 	{
 		if constexpr (std::is_same_v<T, CSFX>)
 			return mSFXs;
-		else if constexpr (std::is_same_v<T, CBGM>)
+		else
 			return mBGMs;
 	}
 };

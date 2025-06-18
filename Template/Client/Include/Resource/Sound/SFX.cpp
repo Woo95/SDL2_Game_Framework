@@ -47,15 +47,10 @@ bool CSFX::IsPlaying() const
 	return false;
 }
 
-float CSFX::GetVolume() const
-{
-	return mVolume;
-}
-
 void CSFX::SetVolume(float volume)
 {
-	mVolume = std::clamp(volume, 0.0f, 1.0f);
-	int scaledVolume = (int)(mVolume * MIX_MAX_VOLUME);
+	volume = std::clamp(volume, 0.0f, 1.0f);
+	int scaledVolume = (int)(volume * MIX_MAX_VOLUME);
 
 	Mix_VolumeChunk(mSound, scaledVolume);
 }
