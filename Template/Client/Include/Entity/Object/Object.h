@@ -30,7 +30,8 @@ protected:
 	virtual void Render(SDL_Renderer* renderer);
 
 private:
-	virtual void Release() = 0;	// Scene.h에서 object memoryPool usage 위하여
+	// Scene.h -> Layer.h에서 CObject의 memoryPool을 사용하기 위해서 필요
+	virtual void Release() = 0;
 
 public:
 	CScene* GetScene() const { return mScene; }
