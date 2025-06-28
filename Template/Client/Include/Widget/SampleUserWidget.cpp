@@ -25,7 +25,7 @@ void CSampleUserWidget::Construct()
     button->GetTransform()->SetPivot(0.5f, 0.5f);
     button->SetTexture("UI");
     button->SetFrame("BlueButton");
-    button->AddCallback(EButton::InputEvent::RELEASE, []() {CSceneManager::GetInst()->PendingChange(EScene::State::PLAY); });
+    button->AddCallback(EButton::InputEvent::RELEASE, []() {CSceneManager::GetInst()->ChangeRequest(ETransition::SWAP, ESceneState::PLAY); });
     AddChild(button); // 버튼을 패널에 추가
 
     // 텍스트 블록 생성

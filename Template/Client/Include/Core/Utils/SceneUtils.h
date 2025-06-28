@@ -1,11 +1,17 @@
 #pragma once
 
-namespace EScene
+enum class ESceneState : unsigned char
 {
-	enum State : unsigned char
-	{
-		NONE,
-		MENU,
-		PLAY
-	};
-}
+	NONE,
+	MENU,
+	PLAY
+};
+
+enum class ETransition : unsigned char
+{
+	NONE,
+	PUSH,
+	POP,
+	SWAP,
+	CLEAR
+};
