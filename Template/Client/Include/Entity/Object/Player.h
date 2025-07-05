@@ -14,6 +14,7 @@ private:
 	class CCollider*          mColliderComponent;
 	class CRigidbody*         mRigidbody;
 	class CWidgetComponent*   mWidgetComponent;
+	class CInputComponent*    mInputComponent;
 
 public:
 	virtual bool Init();

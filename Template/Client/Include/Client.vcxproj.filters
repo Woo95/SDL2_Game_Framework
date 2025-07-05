@@ -130,6 +130,9 @@
     <Filter Include="Framework\06. Widget\00. UserWidget">
       <UniqueIdentifier>{06e8fc30-a9f4-497c-a6ac-5c59f89abd4c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\04. Entity\02. Component\01. Components\Input">
+      <UniqueIdentifier>{a423228c-c80d-47fd-b9d8-5fa7c998d573}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Timer.h">
@@ -591,6 +594,9 @@
     <ClInclude Include="Widget\Widget.h">
       <Filter>Framework\06. Widget\01. Widgets</Filter>
     </ClInclude>
+    <ClInclude Include="Entity\Component\InputComponent.h">
+      <Filter>Framework\04. Entity\02. Component\01. Components\Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Timer.cpp">
@@ -754,6 +760,9 @@
     </ClCompile>
     <ClCompile Include="Widget\Widget.cpp">
       <Filter>Framework\06. Widget\01. Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity\Component\InputComponent.cpp">
+      <Filter>Framework\04. Entity\02. Component\01. Components\Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

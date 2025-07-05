@@ -2,7 +2,6 @@
 
 #include "Utils/InputUtils.h"
 #include "Vector2D.h"
-#include "../Manager/MemoryPoolManager.h"
 
 class CInput
 {
@@ -20,27 +19,33 @@ private:
 	std::unordered_map<Uint8, FInputState> mMouses;
 	FVector2D mMousePos = FVector2D::ZERO;
 
-	// 개별 바인더들을 저장
-	std::unordered_map<std::string, FBinder*> mBinders;
-
 private:
 	static CInput* mInst;
 
 private:
 	bool Init();
-	void Update();
+	bool RegisterKey(SDL_Scancode keyCode);
+	bool RegisterMouse(Uint8 button);
 
-	void UpdateInput();
+	void Update();
+	void UpdateInputState();
 	void HandleInputState(bool& press, bool& hold, bool& release, bool isPressed);
 
-	void HandleBinderFuncs();
-	bool VerifyState(EKey::State state, const FInputState& inputState);
-
-	// 사용할 키보드/마우스 조작키를 미리 생성
-	bool CreateKey(SDL_Scancode keyCode);
-	bool CreateMouse(Uint8 button);
-
 public:
+	bool GetKeyState(SDL_Scancode key, EKey::State state)
+	{
+		switch (state)
+		{
+		case EKey::State::PRESS:
+			return mKeys[key].Press;
+		case EKey::State::HOLD:
+			return mKeys[key].Hold;
+		case EKey::State::RELEASE:
+			return mKeys[key].Release;
+		default:
+			return false;
+		}
+	}
 	bool GetMouseButtonState(Uint8 button, EKey::State state)
 	{
 		switch (state)
@@ -56,74 +61,6 @@ public:
 		}
 	}
 	const FVector2D& GetMousePos() const { return mMousePos; }
-
-public:
-	// 람다, 바인드 등 std::function 타입 함수를 키에 바인딩할 때 사용
-	void AddFunctionToBinder(const std::string& key, void* obj, const std::function<void()>& func)
-	{
-		FBinder* binder = mBinders[key];
-
-		if (!binder)
-		{
-			binder = CMemoryPoolManager::GetInst()->Allocate<FBinder>();
-			mBinders[key] = binder;
-		}
-
-		FBindFunction* binderFunc = CMemoryPoolManager::GetInst()->Allocate<FBindFunction>();
-
-		binderFunc->obj  = obj;
-		binderFunc->func = func;
-
-		binder->Functions.emplace_back(binderFunc);
-	}
-	// 클래스 멤버 함수를 키에 바인딩할 때 사용
-	template <typename T>
-	void AddFunctionToBinder(const std::string& key, T* obj, void(T::* func)())
-	{
-		AddFunctionToBinder(key, obj, std::bind(func, obj));
-	}
-
-	void DeleteFunctionFromBinder(const std::string& key, void* obj)
-	{
-		FBinder* binder = mBinders[key];
-
-		if (!binder)
-			return;
-
-		std::vector<FBindFunction*>& functions = binder->Functions;
-
-		for (size_t i = functions.size(); i > 0; i--)
-		{
-			FBindFunction* bindFunc = functions[i - 1];
-
-			if (bindFunc->obj == obj)
-			{
-				std::swap(functions[i - 1], functions.back());
-				functions.pop_back();
-
-				CMemoryPoolManager::GetInst()->DeallocateButKeepPool<FBindFunction>(bindFunc);
-			}
-		}
-	}
-
-	void AddInputToBinder(const std::string& key, SDL_Scancode keyCode, EKey::State state)
-	{
-		FBinder* binder = mBinders[key];
-
-		if (!binder)
-			return;
-
-		binder->Keys.emplace_back(std::make_pair(keyCode, state));
-	}
-	void AddInputToBinder(const std::string& key, Uint8 button, EKey::State state)
-	{
-		FBinder* binder = mBinders[key];
-
-		if (!binder)
-			return;
-
-		binder->Mouses.emplace_back(std::make_pair(button, state));
-	}
 
 public:
 	static CInput* GetInst()

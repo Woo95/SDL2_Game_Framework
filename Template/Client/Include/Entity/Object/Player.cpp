@@ -10,23 +10,25 @@
 #include "../../Entity/Component/WidgetComponent.h"
 #include "../../Widget/ProgressBar.h"
 #include "../../Entity/Component/Rigidbody.h"
+#include "../../Entity/Component/InputComponent.h"
 
 CPlayer::CPlayer() :
     mMovementComponent(nullptr),
     mSpriteComponent(nullptr),
     mColliderComponent(nullptr),
     mRigidbody(nullptr),
-    mWidgetComponent(nullptr)
+    mWidgetComponent(nullptr),
+    mInputComponent(nullptr)
 {
 }
  
 CPlayer::~CPlayer()
 {
-    CInput::GetInst()->DeleteFunctionFromBinder("UP",    this);
-    CInput::GetInst()->DeleteFunctionFromBinder("DOWN",  this);
-    CInput::GetInst()->DeleteFunctionFromBinder("LEFT",  this);
-    CInput::GetInst()->DeleteFunctionFromBinder("RIGHT", this);
-    CInput::GetInst()->DeleteFunctionFromBinder("SHOOT", this);
+    mInputComponent->DeleteFunctionFromBinder("UP",    this);
+    mInputComponent->DeleteFunctionFromBinder("DOWN",  this);
+    mInputComponent->DeleteFunctionFromBinder("LEFT",  this);
+    mInputComponent->DeleteFunctionFromBinder("RIGHT", this);
+    mInputComponent->DeleteFunctionFromBinder("SHOOT", this);
 }
 
 bool CPlayer::Init()
@@ -69,12 +71,15 @@ bool CPlayer::Init()
     mWidgetComponent->SetWidget(progressBar);
     progressBar->GetTransform()->SetRelativePos(0.f, 50.f);
 
+    mInputComponent = AllocateComponent<CInputComponent>("input");
+
     // 컴포넌트들 계층 구조에 추가
     GetComponent()->AddChild(mMovementComponent);
     GetComponent()->AddChild(mSpriteComponent);
     GetComponent()->AddChild(mColliderComponent);
     GetComponent()->AddChild(mRigidbody);
     GetComponent()->AddChild(mWidgetComponent);
+    GetComponent()->AddChild(mInputComponent);
 
     // 오브젝트 위치 설정
     GetTransform()->SetWorldPos(400.f, 200.f);
@@ -110,17 +115,17 @@ void CPlayer::SetupInput()
 {
     // 클래스 멤버 함수 포인터는 일반 함수와 다르게 "&클래스명::함수" 이렇게 해야한다. (ex: &CPlayer::MOVE_UP)
 
-    CInput::GetInst()->AddFunctionToBinder("UP",    this, &CPlayer::MOVE_UP);
-    CInput::GetInst()->AddFunctionToBinder("DOWN",  this, &CPlayer::MOVE_DOWN);
-    CInput::GetInst()->AddFunctionToBinder("LEFT",  this, &CPlayer::MOVE_LEFT);
-    CInput::GetInst()->AddFunctionToBinder("RIGHT", this, &CPlayer::MOVE_RIGHT);
-    CInput::GetInst()->AddFunctionToBinder("SHOOT", this, &CPlayer::SHOOT);
-    
-    CInput::GetInst()->AddInputToBinder("UP",    SDL_SCANCODE_W,  EKey::State::HOLD);
-    CInput::GetInst()->AddInputToBinder("DOWN",  SDL_SCANCODE_S,  EKey::State::HOLD);
-    CInput::GetInst()->AddInputToBinder("LEFT",  SDL_SCANCODE_A,  EKey::State::HOLD);
-    CInput::GetInst()->AddInputToBinder("RIGHT", SDL_SCANCODE_D,  EKey::State::HOLD);
-    CInput::GetInst()->AddInputToBinder("SHOOT", SDL_BUTTON_LEFT, EKey::State::PRESS);
+    mInputComponent->AddFunctionToBinder("UP",    this, &CPlayer::MOVE_UP);
+    mInputComponent->AddFunctionToBinder("DOWN",  this, &CPlayer::MOVE_DOWN);
+    mInputComponent->AddFunctionToBinder("LEFT",  this, &CPlayer::MOVE_LEFT);
+    mInputComponent->AddFunctionToBinder("RIGHT", this, &CPlayer::MOVE_RIGHT);
+    mInputComponent->AddFunctionToBinder("SHOOT", this, &CPlayer::SHOOT);
+
+    mInputComponent->AddInputToBinder("UP",    SDL_SCANCODE_W,  EKey::State::HOLD);
+    mInputComponent->AddInputToBinder("DOWN",  SDL_SCANCODE_S,  EKey::State::HOLD);
+    mInputComponent->AddInputToBinder("LEFT",  SDL_SCANCODE_A,  EKey::State::HOLD);
+    mInputComponent->AddInputToBinder("RIGHT", SDL_SCANCODE_D,  EKey::State::HOLD);
+    mInputComponent->AddInputToBinder("SHOOT", SDL_BUTTON_LEFT, EKey::State::PRESS);
 }
 
 void CPlayer::MOVE_UP()
