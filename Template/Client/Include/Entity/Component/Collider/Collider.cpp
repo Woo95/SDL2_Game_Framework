@@ -24,21 +24,6 @@ bool CCollider::Init()
     return true;
 }
 
-void CCollider::Update(float deltaTime)
-{
-    CComponent::Update(deltaTime);
-}
-
-void CCollider::LateUpdate(float deltaTime)
-{
-    CComponent::LateUpdate(deltaTime);
-}
-
-void CCollider::Render(SDL_Renderer* renderer)
-{
-    CComponent::Render(renderer);
-}
-
 void CCollider::OnCollisionEnter(CCollider* other)
 {
     mCollidedCount++;

@@ -17,11 +17,6 @@ CRigidbody::~CRigidbody()
 {
 }
 
-bool CRigidbody::Init()
-{
-	return CComponent::Init();
-}
-
 void CRigidbody::Update(float deltaTime)
 {
 	CComponent::Update(deltaTime);
@@ -40,16 +35,6 @@ void CRigidbody::Update(float deltaTime)
 	UpdateObjectPos(deltaTime);
 
 	ClearForces();
-}
-
-void CRigidbody::LateUpdate(float deltaTime)
-{
-	CComponent::LateUpdate(deltaTime);
-}
-
-void CRigidbody::Render(SDL_Renderer* renderer)
-{
-	CComponent::Render(renderer);
 }
 
 void CRigidbody::Release()

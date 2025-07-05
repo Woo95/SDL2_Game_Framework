@@ -19,14 +19,9 @@ private:
 	FVector2D mAcceleration;
 	FVector2D mAccumulatedForce;
 
-public:
-	virtual bool Init() final;
-
 private:
-	virtual void Update(float deltaTime)        final;
-	virtual void LateUpdate(float deltaTime)    final;
-	virtual void Render(SDL_Renderer* renderer) final;
-	virtual void Release()                      final;
+	virtual void Update(float deltaTime) final;
+	virtual void Release() final;
 
 public:
 	void AddForce(const FVector2D& force);

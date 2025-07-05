@@ -13,26 +13,11 @@ CMovementComponent::~CMovementComponent()
 {
 }
 
-bool CMovementComponent::Init()
-{
-	return CComponent::Init();
-}
-
 void CMovementComponent::Update(float deltaTime)
 {
 	CComponent::Update(deltaTime);
 
 	Move(deltaTime);
-}
-
-void CMovementComponent::LateUpdate(float deltaTime)
-{
-	CComponent::LateUpdate(deltaTime);
-}
-
-void CMovementComponent::Render(SDL_Renderer* renderer)
-{
-	CComponent::Render(renderer);
 }
 
 void CMovementComponent::Release()

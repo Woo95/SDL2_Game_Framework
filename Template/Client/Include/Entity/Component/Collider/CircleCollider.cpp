@@ -16,11 +16,6 @@ CCircleCollider::~CCircleCollider()
 {
 }
 
-bool CCircleCollider::Init()
-{
-	return CCollider::Init();
-}
-
 void CCircleCollider::Update(float deltaTime)
 {
 	CCollider::Update(deltaTime);
@@ -33,11 +28,6 @@ void CCircleCollider::Update(float deltaTime)
 	// 원 정보 생성
 	mCircle.center = worldPos - pivot * scale + scale * 0.5f;
 	mCircle.radius = scale.x * 0.5f;
-}
-
-void CCircleCollider::LateUpdate(float deltaTime)
-{
-    CCollider::LateUpdate(deltaTime);
 }
 
 void CCircleCollider::Render(SDL_Renderer* renderer)

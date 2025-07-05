@@ -14,14 +14,9 @@ private:
 
 	float mSpeed;
 
-public:
-	virtual bool Init() final;
-
 private:
-	virtual void Update(float deltaTime)        final;
-	virtual void LateUpdate(float deltaTime)    final;
-	virtual void Render(SDL_Renderer* renderer) final;
-	virtual void Release()                      final;
+	virtual void Update(float deltaTime) final;
+	virtual void Release() final;
 
 public:
 	const FVector2D& GetFacingDir() const { return mFacingDir; }

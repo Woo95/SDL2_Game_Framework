@@ -18,12 +18,8 @@ private:
 
 	SDL_RendererFlip mFlip;
 
-public:
-	virtual bool Init() final;
-
 private:
 	virtual void Update(float deltaTime)        final;
-	virtual void LateUpdate(float deltaTime)    final;
 	virtual void Render(SDL_Renderer* renderer) final;
 	virtual void Release()                      final;
 

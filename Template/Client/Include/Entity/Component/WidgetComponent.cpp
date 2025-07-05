@@ -16,11 +16,6 @@ CWidgetComponent::~CWidgetComponent()
 		mWidget->Release();
 }
 
-bool CWidgetComponent::Init()
-{
-	return CComponent::Init();
-}
-
 void CWidgetComponent::Update(float deltaTime)
 {
 	CComponent::Update(deltaTime);

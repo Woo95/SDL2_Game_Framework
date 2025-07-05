@@ -16,11 +16,6 @@ CBoxCollider::~CBoxCollider()
 {
 }
 
-bool CBoxCollider::Init()
-{
-	return CCollider::Init();
-}
-
 void CBoxCollider::Update(float deltaTime)
 {
 	CCollider::Update(deltaTime);
@@ -35,11 +30,6 @@ void CBoxCollider::Update(float deltaTime)
 
 	// 사각형 정보 생성
 	mRect = { topLeft.x, topLeft.y, scale.x, scale.y };
-}
-
-void CBoxCollider::LateUpdate(float deltaTime)
-{
-	CCollider::LateUpdate(deltaTime);
 }
 
 void CBoxCollider::Render(SDL_Renderer* renderer)

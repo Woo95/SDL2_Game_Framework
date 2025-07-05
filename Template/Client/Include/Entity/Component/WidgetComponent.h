@@ -13,9 +13,6 @@ public:
 private:
 	CWidget* mWidget;
 
-public:
-	virtual bool Init() final;
-
 private:
 	virtual void Update(float deltaTime)        final;
 	virtual void LateUpdate(float deltaTime)    final;

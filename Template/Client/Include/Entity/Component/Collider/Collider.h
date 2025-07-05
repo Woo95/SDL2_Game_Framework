@@ -24,10 +24,7 @@ protected:
 	std::vector<Callback> mCallbacks[ECollider::OnCollision::MAX];
 
 protected:
-	virtual bool Init()                         override;
-	virtual void Update(float deltaTime)        override;
-	virtual void LateUpdate(float deltaTime)    override;
-	virtual void Render(SDL_Renderer* renderer) override;
+	virtual bool Init() override;
 	virtual void Release() = 0;
 
 public:

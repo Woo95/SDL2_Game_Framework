@@ -26,22 +26,12 @@ CSpriteComponent::~CSpriteComponent()
 		mAnimation->Release();
 }
 
-bool CSpriteComponent::Init()
-{
-	return CComponent::Init();
-}
-
 void CSpriteComponent::Update(float deltaTime)
 {
 	CComponent::Update(deltaTime);
 
 	if (mAnimation)
 		mAnimation->Update(deltaTime);
-}
-
-void CSpriteComponent::LateUpdate(float deltaTime)
-{
-	CComponent::LateUpdate(deltaTime);
 }
 
 void CSpriteComponent::Render(SDL_Renderer* renderer)
