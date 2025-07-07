@@ -26,7 +26,6 @@ CScene::~CScene()
     {
         CMemoryPoolManager::GetInst()->DeallocateButKeepPool<CLayer>(layer);
     }
-    UnloadResources();
 }
 
 void CScene::Update(float deltaTime)
