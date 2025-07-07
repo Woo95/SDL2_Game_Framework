@@ -32,6 +32,9 @@ bool CSceneManager::Init()
 
 void CSceneManager::Update(float deltaTime)
 {
+	if (mPending.transition != ETransition::NONE)
+		ChangeApply();
+
 	if (mScenes.empty())
 		return;
 
@@ -44,9 +47,6 @@ void CSceneManager::LateUpdate(float deltaTime)
 		return;
 
 	mScenes.back()->LateUpdate(deltaTime);
-
-	if (mPending.transition != ETransition::NONE)
-		ChangeApply();
 }
 
 void CSceneManager::Render(SDL_Renderer* renderer)
