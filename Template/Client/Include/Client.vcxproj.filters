@@ -674,9 +674,6 @@
     <ClCompile Include="Entity\Component\MovementComponent.cpp">
       <Filter>Framework\04. Entity\02. Component\01. Components\Movement</Filter>
     </ClCompile>
-    <ClCompile Include="Client.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
     <ClCompile Include="Entity\Object\Bullet.cpp">
       <Filter>Game\02. Objects</Filter>
     </ClCompile>
@@ -764,6 +761,7 @@
     <ClCompile Include="Entity\Component\InputComponent.cpp">
       <Filter>Framework\04. Entity\02. Component\01. Components\Input</Filter>
     </ClCompile>
+    <ClCompile Include="Client.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />

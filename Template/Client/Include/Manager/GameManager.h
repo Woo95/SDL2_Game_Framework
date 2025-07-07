@@ -49,4 +49,3 @@ public:
 		SAFE_DELETE(mInst);
 	}
 };
-
