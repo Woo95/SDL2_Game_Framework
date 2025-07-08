@@ -43,6 +43,7 @@ private:
 	void PopScene();
 	void SwapScene();
 	void ClearScenes();
+	void ClearThenPushScene();
 	CScene* GetSceneFromState(ESceneState state);
 	
 public:

@@ -13,5 +13,6 @@ enum class ETransition : unsigned char
 	PUSH,
 	POP,
 	SWAP,
-	CLEAR
+	CLEAR,
+	CLEAR_THEN_PUSH
 };

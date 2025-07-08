@@ -71,6 +71,9 @@ void CSceneManager::ChangeApply()
 	case ETransition::CLEAR:
 		ClearScenes();
 		break;
+	case ETransition::CLEAR_THEN_PUSH:
+		ClearThenPushScene();
+		break;
 	default:
 		break;
 	}
@@ -123,6 +126,7 @@ void CSceneManager::SwapScene()
 
 void CSceneManager::ClearScenes()
 {
+	// 이전 모든 씬 정리
 	while (!mScenes.empty())
 	{
 		CScene* scene = mScenes.back();
@@ -131,6 +135,20 @@ void CSceneManager::ClearScenes()
 		SAFE_DELETE(scene);
 		mScenes.pop_back();
 	}
+}
+
+void CSceneManager::ClearThenPushScene()
+{
+	// 새로운 씬 생성 및 리소스들 로드
+	CScene* newScene = GetSceneFromState(mPending.pendingState);
+	newScene->LoadResources();
+
+	// 이전 모든 씬 정리
+	ClearScenes();
+
+	// 새로운 씬 추가
+	mScenes.push_back(newScene);
+	mScenes.back()->Enter();
 }
 
 CScene* CSceneManager::GetSceneFromState(ESceneState state)
