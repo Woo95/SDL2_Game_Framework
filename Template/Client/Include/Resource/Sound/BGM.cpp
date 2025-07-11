@@ -1,6 +1,6 @@
 #include "BGM.h"
 #include "../../Core/External/SDL/SDL_mixer.h"
-#include "../../Manager/Resource/PathManager.h"
+#include "../../Manager/Data/PathManager.h"
 
 CBGM::CBGM()
 {

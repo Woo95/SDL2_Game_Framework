@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../../Core/GameInfo.h"
-#include "../../Resource/Sound/SFX.h"
-#include "../../Resource/Sound/BGM.h"
+#include "../../../Core/GameInfo.h"
+#include "../../../Resource/Sound/SFX.h"
+#include "../../../Resource/Sound/BGM.h"
 
 template <typename T> // T 타입을 CSFX 또는 CBGM를 사용하도록 제한
 concept SoundType = std::is_same_v<T, CSFX> || std::is_same_v<T, CBGM>;

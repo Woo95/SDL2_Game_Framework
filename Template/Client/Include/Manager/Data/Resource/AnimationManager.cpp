@@ -1,6 +1,6 @@
 #include "AnimationManager.h"
-#include "../../Resource/Animation.h"
-#include "../MemoryPoolManager.h"
+#include "../../../Resource/Animation.h"
+#include "../../MemoryPoolManager.h"
 
 CAnimationManager::CAnimationManager()
 {
@@ -9,7 +9,7 @@ CAnimationManager::CAnimationManager()
 
 CAnimationManager::~CAnimationManager()
 {
-    std::unordered_map<std::string, CAnimation*>::iterator iter    = mAnimations.begin();
+    std::unordered_map<std::string, CAnimation*>::iterator iter = mAnimations.begin();
     std::unordered_map<std::string, CAnimation*>::iterator iterEnd = mAnimations.end();
 
     for (; iter != iterEnd; iter++)

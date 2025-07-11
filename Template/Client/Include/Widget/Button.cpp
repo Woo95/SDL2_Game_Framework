@@ -1,11 +1,9 @@
 #include "Button.h"
-#include "UserWidget.h"
 #include "../Scene/UI/SceneUI.h"
-#include "../Manager/Resource/AssetManager.h"
-#include "../Manager/Resource/UIManager.h"
-#include "../Manager/Resource/TextureManager.h"
+#include "../Manager/Data/Resource/AssetManager.h"
+#include "../Manager/Data/Resource/TextureManager.h"
+#include "../Manager/Data/Resource/UIManager.h"
 #include "../Resource/Texture.h"
-#include "../Manager/MemoryPoolManager.h"
 
 CButton::CButton()
 {

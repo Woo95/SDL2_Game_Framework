@@ -1,5 +1,5 @@
 #include "Texture.h"
-#include "../Manager/Resource/PathManager.h"
+#include "../Manager/Data/PathManager.h"
 #include "../Manager/GameManager.h"
 
 CTexture::CTexture() : 

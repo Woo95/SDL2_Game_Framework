@@ -7,13 +7,13 @@ class CTimer
 	friend class CGameManager;
 
 private:
-	static Uint64	mSecond;
-	static Uint64	mTime;
-	static float	mDeltaTime;
+	static Uint64 mSecond;
+	static Uint64 mTime;
+	static float  mDeltaTime;
 
-	static float	mFPS;
-	static float	mFPSTime;
-	static int      mFPSTick;
+	static float  mFPS;
+	static float  mFPSTime;
+	static int    mFPSTick;
 
 public:
 	static float GetDeltaTime() { return mDeltaTime; }

@@ -1,22 +1,22 @@
-#include "DataManager.h"
-#include "PathManager.h"
-#include "AssetManager.h"
-#include "SpriteManager.h"
-#include "AnimationManager.h"
-#include "UIManager.h"
-#include "../../Resource/Animation.h"
+#include "DataLoader.h"
 #include <fstream> // for file input/output
 #include <sstream> // for stringstream
+#include "../Manager/Data/PathManager.h"
+#include "../Manager/Data/Resource/AssetManager.h"
+#include "../Manager/Data/Resource/SpriteManager.h"
+#include "../Manager/Data/Resource/AnimationManager.h"
+#include "../Resource/Animation.h"
+#include "../Manager/Data/Resource/UIManager.h"
 
-CDataManager::CDataManager()
+CDataLoader::CDataLoader()
 {
 }
 
-CDataManager::~CDataManager()
+CDataLoader::~CDataLoader()
 {
 }
 
-bool CDataManager::Init()
+bool CDataLoader::Init()
 {
 	LoadAllEntityFrameData();
 	LoadAllEntityAnimationData();
@@ -25,7 +25,7 @@ bool CDataManager::Init()
 	return true;
 }
 
-std::vector<std::string> CDataManager::Split(const std::string& line, char delimiter)
+std::vector<std::string> CDataLoader::Split(const std::string& line, char delimiter)
 {
 	std::stringstream stream(line);
 
@@ -39,7 +39,7 @@ std::vector<std::string> CDataManager::Split(const std::string& line, char delim
 	return row;
 }
 
-void CDataManager::LoadAllEntityFrameData()
+void CDataLoader::LoadAllEntityFrameData()
 {
 	std::string filePath = CPathManager::GetInst()->FindPath(DATA_PATH);
 	filePath += "Entity\\Frame.csv";
@@ -79,7 +79,7 @@ void CDataManager::LoadAllEntityFrameData()
 	file.close();
 }
 
-void CDataManager::LoadAllEntityAnimationData()
+void CDataLoader::LoadAllEntityAnimationData()
 {
 	std::string filePath = CPathManager::GetInst()->FindPath(DATA_PATH);
 	filePath += "Entity\\Animation.csv";
@@ -138,7 +138,7 @@ void CDataManager::LoadAllEntityAnimationData()
 	file.close();
 }
 
-void CDataManager::LoadAllWidgetData()
+void CDataLoader::LoadAllWidgetData()
 {
 	std::string filePath = CPathManager::GetInst()->FindPath(DATA_PATH);
 	filePath += "Widget\\Widget.csv";

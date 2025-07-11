@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../Core/GameInfo.h"
+#include "../../../Core/GameInfo.h"
 
 class CAssetManager
 {
@@ -11,8 +11,6 @@ private:
 	~CAssetManager();
 
 private:
-	class CDataManager*      mDataManager;
-
 	class CTextureManager*   mTextureManager;
 	class CSpriteManager*    mSpriteManager;
 	class CAnimationManager* mAnimationManager;

@@ -1,5 +1,5 @@
 #include "Font.h"
-#include "../Manager/Resource/PathManager.h"
+#include "../Manager/Data/PathManager.h"
 
 CFont::CFont()
 {

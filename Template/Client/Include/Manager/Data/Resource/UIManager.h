@@ -1,11 +1,11 @@
 #pragma once
 
-#include "../../Core/GameInfo.h"
+#include "../../../Core/GameInfo.h"
 
 class CUIManager
 {
     friend class CAssetManager;
-    friend class CDataManager;
+    friend class CDataLoader;
 
 private:
     CUIManager()  = default;

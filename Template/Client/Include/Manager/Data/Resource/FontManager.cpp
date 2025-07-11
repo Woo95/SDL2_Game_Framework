@@ -1,5 +1,5 @@
 #include "FontManager.h"
-#include "../../Resource/Font.h"
+#include "../../../Resource/Font.h"
 
 CFontManager::CFontManager()
 {

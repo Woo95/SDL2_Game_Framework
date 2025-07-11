@@ -1,8 +1,7 @@
 #include "TextBlock.h"
-#include "../Manager/Resource/AssetManager.h"
-#include "../Manager/Resource/FontManager.h"
+#include "../Manager/Data/Resource/AssetManager.h"
+#include "../Manager/Data/Resource/FontManager.h"
 #include "../Resource/Font.h"
-#include "../Manager/MemoryPoolManager.h"
 
 CTextBlock::CTextBlock()
 {

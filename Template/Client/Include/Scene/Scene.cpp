@@ -2,10 +2,10 @@
 #include "../Scene/Collision/SceneCollision.h"
 #include "Camera.h"
 #include "../Scene/UI/SceneUI.h"
-#include "../Manager/Resource/AssetManager.h"
-#include "../Manager/Resource/TextureManager.h"
-#include "../Manager/Resource/FontManager.h"
-#include "../Manager/Resource/SoundManager.h"
+#include "../Manager/Data/Resource/AssetManager.h"
+#include "../Manager/Data/Resource/TextureManager.h"
+#include "../Manager/Data/Resource/FontManager.h"
+#include "../Manager/Data/Resource/SoundManager.h"
 
 CScene::CScene() :
     mSceneCollision(nullptr),

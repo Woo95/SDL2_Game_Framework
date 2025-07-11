@@ -1,12 +1,11 @@
 #include "Slider.h"
 #include "UserWidget.h"
 #include "../Scene/UI/SceneUI.h"
-#include "../Manager/Resource/AssetManager.h"
-#include "../Manager/Resource/UIManager.h"
-#include "../Manager/Resource/TextureManager.h"
-#include "../Resource/Texture.h"
-#include "../Manager/MemoryPoolManager.h"
+#include "../Manager/Data/Resource/AssetManager.h"
+#include "../Manager/Data/Resource/UIManager.h"
+#include "../Manager/Data/Resource/TextureManager.h"
 #include "../Manager/CollisionManager.h"
+#include "../Resource/Texture.h"
 
 CSlider::CSlider()
 {

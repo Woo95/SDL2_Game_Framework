@@ -2,11 +2,11 @@
 
 Uint64 CTimer::mSecond;
 Uint64 CTimer::mTime;
-float CTimer::mDeltaTime = 0.f;
+float  CTimer::mDeltaTime = 0.0f;
 
-float   CTimer::mFPS = 0.f;
-float   CTimer::mFPSTime = 0.f;
-int     CTimer::mFPSTick = 0;
+float CTimer::mFPS = 0.0f;
+float CTimer::mFPSTime = 0.0f;
+int   CTimer::mFPSTick = 0;
 
 bool CTimer::Init()
 {
@@ -28,7 +28,7 @@ void CTimer::Update()
 void CTimer::UpdateDeltaTime()
 {
     // 윈도우 고해상도 타이머를 얻어온다.  (매우 작은 시간 간격을 측정할 수 있는 타이머)
-    Uint64   Time = SDL_GetPerformanceCounter();
+    Uint64 time = SDL_GetPerformanceCounter();
 #pragma region DeltaTime Explanation
     /*
     Time:       현재 프레임의 타이머 틱 값
@@ -39,9 +39,9 @@ void CTimer::UpdateDeltaTime()
     dt = 다음 1 프레임까지 걸린 시간 (초 단위) | (1 프레임은 프로그램의 한 사이클을 의미)
     */
 #pragma endregion
-    mDeltaTime = (Time - mTime) / (float)mSecond;
+    mDeltaTime = (time - mTime) / (float)mSecond;
 
-    mTime = Time;
+    mTime = time;
 }
 
 void CTimer::UpdateFPS()

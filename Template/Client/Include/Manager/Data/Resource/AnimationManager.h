@@ -1,13 +1,13 @@
 #pragma once
 
-#include "../../Core/Utils/AniUtils.h"
+#include "../../../Core/Utils/AniUtils.h"
 
 class CAnimation;
 
 class CAnimationManager
 {
     friend class CAssetManager;
-    friend class CDataManager;
+    friend class CDataLoader;
 
 private:
     CAnimationManager();

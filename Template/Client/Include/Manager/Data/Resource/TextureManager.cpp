@@ -1,6 +1,6 @@
 #include "TextureManager.h"
-#include "../../Resource/Texture.h"
-#include "../../Scene/Scene.h"
+#include "../../../Resource/Texture.h"
+#include "../../../Scene/Scene.h"
 
 CTextureManager::CTextureManager()
 {

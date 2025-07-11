@@ -1,14 +1,14 @@
 #pragma once
 
-#include "../../Core/GameInfo.h"
+#include "GameInfo.h"
 
-class CDataManager
+class CDataLoader
 {
-    friend class CAssetManager;
+    friend class CGameManager;
 
 private:
-    CDataManager();
-    ~CDataManager();
+    CDataLoader();
+    ~CDataLoader();
 
 private:
     bool Init();
