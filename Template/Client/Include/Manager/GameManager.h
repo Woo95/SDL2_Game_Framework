@@ -10,11 +10,11 @@ private:
 	~CGameManager();
 
 private:
+	static CGameManager* mInst;
+
 	SDL_Window* mWindow = nullptr;
 	SDL_Renderer* mRenderer = nullptr;
 	bool mLoop = true;
-
-	static CGameManager* mInst;
 
 public:
 	bool Init();

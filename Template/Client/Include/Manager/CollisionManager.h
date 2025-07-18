@@ -20,9 +20,9 @@ private:
 	~CCollisionManager();
 
 private:
-	std::unordered_map<std::string, FCollisionProfile*>	mProfileMap;
-
 	static CCollisionManager* mInst;
+
+	std::unordered_map<std::string, FCollisionProfile*>	mProfileMap;
 
 public:
 	bool Init();

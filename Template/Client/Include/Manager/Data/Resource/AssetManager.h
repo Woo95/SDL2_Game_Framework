@@ -11,14 +11,14 @@ private:
 	~CAssetManager();
 
 private:
+	static CAssetManager* mInst;
+
 	class CTextureManager*   mTextureManager;
 	class CSpriteManager*    mSpriteManager;
 	class CAnimationManager* mAnimationManager;
 	class CUIManager*        mUIManager;
 	class CFontManager*      mFontManager;
 	class CSoundManager*     mSoundManager;
-
-	static CAssetManager* mInst;
 
 private:
 	bool Init();
@@ -39,6 +39,7 @@ public:
 			mInst = new CAssetManager;
 		return mInst;
 	}
+private:
 	static void DestroyInst()
 	{
 		SAFE_DELETE(mInst);

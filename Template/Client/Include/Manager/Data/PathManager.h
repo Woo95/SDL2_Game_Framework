@@ -11,9 +11,9 @@ private:
 	~CPathManager();
 
 private:
-	std::unordered_map<std::string, std::string> mPaths;
-
 	static CPathManager* mInst;
+
+	std::unordered_map<std::string, std::string> mPaths;
 
 private:
 	bool Init();

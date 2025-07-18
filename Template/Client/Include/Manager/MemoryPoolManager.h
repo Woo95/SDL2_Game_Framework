@@ -22,9 +22,9 @@ private:
 	}
 
 private:
-	std::unordered_map<std::type_index, IMemoryPool*> mPools;
-
 	static CMemoryPoolManager* mInst;
+
+	std::unordered_map<std::type_index, IMemoryPool*> mPools;
 
 public:
 	template <typename T>

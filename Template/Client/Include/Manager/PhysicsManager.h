@@ -16,9 +16,9 @@ private:
 	~CPhysicsManager();
 
 private:
-	const float CONST_MinMtvLSq = 0.5f;
-
 	static CPhysicsManager* mInst;
+
+	const float CONST_MinMtvLSq = 0.5f;
 
 public:
 	void ResolveOverlap(CCollider* collider1, CCollider* collider2, bool pushObj1, bool pushObj2);

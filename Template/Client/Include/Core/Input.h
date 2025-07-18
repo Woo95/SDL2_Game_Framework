@@ -12,15 +12,14 @@ private:
 	~CInput();
 
 private:
+	static CInput* mInst;
+
 	// 사용될 모든 키보드 (입력 값 + 상태)를 묶어서 저장
 	std::unordered_map<SDL_Scancode, FInputState> mKeys;
 
 	// 사용될 모든 마우스 (입력 값 + 상태)를 묶어서 저장
 	std::unordered_map<Uint8, FInputState> mMouses;
 	FVector2D mMousePos = FVector2D::ZERO;
-
-private:
-	static CInput* mInst;
 
 private:
 	bool Init();

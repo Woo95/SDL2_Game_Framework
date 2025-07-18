@@ -14,6 +14,8 @@ private:
 	~CSceneManager();
 
 private:
+	static CSceneManager* mInst;
+
 	std::vector<CScene*> mScenes;
 
 	struct FTransitionInfo
@@ -21,8 +23,6 @@ private:
 		ETransition transition   = ETransition::NONE;
 		ESceneState pendingState = ESceneState::NONE;
 	} mPending;
-
-	static CSceneManager* mInst;
 
 public:
 	CScene* GetCurrentScene() const { return mScenes.empty() ? nullptr : mScenes.back(); }
