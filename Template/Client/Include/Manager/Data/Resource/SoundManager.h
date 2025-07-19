@@ -29,9 +29,6 @@ private:
 	FSoundGroup<CSFX> mSFXs;
 	FSoundGroup<CBGM> mBGMs;
 
-private:
-	bool Init();
-
 public:
 	template <SoundType T>
 	std::shared_ptr<T> LoadSound(const std::string& key, const char* fileName)

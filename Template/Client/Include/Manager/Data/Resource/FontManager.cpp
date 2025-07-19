@@ -3,19 +3,12 @@
 
 CFontManager::CFontManager()
 {
+	assert(TTF_Init() == 0);
 }
 
 CFontManager::~CFontManager()
 {
 	mFonts.clear();
-}
-
-bool CFontManager::Init()
-{
-	if (TTF_Init() != 0)
-		return false;
-
-	return true;
 }
 
 std::shared_ptr<CFont> CFontManager::LoadFont(const std::string& key, const char* fileName, int fontSize)

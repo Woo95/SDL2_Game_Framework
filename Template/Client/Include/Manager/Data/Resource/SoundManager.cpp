@@ -5,19 +5,12 @@
 
 CSoundManager::CSoundManager()
 {
+    // 주파수, 포맷, 채널, 버퍼 사이즈
+    assert(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) == 0);
 }
 
 CSoundManager::~CSoundManager()
 {
-}
-
-bool CSoundManager::Init()
-{
-    // 주파수, 포맷, 채널, 버퍼 사이즈
-    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
-        return false;
-
-    return true;
 }
 
 void CSoundManager::StopSound()

@@ -8,37 +8,44 @@
 
 CAssetManager* CAssetManager::mInst = nullptr;
 
-CAssetManager::CAssetManager() :
-	mTextureManager(nullptr),
-	mSpriteManager(nullptr),
-	mAnimationManager(nullptr),
-	mUIManager(nullptr),
-	mFontManager(nullptr),
-	mSoundManager(nullptr)
+CAssetManager::CAssetManager(void* memoryBlock)
 {
+	mTextureManager   = PlacementNew<CTextureManager>(memoryBlock);
+	mSpriteManager    = PlacementNew<CSpriteManager>(memoryBlock);
+	mAnimationManager = PlacementNew<CAnimationManager>(memoryBlock);
+	mUIManager        = PlacementNew<CUIManager>(memoryBlock);
+	mFontManager      = PlacementNew<CFontManager>(memoryBlock);
+	mSoundManager     = PlacementNew<CSoundManager>(memoryBlock);
 }
 
 CAssetManager::~CAssetManager()
 {
-	SAFE_DELETE(mSpriteManager);
-	SAFE_DELETE(mAnimationManager);
-	SAFE_DELETE(mTextureManager);
-	SAFE_DELETE(mUIManager);
-	SAFE_DELETE(mFontManager);
-	SAFE_DELETE(mSoundManager);
+	PlacementDelete<CTextureManager>(mTextureManager);
+	PlacementDelete<CSpriteManager>(mSpriteManager);
+	PlacementDelete<CAnimationManager>(mAnimationManager);
+	PlacementDelete<CUIManager>(mUIManager);
+	PlacementDelete<CFontManager>(mFontManager);
+	PlacementDelete<CSoundManager>(mSoundManager);
 }
 
-bool CAssetManager::Init()
+CAssetManager* CAssetManager::GetInst()
 {
-	mTextureManager   = new CTextureManager;
-	mSpriteManager    = new CSpriteManager;
-	mAnimationManager = new CAnimationManager;
-	mUIManager        = new CUIManager;
-	mFontManager      = new CFontManager;
-	mSoundManager     = new CSoundManager;
+	if (!mInst)
+	{
+		const size_t totalSize = sizeof(CAssetManager) + sizeof(CTextureManager) + sizeof(CSpriteManager) +
+			sizeof(CAnimationManager) + sizeof(CUIManager) + sizeof(CFontManager) + sizeof(CSoundManager);
 
-	if (!mTextureManager->Init() || !mFontManager->Init() || !mSoundManager->Init())
-		return false;
+		void* memoryBlock = malloc(totalSize);
+		mInst = new (memoryBlock) CAssetManager((char*)memoryBlock + sizeof(CAssetManager));
+	}
+	return mInst;
+}
 
-	return true;
+void CAssetManager::DestroyInst()
+{
+	if (mInst)
+	{
+		mInst->~CAssetManager();
+		free(mInst);
+	}
 }

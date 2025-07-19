@@ -7,7 +7,8 @@ class CAssetManager
 	friend class CGameManager;
 
 private:
-	CAssetManager();
+	CAssetManager() = delete;
+	CAssetManager(void* memoryBlock);
 	~CAssetManager();
 
 private:
@@ -20,9 +21,6 @@ private:
 	class CFontManager*      mFontManager;
 	class CSoundManager*     mSoundManager;
 
-private:
-	bool Init();
-
 public:
 	CTextureManager*   GetTextureManager()   const { return mTextureManager; }
 	CSpriteManager*    GetSpriteManager()    const { return mSpriteManager; }
@@ -31,17 +29,24 @@ public:
 	CFontManager*      GetFontManager()      const { return mFontManager; }
 	CSoundManager*     GetSoundManager()     const { return mSoundManager; }
 
+private:
+	template <typename T>
+	T* PlacementNew(void*& memoryBlock)
+	{
+		T* manager = new (memoryBlock) T;
+		memoryBlock = (char*)memoryBlock + sizeof(T);
+
+		return manager;
+	}
+	template <typename T>
+	void PlacementDelete(T*& ptr)
+	{
+		ptr->~T();
+		ptr = nullptr;
+	}
 
 public:
-	static CAssetManager* GetInst()
-	{
-		if (!mInst)
-			mInst = new CAssetManager;
-		return mInst;
-	}
+	static CAssetManager* GetInst();
 private:
-	static void DestroyInst()
-	{
-		SAFE_DELETE(mInst);
-	}
+	static void DestroyInst();
 };

@@ -16,9 +16,6 @@ private:
 private:
 	std::unordered_map<std::string, std::weak_ptr<CTexture>> mTextures;
 
-private:
-	bool Init();
-
 public:
 	std::shared_ptr<CTexture> LoadTexture(const std::string& key, const char* fileName);
 	std::shared_ptr<CTexture> GetTexture(const std::string& key);
