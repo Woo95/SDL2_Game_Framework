@@ -16,6 +16,9 @@ void CAnimatedImage::Update(float deltaTime)
 {
 	CWidget::Update(deltaTime);
 
+	if (!mIsAnimating)
+		return;
+
 	mFrameInterval += deltaTime;
 
 	if (mFrameInterval >= mIntervalPerFrame)
