@@ -3,7 +3,11 @@
 
 CFontManager::CFontManager()
 {
-	assert(TTF_Init() == 0);
+	if (TTF_Init() != 0)
+	{
+		std::cerr << "CFontManager TTF_Init failed: " << TTF_GetError() << "\n";
+		throw std::runtime_error("Failed to initialize SDL_ttf");
+	}
 }
 
 CFontManager::~CFontManager()

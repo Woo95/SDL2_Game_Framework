@@ -6,7 +6,11 @@
 CSoundManager::CSoundManager()
 {
     // 주파수, 포맷, 채널, 버퍼 사이즈
-    assert(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) == 0);
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+    {
+        std::cerr << "CSoundManager Mix_OpenAudio failed: " << Mix_GetError() << "\n";
+        throw std::runtime_error("Failed to initialize SDL_mixer");
+    }
 }
 
 CSoundManager::~CSoundManager()

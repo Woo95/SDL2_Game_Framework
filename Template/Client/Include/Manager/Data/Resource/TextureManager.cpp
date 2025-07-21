@@ -5,7 +5,11 @@
 CTextureManager::CTextureManager()
 {
 	// PNG, JPG 포맷 지원을 위한 SDL2_image 초기화
-	assert(IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) == (IMG_INIT_PNG | IMG_INIT_JPG));
+	if ((IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) & (IMG_INIT_PNG | IMG_INIT_JPG)) != (IMG_INIT_PNG | IMG_INIT_JPG))
+	{
+		std::cerr << "CTextureManager IMG_Init failed: " << IMG_GetError() << "\n";
+		throw std::runtime_error("Failed to initialize SDL_image");
+	}
 }
 
 CTextureManager::~CTextureManager()
