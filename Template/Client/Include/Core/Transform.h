@@ -97,13 +97,14 @@ public:
 		// 부모와 함께 스케일링 시, 상대적 스케일을 부모의 월드 스케일로 계산
 		if (mParent)
 		{
-			mRelativeScale = mWorldScale / mParent->mWorldScale;
+			mRelativeScale.x = (mParent->mWorldScale.x == 0.0f) ? 1.0f : mWorldScale.x / mParent->mWorldScale.x;
+			mRelativeScale.y = (mParent->mWorldScale.y == 0.0f) ? 1.0f : mWorldScale.y / mParent->mWorldScale.y;
 		}
 		else
 		{
 			mRelativeScale = mWorldScale;
 		}
-		
+
 		// 모든 자식들의 스케일 및 위치 업데이트
 		for (CTransform* child : mChilds)
 		{
