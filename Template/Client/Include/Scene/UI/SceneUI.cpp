@@ -73,6 +73,18 @@ void CSceneUI::Render(SDL_Renderer* renderer)
 	}
 }
 
+CWidget* CSceneUI::FindWidget(size_t id)
+{
+	for (CWidget* widget : mWidgets)
+	{
+		CWidget* foundWidget = widget->FindWidget(id);
+
+		if (foundWidget)
+			return foundWidget;
+	}
+	return nullptr;
+}
+
 void CSceneUI::BringWidgetToTop(CWidget* widget)
 {
 	if (mWidgets.back() == widget || mWidgets.empty() || !widget->mIsInteractable)

@@ -25,6 +25,8 @@ public:
 	virtual void Render(SDL_Renderer* renderer);
 
 public:
+	CWidget* FindWidget(size_t id);
+
 	void BringWidgetToTop(CWidget* widget);
 
 	CWidget* GetHeldWidget() const { return mHeldWidget; }
