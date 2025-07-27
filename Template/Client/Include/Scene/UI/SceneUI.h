@@ -29,6 +29,7 @@ public:
 
 	void BringWidgetToTop(CWidget* widget);
 
+	CWidget* GetHoveredWidget() const { return mCurrHovered; }
 	CWidget* GetHeldWidget() const { return mHeldWidget; }
 	void SetHeldWidget(CWidget* heldWidget)
 	{

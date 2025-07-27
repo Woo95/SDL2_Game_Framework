@@ -39,6 +39,8 @@ public:
 	void AddChild(CWidget* child);
 	bool DeleteChild(CWidget* child);
 
+	CSceneUI* GetOwnerSceneUI() const { return mSceneUI; }
+
 public:
 	// 자신만 활성화/비활성화 (자식 영향 방지)
 	void Enable() { SetEnable(true); }
