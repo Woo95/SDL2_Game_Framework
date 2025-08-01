@@ -59,6 +59,21 @@ void CSampleUserWidget::Construct()
     AddChild(slider);
 }
 
+void CSampleUserWidget::Render(SDL_Renderer* renderer, const FVector2D& topLeft)
+{
+#ifdef _DEBUG
+    SDL_Rect renderRect = mRect;
+
+    renderRect.x += (int)topLeft.x;
+    renderRect.y += (int)topLeft.y;
+
+    SDL_SetRenderDrawColor(renderer, 255, 165, 0, 255);
+    SDL_RenderFillRect(renderer, &renderRect);
+#endif
+
+    CWidget::Render(renderer);
+}
+
 void CSampleUserWidget::Release()
 {
 	CMemoryPoolManager::GetInst()->Deallocate<CSampleUserWidget>(this);

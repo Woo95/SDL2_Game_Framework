@@ -17,9 +17,6 @@ protected:
 	virtual void Construct() = 0;
 	virtual void Release()   = 0;
 
-	virtual void HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased) override {};
-	virtual void HandleUnhovered(const FVector2D& mousePos, bool isHeld, bool isReleased) override {};
-
 public:
 	void SetInteractable(bool interactable)
 	{

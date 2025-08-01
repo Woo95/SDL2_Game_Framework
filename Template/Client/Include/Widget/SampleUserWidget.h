@@ -10,6 +10,7 @@ public:
 
 protected:
 	virtual void Construct() override;
+	virtual void Render(SDL_Renderer* renderer, const FVector2D& topLeft = FVector2D::ZERO) override;
 	virtual void Release() override;
 
 	virtual void HandleHovered(const FVector2D& mousePos, bool isPressed, bool isHeld, bool isReleased) override;
