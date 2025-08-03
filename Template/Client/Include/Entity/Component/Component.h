@@ -1,10 +1,8 @@
 #pragma once
 
 #include "../EntityBase.h"
-#include "../../Core/GameInfo.h"
-#include "../../Manager/MemoryPoolManager.h"
-#include "../../Core/Vector2D.h"
 #include "../../Core/Transform.h"
+#include "../../Manager/MemoryPoolManager.h"
 
 /*
 	"Game Object"는 게임 내에서 나타나는 모든 요소를 지칭한다.

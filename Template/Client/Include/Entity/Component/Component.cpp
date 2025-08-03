@@ -1,5 +1,4 @@
 #include "Component.h"
-#include "../../Manager/MemoryPoolManager.h"
 
 CComponent::CComponent()
 {
