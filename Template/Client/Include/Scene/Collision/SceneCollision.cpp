@@ -1,12 +1,13 @@
 #include "SceneCollision.h"
 #include "QuadTree.h"
-#include "../../Entity/Component/Collider/Collider.h"
-#include "../../Entity/Component/Rigidbody.h"
 #include "../Camera.h"
 #include "../../Entity/Object/Object.h"
+#include "../../Entity/Component/Collider/Collider.h"
 #include "../../Manager/PhysicsManager.h"
+#include "../../Entity/Component/Rigidbody.h"
 
-CSceneCollision::CSceneCollision(CCamera* camera)
+CSceneCollision::CSceneCollision(CCamera* camera) :
+	mQuadTree(nullptr)
 {
 	mQuadTree = new CQuadTree(camera);
 }

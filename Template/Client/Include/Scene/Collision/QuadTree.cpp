@@ -1,10 +1,11 @@
 #include "QuadTree.h"
-#include "../../Core/Vector2D.h"
+#include "QTNode.h"
+#include "../Camera.h"
 #include "../../Entity/Component/Collider/Collider.h"
 #include "../../Manager/MemoryPoolManager.h"
-#include "../Camera.h"
 
-CQuadTree::CQuadTree(CCamera* camera)
+CQuadTree::CQuadTree(CCamera* camera) :
+	mRoot(nullptr)
 {
 	int totalNodes = (int)((pow(4, MAX_SPLIT + 1) - 1) / 3);
 	CMemoryPoolManager::GetInst()->CreatePool<CQTNode>(totalNodes);

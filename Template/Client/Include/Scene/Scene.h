@@ -39,7 +39,7 @@ protected:
 
 public:
 	CSceneUI* GetSceneUI() const { return mSceneUI; }
-	CCamera* GetCamera()  const { return mCamera; }
+	CCamera*  GetCamera()  const { return mCamera; }
     CSceneCollision* GetCollision() const { return mSceneCollision; }
 
     // Object 생성 및 Scene에 등록

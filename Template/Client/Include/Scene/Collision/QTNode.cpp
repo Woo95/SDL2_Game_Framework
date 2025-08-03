@@ -1,12 +1,16 @@
 #include "QTNode.h"
+#include "../Camera.h"
 #include "../../Entity/Component/Collider/BoxCollider.h"
 #include "../../Entity/Component/Collider/CircleCollider.h"
 #include "../../Manager/SceneManager.h"
 #include "../Scene.h"
 #include "../../Scene/Collision/SceneCollision.h"
-#include "../Camera.h"
 
-CQTNode::CQTNode()
+CQTNode::CQTNode() :
+	mCamera(nullptr),
+	mParent(nullptr),
+	mChilds({}),
+	mBoundary({})
 {
 }
 

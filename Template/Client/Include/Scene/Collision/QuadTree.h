@@ -1,7 +1,8 @@
 #pragma once
 
-#include "QTNode.h"
+#include "../../Core/GameInfo.h"
 
+class CQTNode;
 class CCollider;
 class CCamera;
 

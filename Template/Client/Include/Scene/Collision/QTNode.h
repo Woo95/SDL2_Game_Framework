@@ -17,13 +17,13 @@ public:
 	~CQTNode();
 
 private:
-	CCamera* mCamera = nullptr;
+	CCamera* mCamera;
 
-	CQTNode* mParent = nullptr;
-	CQTNode* mChilds[4] = {};
+	CQTNode* mParent;
+	CQTNode* mChilds[4];
 	std::vector<CCollider*> mColliders;
 
-	SDL_FRect mBoundary = {};
+	SDL_FRect mBoundary;
 
 	int mSplitLevel = 0;
 
