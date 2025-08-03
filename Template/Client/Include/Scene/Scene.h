@@ -17,9 +17,9 @@ protected:
 protected:
     std::vector<CLayer*> mLayers;
 
+	class CSceneUI* mSceneUI;
+	class CCamera* mCamera;
     class CSceneCollision* mSceneCollision;
-    class CCamera*  mCamera;
-    class CSceneUI* mSceneUI;
 
     // Resources //
     std::vector<std::shared_ptr<class CTexture>> mTextures;
@@ -38,9 +38,9 @@ protected:
     virtual void LoadResources() = 0;
 
 public:
+	CSceneUI* GetSceneUI() const { return mSceneUI; }
+	CCamera* GetCamera()  const { return mCamera; }
     CSceneCollision* GetCollision() const { return mSceneCollision; }
-    CCamera*  GetCamera()  const { return mCamera; }
-    CSceneUI* GetSceneUI() const { return mSceneUI; }
 
     // Object 생성 및 Scene에 등록
     template <typename T, int initialCapacity = 50>
