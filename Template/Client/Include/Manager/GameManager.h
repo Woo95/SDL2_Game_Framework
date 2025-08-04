@@ -5,6 +5,8 @@
 
 class CGameManager
 {
+	friend class CClient;
+
 private:
 	CGameManager();
 	~CGameManager();
@@ -12,26 +14,22 @@ private:
 private:
 	static CGameManager* mInst;
 
-	SDL_Window* mWindow = nullptr;
-	SDL_Renderer* mRenderer = nullptr;
-	bool mLoop = true;
-
-public:
-	bool Init();
-	int  Run();
+	SDL_Window* mWindow;
+	SDL_Renderer* mRenderer;
+	bool mLoop;
 
 public:
 	SDL_Renderer* GetRenderer() const { return mRenderer; }
 	FVector2D GetResolution() const
 	{
-		int width, height;
-		SDL_GetWindowSize(mWindow, &width, &height);
-
-		return FVector2D(float(width), float(height));
+		int w, h;
+		SDL_GetWindowSize(mWindow, &w, &h);
+		return { float(w), float(h) };
 	}
 
 private:
-	void Logic();
+	bool Init();
+	void Run();
 
 	void Update();
 	void LateUpdate();
