@@ -47,7 +47,7 @@ void CBoxCollider::Render(SDL_Renderer* renderer)
 	SDL_FRect renderRect = mRect;
 
 	// 카메라가 있을 경우, 카메라 좌표계를 반영한 렌더링 좌표로 변환
-	if (CCamera* camera = GetObject()->GetScene()->GetCamera())
+	if (CCamera* camera = mObject->GetScene()->GetCamera())
 		renderRect = camera->GetRenderPos(renderRect);
 
 	// 사각형 그리기

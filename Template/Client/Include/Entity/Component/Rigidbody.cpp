@@ -86,7 +86,7 @@ void CRigidbody::ApplyDrag(float deltaTime)
 // 속도에 따라 오브젝트의 상대적 위치를 갱신
 void CRigidbody::UpdateObjectPos(float deltaTime)
 {
-	if (CTransform* transform = GetObject()->GetTransform())
+	if (CTransform* transform = mObject->GetTransform())
 	{
 		// 속도에 의한 이동 계산 후, 로컬 위치 업데이트
 		FVector2D newRelativePos = transform->GetRelativePos() + mVelocity * deltaTime;

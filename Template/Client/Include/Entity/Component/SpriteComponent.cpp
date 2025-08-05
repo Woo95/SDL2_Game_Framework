@@ -36,14 +36,13 @@ void CSpriteComponent::Update(float deltaTime)
 
 void CSpriteComponent::Render(SDL_Renderer* renderer)
 {
-	if (mTexture)
+	if (mTexture && IsVisibleToCamera())
 	{
 		const SDL_Rect& frame = GetFrame();
-		const SDL_Rect  dest  = GetDest();
+		const SDL_Rect  dest  = GetCameraSpaceRect();
 
-		SDL_RenderCopyEx(renderer, mTexture.get()->GetTexture(), &frame, &dest, 0.0, nullptr, mFlip);
+		SDL_RenderCopyEx(renderer, mTexture->GetTexture(), &frame, &dest, 0.0, nullptr, mFlip);
 	}
-
 	CComponent::Render(renderer);
 }
 
@@ -80,7 +79,34 @@ const SDL_Rect& CSpriteComponent::GetFrame() const
 	return mAnimation ? mAnimation->GetCurrentFrame() : mFrame;
 }
 
-const SDL_Rect CSpriteComponent::GetDest() const
+SDL_Rect CSpriteComponent::GetDest() const
+{
+	// 월드 스케일, 위치, 피벗을 반환
+	const FVector2D& scale = mTransform->GetWorldScale();
+	const FVector2D& pos   = mTransform->GetWorldPos();
+	const FVector2D& pivot = mTransform->GetPivot();
+
+	// 좌상단 좌표 계산
+	FVector2D topLeft = pos - pivot * scale;
+
+	// 사각형 정보 생성
+	return { (int)topLeft.x, (int)topLeft.y, (int)scale.x, (int)scale.y };
+}
+
+bool CSpriteComponent::IsVisibleToCamera() const
+{
+	if (CCamera* camera = mObject->GetScene()->GetCamera())
+	{
+		SDL_Rect spriteRect = GetDest();
+		SDL_Rect cameraRect = camera->GetViewRect();
+
+		if (!SDL_HasIntersection(&spriteRect, &cameraRect))
+			return false;
+	}
+	return true;
+}
+
+SDL_Rect CSpriteComponent::GetCameraSpaceRect() const
 {
 	// 월드 스케일, 위치, 피벗을 반환
 	const FVector2D& scale = mTransform->GetWorldScale();
@@ -91,7 +117,7 @@ const SDL_Rect CSpriteComponent::GetDest() const
 	FVector2D topLeft = pos - pivot * scale;
 
 	// 카메라가 있을 경우, 카메라 좌표계를 반영한 렌더링 좌표로 변환
-	if (CCamera* camera = GetObject()->GetScene()->GetCamera())
+	if (CCamera* camera = mObject->GetScene()->GetCamera())
 		topLeft = camera->GetRenderPos(topLeft);
 
 	// 사각형 정보 생성

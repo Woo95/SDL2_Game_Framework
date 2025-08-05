@@ -35,5 +35,9 @@ public:
 
 private:
 	const SDL_Rect& GetFrame() const;
-	const SDL_Rect GetDest() const;
+	SDL_Rect GetDest() const;
+
+	// 카메라 관련 함수
+	bool IsVisibleToCamera() const;
+	SDL_Rect GetCameraSpaceRect() const;
 };

@@ -21,4 +21,11 @@ private:
 
 public:
 	void SetWidget(CWidget* widget);
+
+private:
+	SDL_Rect GetWidgetDest() const;
+
+	// 카메라 관련 함수
+	bool IsVisibleToCamera() const;
+	FVector2D GetCameraSpaceTopLeft() const;
 };

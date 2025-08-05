@@ -45,7 +45,7 @@ void CCircleCollider::Render(SDL_Renderer* renderer)
 	FCircle renderCircle = mCircle;
 
 	// 카메라가 있을 경우, 카메라 좌표계를 반영한 렌더링 좌표로 변환
-	if (CCamera* camera = GetObject()->GetScene()->GetCamera())
+	if (CCamera* camera = mObject->GetScene()->GetCamera())
 		renderCircle.center = camera->GetRenderPos(renderCircle.center);
 
 	// 원 그리기
