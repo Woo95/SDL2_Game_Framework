@@ -28,11 +28,15 @@ bool CMenuUI::Init()
 
 	CSampleUserWidget* panel1 = CWidgetUtils::AllocateWidget<CSampleUserWidget>("panel");
 	panel1->GetTransform()->SetWorldPos(340.f, 400.f);
+	panel1->GetTransform()->SetWorldScale(500.f, 500.f);
+	panel1->GetTransform()->SetPivot(0.5f, 0.5f);
 	panel1->SetMovable(true);
 	AddWidget(panel1);
 
 	CSampleUserWidget* panel2 = CWidgetUtils::AllocateWidget<CSampleUserWidget>("panel2");
 	panel2->GetTransform()->SetWorldPos(940.f, 400.f);
+	panel2->GetTransform()->SetWorldScale(500.f, 500.f);
+	panel2->GetTransform()->SetPivot(0.5f, 0.5f);
 	panel2->SetMovable(true);
 	AddWidget(panel2);
 	
