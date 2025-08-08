@@ -7,22 +7,39 @@ class CTimer
 	friend class CGameManager;
 
 private:
-	static Uint64 mSecond;
-	static Uint64 mTime;
-	static float  mDeltaTime;
-
-	static float  mFPS;
-	static float  mFPSTime;
-	static int    mFPSTick;
-
-public:
-	static float GetDeltaTime() { return mDeltaTime; }
-	static float GetFPS() { return mFPS; }
+	CTimer();
+	~CTimer();
 
 private:
-	static bool Init();
+	static CTimer* mInst;
 
-	static void Update();
-	static void UpdateDeltaTime();
-	static void UpdateFPS();
+	Uint64 mTime;
+	Uint64 mSecond;
+	float  mDeltaTime;
+
+	float  mFPS;
+	float  mFPSTime;
+	int    mFPSTick;
+
+public:
+	float GetDeltaTime() { return mDeltaTime; }
+	float GetFPS() { return mFPS; }
+
+private:
+	void Update();
+	void UpdateDeltaTime();
+	void UpdateFPS();
+
+public:
+	static CTimer* GetInst()
+	{
+		if (!mInst)
+			mInst = new CTimer;
+		return mInst;
+	}
+
+	static void DestroyInst()
+	{
+		SAFE_DELETE(mInst);
+	}
 };

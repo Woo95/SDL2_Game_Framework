@@ -1,22 +1,19 @@
 #include "Timer.h"
 
-Uint64 CTimer::mSecond;
-Uint64 CTimer::mTime;
-float  CTimer::mDeltaTime = 0.0f;
+CTimer* CTimer::mInst = nullptr;
 
-float CTimer::mFPS = 0.0f;
-float CTimer::mFPSTime = 0.0f;
-int   CTimer::mFPSTick = 0;
-
-bool CTimer::Init()
+CTimer::CTimer() :
+	mTime(SDL_GetPerformanceCounter()),     // 고해상도 타이머의 현재 값을 받아온다.
+	mSecond(SDL_GetPerformanceFrequency()), // 초당 고해상도 타이머가 얼마나 동작하는지 얻어온다.
+    mDeltaTime(0.0f),
+    mFPS(0.0f),
+    mFPSTime(0.0f),
+	mFPSTick(0)
 {
-    // 초당 고해상도 타이머가 얼마나 동작하는지 얻어온다.
-    mSecond = SDL_GetPerformanceFrequency();
+}
 
-    // 고해상도 타이머의 현재 값을 받아온다.
-    mTime = SDL_GetPerformanceCounter();
-
-    return true;
+CTimer::~CTimer()
+{
 }
 
 void CTimer::Update()
@@ -50,7 +47,7 @@ void CTimer::UpdateFPS()
     mFPSTime += mDeltaTime;
 
     // 프레임 카운트를 증가
-    ++mFPSTick;
+    mFPSTick++;
 
     // 60 프레임이 경과했을 때 FPS를 계산
     if (mFPSTick == 60)

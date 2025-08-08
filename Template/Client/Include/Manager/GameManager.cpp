@@ -26,13 +26,15 @@ CGameManager::~CGameManager()
 
     CCollisionManager::DestroyInst();
 
-    CInput::DestroyInst();
-
     CAssetManager::DestroyInst();
 
-    CPathManager::DestroyInst();
+	CPathManager::DestroyInst();
 
-    CMemoryPoolManager::DestroyInst();
+	CInput::DestroyInst();
+
+	CTimer::DestroyInst();
+
+	CMemoryPoolManager::DestroyInst();
 
     SDL_DestroyRenderer(mRenderer);
 
@@ -53,8 +55,6 @@ bool CGameManager::Init()
     mRenderer = SDL_CreateRenderer(mWindow, -1, 0);
     if (!mRenderer)
         return false;
-
-    CTimer::Init();
 
     if (!CInput::GetInst()->Init())
         return false;
@@ -95,16 +95,16 @@ void CGameManager::Run()
 
 void CGameManager::Update()
 {
-    CTimer::Update();
+    CTimer::GetInst()->Update();
 
     CInput::GetInst()->Update();
 
-    CSceneManager::GetInst()->Update(CTimer::GetDeltaTime());
+    CSceneManager::GetInst()->Update(CTimer::GetInst()->GetDeltaTime());
 }
 
 void CGameManager::LateUpdate()
 {
-    CSceneManager::GetInst()->LateUpdate(CTimer::GetDeltaTime());
+    CSceneManager::GetInst()->LateUpdate(CTimer::GetInst()->GetDeltaTime());
 }
 
 void CGameManager::Render()
