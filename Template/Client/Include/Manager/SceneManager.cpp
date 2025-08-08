@@ -35,17 +35,11 @@ void CSceneManager::Update(float deltaTime)
 	if (mPending.transition != ETransition::NONE)
 		ChangeApply();
 
-	if (mScenes.empty())
-		return;
-
 	mScenes.back()->Update(deltaTime);
 }
 
 void CSceneManager::LateUpdate(float deltaTime)
 {
-	if (mScenes.empty())
-		return;
-
 	mScenes.back()->LateUpdate(deltaTime);
 }
 
