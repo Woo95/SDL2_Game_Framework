@@ -21,9 +21,11 @@ private:
 	const float CONST_MinMtvLSq = 0.5f;
 
 public:
-	void ResolveOverlap(CCollider* collider1, CCollider* collider2, bool pushObj1, bool pushObj2);
+	void ResolveOverlapIfPushable(CCollider* collider1, CCollider* collider2);
 
 private:
+	void ResolveOverlap(CCollider* collider1, CCollider* collider2, bool pushObj1, bool pushObj2);
+
 	void ResolveAABBOverlap(CBoxCollider* collider1, CBoxCollider* collider2, bool pushObj1, bool pushObj2);
 	void ResolveCircleCircleOverlap(CCircleCollider* collider1, CCircleCollider* collider2, bool pushObj1, bool pushObj2);
 	void ResolveAABBCircleOverlap(CBoxCollider* collider1, CCircleCollider* collider2, bool pushObj1, bool pushObj2);

@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../../Core/GameInfo.h"
 #include "../../Core/ColliderPair.h"
 
 class CCollider;
@@ -30,6 +29,5 @@ public:
 	void HandleCollision(CCollider* collider1, CCollider* collider2);
 
 private:
-	void ResolveOverlapIfPushable(CCollider* collider1, CCollider* collider2);
 	void CleanPairs();
 };

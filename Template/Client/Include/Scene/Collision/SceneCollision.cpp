@@ -1,10 +1,8 @@
 #include "SceneCollision.h"
 #include "QuadTree.h"
 #include "../Camera.h"
-#include "../../Entity/Object/Object.h"
 #include "../../Entity/Component/Collider/Collider.h"
 #include "../../Manager/PhysicsManager.h"
-#include "../../Entity/Component/Rigidbody.h"
 
 CSceneCollision::CSceneCollision(CCamera* camera) :
 	mQuadTree(nullptr)
@@ -57,7 +55,7 @@ void CSceneCollision::HandleCollision(CCollider* collider1, CCollider* collider2
 			collider1->OnCollisionStay(collider2);
 			collider2->OnCollisionStay(collider1);
 
-			ResolveOverlapIfPushable(collider1, collider2);
+			CPhysicsManager::GetInst()->ResolveOverlapIfPushable(collider1, collider2);
 		}
 	}
 	else
@@ -70,34 +68,6 @@ void CSceneCollision::HandleCollision(CCollider* collider1, CCollider* collider2
 		// 비충돌 pair는 제거
 		mPairs.erase(pair);
 	}
-}
-
-// "Pushable Object": DYNAMIC Rigidbody이며, 상대 Collider와 BLOCK 상호작용일 때 
-void CSceneCollision::ResolveOverlapIfPushable(CCollider* collider1, CCollider* collider2)
-{
-	FCollisionProfile* profile1 = collider1->GetProfile();
-	FCollisionProfile* profile2 = collider2->GetProfile();
-
-	ECollision::Interaction response1to2 = profile1->collisionResponses[profile2->channel];
-	ECollision::Interaction response2to1 = profile2->collisionResponses[profile1->channel];
-
-	CRigidbody* rb1 = nullptr;
-	CRigidbody* rb2 = nullptr;
-
-	if (response1to2 == ECollision::Interaction::BLOCK)
-		rb1 = collider1->GetObject()->GetComponent<CRigidbody>();
-
-	if (response2to1 == ECollision::Interaction::BLOCK)
-		rb2 = collider2->GetObject()->GetComponent<CRigidbody>();
-
-	bool pushObj1 = rb1 != nullptr && rb1->GetType() == ERigidbodyType::DYNAMIC;
-	bool pushObj2 = rb2 != nullptr && rb2->GetType() == ERigidbodyType::DYNAMIC;
-
-	// 양쪽 모두 밀지 않아도 될 경우, 물리반응 발생 X
-	if (!pushObj1 && !pushObj2)
-		return;
-
-	CPhysicsManager::GetInst()->ResolveOverlap(collider1, collider2, pushObj1, pushObj2);
 }
 
 void CSceneCollision::CleanPairs()
