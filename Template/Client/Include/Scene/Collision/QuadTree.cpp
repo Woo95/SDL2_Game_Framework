@@ -50,6 +50,7 @@ void CQuadTree::Render(SDL_Renderer* renderer)
 {
 	mRoot->Render(renderer);
 
+	// 디버그용으로 Render()에서 호출하지만 실제 호출은 LateUpdate()
 	mRoot->Clear();
 }
 
