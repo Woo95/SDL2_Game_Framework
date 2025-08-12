@@ -92,12 +92,10 @@ void CSceneManager::PopScene()
 {
 	assert(!mScenes.empty());
 
-	// 이전 씬 정리
+	// 이전 씬 제거 및 리소스들 언로드
 	CScene* oldScene = mScenes.back();
-
 	if (oldScene->Exit())
 	{
-		// 사용하지 않는 리소스들 언로드
 		oldScene->UnloadResources();
 		SAFE_DELETE(oldScene);
 		mScenes.pop_back();
@@ -122,13 +120,7 @@ void CSceneManager::ClearScenes()
 {
 	// 이전 모든 씬 정리
 	while (!mScenes.empty())
-	{
-		CScene* scene = mScenes.back();
-
-		scene->UnloadResources();
-		SAFE_DELETE(scene);
-		mScenes.pop_back();
-	}
+		PopScene();
 }
 
 void CSceneManager::ClearThenPushScene()

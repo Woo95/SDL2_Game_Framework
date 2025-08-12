@@ -94,5 +94,11 @@ protected:
     void LoadBGM(const std::string& key, const char* fileName);
 
 private:
-    void UnloadResources();
+    void UnloadResources()
+	{
+		mTextures.clear();
+		mFonts.clear();
+		mSFXs.clear();
+		mBGMs.clear();
+	}
 };

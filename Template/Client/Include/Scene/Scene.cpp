@@ -91,11 +91,3 @@ void CScene::LoadBGM(const std::string& key, const char* fileName)
 
     mBGMs.emplace_back(SM->LoadSound<CBGM>(key, fileName));
 }
-
-void CScene::UnloadResources()
-{
-    mTextures.clear();
-    mFonts.clear();
-    mSFXs.clear();
-    mBGMs.clear();
-}
