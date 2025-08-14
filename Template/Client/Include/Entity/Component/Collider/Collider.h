@@ -47,9 +47,14 @@ public:
 	}
 
 public:
-	FCollisionProfile* GetProfile()   const { return mProfile; }
 	ECollider::Type GetColliderType() const { return mColliderType; }
-	bool IsCollided() const { return mCollidedCount > 0; }
+	const FVector2D&   GetHitPoint()  const { return mHitPoint; }
+	FCollisionProfile* GetProfile()   const { return mProfile; }
 
 	void SetProfile(const std::string& name);
+
+	bool IsCollided() const
+	{ 
+		return mCollidedCount > 0; 
+	}
 };

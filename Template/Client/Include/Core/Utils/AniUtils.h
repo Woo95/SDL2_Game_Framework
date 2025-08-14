@@ -12,9 +12,12 @@ enum class EAnimationType : unsigned char
 enum class EAnimationState : unsigned char
 {
 	NONE,
+
 	IDLE,
 	WALK,
-	JUMP
+	JUMP,
+
+	VFX
 };
 
 struct FAnimationData

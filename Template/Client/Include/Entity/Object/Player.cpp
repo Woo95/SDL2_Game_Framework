@@ -49,7 +49,7 @@ bool CPlayer::Init()
     mSpriteComponent = AllocateComponent<CSpriteComponent>("sprite");
     mSpriteComponent->SetTexture("Pasqualina");
     mSpriteComponent->SetAnimation("Pasqualina");
-    mSpriteComponent->GetAnimation()->SetCurrentState(EAnimationState::WALK);
+    mSpriteComponent->GetAnimation()->SetState(EAnimationState::WALK);
     mSpriteComponent->GetTransform()->SetWorldScale(75.f, 75.f);
     mSpriteComponent->GetTransform()->SetPivot(0.5f, 0.5f);
 

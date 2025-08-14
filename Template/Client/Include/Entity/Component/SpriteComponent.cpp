@@ -70,13 +70,13 @@ void CSpriteComponent::SetAnimation(const std::string& key)
 	if (base)
 	{
 		mAnimation = base->Clone();
-		mAnimation->mOwner = this;
+		mAnimation->mTransform = mTransform;
 	}
 }
 
 const SDL_Rect& CSpriteComponent::GetFrame() const
 {
-	return mAnimation ? mAnimation->GetCurrentFrame() : mFrame;
+	return mAnimation ? mAnimation->GetFrame() : mFrame;
 }
 
 SDL_Rect CSpriteComponent::GetDest() const

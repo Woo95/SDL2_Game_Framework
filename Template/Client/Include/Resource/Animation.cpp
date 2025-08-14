@@ -3,11 +3,12 @@
 #include "../Manager/MemoryPoolManager.h"
 
 CAnimation::CAnimation() :
-	mOwner(nullptr),
+	mTransform(nullptr),
 	mCurrentState(EAnimationState::NONE),
 	mPrevPos(FVector2D::ZERO),
 	mFrameInterval(0.0f),
-	mCurrIdx(0)
+	mCurrIdx(0),
+	mLooped(false)
 {
 }
 
@@ -33,7 +34,7 @@ void CAnimation::Update(float deltaTime)
 
 		case EAnimationType::MOVE:
 		{
-			const FVector2D& currentPos = mOwner->GetTransform()->GetWorldPos();
+			const FVector2D& currentPos = mTransform->GetWorldPos();
 
 			FVector2D posDelta = currentPos - mPrevPos;
 
@@ -58,19 +59,25 @@ void CAnimation::Update(float deltaTime)
 			if (mFrameInterval >= aniData->intervalPerFrame)
 			{
 				if (aniData->isLoop)
+				{
 					mCurrIdx = (mCurrIdx + 1) % aniData->frames.size();
+				}
 				else
 				{
-					if (mCurrIdx < aniData->frames.size() - 1)
-					{
+					mLooped = (mCurrIdx >= aniData->frames.size() - 1) ? true : false;
+					if (!mLooped)
 						mCurrIdx++;
-					}
 				}
 				mFrameInterval = 0.0f;
 			}
 		}
 		break;
 	}
+}
+
+void CAnimation::Release()
+{
+	CMemoryPoolManager::GetInst()->Deallocate<CAnimation>(this);
 }
 
 CAnimation* CAnimation::Clone() const
@@ -80,9 +87,4 @@ CAnimation* CAnimation::Clone() const
 	*clone = *this; // 얕은 복사
 
 	return clone;
-}
-
-void CAnimation::Release()
-{
-	CMemoryPoolManager::GetInst()->Deallocate<CAnimation>(this);
 }
