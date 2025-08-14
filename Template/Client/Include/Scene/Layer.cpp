@@ -71,9 +71,8 @@ void CLayer::Render(SDL_Renderer* renderer)
     for (CObject* obj : mObjects)
     {
         if (!obj->GetActive() || !obj->GetEnable())
-        {
             continue;
-        }
+
         obj->Render(renderer);
     }
 }

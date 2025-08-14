@@ -20,7 +20,7 @@ protected:
 protected:
 	size_t mTypeID = -1;
 
-	class CObject* mObject = nullptr;
+	CObject*    mObject    = nullptr;
 	CTransform* mTransform = nullptr;
 
 	CComponent* mParent = nullptr;
@@ -37,8 +37,8 @@ private:
 	virtual void Release() { return; }	// Object.h에서 component memoryPool usage 위하여
 
 public:
-	CTransform* GetTransform() const { return mTransform; }
 	CObject* GetObject() const { return mObject; }
+	CTransform* GetTransform() const { return mTransform; }
 
 	void AddChild(CComponent* child);
 	bool DeleteChild(CComponent* child);

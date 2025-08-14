@@ -30,5 +30,5 @@ public:
 	}
 
 private:
-	static bool SortY(CObject* a, CObject* b);
+	static bool SortY(CObject* objA, CObject* objB);
 };
