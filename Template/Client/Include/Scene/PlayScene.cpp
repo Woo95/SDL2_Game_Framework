@@ -68,8 +68,10 @@ void CPlayScene::LoadResources()
 	LoadTexture("Antonio",    "Antonio.png");
 	LoadTexture("Imelda",     "Imelda.png");
 	LoadTexture("Pasqualina", "Pasqualina.png");
+
 	LoadTexture("Bullet",     "Bullet.png");
 	LoadTexture("Stage1",     "Mad_Forest_stage_1.png");
+	LoadTexture("NumberVFX",  "NumberVFX.png");
 
 	LoadBGM("Stage1_BGM", "bgm_will_beginning.wav");
 }

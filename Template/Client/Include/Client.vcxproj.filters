@@ -142,6 +142,9 @@
     <Filter Include="Framework\03. Scene\04. Collision">
       <UniqueIdentifier>{5f949429-47db-4625-860f-1c3d6575c0cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\04. Entity\02. Component\01. Components\VFX">
+      <UniqueIdentifier>{369401da-d337-48de-8695-fc6c7250bcf7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Timer.h">
@@ -606,6 +609,9 @@
     <ClInclude Include="Scene\Layer.h">
       <Filter>Framework\03. Scene\01. Layer</Filter>
     </ClInclude>
+    <ClInclude Include="Entity\Component\VFXComponent.h">
+      <Filter>Framework\04. Entity\02. Component\01. Components\VFX</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Timer.cpp">
@@ -770,6 +776,9 @@
     </ClCompile>
     <ClCompile Include="Scene\Layer.cpp">
       <Filter>Framework\03. Scene\01. Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity\Component\VFXComponent.cpp">
+      <Filter>Framework\04. Entity\02. Component\01. Components\VFX</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

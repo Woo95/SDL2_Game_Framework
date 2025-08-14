@@ -2,6 +2,7 @@
 #include "Object.h"
 
 class CCollider;
+class CVFXComponent;
 
 class CMonster : public CObject
 {
@@ -11,6 +12,7 @@ public:
 
 private:
 	CCollider* mCollider;
+	CVFXComponent* mVFX;
 
 public:
 	virtual bool Init();
@@ -20,4 +22,7 @@ public:
 
 private:
 	virtual void Release() final;
+
+public:
+	void OnHit(CCollider* self, CCollider* other);
 };
