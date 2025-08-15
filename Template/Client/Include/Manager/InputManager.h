@@ -1,18 +1,18 @@
 #pragma once
 
-#include "Utils/InputUtils.h"
-#include "Vector2D.h"
+#include "../Core/Utils/InputUtils.h"
+#include "../Core/Vector2D.h"
 
-class CInput
+class CInputManager
 {
 	friend class CGameManager;
 
 private:
-	CInput();
-	~CInput();
+	CInputManager();
+	~CInputManager();
 
 private:
-	static CInput* mInst;
+	static CInputManager* mInst;
 
 	// 사용될 모든 키보드 (입력 값 + 상태)를 묶어서 저장
 	std::unordered_map<SDL_Scancode, FInputState> mKeys;
@@ -62,10 +62,10 @@ public:
 	const FVector2D& GetMousePos() const { return mMousePos; }
 
 public:
-	static CInput* GetInst()
+	static CInputManager* GetInst()
 	{
 		if (!mInst)
-			mInst = new CInput;
+			mInst = new CInputManager;
 		return mInst;
 	}
 

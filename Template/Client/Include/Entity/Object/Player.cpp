@@ -1,6 +1,6 @@
 #include "Player.h"
 #include "Bullet.h"
-#include "../../Core/Input.h"
+#include "../../Manager/InputManager.h"
 #include "../Component/MovementComponent.h"
 #include "../Component/Collider/BoxCollider.h"
 #include "../../Entity/Component/SpriteComponent.h"
@@ -167,5 +167,5 @@ void CPlayer::SHOOT()
 {
     CBullet* bullet = mScene->InstantiateObject<CBullet>("bullet", ELayer::Type::PROJECTILE);
 
-    bullet->GetTransform()->SetWorldPos(mScene->GetCamera()->GetWorldPos(CInput::GetInst()->GetMousePos()));
+    bullet->GetTransform()->SetWorldPos(mScene->GetCamera()->GetWorldPos(CInputManager::GetInst()->GetMousePos()));
 }

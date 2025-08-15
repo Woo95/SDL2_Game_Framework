@@ -1,6 +1,6 @@
 #include "GameManager.h"
 #include "../Core/Timer.h"
-#include "../Core/Input.h"
+#include "InputManager.h"
 #include "MemoryPoolManager.h"
 #include "Data/PathManager.h"
 #include "Data/Resource/AssetManager.h"
@@ -30,7 +30,7 @@ CGameManager::~CGameManager()
 
 	CPathManager::DestroyInst();
 
-	CInput::DestroyInst();
+	CInputManager::DestroyInst();
 
 	CTimer::DestroyInst();
 
@@ -56,7 +56,7 @@ bool CGameManager::Init()
     if (!mRenderer)
         return false;
 
-    if (!CInput::GetInst()->Init())
+    if (!CInputManager::GetInst()->Init())
         return false;
 
     if (!CPathManager::GetInst()->Init())
@@ -97,7 +97,7 @@ void CGameManager::Update()
 {
     CTimer::GetInst()->Update();
 
-    CInput::GetInst()->Update();
+    CInputManager::GetInst()->Update();
 
     CSceneManager::GetInst()->Update(CTimer::GetInst()->GetDeltaTime());
 }

@@ -1,17 +1,17 @@
-#include "Input.h"
+#include "InputManager.h"
 
-CInput* CInput::mInst = nullptr;
+CInputManager* CInputManager::mInst = nullptr;
 
-CInput::CInput()
+CInputManager::CInputManager()
 {
 }
 
-CInput::~CInput()
+CInputManager::~CInputManager()
 {
 }
 
 // Init에서 RegisterKey/Mouse로 입력값 등록, 오브젝트에서 콜백 추가 관리
-bool CInput::Init()
+bool CInputManager::Init()
 {
 	// SAMPLES //
 	RegisterKey(SDL_SCANCODE_W);
@@ -26,7 +26,7 @@ bool CInput::Init()
 	return true;
 }
 
-bool CInput::RegisterKey(SDL_Scancode keyCode)
+bool CInputManager::RegisterKey(SDL_Scancode keyCode)
 {
 	if (mKeys.find(keyCode) != mKeys.end())
 		return false;
@@ -37,7 +37,7 @@ bool CInput::RegisterKey(SDL_Scancode keyCode)
 	return true;
 }
 
-bool CInput::RegisterMouse(Uint8 button)
+bool CInputManager::RegisterMouse(Uint8 button)
 {
 	if (mMouses.find(button) != mMouses.end())
 		return false;
@@ -48,13 +48,13 @@ bool CInput::RegisterMouse(Uint8 button)
 	return true;
 }
 
-void CInput::Update()
+void CInputManager::Update()
 {
 	UpdateInputState();
 }
 
 // 실시간 키보드 및 마우스 입력값 감지
-void CInput::UpdateInputState()
+void CInputManager::UpdateInputState()
 {
 	// FOR KEYBOARD //
 	{
@@ -96,7 +96,7 @@ void CInput::UpdateInputState()
 }
 
 // 실시간 키보드 및 마우스 입력값 정보 업데이트
-void CInput::HandleInputState(bool& press, bool& hold, bool& release, bool isPressed)
+void CInputManager::HandleInputState(bool& press, bool& hold, bool& release, bool isPressed)
 {
 	if (isPressed)
 	{

@@ -1,5 +1,5 @@
 #include "InputComponent.h"
-#include "../../Core/Input.h"
+#include "../../Manager/InputManager.h"
 
 CInputComponent::CInputComponent()
 {
@@ -48,7 +48,7 @@ void CInputComponent::Update(float deltaTime)
 			const SDL_Scancode& key = binderKey.first;
 			const EKey::State& state = binderKey.second;
 
-			if (!CInput::GetInst()->GetKeyState(key, state))
+			if (!CInputManager::GetInst()->GetKeyState(key, state))
 			{
 				match = false;
 				break;
@@ -64,7 +64,7 @@ void CInputComponent::Update(float deltaTime)
 			const Uint8& mouse = binderMouse.first;
 			const EKey::State& state = binderMouse.second;
 
-			if (!CInput::GetInst()->GetMouseButtonState(mouse, state))
+			if (!CInputManager::GetInst()->GetMouseButtonState(mouse, state))
 			{
 				match = false;
 				break;
