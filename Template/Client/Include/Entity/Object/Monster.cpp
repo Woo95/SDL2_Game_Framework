@@ -3,7 +3,7 @@
 #include "../../Entity/Component/SpriteComponent.h"
 #include "../../Resource/Animation.h"
 #include "../../Entity/Component/Rigidbody.h"
-#include "../../Entity/Component/VFXComponent.h""
+#include "../../Entity/Component/VFXComponent.h"
 
 CMonster::CMonster() :
     mCollider(nullptr),

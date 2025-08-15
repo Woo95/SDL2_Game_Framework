@@ -56,13 +56,6 @@ void CSpriteComponent::SetTexture(const std::string& key)
 	mTexture = CAssetManager::GetInst()->GetTextureManager()->GetTexture(key);
 }
 
-void CSpriteComponent::SetFrame(const std::string& key)
-{
-	const SDL_Rect* const framePtr = CAssetManager::GetInst()->GetSpriteManager()->GetSpriteFrame(key);
-
-	mFrame = *framePtr;
-}
-
 void CSpriteComponent::SetAnimation(const std::string& key)
 {
 	CAnimation* base = CAssetManager::GetInst()->GetAnimationManager()->GetAnimation(key);
@@ -72,6 +65,13 @@ void CSpriteComponent::SetAnimation(const std::string& key)
 		mAnimation = base->Clone();
 		mAnimation->mTransform = mTransform;
 	}
+}
+
+void CSpriteComponent::SetFrame(const std::string& key)
+{
+	const SDL_Rect* const framePtr = CAssetManager::GetInst()->GetSpriteManager()->GetSpriteFrame(key);
+
+	mFrame = *framePtr;
 }
 
 const SDL_Rect& CSpriteComponent::GetFrame() const
