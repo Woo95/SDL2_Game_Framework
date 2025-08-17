@@ -1,5 +1,5 @@
 #include "InputComponent.h"
-#include "../../Core/Input.h"
+#include "../../Manager/InputManager.h"
 
 CInputComponent::CInputComponent()
 {
@@ -30,7 +30,7 @@ void CInputComponent::Update(float deltaTime)
 {
 	CComponent::Update(deltaTime);
 
-	// 등록된 입력 정보를 비교하여, 해당 입력 상태에 따라 등록된 함수들을 호출 //
+	// 등록된 입력정보를 비교하여, 해당 입력상태에 따라 등록된 함수들을 호출 //
 	std::unordered_map<std::string, FBinder*>::iterator iter = mBinders.begin();
 	std::unordered_map<std::string, FBinder*>::iterator iterEnd = mBinders.end();
 
@@ -46,9 +46,9 @@ void CInputComponent::Update(float deltaTime)
 		for (const auto& binderKey : binder->Keys)
 		{
 			const SDL_Scancode& key = binderKey.first;
-			const EKey::State& state = binderKey.second;
+			const EKeyAction& action = binderKey.second;
 
-			if (!CInput::GetInst()->GetKeyState(key, state))
+			if (!CInputManager::GetInst()->GetKeyState(key, action))
 			{
 				match = false;
 				break;
@@ -62,9 +62,9 @@ void CInputComponent::Update(float deltaTime)
 		for (const auto& binderMouse : binder->Mouses)
 		{
 			const Uint8& mouse = binderMouse.first;
-			const EKey::State& state = binderMouse.second;
+			const EKeyAction& action = binderMouse.second;
 
-			if (!CInput::GetInst()->GetMouseButtonState(mouse, state))
+			if (!CInputManager::GetInst()->GetMouseButtonState(mouse, action))
 			{
 				match = false;
 				break;

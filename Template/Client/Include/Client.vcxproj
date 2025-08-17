@@ -147,7 +147,7 @@
     <ClInclude Include="Core\External\SDL\SDL_video.h" />
     <ClInclude Include="Core\External\SDL\SDL_vulkan.h" />
     <ClInclude Include="Core\GameInfo.h" />
-    <ClInclude Include="Core\Input.h" />
+    <ClInclude Include="Manager\InputManager.h" />
     <ClInclude Include="Core\Utils\SceneUtils.h" />
     <ClInclude Include="Core\StaticMemoryPool.h" />
     <ClInclude Include="Core\Timer.h" />
@@ -209,7 +209,7 @@
     <ClCompile Include="Entity\Component\Collider\Collider.cpp" />
     <ClCompile Include="Entity\Object\Bullet.cpp" />
     <ClCompile Include="Client.cpp" />
-    <ClCompile Include="Core\Input.cpp" />
+    <ClCompile Include="Manager\InputManager.cpp" />
     <ClCompile Include="Core\Timer.cpp" />
     <ClCompile Include="Core\Vector2D.cpp" />
     <ClCompile Include="Entity\Component\Component.cpp" />

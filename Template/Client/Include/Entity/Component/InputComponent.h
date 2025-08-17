@@ -67,23 +67,23 @@ public:
 	}
 
 	// keyboard
-	void AddInputToBinder(const std::string& key, SDL_Scancode keyCode, EKey::State state)
+	void AddInputToBinder(const std::string& key, SDL_Scancode keyCode, EKeyAction action)
 	{
 		FBinder* binder = mBinders[key];
 
 		if (!binder)
 			return;
 
-		binder->Keys.emplace_back(std::make_pair(keyCode, state));
+		binder->Keys.emplace_back(std::make_pair(keyCode, action));
 	}
 	// mouse
-	void AddInputToBinder(const std::string& key, Uint8 button, EKey::State state)
+	void AddInputToBinder(const std::string& key, Uint8 button, EKeyAction action)
 	{
 		FBinder* binder = mBinders[key];
 
 		if (!binder)
 			return;
 
-		binder->Mouses.emplace_back(std::make_pair(button, state));
+		binder->Mouses.emplace_back(std::make_pair(button, action));
 	}
 };

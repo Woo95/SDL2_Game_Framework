@@ -1,6 +1,6 @@
 #include "Player.h"
 #include "Bullet.h"
-#include "../../Core/Input.h"
+#include "../../Manager/InputManager.h"
 #include "../Component/MovementComponent.h"
 #include "../Component/Collider/BoxCollider.h"
 #include "../../Entity/Component/SpriteComponent.h"
@@ -121,11 +121,11 @@ void CPlayer::SetupInput()
     mInputComponent->AddFunctionToBinder("RIGHT", this, &CPlayer::MOVE_RIGHT);
     mInputComponent->AddFunctionToBinder("SHOOT", this, &CPlayer::SHOOT);
 
-    mInputComponent->AddInputToBinder("UP",    SDL_SCANCODE_W,  EKey::State::HOLD);
-    mInputComponent->AddInputToBinder("DOWN",  SDL_SCANCODE_S,  EKey::State::HOLD);
-    mInputComponent->AddInputToBinder("LEFT",  SDL_SCANCODE_A,  EKey::State::HOLD);
-    mInputComponent->AddInputToBinder("RIGHT", SDL_SCANCODE_D,  EKey::State::HOLD);
-    mInputComponent->AddInputToBinder("SHOOT", SDL_BUTTON_LEFT, EKey::State::PRESS);
+    mInputComponent->AddInputToBinder("UP",    SDL_SCANCODE_W,  EKeyAction::HOLD);
+    mInputComponent->AddInputToBinder("DOWN",  SDL_SCANCODE_S,  EKeyAction::HOLD);
+    mInputComponent->AddInputToBinder("LEFT",  SDL_SCANCODE_A,  EKeyAction::HOLD);
+    mInputComponent->AddInputToBinder("RIGHT", SDL_SCANCODE_D,  EKeyAction::HOLD);
+    mInputComponent->AddInputToBinder("SHOOT", SDL_BUTTON_LEFT, EKeyAction::PRESS);
 }
 
 void CPlayer::MOVE_UP()
@@ -167,5 +167,5 @@ void CPlayer::SHOOT()
 {
     CBullet* bullet = mScene->InstantiateObject<CBullet>("bullet", ELayer::Type::PROJECTILE);
 
-    bullet->GetTransform()->SetWorldPos(mScene->GetCamera()->GetWorldPos(CInput::GetInst()->GetMousePos()));
+    bullet->GetTransform()->SetWorldPos(mScene->GetCamera()->GetWorldPos(CInputManager::GetInst()->GetMousePos()));
 }

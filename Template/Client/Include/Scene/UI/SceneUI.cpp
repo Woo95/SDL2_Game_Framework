@@ -1,7 +1,7 @@
 #include "SceneUI.h"
 #include "../../Widget/Widget.h"
 #include "../../Manager/CollisionManager.h"
-#include "../../Core/Input.h"
+#include "../../Manager/InputManager.h"
 
 CSceneUI::CSceneUI()
 {
@@ -134,11 +134,11 @@ CWidget* CSceneUI::FindHoveredInTree(CWidget* widget, const FVector2D& mousePos)
 
 void CSceneUI::UpdateInput()
 {
-	const FVector2D& mousePos = CInput::GetInst()->GetMousePos();
+	const FVector2D& mousePos = CInputManager::GetInst()->GetMousePos();
 
-	bool isPressed  = CInput::GetInst()->GetMouseButtonState(SDL_BUTTON_LEFT, EKey::State::PRESS);
-	bool isHeld     = CInput::GetInst()->GetMouseButtonState(SDL_BUTTON_LEFT, EKey::State::HOLD);
-	bool isReleased = CInput::GetInst()->GetMouseButtonState(SDL_BUTTON_LEFT, EKey::State::RELEASE);
+	bool isPressed  = CInputManager::GetInst()->GetMouseButtonState(SDL_BUTTON_LEFT, EKeyAction::PRESS);
+	bool isHeld     = CInputManager::GetInst()->GetMouseButtonState(SDL_BUTTON_LEFT, EKeyAction::HOLD);
+	bool isReleased = CInputManager::GetInst()->GetMouseButtonState(SDL_BUTTON_LEFT, EKeyAction::RELEASE);
 
 	// 마우스로 잡은 Widget이 있을 경우
 	if (mHeldWidget)

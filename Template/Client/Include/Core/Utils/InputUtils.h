@@ -6,20 +6,17 @@
 
                               ///// MOUSE & KEYBOARDS /////
 
-namespace EKey
+// 키 액션 타입을 나타내는 열거형
+enum class EKeyAction : unsigned char
 {
-	// 키 상태를 나타내는 열거형
-	enum State : unsigned char
-	{
-		PRESS,
-		HOLD,
-		RELEASE,
-		MAX
-	};
-}
+	PRESS,
+	HOLD,
+	RELEASE,
+	MAX
+};
 
-// 단일 입력 값 상태 정보를 담는 구조체
-struct FInputState
+// 단일 입력상태 정보를 담는 구조체
+struct FKeyState
 {
 	bool Press   = false;
 	bool Hold    = false;
@@ -35,11 +32,11 @@ struct FBindFunction
 	std::function<void()> func; // 호출할 함수를 저장하는 변수
 };
 
-// 키보드와 마우스 입력 값을 조합하고 해당 입력에 대한 동작(함수)을 묶어주는 구조체
+// 키보드와 마우스 입력값을 조합하고 해당 입력에 대한 동작(함수)을 묶어주는 구조체
 struct FBinder
 {
-	std::vector<std::pair<SDL_Scancode, EKey::State>> Keys;
-	std::vector<std::pair<Uint8, EKey::State>> Mouses;
+	std::vector<std::pair<SDL_Scancode, EKeyAction>> Keys;
+	std::vector<std::pair<Uint8, EKeyAction>> Mouses;
 
 	std::vector<FBindFunction*> Functions;
 };
