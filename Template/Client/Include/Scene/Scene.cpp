@@ -1,6 +1,6 @@
 #include "Scene.h"
-#include "../Scene/Collision/SceneCollision.h"
 #include "Camera.h"
+#include "../Scene/Collision/SceneCollision.h"
 #include "../Scene/UI/SceneUI.h"
 #include "../Manager/Data/Resource/AssetManager.h"
 #include "../Manager/Data/Resource/TextureManager.h"
@@ -8,8 +8,8 @@
 #include "../Manager/Data/Resource/SoundManager.h"
 
 CScene::CScene() :
+	mCamera(nullptr),
     mSceneCollision(nullptr),
-    mCamera(nullptr),
     mSceneUI(nullptr)
 {
     mLayers.resize(ELayer::Type::MAX);
@@ -33,11 +33,11 @@ void CScene::Update(float deltaTime)
     for (CLayer* layer : mLayers)
         layer->Update(deltaTime);
 
-    if (mSceneCollision)
-        mSceneCollision->Update(deltaTime);
+	if (mCamera)
+		mCamera->Update(deltaTime);
 
-    if (mCamera)
-        mCamera->Update(deltaTime);
+    if (mSceneCollision)
+		mSceneCollision->Update(deltaTime);
 
     if (mSceneUI)
         mSceneUI->Update(deltaTime);
