@@ -7,7 +7,7 @@ class CScene;
 
 class CSceneManager
 {
-	friend class CGameManager;
+	friend class CEngine;
 
 private:
 	CSceneManager();

@@ -1,6 +1,6 @@
 #include "Texture.h"
+#include "../Engine.h"
 #include "../Manager/Data/PathManager.h"
-#include "../Manager/GameManager.h"
 
 CTexture::CTexture() : 
 	mTexture(nullptr),
@@ -24,7 +24,7 @@ bool CTexture::LoadTexture(const char* fileName)
 	if (surface)
 	{
 		// SDL_Surface를 GPU에서 사용할 수 있는 SDL_Texture로 변환
-		SDL_Texture* texture = SDL_CreateTextureFromSurface(CGameManager::GetInst()->GetRenderer(), surface);
+		SDL_Texture* texture = SDL_CreateTextureFromSurface(CEngine::GetInst()->GetRenderer(), surface);
 
 		SDL_FreeSurface(surface);
 

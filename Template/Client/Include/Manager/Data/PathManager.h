@@ -4,7 +4,7 @@
 
 class CPathManager
 {
-	friend class CGameManager;
+	friend class CEngine;
 
 private:
 	CPathManager();

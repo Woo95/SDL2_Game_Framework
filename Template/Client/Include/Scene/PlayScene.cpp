@@ -1,5 +1,5 @@
 #include "PlayScene.h"
-#include "../Manager/GameManager.h"
+#include "../Engine.h"
 #include "../Manager/SceneManager.h"
 #include "../Manager/Data/Resource/AssetManager.h"
 #include "../Manager/Data/Resource/SoundManager.h"
@@ -12,7 +12,7 @@
 CPlayScene::CPlayScene()
 {
 	mCamera = new CCamera;
-	mCamera->SetResolution(CGameManager::GetInst()->GetResolution());
+	mCamera->SetResolution(CEngine::GetInst()->GetResolution());
 
 	mSceneCollision = new CSceneCollision(mCamera);
 }

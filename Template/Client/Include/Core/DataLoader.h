@@ -4,7 +4,7 @@
 
 class CDataLoader
 {
-    friend class CGameManager;
+    friend class CEngine;
 
 private:
     CDataLoader();

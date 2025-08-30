@@ -1,22 +1,25 @@
 #pragma once
 
-#include "../Core/GameInfo.h"
-#include "../Core/Vector2D.h"
+#include "Core/GameInfo.h"
+#include "Core/Vector2D.h"
 
-class CGameManager
+class CEngine
 {
 	friend class CClient;
 
 private:
-	CGameManager();
-	~CGameManager();
+	CEngine();
+	~CEngine();
 
 private:
-	static CGameManager* mInst;
+	static CEngine* mInst;
 
-	SDL_Window* mWindow;
-	SDL_Renderer* mRenderer;
-	bool mLoop;
+	// SDL core
+	SDL_Window*   mWindow   = nullptr;
+	SDL_Renderer* mRenderer = nullptr;
+
+	// Runtime flag
+	bool mLoop = true;
 
 public:
 	SDL_Renderer* GetRenderer() const { return mRenderer; }
@@ -36,10 +39,10 @@ private:
 	void Render();
 
 public:
-	static CGameManager* GetInst()
+	static CEngine* GetInst()
 	{
 		if (!mInst)
-			mInst = new CGameManager;
+			mInst = new CEngine;
 		return mInst;
 	}
 	static void DestroyInst()

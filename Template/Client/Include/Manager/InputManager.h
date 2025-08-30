@@ -5,7 +5,7 @@
 
 class CInputManager
 {
-	friend class CGameManager;
+	friend class CEngine;
 
 private:
 	CInputManager();

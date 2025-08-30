@@ -1,5 +1,5 @@
 #include <windows.h>
-#include "Manager/GameManager.h"
+#include "Engine.h"
 
 class CClient
 {
@@ -23,10 +23,10 @@ public:
 		//_CrtSetBreakAlloc(5900);
 #endif
 
-		if (CGameManager::GetInst()->Init())
-			CGameManager::GetInst()->Run();
+		if (CEngine::GetInst()->Init())
+			CEngine::GetInst()->Run();
 
-		CGameManager::DestroyInst();
+		CEngine::DestroyInst();
 	}
 };
 

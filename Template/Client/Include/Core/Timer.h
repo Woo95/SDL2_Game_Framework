@@ -4,7 +4,7 @@
 
 class CTimer
 {
-	friend class CGameManager;
+	friend class CEngine;
 
 private:
 	CTimer();

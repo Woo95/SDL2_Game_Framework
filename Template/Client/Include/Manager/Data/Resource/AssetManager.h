@@ -4,7 +4,7 @@
 
 class CAssetManager
 {
-	friend class CGameManager;
+	friend class CEngine;
 
 private:
 	CAssetManager() = delete;
