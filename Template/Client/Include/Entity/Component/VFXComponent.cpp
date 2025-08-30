@@ -1,12 +1,12 @@
 #include "VFXComponent.h"
+#include "../Object/Object.h"
 #include "../../Manager/Data/Resource/AssetManager.h"
 #include "../../Manager/Data/Resource/TextureManager.h"
 #include "../../Manager/Data/Resource/AnimationManager.h"
 #include "../../Resource/Texture.h"
 #include "../../Resource/Animation.h"
-#include "../Object/Object.h"
 #include "../../Scene/Scene.h"
-#include "../../Scene/Camera.h"
+#include "../../Scene/Extension/Camera.h"
 
 CVFXComponent::CVFXComponent() :
 	mTexture(nullptr),

@@ -61,9 +61,6 @@
     <Filter Include="Framework\01. Core\Lib\Timer">
       <UniqueIdentifier>{b988f21a-2a7e-45be-84c2-a6a6a6dec500}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\01. Core\Lib\Input">
-      <UniqueIdentifier>{3e84e11b-3d68-4517-98e3-38767547663b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\01. Core\Lib\Math">
       <UniqueIdentifier>{b34f2160-b592-483e-bfc2-5322bb366b9d}</UniqueIdentifier>
     </Filter>
@@ -79,17 +76,11 @@
     <Filter Include="Framework\04. Entity\02. Component\01. Components\Widget">
       <UniqueIdentifier>{b40e51fc-55c0-4e85-ae1c-35cf81ba079a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\05. Resource\Sound">
-      <UniqueIdentifier>{da8f1731-e4b8-4b9a-bb31-714cfd9c64b0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\01. Core\Lib\Utils">
       <UniqueIdentifier>{864f2210-c647-41c2-8d5a-56af69addf9a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Framework\04. Entity\02. Component\01. Components\Rigidbody">
       <UniqueIdentifier>{fad9dcaa-8d17-4a1f-8e22-6207d29226b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\03. Scene\03. Camera">
-      <UniqueIdentifier>{825e3b1d-8348-4dbc-90c3-9d9b09cc2e77}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\01. Scenes\01. Menu">
       <UniqueIdentifier>{98b483b4-c8f2-4d6e-96e0-7ff18e26723a}</UniqueIdentifier>
@@ -118,17 +109,8 @@
     <Filter Include="Framework\06. Widget\01. Widgets\TextBlock">
       <UniqueIdentifier>{8f9039b3-bb99-48c9-bca1-5fbfd8962557}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\06. Widget\00. UserWidget">
-      <UniqueIdentifier>{06e8fc30-a9f4-497c-a6ac-5c59f89abd4c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\04. Entity\02. Component\01. Components\Input">
       <UniqueIdentifier>{a423228c-c80d-47fd-b9d8-5fa7c998d573}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\02. Manager\01. Data">
-      <UniqueIdentifier>{d50e5c97-b364-49ac-99b2-f70607843c5b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\02. Manager\01. Data\01. Resource">
-      <UniqueIdentifier>{5228a399-eda5-4edc-89b6-9fbe2f5701bd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Framework\01. Core\Lib\Data">
       <UniqueIdentifier>{138bc9c2-270e-4c55-ba76-94f5d66ff635}</UniqueIdentifier>
@@ -136,22 +118,34 @@
     <Filter Include="Framework\03. Scene\01. Layer">
       <UniqueIdentifier>{08436263-ae8c-4c13-aa77-de13e175c179}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\03. Scene\02. UI">
-      <UniqueIdentifier>{81d21286-dc7b-475b-91d0-cb58d4517747}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\03. Scene\04. Collision">
-      <UniqueIdentifier>{5f949429-47db-4625-860f-1c3d6575c0cb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\04. Entity\02. Component\01. Components\VFX">
       <UniqueIdentifier>{369401da-d337-48de-8695-fc6c7250bcf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\01. Core\Lib\Collision">
+      <UniqueIdentifier>{70d80e8d-6f5f-40d6-8c75-aed2db915a22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\02. Manager\Data">
+      <UniqueIdentifier>{d50e5c97-b364-49ac-99b2-f70607843c5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\02. Manager\Data\Resource">
+      <UniqueIdentifier>{5228a399-eda5-4edc-89b6-9fbe2f5701bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\03. Scene\04. UI">
+      <UniqueIdentifier>{81d21286-dc7b-475b-91d0-cb58d4517747}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\03. Scene\02. Camera">
+      <UniqueIdentifier>{825e3b1d-8348-4dbc-90c3-9d9b09cc2e77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\03. Scene\03. Collision">
+      <UniqueIdentifier>{5f949429-47db-4625-860f-1c3d6575c0cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\06. Widget\02. UserWidget">
+      <UniqueIdentifier>{06e8fc30-a9f4-497c-a6ac-5c59f89abd4c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Timer.h">
       <Filter>Framework\01. Core\Lib\Timer</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Input.h">
-      <Filter>Framework\01. Core\Lib\Input</Filter>
     </ClInclude>
     <ClInclude Include="Core\GameInfo.h">
       <Filter>Framework\01. Core\Lib</Filter>
@@ -414,23 +408,17 @@
     <ClInclude Include="Core\Vector2D.h">
       <Filter>Framework\01. Core\Lib\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Core\CollisionProfile.h">
-      <Filter>Framework\01. Core\Lib</Filter>
-    </ClInclude>
     <ClInclude Include="Manager\CollisionManager.h">
       <Filter>Framework\02. Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Collision\QuadTree.h">
-      <Filter>Framework\03. Scene\04. Collision</Filter>
+    <ClInclude Include="Scene\Extension\QuadTree.h">
+      <Filter>Framework\03. Scene\03. Collision</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Collision\SceneCollision.h">
-      <Filter>Framework\03. Scene\04. Collision</Filter>
+    <ClInclude Include="Scene\Extension\SceneCollision.h">
+      <Filter>Framework\03. Scene\03. Collision</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Collision\QTNode.h">
-      <Filter>Framework\03. Scene\04. Collision</Filter>
-    </ClInclude>
-    <ClInclude Include="Manager\GameManager.h">
-      <Filter>Framework\02. Manager</Filter>
+    <ClInclude Include="Scene\Extension\QTNode.h">
+      <Filter>Framework\03. Scene\03. Collision</Filter>
     </ClInclude>
     <ClInclude Include="Core\RefCounter.h">
       <Filter>Framework\01. Core\Lib\SmartPtr</Filter>
@@ -438,17 +426,14 @@
     <ClInclude Include="Core\SharedPtr.h">
       <Filter>Framework\01. Core\Lib\SmartPtr</Filter>
     </ClInclude>
-    <ClInclude Include="Core\ColliderPair.h">
-      <Filter>Framework\01. Core\Lib</Filter>
-    </ClInclude>
     <ClInclude Include="Entity\EntityBase.h">
       <Filter>Framework\04. Entity</Filter>
     </ClInclude>
     <ClInclude Include="Manager\Data\Resource\AssetManager.h">
-      <Filter>Framework\02. Manager\01. Data\01. Resource</Filter>
+      <Filter>Framework\02. Manager\Data\Resource</Filter>
     </ClInclude>
     <ClInclude Include="Manager\Data\Resource\TextureManager.h">
-      <Filter>Framework\02. Manager\01. Data\01. Resource</Filter>
+      <Filter>Framework\02. Manager\Data\Resource</Filter>
     </ClInclude>
     <ClInclude Include="Resource\Texture.h">
       <Filter>Framework\05. Resource</Filter>
@@ -460,7 +445,7 @@
       <Filter>Framework\04. Entity\02. Component\01. Components\Texture</Filter>
     </ClInclude>
     <ClInclude Include="Manager\Data\Resource\AnimationManager.h">
-      <Filter>Framework\02. Manager\01. Data\01. Resource</Filter>
+      <Filter>Framework\02. Manager\Data\Resource</Filter>
     </ClInclude>
     <ClInclude Include="Entity\Component\Collider\BoxCollider.h">
       <Filter>Framework\04. Entity\02. Component\01. Components\Collider</Filter>
@@ -489,11 +474,11 @@
     <ClInclude Include="Entity\Object\Background.h">
       <Filter>Game\02. Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Camera.h">
-      <Filter>Framework\03. Scene\03. Camera</Filter>
+    <ClInclude Include="Scene\Extension\Camera.h">
+      <Filter>Framework\03. Scene\02. Camera</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\UI\SceneUI.h">
-      <Filter>Framework\03. Scene\02. UI</Filter>
+    <ClInclude Include="Scene\Extension\SceneUI.h">
+      <Filter>Framework\03. Scene\04. UI</Filter>
     </ClInclude>
     <ClInclude Include="Widget\WidgetBase.h">
       <Filter>Framework\06. Widget</Filter>
@@ -501,23 +486,23 @@
     <ClInclude Include="Scene\MenuScene.h">
       <Filter>Game\01. Scenes\01. Menu</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\UI\MenuUI.h">
+    <ClInclude Include="Scene\Extension\MenuUI.h">
       <Filter>Game\01. Scenes\01. Menu</Filter>
     </ClInclude>
     <ClInclude Include="Scene\PlayScene.h">
       <Filter>Game\01. Scenes\02. Play</Filter>
     </ClInclude>
     <ClInclude Include="Manager\Data\Resource\UIManager.h">
-      <Filter>Framework\02. Manager\01. Data\01. Resource</Filter>
+      <Filter>Framework\02. Manager\Data\Resource</Filter>
     </ClInclude>
     <ClInclude Include="Manager\Data\Resource\SpriteManager.h">
-      <Filter>Framework\02. Manager\01. Data\01. Resource</Filter>
+      <Filter>Framework\02. Manager\Data\Resource</Filter>
     </ClInclude>
     <ClInclude Include="Core\External\SDL\SDL_ttf.h">
       <Filter>Framework\01. Core\External\SDL</Filter>
     </ClInclude>
     <ClInclude Include="Manager\Data\Resource\FontManager.h">
-      <Filter>Framework\02. Manager\01. Data\01. Resource</Filter>
+      <Filter>Framework\02. Manager\Data\Resource</Filter>
     </ClInclude>
     <ClInclude Include="Resource\Font.h">
       <Filter>Framework\05. Resource</Filter>
@@ -529,13 +514,7 @@
       <Filter>Framework\01. Core\External\SDL</Filter>
     </ClInclude>
     <ClInclude Include="Manager\Data\Resource\SoundManager.h">
-      <Filter>Framework\02. Manager\01. Data\01. Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource\Sound\BGM.h">
-      <Filter>Framework\05. Resource\Sound</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource\Sound\SFX.h">
-      <Filter>Framework\05. Resource\Sound</Filter>
+      <Filter>Framework\02. Manager\Data\Resource</Filter>
     </ClInclude>
     <ClInclude Include="Core\Utils\InputUtils.h">
       <Filter>Framework\01. Core\Lib\Utils</Filter>
@@ -554,9 +533,6 @@
     </ClInclude>
     <ClInclude Include="Entity\Component\Rigidbody.h">
       <Filter>Framework\04. Entity\02. Component\01. Components\Rigidbody</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\PhysicsConfig.h">
-      <Filter>Framework\01. Core\Lib</Filter>
     </ClInclude>
     <ClInclude Include="Core\Utils\PhysicsUtils.h">
       <Filter>Framework\01. Core\Lib\Utils</Filter>
@@ -592,7 +568,7 @@
       <Filter>Framework\06. Widget\01. Widgets\TextBlock</Filter>
     </ClInclude>
     <ClInclude Include="Widget\UserWidget.h">
-      <Filter>Framework\06. Widget\00. UserWidget</Filter>
+      <Filter>Framework\06. Widget\02. UserWidget</Filter>
     </ClInclude>
     <ClInclude Include="Widget\Widget.h">
       <Filter>Framework\06. Widget\01. Widgets</Filter>
@@ -601,24 +577,39 @@
       <Filter>Framework\04. Entity\02. Component\01. Components\Input</Filter>
     </ClInclude>
     <ClInclude Include="Manager\Data\PathManager.h">
-      <Filter>Framework\02. Manager\01. Data</Filter>
+      <Filter>Framework\02. Manager\Data</Filter>
     </ClInclude>
     <ClInclude Include="Core\DataLoader.h">
       <Filter>Framework\01. Core\Lib\Data</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Layer.h">
+    <ClInclude Include="Scene\Extension\Layer.h">
       <Filter>Framework\03. Scene\01. Layer</Filter>
     </ClInclude>
     <ClInclude Include="Entity\Component\VFXComponent.h">
       <Filter>Framework\04. Entity\02. Component\01. Components\VFX</Filter>
     </ClInclude>
+    <ClInclude Include="Manager\InputManager.h">
+      <Filter>Framework\02. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ColliderPair.h">
+      <Filter>Framework\01. Core\Lib\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\CollisionProfile.h">
+      <Filter>Framework\01. Core\Lib\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\SFX.h">
+      <Filter>Framework\05. Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\BGM.h">
+      <Filter>Framework\05. Resource</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Timer.cpp">
       <Filter>Framework\01. Core\Lib\Timer</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\Input.cpp">
-      <Filter>Framework\01. Core\Lib\Input</Filter>
     </ClCompile>
     <ClCompile Include="Scene\Scene.cpp">
       <Filter>Framework\03. Scene</Filter>
@@ -644,23 +635,20 @@
     <ClCompile Include="Manager\CollisionManager.cpp">
       <Filter>Framework\02. Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Collision\QuadTree.cpp">
-      <Filter>Framework\03. Scene\04. Collision</Filter>
+    <ClCompile Include="Scene\Extension\QuadTree.cpp">
+      <Filter>Framework\03. Scene\03. Collision</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Collision\SceneCollision.cpp">
-      <Filter>Framework\03. Scene\04. Collision</Filter>
+    <ClCompile Include="Scene\Extension\SceneCollision.cpp">
+      <Filter>Framework\03. Scene\03. Collision</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Collision\QTNode.cpp">
-      <Filter>Framework\03. Scene\04. Collision</Filter>
-    </ClCompile>
-    <ClCompile Include="Manager\GameManager.cpp">
-      <Filter>Framework\02. Manager</Filter>
+    <ClCompile Include="Scene\Extension\QTNode.cpp">
+      <Filter>Framework\03. Scene\03. Collision</Filter>
     </ClCompile>
     <ClCompile Include="Manager\Data\Resource\AssetManager.cpp">
-      <Filter>Framework\02. Manager\01. Data\01. Resource</Filter>
+      <Filter>Framework\02. Manager\Data\Resource</Filter>
     </ClCompile>
     <ClCompile Include="Manager\Data\Resource\TextureManager.cpp">
-      <Filter>Framework\02. Manager\01. Data\01. Resource</Filter>
+      <Filter>Framework\02. Manager\Data\Resource</Filter>
     </ClCompile>
     <ClCompile Include="Resource\Texture.cpp">
       <Filter>Framework\05. Resource</Filter>
@@ -669,7 +657,7 @@
       <Filter>Framework\04. Entity\02. Component\01. Components\Texture</Filter>
     </ClCompile>
     <ClCompile Include="Manager\Data\Resource\AnimationManager.cpp">
-      <Filter>Framework\02. Manager\01. Data\01. Resource</Filter>
+      <Filter>Framework\02. Manager\Data\Resource</Filter>
     </ClCompile>
     <ClCompile Include="Entity\Component\Collider\BoxCollider.cpp">
       <Filter>Framework\04. Entity\02. Component\01. Components\Collider</Filter>
@@ -698,23 +686,23 @@
     <ClCompile Include="Entity\Object\Background.cpp">
       <Filter>Game\02. Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Camera.cpp">
-      <Filter>Framework\03. Scene\03. Camera</Filter>
+    <ClCompile Include="Scene\Extension\Camera.cpp">
+      <Filter>Framework\03. Scene\02. Camera</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\UI\SceneUI.cpp">
-      <Filter>Framework\03. Scene\02. UI</Filter>
+    <ClCompile Include="Scene\Extension\SceneUI.cpp">
+      <Filter>Framework\03. Scene\04. UI</Filter>
     </ClCompile>
     <ClCompile Include="Scene\MenuScene.cpp">
       <Filter>Game\01. Scenes\01. Menu</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\UI\MenuUI.cpp">
+    <ClCompile Include="Scene\Extension\MenuUI.cpp">
       <Filter>Game\01. Scenes\01. Menu</Filter>
     </ClCompile>
     <ClCompile Include="Scene\PlayScene.cpp">
       <Filter>Game\01. Scenes\02. Play</Filter>
     </ClCompile>
     <ClCompile Include="Manager\Data\Resource\FontManager.cpp">
-      <Filter>Framework\02. Manager\01. Data\01. Resource</Filter>
+      <Filter>Framework\02. Manager\Data\Resource</Filter>
     </ClCompile>
     <ClCompile Include="Resource\Font.cpp">
       <Filter>Framework\05. Resource</Filter>
@@ -723,13 +711,7 @@
       <Filter>Framework\04. Entity\02. Component\01. Components\Widget</Filter>
     </ClCompile>
     <ClCompile Include="Manager\Data\Resource\SoundManager.cpp">
-      <Filter>Framework\02. Manager\01. Data\01. Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="Resource\Sound\BGM.cpp">
-      <Filter>Framework\05. Resource\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="Resource\Sound\SFX.cpp">
-      <Filter>Framework\05. Resource\Sound</Filter>
+      <Filter>Framework\02. Manager\Data\Resource</Filter>
     </ClCompile>
     <ClCompile Include="Entity\Component\Rigidbody.cpp">
       <Filter>Framework\04. Entity\02. Component\01. Components\Rigidbody</Filter>
@@ -759,7 +741,7 @@
       <Filter>Framework\06. Widget\01. Widgets\TextBlock</Filter>
     </ClCompile>
     <ClCompile Include="Widget\UserWidget.cpp">
-      <Filter>Framework\06. Widget\00. UserWidget</Filter>
+      <Filter>Framework\06. Widget\02. UserWidget</Filter>
     </ClCompile>
     <ClCompile Include="Widget\Widget.cpp">
       <Filter>Framework\06. Widget\01. Widgets</Filter>
@@ -769,16 +751,28 @@
     </ClCompile>
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Manager\Data\PathManager.cpp">
-      <Filter>Framework\02. Manager\01. Data</Filter>
+      <Filter>Framework\02. Manager\Data</Filter>
     </ClCompile>
     <ClCompile Include="Core\DataLoader.cpp">
       <Filter>Framework\01. Core\Lib\Data</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Layer.cpp">
+    <ClCompile Include="Scene\Extension\Layer.cpp">
       <Filter>Framework\03. Scene\01. Layer</Filter>
     </ClCompile>
     <ClCompile Include="Entity\Component\VFXComponent.cpp">
       <Filter>Framework\04. Entity\02. Component\01. Components\VFX</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager\InputManager.cpp">
+      <Filter>Framework\02. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\SFX.cpp">
+      <Filter>Framework\05. Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\BGM.cpp">
+      <Filter>Framework\05. Resource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

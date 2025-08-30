@@ -1,6 +1,6 @@
 #include "Slider.h"
 #include "UserWidget.h"
-#include "../Scene/UI/SceneUI.h"
+#include "../Scene/Extension/SceneUI.h"
 #include "../Manager/Data/Resource/AssetManager.h"
 #include "../Manager/Data/Resource/UIManager.h"
 #include "../Manager/Data/Resource/TextureManager.h"

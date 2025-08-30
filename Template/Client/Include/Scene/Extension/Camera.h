@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../Core/GameInfo.h"
-#include "../Core/Vector2D.h"
+#include "../../Core/GameInfo.h"
+#include "../../Core/Vector2D.h"
 
 class CObject;
 

@@ -2,7 +2,7 @@
 #include "../../Object/Object.h"
 #include "../../../Scene/Scene.h"
 #include "../../../Manager/CollisionManager.h"
-#include "../../../Scene/Collision/SceneCollision.h"
+#include "../../../Scene/Extension/SceneCollision.h"
 
 CCollider::CCollider() :
     mProfile(nullptr),

@@ -1,16 +1,16 @@
 #include "Player.h"
 #include "Bullet.h"
-#include "../../Manager/InputManager.h"
 #include "../Component/MovementComponent.h"
 #include "../Component/Collider/BoxCollider.h"
-#include "../../Entity/Component/SpriteComponent.h"
+#include "../../Manager/InputManager.h"
 #include "../../Resource/Animation.h"
-#include "../../Scene/Scene.h"
-#include "../../Scene/Camera.h"
+#include "../../Entity/Component/SpriteComponent.h"
 #include "../../Entity/Component/WidgetComponent.h"
-#include "../../Widget/ProgressBar.h"
 #include "../../Entity/Component/Rigidbody.h"
 #include "../../Entity/Component/InputComponent.h"
+#include "../../Widget/ProgressBar.h"
+#include "../../Scene/Scene.h"
+#include "../../Scene/Extension/Camera.h"
 
 CPlayer::CPlayer() :
     mMovementComponent(nullptr),

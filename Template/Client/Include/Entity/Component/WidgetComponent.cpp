@@ -1,8 +1,8 @@
 #include "WidgetComponent.h"
-#include "../../Widget/Widget.h"
 #include "../Object/Object.h"
+#include "../../Widget/Widget.h"
 #include "../../Scene/Scene.h"
-#include "../../Scene/Camera.h"
+#include "../../Scene/Extension/Camera.h"
 
 CWidgetComponent::CWidgetComponent() :
 	mWidget(nullptr)

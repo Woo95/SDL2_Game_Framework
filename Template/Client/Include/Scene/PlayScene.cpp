@@ -1,13 +1,13 @@
 #include "PlayScene.h"
+#include "Extension/Camera.h"
+#include "Extension/SceneCollision.h"
 #include "../Engine.h"
-#include "../Manager/SceneManager.h"
-#include "../Manager/Data/Resource/AssetManager.h"
-#include "../Manager/Data/Resource/SoundManager.h"
-#include "../Scene/Camera.h"
-#include "Collision/SceneCollision.h"
 #include "../Entity/Object/Player.h"
 #include "../Entity/Object/Monster.h"
 #include "../Entity/Object/Background.h"
+#include "../Manager/Data/Resource/AssetManager.h"
+#include "../Manager/Data/Resource/SoundManager.h"
+#include "../Manager/SceneManager.h"
 
 CPlayScene::CPlayScene()
 {

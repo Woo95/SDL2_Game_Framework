@@ -1,6 +1,6 @@
 #include "Layer.h"
-#include "../Entity/Object/Object.h"
-#include "../Entity/Component/SpriteComponent.h"
+#include "../../Entity/Object/Object.h"
+#include "../../Entity/Component/SpriteComponent.h"
 
 CLayer::CLayer()
 {

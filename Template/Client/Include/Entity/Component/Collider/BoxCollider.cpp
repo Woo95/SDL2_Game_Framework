@@ -1,8 +1,8 @@
 #include "BoxCollider.h"
-#include "../../../Manager/CollisionManager.h"
 #include "../../Object/Object.h"
 #include "../../../Scene/Scene.h"
-#include "../../../Scene/Camera.h"
+#include "../../../Scene/Extension/Camera.h"
+#include "../../../Manager/CollisionManager.h"
 
 CBoxCollider::CBoxCollider() :
 	mRect({})

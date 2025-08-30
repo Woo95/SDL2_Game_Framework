@@ -1,5 +1,5 @@
 #include "Camera.h"
-#include "../Entity/Object/Object.h"
+#include "../../Entity/Object/Object.h"
 
 CCamera::CCamera() :
 	mLookAt(FVector2D::ZERO),

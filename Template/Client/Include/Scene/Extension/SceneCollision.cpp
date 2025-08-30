@@ -1,6 +1,6 @@
 #include "SceneCollision.h"
 #include "QuadTree.h"
-#include "../Camera.h"
+#include "Camera.h"
 #include "../../Entity/Component/Collider/Collider.h"
 #include "../../Manager/PhysicsManager.h"
 

@@ -1,5 +1,5 @@
 #include "Rigidbody.h"
-#include "../../Core/PhysicsConfig.h"
+#include "../../Core/Utils/PhysicsUtils.h"
 #include "../Object/Object.h"
 
 CRigidbody::CRigidbody() :

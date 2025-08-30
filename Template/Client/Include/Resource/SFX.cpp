@@ -1,6 +1,6 @@
 #include "SFX.h"
-#include "../../Core/External/SDL/SDL_mixer.h"
-#include "../../Manager/Data/PathManager.h"
+#include "../Core/External/SDL/SDL_mixer.h"
+#include "../Manager/Data/PathManager.h"
 
 CSFX::CSFX()
 {

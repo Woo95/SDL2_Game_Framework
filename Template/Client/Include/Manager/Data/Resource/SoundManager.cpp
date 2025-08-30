@@ -1,7 +1,5 @@
 #include "SoundManager.h"
 #include "../../../Core/External/SDL/SDL_mixer.h"
-#include "../../../Resource/Sound/SFX.h"
-#include "../../../Resource/Sound/BGM.h"
 
 CSoundManager::CSoundManager()
 {

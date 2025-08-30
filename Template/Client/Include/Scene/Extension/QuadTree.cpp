@@ -1,6 +1,6 @@
 #include "QuadTree.h"
 #include "QTNode.h"
-#include "../Camera.h"
+#include "Camera.h"
 #include "../../Entity/Component/Collider/Collider.h"
 #include "../../Manager/MemoryPoolManager.h"
 
