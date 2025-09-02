@@ -70,22 +70,42 @@ public:
         return obj;
     }
 
-    template <typename T>
-    void CallEventByType(void(T::*func)())
-    {
-        for (CLayer* layer : mLayers)
-        {
-            std::vector<CObject*> objVec = layer->GetObjectVec();
+	template <typename T>
+	std::vector<T*> GetObjectVec()
+	{
+		std::vector<T*> objVecByType;
 
-            for (CObject* obj : objVec)
-            {
-                if (T* castedObj = dynamic_cast<T*>(obj))
-                {
-                    (castedObj->*func)();
-                }
-            }
-        }
-    }
+		for (CLayer* layer : mLayers)
+		{
+			const std::vector<CObject*>& objVec = layer->GetObjectVec();
+
+			for (CObject* obj : objVec)
+			{
+				if (T* castedObj = dynamic_cast<T*>(obj))
+				{
+					objVec.emplace_back(castedObj);
+				}
+			}
+		}
+		return objVecByType;
+	}
+
+	template <typename T>
+	void CallEvent(void(T::* func)())
+	{
+		for (CLayer* layer : mLayers)
+		{
+			const std::vector<CObject*>& objVec = layer->GetObjectVec();
+
+			for (CObject* obj : objVec)
+			{
+				if (T* castedObj = dynamic_cast<T*>(obj))
+				{
+					(castedObj->*func)();
+				}
+			}
+		}
+	}
 
 protected:
     void LoadTexture(const std::string& key, const char* fileName);

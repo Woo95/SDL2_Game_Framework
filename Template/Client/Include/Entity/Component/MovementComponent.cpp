@@ -17,16 +17,6 @@ void CMovementComponent::Update(float deltaTime)
 {
 	CComponent::Update(deltaTime);
 
-	Move(deltaTime);
-}
-
-void CMovementComponent::Release()
-{
-	CMemoryPoolManager::GetInst()->Deallocate<CMovementComponent>(this);
-}
-
-void CMovementComponent::Move(float deltaTime)
-{
 	if (mMoveDir != FVector2D::ZERO)
 	{
 		CTransform* transform = mObject->GetTransform();
@@ -39,4 +29,9 @@ void CMovementComponent::Move(float deltaTime)
 
 		mMoveDir = FVector2D::ZERO;
 	}
+}
+
+void CMovementComponent::Release()
+{
+	CMemoryPoolManager::GetInst()->Deallocate<CMovementComponent>(this);
 }

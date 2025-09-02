@@ -130,22 +130,22 @@ void CPlayer::SetupInput()
 
 void CPlayer::MOVE_UP()
 {
-    mMovementComponent->AddMoveDir(FVector2D::UP);
+    mMovementComponent->SetMoveDir(FVector2D::UP);
 }
 void CPlayer::MOVE_DOWN()
 {
-    mMovementComponent->AddMoveDir(FVector2D::DOWN);
+    mMovementComponent->SetMoveDir(FVector2D::DOWN);
 }
 void CPlayer::MOVE_LEFT()
 {
-    mMovementComponent->AddMoveDir(FVector2D::LEFT);
+    mMovementComponent->SetMoveDir(FVector2D::LEFT);
 
     if (mSpriteComponent)
         mSpriteComponent->SetFlip(SDL_FLIP_HORIZONTAL);
 }
 void CPlayer::MOVE_RIGHT()
 {
-    mMovementComponent->AddMoveDir(FVector2D::RIGHT);   
+    mMovementComponent->SetMoveDir(FVector2D::RIGHT);
 
     if (mSpriteComponent)
         mSpriteComponent->SetFlip(SDL_FLIP_NONE);
