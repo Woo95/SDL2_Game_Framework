@@ -21,6 +21,12 @@ void CBGM::Play()
 		Mix_PlayMusic(mSound, -1); // -1: loop
 }
 
+void CBGM::Stop()
+{
+	if (Mix_PlayingMusic())
+		Mix_HaltMusic();
+}
+
 void CBGM::SetVolume(float volume)
 {
 	int scaledVolume = (int)(volume * MIX_MAX_VOLUME);

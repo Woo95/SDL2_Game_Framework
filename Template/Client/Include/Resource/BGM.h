@@ -15,6 +15,7 @@ private:
 
 public:
 	void Play();
+	void Stop();
 	void SetVolume(float volume);
 
 private:
