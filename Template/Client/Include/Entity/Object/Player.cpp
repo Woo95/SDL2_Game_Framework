@@ -130,32 +130,32 @@ void CPlayer::SetupInput()
 
 void CPlayer::MOVE_UP()
 {
-    mMovementComponent->SetMoveDir(FVector2D::UP);
+    mMovementComponent->AddMoveDir(FVector2D::UP);
 }
 void CPlayer::MOVE_DOWN()
 {
-    mMovementComponent->SetMoveDir(FVector2D::DOWN);
+    mMovementComponent->AddMoveDir(FVector2D::DOWN);
 }
 void CPlayer::MOVE_LEFT()
 {
-    mMovementComponent->SetMoveDir(FVector2D::LEFT);
+    mMovementComponent->AddMoveDir(FVector2D::LEFT);
 
-    if (mSpriteComponent)
+	if (mMovementComponent->GetMoveDir().x < 0)
         mSpriteComponent->SetFlip(SDL_FLIP_HORIZONTAL);
 }
 void CPlayer::MOVE_RIGHT()
 {
-    mMovementComponent->SetMoveDir(FVector2D::RIGHT);
+	mMovementComponent->AddMoveDir(FVector2D::RIGHT);
 
-    if (mSpriteComponent)
-        mSpriteComponent->SetFlip(SDL_FLIP_NONE);
+    if (mMovementComponent->GetMoveDir().x > 0)
+		mSpriteComponent->SetFlip(SDL_FLIP_NONE);
 }
 
 void CPlayer::KnockBackOpponent(CCollider* self, CCollider* other)
 {
     if (CRigidbody* rb = other->GetObject()->GetComponent<CRigidbody>())
     {
-        const FVector2D& facingDir = mMovementComponent->GetFacingDir();
+        const FVector2D& facingDir = mMovementComponent->GetMoveDir();
         if (facingDir != FVector2D::ZERO)
         {
             rb->AddImpulse(facingDir.GetNormalize() * 50000.0f/*knockbackPower*/);

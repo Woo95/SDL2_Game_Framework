@@ -3,8 +3,8 @@
 
 CMovementComponent::CMovementComponent() :
 	mSpeed(500.f),
-	mMoveDir(FVector2D::ZERO),
-	mFacingDir(FVector2D::ZERO)
+	mAccumulatedDir(FVector2D::ZERO),
+	mPrevMoveDir(FVector2D::ZERO)
 {
 	mTypeID = typeid(CMovementComponent).hash_code();
 }
@@ -17,18 +17,16 @@ void CMovementComponent::Update(float deltaTime)
 {
 	CComponent::Update(deltaTime);
 
-	if (mMoveDir != FVector2D::ZERO)
+	if (mAccumulatedDir != FVector2D::ZERO)
 	{
-		CTransform* transform = mObject->GetTransform();
+		mPrevMoveDir = mAccumulatedDir.GetNormalize();
 
-		FVector2D movement = mMoveDir.GetNormalize() * mSpeed * deltaTime;
+		FVector2D movement = mPrevMoveDir * mSpeed * deltaTime;
 
-		transform->SetWorldPos(transform->GetWorldPos() + movement);
-
-		mFacingDir = mMoveDir;
-
-		mMoveDir = FVector2D::ZERO;
+		if (CTransform* transform = mObject->GetTransform())
+			transform->SetWorldPos(transform->GetWorldPos() + movement);
 	}
+	mAccumulatedDir = FVector2D::ZERO;
 }
 
 void CMovementComponent::Release()

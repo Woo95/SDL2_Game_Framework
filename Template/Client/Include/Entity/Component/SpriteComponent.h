@@ -30,8 +30,10 @@ public:
 	void SetTexture(const std::string& key);
 	void SetAnimation(const std::string& key);
 	void SetFrame(const std::string& key);
-
-	void SetFlip(SDL_RendererFlip flip) { mFlip = flip; }
+	void SetFlip(SDL_RendererFlip flip)
+	{
+		mFlip = flip;
+	}
 
 private:
 	const SDL_Rect& GetFrame() const;

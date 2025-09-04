@@ -11,23 +11,24 @@ public:
 private:
 	float mSpeed;
 
-	FVector2D mMoveDir;
-	FVector2D mFacingDir;
+	FVector2D mAccumulatedDir;
+	FVector2D mPrevMoveDir;
 
 private:
 	virtual void Update(float deltaTime) final;
 	virtual void Release() final;
 
 public:
-	float GetSpeed() const { return mSpeed; }
-	const FVector2D& GetFacingDir() const { return mFacingDir; }
+	void AddMoveDir(const FVector2D& direction)
+	{
+		mAccumulatedDir += direction;
+	}
 
+	const FVector2D& GetMoveDir() const { return mPrevMoveDir; }
+
+	float GetSpeed() const { return mSpeed; }
 	void SetSpeed(float speed)
 	{
 		mSpeed = speed;
-	}
-	void SetMoveDir(const FVector2D& direction)
-	{
-		mMoveDir += direction;
 	}
 };
