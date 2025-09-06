@@ -23,6 +23,9 @@ protected:
 
 	CComponent* mRootComponent;
 
+public:
+	virtual CObject* Clone() const { return nullptr; }
+
 protected:
 	virtual bool Init();
 	virtual void Update(float deltaTime);
