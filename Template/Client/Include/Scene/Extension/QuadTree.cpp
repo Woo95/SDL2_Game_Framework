@@ -62,7 +62,7 @@ void CQuadTree::AddCollider(CCollider* collider)
 void CQuadTree::UpdateBoundary()
 {
 	const FVector2D& target = mRoot->mCamera->GetLookAt();
-	const FVector2D& screen = mRoot->mCamera->GetResolution();
+	const FVector2D& screen = mRoot->mCamera->GetResolution() * 1.1f;
 
 	mRoot->mBoundary = 
 	{ 
