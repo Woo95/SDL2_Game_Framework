@@ -22,10 +22,12 @@
     <ClInclude Include="Core\External\SDL\SDL_mixer.h" />
     <ClInclude Include="Core\External\SDL\SDL_ttf.h" />
     <ClInclude Include="Core\Utils\ColliderUtils.h" />
+    <ClInclude Include="Core\Utils\EventUtils.h" />
     <ClInclude Include="Core\Utils\PhysicsUtils.h" />
     <ClInclude Include="Entity\Component\VFXComponent.h" />
     <ClInclude Include="Entity\Component\InputComponent.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="Manager\EventManager.h" />
     <ClInclude Include="Resource\BGM.h" />
     <ClInclude Include="Resource\SFX.h" />
     <ClInclude Include="Resource\Font.h" />
