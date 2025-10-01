@@ -4,6 +4,7 @@
 #include "Manager/InputManager.h"
 #include "Manager/CollisionManager.h"
 #include "Manager/PhysicsManager.h"
+#include "Manager/EventManager.h"
 #include "Manager/SceneManager.h"
 #include "Manager/Data/PathManager.h"
 #include "Manager/Data/Resource/AssetManager.h"
@@ -19,6 +20,8 @@ CEngine::~CEngine()
 {
     CSceneManager::DestroyInst();
     
+    CEventManager::DestroyInst();
+
     CPhysicsManager::DestroyInst();
 
     CCollisionManager::DestroyInst();
@@ -95,6 +98,8 @@ void CEngine::Update()
     CTimer::GetInst()->Update();
 
     CInputManager::GetInst()->Update();
+
+    CEventManager::GetInst()->Update(CTimer::GetInst()->GetDeltaTime());
 
     CSceneManager::GetInst()->Update(CTimer::GetInst()->GetDeltaTime());
 }

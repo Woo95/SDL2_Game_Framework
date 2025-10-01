@@ -1,5 +1,6 @@
 #include "SampleUserWidget.h"
 #include "AllWidgets.h"
+#include "../Manager/EventManager.h"
 #include "../Manager/SceneManager.h"
 #include "../Manager/Data/Resource/AssetManager.h"
 #include "../Manager/Data/Resource/SoundManager.h"
@@ -31,7 +32,7 @@ void CSampleUserWidget::Construct()
     button->GetTransform()->SetPivot(0.5f, 0.5f);
     button->SetTexture("UI");
     button->SetFrame("BlueButton");
-    button->AddCallback(EButton::InputEvent::RELEASE, []() {CSceneManager::GetInst()->ChangeRequest(ETransition::SWAP, ESceneState::PLAY); });
+    button->AddCallback(EButton::InputEvent::RELEASE, []() {CEventManager::GetInst()->Broadcast(EEventType::GOTO_PLAY_SCENE);});
     AddChild(button); // 버튼을 패널에 추가
 
     // 텍스트 블록 생성

@@ -606,6 +606,12 @@
     <ClInclude Include="Resource\BGM.h">
       <Filter>Framework\05. Resource</Filter>
     </ClInclude>
+    <ClInclude Include="Manager\EventManager.h">
+      <Filter>Framework\02. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Utils\EventUtils.h">
+      <Filter>Framework\01. Core\Lib\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Timer.cpp">

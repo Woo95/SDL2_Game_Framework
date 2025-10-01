@@ -1,6 +1,7 @@
 #include "MenuScene.h"
 #include "Extension/MenuUI.h"
 #include "../Manager/SceneManager.h"
+#include "../Manager/EventManager.h"
 #include "../Manager/Data/Resource/AssetManager.h"
 #include "../Manager/Data/Resource/TextureManager.h"
 #include "../Manager/Data/Resource/SoundManager.h"
@@ -22,12 +23,20 @@ bool CMenuScene::Enter(void* payload)
 	CAssetManager::GetInst()->GetSoundManager()->SetVolume<CSFX>(0.1f);
 	CAssetManager::GetInst()->GetSoundManager()->GetSound<CSFX>("TitleIntro_SFX")->Play();
 	//CAssetManager::GetInst()->GetSoundManager()->GetSound<CSFX>("TitleIntro_SFX")->SetVolume(0.1f);
+	
+	// Bind Event Listener
+	CEventManager::GetInst()->AddListener(EEventType::GOTO_PLAY_SCENE, [this](void*)
+	{
+		CSceneManager::GetInst()->ChangeRequest(ETransition::SWAP, ESceneState::PLAY);
+	});
 
 	return true;
 }
 
 bool CMenuScene::Exit()
 {
+	CEventManager::GetInst()->ClearListener();
+
 	return true;
 }
 
