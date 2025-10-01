@@ -22,14 +22,16 @@ private:
 	{
 		ETransition transition   = ETransition::NONE;
 		ESceneState pendingState = ESceneState::NONE;
+		void* payload = nullptr;
 	} mPending;
 
 public:
 	CScene* GetCurrentScene() const { return mScenes.empty() ? nullptr : mScenes.back(); }
-	void ChangeRequest(ETransition transition, ESceneState state)
+	void ChangeRequest(ETransition transition, ESceneState state, void* payload = nullptr)
 	{
 		mPending.transition = transition;
 		mPending.pendingState = state;
+		mPending.payload = payload;
 	}
 
 private:

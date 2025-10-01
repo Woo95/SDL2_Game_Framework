@@ -24,7 +24,7 @@ CPlayScene::~CPlayScene()
 	SAFE_DELETE(mCamera);
 }
 
-bool CPlayScene::Enter()
+bool CPlayScene::Enter(void* payload)
 {
 	InstantiateObject<CBackground, 1>("Background", ELayer::Type::BACKGROUND);
 

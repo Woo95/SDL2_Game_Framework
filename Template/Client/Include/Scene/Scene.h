@@ -28,7 +28,7 @@ protected:
     std::vector<std::shared_ptr<class CBGM>>     mBGMs;
 
 protected:
-	virtual bool Enter() = 0;
+	virtual bool Enter(void* payload = nullptr) = 0;
 	virtual bool Exit()  = 0;
 
     virtual void Update(float deltaTime);

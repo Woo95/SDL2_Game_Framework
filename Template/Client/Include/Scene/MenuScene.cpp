@@ -15,7 +15,7 @@ CMenuScene::~CMenuScene()
 	SAFE_DELETE(mSceneUI);
 }
 
-bool CMenuScene::Enter()
+bool CMenuScene::Enter(void* payload)
 {
 	mSceneUI->Init();
 
