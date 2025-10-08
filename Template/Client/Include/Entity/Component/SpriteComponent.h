@@ -26,6 +26,7 @@ private:
 public:
 	std::shared_ptr<CTexture> GetTexture() const { return mTexture; }
 	CAnimation* GetAnimation() const { return mAnimation; }
+	const SDL_RendererFlip& GetFlip() const { return mFlip; }
 
 	void SetTexture(const std::string& key);
 	void SetAnimation(const std::string& key);
