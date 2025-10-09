@@ -27,23 +27,26 @@ public:
 	void AddForce(const FVector2D& force);
 	void AddImpulse(const FVector2D& impulse);
 
+	const FVector2D& GetVelocity() const { return mVelocity; }
+	ERigidbodyType GetType() const { return mType; }
+	float GetMass() const { return mMass; }
+
 	void SetVelocity(const FVector2D& velocity)
 	{
 		mVelocity = velocity;
 	}
-	const FVector2D& GetVelocity() const { return mVelocity; }
-
 	void SetType(ERigidbodyType type)
 	{
 		mType = type;
 	}
-	ERigidbodyType GetType() const { return mType; }
-
 	void SetMass(float mass)
-	{ 
+	{
 		mMass = mass;
 	}
-	float GetMass() const { return mMass; }
+	void SetGravityScale(float scale)
+	{
+		mGravityScale = scale;
+	}
 
 private:
 	void ApplyGravity();
