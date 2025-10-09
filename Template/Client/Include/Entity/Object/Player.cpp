@@ -140,14 +140,14 @@ void CPlayer::MOVE_LEFT()
 {
     mMovementComponent->AddMoveDir(FVector2D::LEFT);
 
-	if (mMovementComponent->GetMoveDir().x < 0)
+	if (mMovementComponent->GetCurrMoveDir().x < 0)
         mSpriteComponent->SetFlip(SDL_FLIP_HORIZONTAL);
 }
 void CPlayer::MOVE_RIGHT()
 {
 	mMovementComponent->AddMoveDir(FVector2D::RIGHT);
 
-    if (mMovementComponent->GetMoveDir().x > 0)
+    if (mMovementComponent->GetCurrMoveDir().x > 0)
 		mSpriteComponent->SetFlip(SDL_FLIP_NONE);
 }
 
@@ -155,7 +155,7 @@ void CPlayer::KnockBackOpponent(CCollider* self, CCollider* other)
 {
     if (CRigidbody* rb = other->GetObject()->GetComponent<CRigidbody>())
     {
-        const FVector2D& facingDir = mMovementComponent->GetMoveDir();
+        const FVector2D& facingDir = mMovementComponent->GetCurrMoveDir();
         if (facingDir != FVector2D::ZERO)
         {
             rb->AddImpulse(facingDir.GetNormalize() * 50000.0f/*knockbackPower*/);

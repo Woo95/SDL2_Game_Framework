@@ -13,6 +13,7 @@ private:
 
 	FVector2D mAccumulatedDir;
 	FVector2D mPrevMoveDir;
+	FVector2D mCurrMoveDir;
 
 private:
 	virtual void Update(float deltaTime) final;
@@ -24,7 +25,8 @@ public:
 		mAccumulatedDir += direction;
 	}
 
-	const FVector2D& GetMoveDir() const { return mPrevMoveDir; }
+	const FVector2D& GetPrevMoveDir() const { return mPrevMoveDir; }
+	const FVector2D& GetCurrMoveDir() const { return mCurrMoveDir; }
 
 	float GetSpeed() const { return mSpeed; }
 	void SetSpeed(float speed)
