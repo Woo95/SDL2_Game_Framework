@@ -16,20 +16,22 @@ CLayer::~CLayer()
 
 void CLayer::Update(float deltaTime)
 {
-    for (CObject* obj : mObjects)
-    {
-        if (!obj->GetActive())
-        {
-            obj->Destroy();
+	for (int i = 0; i < mObjects.size(); i++)
+	{
+		CObject* obj = mObjects[i];
 
-            continue;
-        }
-        else if (!obj->GetEnable())
-        {
-            continue;
-        }
-        obj->Update(deltaTime);
-    }
+		if (!obj->GetActive())
+		{
+			obj->Destroy();
+
+			continue;
+		}
+		else if (!obj->GetEnable())
+		{
+			continue;
+		}
+		obj->Update(deltaTime);
+	}
 }
 
 void CLayer::LateUpdate(float deltaTime)

@@ -16,8 +16,10 @@ CComponent::~CComponent()
 
 bool CComponent::Init()
 {
-	for (CComponent* child : mChilds)
+	for (int i = 0; i < mChilds.size(); i++)
 	{
+		CComponent* child = mChilds[i];
+
 		if (!child->Init())
 			return false;
 	}
@@ -26,8 +28,10 @@ bool CComponent::Init()
 
 void CComponent::Update(float deltaTime)
 {
-	for (CComponent* child : mChilds)
+	for (int i = 0; i < mChilds.size(); i++)
 	{
+		CComponent* child = mChilds[i];
+
 		if (!child->GetActive())
 		{
 			child->Destroy();
