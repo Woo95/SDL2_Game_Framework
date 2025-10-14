@@ -8,7 +8,7 @@ CAnimation::CAnimation() :
 	mPrevPos(FVector2D::ZERO),
 	mFrameInterval(0.0f),
 	mCurrIdx(0),
-	mLooped(false)
+	mPlayedOnce(false)
 {
 }
 
@@ -54,8 +54,10 @@ void CAnimation::Update(float deltaTime)
 
 		case EAnimationType::TIME:
 		{
-			mFrameInterval += deltaTime;
+			if (mPlayedOnce)
+				return;
 
+			mFrameInterval += deltaTime;
 			if (mFrameInterval >= aniData->intervalPerFrame)
 			{
 				if (aniData->isLoop)
@@ -64,8 +66,8 @@ void CAnimation::Update(float deltaTime)
 				}
 				else
 				{
-					mLooped = (mCurrIdx >= aniData->frames.size() - 1) ? true : false;
-					if (!mLooped)
+					mPlayedOnce = (mCurrIdx >= aniData->frames.size() - 1) ? true : false;
+					if (!mPlayedOnce)
 						mCurrIdx++;
 				}
 				mFrameInterval = 0.0f;

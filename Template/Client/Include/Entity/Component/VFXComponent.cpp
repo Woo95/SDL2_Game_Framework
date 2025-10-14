@@ -33,10 +33,10 @@ void CVFXComponent::Update(float deltaTime)
 
 	mAnimation->Update(deltaTime);
 
-	if (mAnimation->GetLooped())
+	if (mAnimation->IsPlayedOnce())
 	{
 		mPlayVFX = false;
-		mAnimation->ResetLoop();
+		mAnimation->ResetPlayedOnce();
 	}
 }
 

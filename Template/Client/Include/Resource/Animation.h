@@ -27,7 +27,7 @@ protected:
 	// for EAnimationType::MOVE & EAnimationType::TIME //
 	float mFrameInterval;
 	int   mCurrIdx;
-	bool  mLooped;
+	bool  mPlayedOnce;
 
 private:
 	void Update(float deltaTime);
@@ -39,11 +39,12 @@ public:
 	// 애니메이션 정보
 	const SDL_Rect& GetFrame() { return mAnimationStates[mCurrentState].get()->frames[mCurrIdx]; }
 
-	// 루프 상태
-	bool GetLooped() const { return mLooped; }
-	void ResetLoop() { mLooped = false; }
+	// EAnimationType::TIME, 한 번만 재생될 경우
+	bool IsPlayedOnce() const { return mPlayedOnce; }
+	void ResetPlayedOnce() { mPlayedOnce = false; }
 
 	// 상태 관련
+	EAnimationState GetState() const { return mCurrentState; }
 	void SetState(EAnimationState state)
 	{
 		if (mCurrentState != state)
