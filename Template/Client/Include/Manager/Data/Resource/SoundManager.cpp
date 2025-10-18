@@ -15,20 +15,32 @@ CSoundManager::~CSoundManager()
 {
 }
 
-void CSoundManager::StopSound()
+void CSoundManager::StopSFX()
 {
-    Mix_HaltChannel(-1); // all sfx
-    Mix_HaltMusic();     // bgm
+	Mix_HaltChannel(-1); // all sfx
 }
 
-void CSoundManager::PauseSound()
-{   
-    Mix_Pause(-1);    // all sfx
-    Mix_PauseMusic(); // bgm
+void CSoundManager::StopBGM()
+{
+	Mix_HaltMusic(); // currently playing bgm
 }
 
-void CSoundManager::ResumeSound()
+void CSoundManager::PauseSFX()
 {
-    Mix_Resume(-1);    // all sfx
-    Mix_ResumeMusic(); // bgm
+	Mix_Pause(-1); // all sfx
+}
+
+void CSoundManager::PauseBGM()
+{
+	Mix_PauseMusic(); // currently playing bgm
+}
+
+void CSoundManager::ResumeSFX()
+{
+	Mix_Resume(-1); // all sfx
+}
+
+void CSoundManager::ResumeBGM()
+{
+	Mix_ResumeMusic(); // previously played bgm
 }
