@@ -40,15 +40,11 @@ void CCollider::OnCollisionStay(CCollider* other)
 
 void CCollider::OnCollisionExit(CCollider* other)
 {
-    mCollidedCount--;
+	if (mCollidedCount > 0)
+		mCollidedCount--;
 
-    if (mCollidedCount <= 0)
-    {
-        mCollidedCount = 0;
-
-        for (const auto& callback : mCallbacks[ECollider::EXIT])
-            callback(this, other);
-    }
+	for (const auto& callback : mCallbacks[ECollider::EXIT])
+		callback(this, other);
 }
 
 void CCollider::SetProfile(const std::string& name)
